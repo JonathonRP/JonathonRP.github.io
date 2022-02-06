@@ -61,9 +61,8 @@ footer {
       grid-template-columns: .2fr auto;
   -webkit-column-gap: 2px;
           column-gap: 2px;
-  -ms-grid-column-align: start;
-      justify-self: start;
   height: 80%;
+  width: 100%;
   margin-top: 32px;
 }
 
@@ -77,7 +76,7 @@ footer .links:before {
   position: absolute;
   top: 0;
   height: 80%;
-  width: 90%;
+  width: 12.5em;
 }
 
 .text-accent {

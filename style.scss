@@ -93,8 +93,8 @@ footer {
   display: grid;
   grid-template-columns: .2fr auto;
   column-gap: 2px;
-  justify-self: start;
   height: 80%;
+  width: 100%;
   margin-top: 32px;
 
   .links {
@@ -106,7 +106,7 @@ footer {
       position: absolute;
       top: 0;
       height: 80%;
-      width: 90%;
+      width: 12.5em;
     }
   }
 }
