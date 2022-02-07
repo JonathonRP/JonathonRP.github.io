@@ -61,9 +61,24 @@ header {
 
   p {
     grid-column: span 2;
-    margin: 1em 45px 1em 45px;
     text-align: center;
-    padding: 15px 32px;
+    margin: 1em 0;
+    padding: 1em 0;
+
+    @media (min-width: 40em) {
+      margin: 1em 2em;
+      padding: 1em 2em;
+    }
+
+    @media (min-width: 50em) {
+      margin: 1em 3em;
+      padding: 1em 3em;
+    }
+
+    @media (min-width: 60em) {
+      margin: 1em 6em;
+      padding: 1em 5em;
+    }
   }
 }
 
@@ -167,25 +182,37 @@ footer {
 
 .skills {
   display: grid;
-  grid-template-rows: 45px 1fr;
+  // grid-template-rows: 45px 1fr;
   column-gap: 1em;
   padding: 0 8px;
   background-color: $subdued-color;
 
-  > h2 {
-    grid-column: span 2;
-  }
-  > h4 {
-    margin: 1em;
-  }
   > h4, h2 {
+    margin: 0;
     grid-column: span 2;
+    clear: both;
     z-index: 1;
   }
+
+  h4 {
+    padding: .4em 0 0 .4em;
+  }
+
   > ul {
     list-style: none;
-    grid-column: span 2;
+    //grid-column: span 2;
+    margin: .1em;
+    padding: 0;
+    color: #ffffff;
     z-index: 1;
+
+    > li {
+      float: left;
+      background-color: $secondary-color;
+      border-radius: 3px;
+      margin: 2px;
+      padding: 5px;
+    }
   }
 }
 
@@ -404,7 +431,7 @@ footer {
     background-color: transparent;
 
     > h2 {
-      margin-top: 32px;
+      padding-top: 32px;
     }
   }
 
