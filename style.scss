@@ -133,7 +133,7 @@ footer {
 
     &:before {
       content: '';
-      border-right: 2px solid #ddd;
+      border-right: 2px solid $subdued-color;
       position: absolute;
       top: 0;
       height: 80%;
