@@ -74,6 +74,29 @@ a {
   font-size: 16px;
 }
 
+a:after {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: '\f360';
+  font-size: 15px;
+  padding-left: 5px;
+  color: #4d4d4d;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:hover a:after {
+  color: #069992;
+}
+
 footer {
   position: relative;
   display: -ms-grid;
@@ -97,7 +120,7 @@ footer .links:before {
   position: absolute;
   top: 0;
   height: 80%;
-  width: 12.5em;
+  width: 13.5em;
 }
 
 .text-accent {
@@ -107,8 +130,8 @@ footer .links:before {
 .links {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 150px 35px;
-      grid-template-columns: 150px 35px;
+  -ms-grid-columns: 165px 35px;
+      grid-template-columns: 165px 35px;
   -ms-grid-rows: (25px)[2];
       grid-template-rows: repeat(2, 25px);
   -webkit-column-gap: .5em;
