@@ -53,6 +53,10 @@ body {
     padding: .83em 8px;
     margin: 0;
   }
+
+  h1, h2, .title, .job-title, .major {
+    font-family: "Poppins", sans-serif;
+  }
 }
 
 header {
@@ -98,7 +102,7 @@ a {
   &:after {
     @include icon-solid();
     content: '\f360';
-    font-size: 15px;
+    font-size: 12px;
     padding-left: 5px;
     color: #d4d4d4;
   }
@@ -351,7 +355,8 @@ footer {
 
       .title {
         font-family: "Pacifico", cursive;
-        font-size: 32px;
+        // font-family: "Poppins", sans-serif;
+        font-size: 20px;
         line-height: 1;
         margin: 0;
         color: #00272b;
@@ -428,7 +433,15 @@ footer {
 
   .projects {
     list-style: none;
+    margin: 0;
     padding: 0;
+
+    .project {
+
+      .name {
+        font-weight: bold;
+      }
+    }
   }
 }
 
@@ -457,7 +470,7 @@ footer {
   section {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 1em;
+    gap: 0;
     border-top: 2px solid $subdued-color;
   }
 
