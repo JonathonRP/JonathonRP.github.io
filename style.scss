@@ -51,6 +51,7 @@ body {
 header {
   display: grid;
   grid-template-columns: 2fr .2fr;
+  column-gap: 8em;
   margin: 0 8px;
 
   h1 {
@@ -62,8 +63,13 @@ header {
   }
 
   p {
+    grid-column: span 2;
     margin: 1em 0;
     padding: 1em 0;
+  }
+
+  .details {
+    display: none;
   }
 }
 
@@ -71,10 +77,6 @@ section {
   position: relative;
   background: #f3f3f3;
 
-  &:last-of-type {
-    background-color: $subdued-color;
-    padding: 0 8px;
-  }
 }
 
 header, section, footer {
@@ -85,7 +87,7 @@ a {
   text-decoration: none;
   color: #069968;
   font-size: 16px;
-
+  
   &:after {
     @include icon-solid();
     content: '\f360';
@@ -93,11 +95,11 @@ a {
     padding-left: 5px;
     color: #d4d4d4;
   }
-
+  
   &:hover {
     text-decoration: underline;
   }
-
+  
   &:hover:after {
     color: $secondary-color;
   }
@@ -111,7 +113,7 @@ footer {
   height: 80%;
   width: 100%;
   margin-top: 32px;
-
+  
   &:before {
     content: '';
     border-right: 2px solid $subdued-color;
@@ -121,7 +123,7 @@ footer {
     width: 13.5em;
     z-index: 0;
   }
-
+  
   .details {
     padding: 0 25px 32px 0;
     z-index: 1;
@@ -144,7 +146,7 @@ footer {
   align-items: center;
   text-align: end;
   padding-top: 32px;
-
+  
   p {
     display: block;
     grid-column: 1;
@@ -152,7 +154,7 @@ footer {
     padding: 0;
     margin: 0;
   }
-
+  
   i {
     font-size: 20px;
     text-align: center;
@@ -188,29 +190,29 @@ footer {
 
 .skills {
   position: relative;
-  padding: 0 8px;
+  padding: 0  8px 1em 8px;
   background-color: $subdued-color;
   z-index: 1;
   overflow: hidden;
-
+  
   > h4, h2 {
     clear: both;
     z-index: 1;
   }
-
+  
   h4 {
     margin: 0;
     padding: .2em;
     float: left;
   }
-
+  
   > ul {
     list-style: none;
     margin: 0;
     padding: 0;
     color: #ffffff;
     z-index: 1;
-
+    
     > li {
       float: left;
       background-color: $secondary-color;
@@ -225,7 +227,7 @@ footer {
 
 .history {
   padding: 0 8px;
-
+  
   > h2 {
     position: relative;
     z-index: 1;
@@ -234,11 +236,11 @@ footer {
 
 .experience-timeline {
   list-style: none;
-
+  
   width: 90%;
   margin: 0 auto;
   padding-top: 5px;
-
+  
   &:before{
     content: '';
     position: absolute;
@@ -248,7 +250,7 @@ footer {
     border-left: 2px solid $subdued-color;
     z-index: 0;
   }
-
+  
   > li {
     box-shadow: 0px 3px 6px -1px rgba(0, 0, 0, 0.2);
     padding: 5px 25px 5px 25px;
@@ -257,15 +259,15 @@ footer {
     cursor: pointer;
     position: relative;
     transition: all 500ms;
-
+    
     &:hover {
       box-shadow: 1px 6px 16px -1px rgba(0, 0, 0, 0.1);
-
+      
       .logo, .badge {
         border: 2px solid $secondary-color;
       }
     }
-
+    
     .logo, .badge {
       border-radius: 50%;
       width: $logo-size;
@@ -279,36 +281,36 @@ footer {
       background: #fff;
       transition: all 500ms;
       overflow: hidden;
-
+      
       > img {
         display: block;
         width: $image-size;
         height: $image-size;
         transform: translate(28%,28%);
       }
-
+      
       > img[alt="Quovant Logo"] {
         transform: scale(1.6) translate(18%, 18%);
       }
-
+      
       > img[alt="MT Logo"] {
         width: 40px;
         transform: translate(15%, 28%);
       }
     }
-
+    
     .badge {
       > img {
         transform: scale(2) translate(.3rem, 11%);
       }
     }
-
+    
     .header {
       display: flex;
       flex-flow: row wrap;
       justify-content: flex-start;
       margin-top: 2.5rem;
-
+      
       .icon {
         @include icon-solid();
         height: 16px;
@@ -320,7 +322,7 @@ footer {
         top: 5px;
         left: $spacing;
       }
-
+      
       .duration {
         font-weight: bold;
         position: absolute;
@@ -337,7 +339,7 @@ footer {
           text-align: right;
         }
       }
-
+      
       .title {
         font-family: "Pacifico", cursive;
         font-size: 32px;
@@ -348,27 +350,27 @@ footer {
         width: 100%;
       }
     }
-
+    
     .content {
       font-size: .9rem;
-
+      
       .job-title, .major, .issuer {
         margin: 0;
         font-weight: bold;
         font-size: $sizing;
       }
-
+      
       .issuer {
         line-height: 2.5;
       }
-
+      
       .key-achievements {
         display: grid;
         grid-auto-flow: row;
         list-style-type: arrow;
         padding-inline-start: $spacing;
         line-height: 1;
-
+        
         > li {
           margin: 10px 0;
 
@@ -377,27 +379,27 @@ footer {
           }
         }
       }
-
+      
       .degree {
         margin-bottom: 0;
       }
     }
   }
-
+  
   .certification .icon:before {
     content: "\f0a3";
   }
-
+  
   .profession, .internship {
     .icon:before {
       content: "\f0b1";
     }
   }
-
+  
   .education .icon:before {
     content: "\f19d";
   }
-
+  
   @media (min-width: 700px) {
     max-width: 750px;
     padding-left: 80px;
@@ -405,6 +407,13 @@ footer {
 }
 
 .personal-projects {
+  position: relative;
+  padding: 8px;
+  background-color: $subdued-color;
+  z-index: 1;
+}
+
+.projects {
   list-style: none;
   padding: 0;
 }
@@ -416,50 +425,53 @@ footer {
   }
 
   header {
-    border-bottom: 2px solid $subdued-color;
     margin: 0;
+
+    p {
+      grid-column: 1;
+    }
+
+    .details {
+      display: grid;
+    }
   }
 
   section {
-
-    &:first-of-type {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 1em;
-      border-bottom: 2px solid $subdued-color;
-    }
-
-    &:last-of-type {
-      background-color: transparent;
-      padding: 0;
-    }
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1em;
+    border-top: 2px solid $subdued-color;
   }
 
   footer {
-    margin: 0 38px;
-
-    &:before {
-      height: 100%;
-    }
+    display: none;
   }
 
   .skills {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 8px;
     background-color: transparent;
   }
 
   .experience-timeline:before {
     top: 0;
   }
-
+  
   .key-achievements {
     grid-template-columns: repeat(2, 1fr);
     column-gap: $sizing + 1.5rem;
   }
-
+  
   .personal-projects {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    grid-column: 1;
+    grid-row: 1/2;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    padding: 600px 8px 8px 8px;
   }
 }
 

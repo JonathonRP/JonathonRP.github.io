@@ -13,6 +13,8 @@ header {
   display: grid;
   -ms-grid-columns: 2fr .2fr;
       grid-template-columns: 2fr .2fr;
+  -webkit-column-gap: 8em;
+          column-gap: 8em;
   margin: 0 8px;
 }
 
@@ -25,18 +27,18 @@ header h2 {
 }
 
 header p {
+  grid-column: span 2;
   margin: 1em 0;
   padding: 1em 0;
+}
+
+header .details {
+  display: none;
 }
 
 section {
   position: relative;
   background: #f3f3f3;
-}
-
-section:last-of-type {
-  background-color: #ddd;
-  padding: 0 8px;
 }
 
 header, section, footer {
@@ -205,7 +207,7 @@ footer .details {
 
 .skills {
   position: relative;
-  padding: 0 8px;
+  padding: 0  8px 1em 8px;
   background-color: #ddd;
   z-index: 1;
   overflow: hidden;
@@ -447,6 +449,13 @@ footer .details {
 }
 
 .personal-projects {
+  position: relative;
+  padding: 8px;
+  background-color: #ddd;
+  z-index: 1;
+}
+
+.projects {
   list-style: none;
   padding: 0;
 }
@@ -456,28 +465,40 @@ footer .details {
     margin: 0 32px;
   }
   header {
-    border-bottom: 2px solid #ddd;
     margin: 0;
   }
-  section:first-of-type {
+  header p {
+    -ms-grid-column: 1;
+    grid-column: 1;
+  }
+  header .details {
+    display: -ms-grid;
+    display: grid;
+  }
+  section {
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 1fr 2fr;
         grid-template-columns: 1fr 2fr;
     gap: 1em;
-    border-bottom: 2px solid #ddd;
-  }
-  section:last-of-type {
-    background-color: transparent;
-    padding: 0;
+    border-top: 2px solid #ddd;
   }
   footer {
-    margin: 0 38px;
-  }
-  footer:before {
-    height: 100%;
+    display: none;
   }
   .skills {
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 1;
+    grid-row: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 0 8px;
     background-color: transparent;
   }
   .experience-timeline:before {
@@ -490,11 +511,20 @@ footer .details {
             column-gap: 2.5rem;
   }
   .personal-projects {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: (1fr)[2];
-        grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 1;
+    grid-row: 1/2;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    background-color: transparent;
+    padding: 600px 8px 8px 8px;
   }
 }
 
@@ -503,3 +533,4 @@ footer .details {
   symbols: "\2192";
   suffix: "  ";
 }
+/*# sourceMappingURL=style.css.map */
