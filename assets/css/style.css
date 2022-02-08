@@ -252,9 +252,6 @@ footer .details {
 
 .history > h2 {
   position: relative;
-  padding: 0 0 0 100px;
-  margin: 0 0 0 32px;
-  margin-block: .83em;
   background-color: #f3f3f3;
   z-index: 1;
 }
@@ -511,6 +508,9 @@ footer .details {
     grid-row: 1/3;
   }
   .history > h2 {
+    padding: 0 0 0 100px;
+    margin: 0 0 0 32px;
+    margin-block: .83em;
     background-color: transparent;
   }
   .history .experience-timeline:before {
