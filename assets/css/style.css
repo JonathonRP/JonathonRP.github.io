@@ -8,6 +8,14 @@ body {
   margin: 0;
 }
 
+body > h2 {
+  display: block;
+  -ms-grid-column-align: start;
+      justify-self: start;
+  padding: .83em 8px;
+  margin: 0;
+}
+
 header {
   display: -ms-grid;
   display: grid;
@@ -82,9 +90,8 @@ footer {
       grid-template-columns: .2fr auto;
   -webkit-column-gap: 2px;
           column-gap: 2px;
-  height: 80%;
+  height: 100%;
   width: 100%;
-  margin-top: 32px;
 }
 
 footer:before {
@@ -462,6 +469,7 @@ footer .details {
 
 .personal-projects > h2 {
   margin: 0;
+  padding-top: .83em;
 }
 
 .personal-projects .projects {
@@ -472,6 +480,9 @@ footer .details {
 @media (min-width: 40em) {
   body {
     margin: 0 32px;
+  }
+  body > h2 {
+    display: none;
   }
   header {
     margin: 0;

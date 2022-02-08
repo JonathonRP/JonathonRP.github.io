@@ -46,6 +46,13 @@ body {
   font-family: "Roboto", sans-serif;
   color: $text-color;
   margin: 0;
+
+  > h2 {
+    display: block;
+    justify-self: start;
+    padding: .83em 8px;
+    margin: 0;
+  }
 }
 
 header {
@@ -110,9 +117,8 @@ footer {
   display: grid;
   grid-template-columns: .2fr auto;
   column-gap: 2px;
-  height: 80%;
+  height: 100%;
   width: 100%;
-  margin-top: 32px;
 
   &:before {
     content: '';
@@ -417,6 +423,7 @@ footer {
 
   > h2 {
     margin: 0;
+    padding-top: .83em;
   }
 
   .projects {
@@ -429,6 +436,10 @@ footer {
 
   body {
     margin: 0 32px;
+
+    > h2 {
+      display: none;
+    }
   }
 
   header {
