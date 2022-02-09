@@ -58,14 +58,14 @@ body {
   color: $text-color;
   margin: 0;
 
-  > h2 {
+  > h3 {
     display: block;
     justify-self: start;
     padding: .4em 8px;
     margin: 0;
   }
 
-  h1, h2, .title, .job-title, .major {
+  h1, h2, h3, .title, .job-title, .major {
     font-family: "Poppins", sans-serif;
   }
 }
@@ -225,11 +225,15 @@ footer {
   z-index: 1;
   overflow: hidden;
 
-  > h4, h2 {
+  > h4, h3 {
     margin-block: 0;
     padding-block: .2em;
     clear: both;
     z-index: 1;
+  }
+
+  h3 {
+    padding-bottom: .5em;
   }
 
   h4 {
@@ -279,10 +283,12 @@ footer {
   }
 
   > h2 {
-    // position: relative;
-    // background-color: #f3f3f3;
-    padding-inline: 1em;
-    padding-block: 1em;
+    position: relative;
+    background-color: #f3f3f3;
+    margin-inline: -3em;
+    padding-inline: 3em;
+    width: 82%;
+    border-bottom: 2px solid $subdued-color;
     z-index: 1;
   }
 
@@ -444,13 +450,15 @@ footer {
 }
 
 .personal-projects {
+  grid-column: 2;
+  grid-row: 3;
   position: relative;
   padding: 0 8px;
   background-color: $subdued-color;
   z-index: 1;
   border-bottom: 2px solid #efefef;
 
-  > h2 {
+  > h3 {
     margin: 0;
     padding-block: .2em;
   }
@@ -459,6 +467,7 @@ footer {
     list-style: none;
     margin: 0;
     padding: 0;
+    font-size: .9em;
 
     .project {
 
@@ -476,7 +485,7 @@ footer {
   z-index: 1;
   overflow: hidden;
 
-  > h2 {
+  > h3 {
     margin: 0;
     padding-block: .2em;
   }
@@ -503,9 +512,9 @@ footer {
 @media (min-width: 40em) {
 
   body {
-    margin: 0 32px;
+    margin: 10px 32px;
 
-    > h2 {
+    > h3 {
       display: none;
     }
   }
@@ -534,9 +543,8 @@ footer {
   }
 
   .skills {
-    padding: 0 0 8px 8px;
+    padding: 1em 0 8px 8px;
     background-color: transparent;
-    border-bottom: 2px solid #ddd;
 
     > ul {
       > li {
@@ -547,26 +555,25 @@ footer {
 
   .history {
     grid-column: 1;
-    grid-row: 1/3;
+    grid-row: 1/4;
 
     .experience-timeline:before {
       top: 0;
     }
 
     .key-achievements {
-      grid-template-columns: repeat(2, 1fr);
       column-gap: $sizing + 1.5rem;
     }
   }
 
   .personal-projects {
     background-color: transparent;
-    border-bottom-color: $subdued-color;
   }
 
   .interests {
-    background-color: transparent;
     grid-column: 2;
+    background-color: transparent;
+    border-bottom: 2px solid $subdued-color;
 
     > ul {
       > li {
