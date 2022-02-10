@@ -144,7 +144,6 @@ footer .details {
 }
 
 .details p {
-  display: block;
   -ms-grid-column: 1;
   grid-column: 1;
   font-size: 16px;
