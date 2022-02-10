@@ -1,6 +1,20 @@
-$subdued-color: #ddd;
+$body-color: #f3f3f3;
+// $subdued-color: #ddd;
 $text-color: #4d4d4d;
-$secondary-color: #069992;
+
+// $primary-color: #2c963e;
+// $accent-color: #d8b907;
+
+$accent-color: #2c963e;
+$primary-color: #d8b907;
+
+$link-color: #037224;
+
+// $primary-color: #037224;
+$primary-color: #ddd;
+$accent-color: #069992;
+$link-color: #069968;
+
 $logo-size: 50px;
 $image-size: 32px;
 
@@ -53,9 +67,10 @@ $spacing: 32px;
 body {
   display: grid;
   justify-items: center;
-  background-color: #F3F3F3;
+  background-color: $body-color;
   font-family: "Roboto", sans-serif;
   color: $text-color;
+  line-height: 1.4;
   margin: 0;
 
   > h3 {
@@ -97,8 +112,6 @@ header {
 
 section {
   position: relative;
-  background: #f3f3f3;
-
 }
 
 header, section, footer {
@@ -107,7 +120,7 @@ header, section, footer {
 
 a {
   text-decoration: none;
-  color: #069968;
+  color: $link-color;
   font-size: 16px;
 
   &:after {
@@ -116,7 +129,7 @@ a {
       content: "\f08e";
       font-size: 12px;
       padding-left: 5px;
-      color: #d4d4d4;
+      color: $primary-color;
     }
   }
 
@@ -125,7 +138,7 @@ a {
   }
 
   &:hover:after {
-    color: $secondary-color;
+    color: $accent-color;
   }
 }
 
@@ -139,7 +152,7 @@ footer {
 
   &:before {
     content: '';
-    border-right: 2px solid $subdued-color;
+    border-right: 2px solid $primary-color;
     position: absolute;
     top: 0;
     height: 80%;
@@ -155,7 +168,7 @@ footer {
 }
 
 .text-accent {
-  color: $secondary-color;
+  color: $accent-color;
 }
 
 .details {
@@ -221,7 +234,7 @@ footer {
 .skills {
   position: relative;
   padding: 1em 8px;
-  background-color: $subdued-color;
+  background-color: $primary-color;
   z-index: 1;
   overflow: hidden;
 
@@ -246,12 +259,12 @@ footer {
     list-style: none;
     margin: 0;
     padding: 0;
-    color: $secondary-color;
+    color: $accent-color;
     z-index: 1;
 
     > li {
       float: left;
-      background-color: #fefefe;
+      background-color: $body-color;
       border-radius: 3px;
       margin: 2px;
       padding: 5px;
@@ -291,18 +304,18 @@ footer {
     top: 0;
     height: 100%;
     width: 1px;
-    border-left: 2px solid $subdued-color;
+    border-left: 2px solid $primary-color;
     z-index: 0;
   }
 
   > h2 {
     position: relative;
-    background-color: #f3f3f3;
+    background-color: $body-color;
     margin-inline: -3em;
     padding-inline: 1em;
     padding-block-start: 1em;
     width: 99%;
-    border-bottom: 2px solid $subdued-color;
+    border-bottom: 2px solid $primary-color;
     z-index: 1;
   }
 
@@ -319,7 +332,7 @@ footer {
       box-shadow: 1px 6px 16px -1px rgba(0, 0, 0, 0.1);
 
       .logo, .badge {
-        border: 2px solid $secondary-color;
+        border: 2px solid $accent-color;
       }
     }
 
@@ -327,7 +340,7 @@ footer {
       border-radius: 50%;
       width: $logo-size;
       height: $logo-size;
-      border: 2px solid $subdued-color;
+      border: 2px solid $primary-color;
       position: absolute;
       left: -$spacing;
       border-radius: 50%;
@@ -402,7 +415,7 @@ footer {
         line-height: 1;
         margin: 0;
         color: #00272b;
-        border-bottom: 1px solid $subdued-color;
+        border-bottom: 1px solid $primary-color;
         width: 100%;
       }
     }
@@ -425,13 +438,13 @@ footer {
         grid-auto-flow: row;
         list-style-type: arrow;
         padding-inline-start: $spacing;
-        line-height: 1;
+        line-height: 1.2;
 
         > li {
           margin: 10px 0;
 
           &::marker {
-            color: $secondary-color;
+            color: $accent-color;
           }
         }
       }
@@ -468,9 +481,9 @@ footer {
   grid-row: 3;
   position: relative;
   padding: 1em 8px;
-  background-color: $subdued-color;
+  background-color: $primary-color;
   z-index: 1;
-  border-bottom: 2px solid #efefef;
+  border-bottom: 2px solid $body-color;
 
   > h3 {
     margin: 0;
@@ -495,7 +508,7 @@ footer {
 .interests {
   position: relative;
   padding: 1em 8px;
-  background-color: $subdued-color;
+  background-color: $primary-color;
   z-index: 1;
   overflow: hidden;
 
@@ -508,12 +521,12 @@ footer {
     list-style: none;
     margin: 0;
     padding: 0;
-    color: $secondary-color;
+    color: $accent-color;
     z-index: 1;
 
     > li {
       float: left;
-      background-color: #fefefe;
+      background-color: $body-color;
       border-radius: 3px;
       margin: 2px;
       padding: 5px;
@@ -549,7 +562,7 @@ footer {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 0;
-    border-top: 2px solid $subdued-color;
+    border-top: 2px solid $primary-color;
   }
 
   footer {
@@ -562,7 +575,7 @@ footer {
 
     ul {
       > li {
-        background-color: $subdued-color;
+        background-color: $primary-color;
       }
     }
   }
@@ -588,11 +601,11 @@ footer {
     grid-column: 2;
     padding: 0 8px;
     background-color: transparent;
-    border-bottom: 2px solid $subdued-color;
+    border-bottom: 2px solid $primary-color;
 
     > ul {
       > li {
-        background-color: $subdued-color;
+        background-color: $primary-color;
       }
     }
   }

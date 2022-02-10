@@ -2,9 +2,10 @@ body {
   display: -ms-grid;
   display: grid;
   justify-items: center;
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
   font-family: "Roboto", sans-serif;
   color: #4d4d4d;
+  line-height: 1.4;
   margin: 0;
 }
 
@@ -50,7 +51,6 @@ header .details {
 
 section {
   position: relative;
-  background: #f3f3f3;
 }
 
 header, section, footer {
@@ -76,7 +76,7 @@ a:after {
   content: "\f08e";
   font-size: 12px;
   padding-left: 5px;
-  color: #d4d4d4;
+  color: #ddd;
 }
 
 a:hover {
@@ -257,7 +257,7 @@ footer .details {
 
 .skills ul > li {
   float: left;
-  background-color: #fefefe;
+  background-color: #f3f3f3;
   border-radius: 3px;
   margin: 2px;
   padding: 5px;
@@ -460,7 +460,7 @@ footer .details {
   list-style-type: arrow;
   -webkit-padding-start: 32px;
           padding-inline-start: 32px;
-  line-height: 1;
+  line-height: 1.2;
 }
 
 .experience-timeline > li .content .key-achievements > li {
@@ -503,7 +503,7 @@ footer .details {
   padding: 1em 8px;
   background-color: #ddd;
   z-index: 1;
-  border-bottom: 2px solid #efefef;
+  border-bottom: 2px solid #f3f3f3;
 }
 
 .personal-projects > h3 {
@@ -545,7 +545,7 @@ footer .details {
 
 .interests ul > li {
   float: left;
-  background-color: #fefefe;
+  background-color: #f3f3f3;
   border-radius: 3px;
   margin: 2px;
   padding: 5px;
