@@ -224,7 +224,7 @@ footer .details {
 
 .skills {
   position: relative;
-  padding: 0  8px 1em 8px;
+  padding: 1em 8px;
   background-color: #ddd;
   z-index: 1;
   overflow: hidden;
@@ -265,13 +265,18 @@ footer .details {
   z-index: 1;
 }
 
-.skills .technical-skills div {
+.skills .technical-skills {
+  -webkit-padding-after: 1em;
+          padding-block-end: 1em;
+}
+
+.skills .technical-skills > div {
   overflow: auto;
   -webkit-margin-after: 1em;
           margin-block-end: 1em;
 }
 
-.skills .technical-skills div:last-of-type {
+.skills .technical-skills > div:last-of-type {
   -webkit-margin-after: 0;
           margin-block-end: 0;
 }
@@ -301,8 +306,10 @@ footer .details {
   position: relative;
   background-color: #f3f3f3;
   margin-inline: -3em;
-  padding-inline: 3em;
-  width: 82%;
+  padding-inline: 1em;
+  -webkit-padding-before: 1em;
+          padding-block-start: 1em;
+  width: 99%;
   border-bottom: 2px solid #ddd;
   z-index: 1;
 }
@@ -433,7 +440,7 @@ footer .details {
 }
 
 .experience-timeline > li .content {
-  font-size: .9rem;
+  font-size: .93rem;
 }
 
 .experience-timeline > li .content .job-title, .experience-timeline > li .content .major, .experience-timeline > li .content .issuer {
@@ -493,7 +500,7 @@ footer .details {
   -ms-grid-row: 3;
   grid-row: 3;
   position: relative;
-  padding: 0 8px;
+  padding: 1em 8px;
   background-color: #ddd;
   z-index: 1;
   border-bottom: 2px solid #efefef;
@@ -517,7 +524,7 @@ footer .details {
 
 .interests {
   position: relative;
-  padding: 0 0 8px 8px;
+  padding: 1em 8px;
   background-color: #ddd;
   z-index: 1;
   overflow: hidden;
@@ -579,10 +586,6 @@ footer .details {
     padding: 1em 0 8px 8px;
     background-color: transparent;
   }
-  .skills .technical-skills {
-    -webkit-padding-after: 1em;
-            padding-block-end: 1em;
-  }
   .skills ul > li {
     background-color: #ddd;
   }
@@ -606,6 +609,7 @@ footer .details {
   .interests {
     -ms-grid-column: 2;
     grid-column: 2;
+    padding: 0 8px;
     background-color: transparent;
     border-bottom: 2px solid #ddd;
   }
