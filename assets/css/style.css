@@ -5,7 +5,7 @@ body {
   background-color: #f3f3f3;
   font-family: "Roboto", sans-serif;
   color: #4d4d4d;
-  line-height: 1.4;
+  line-height: 1.5;
   margin: 0;
 }
 
@@ -41,8 +41,6 @@ header h2 {
 
 header p {
   grid-column: span 2;
-  margin: 1em 0;
-  padding: 1em 0;
 }
 
 header .details {
@@ -74,7 +72,6 @@ a:after {
   font-family: "Font Awesome 5 Pro";
   font-weight: 400;
   content: "\f08e";
-  font-size: 12px;
   padding-left: 5px;
   color: #ddd;
 }
@@ -97,6 +94,8 @@ footer {
           column-gap: 2px;
   height: 100%;
   width: 100%;
+  -webkit-padding-start: 8px;
+          padding-inline-start: 8px;
 }
 
 footer:before {
@@ -110,7 +109,10 @@ footer:before {
 }
 
 footer .details {
-  padding: 0 25px 32px 0;
+  -webkit-padding-before: 0;
+          padding-block-start: 0;
+  -webkit-padding-after: 32px;
+          padding-block-end: 32px;
   z-index: 1;
   -ms-grid-column: 1;
   grid-column: 1;
@@ -284,57 +286,65 @@ footer .details {
   padding: 0 8px;
 }
 
-.experience-timeline {
+.history h2 {
+  position: relative;
+  background-color: #f3f3f3;
+  -webkit-margin-before: -1em;
+          margin-block-start: -1em;
+  -webkit-margin-after: 1em;
+          margin-block-end: 1em;
+  -webkit-padding-before: 1em;
+          padding-block-start: 1em;
+  width: 98%;
+  border-bottom: 2px solid #ddd;
+  z-index: 1;
+}
+
+.history > ol {
   list-style: none;
   width: 90%;
   margin: 0 auto;
   padding-top: 5px;
 }
 
-.experience-timeline:before {
+.history > ol:before {
   content: '';
   position: absolute;
   top: 0;
-  height: 100%;
+  height: 98%;
   width: 1px;
   border-left: 2px solid #ddd;
   z-index: 0;
 }
 
-.experience-timeline > h2 {
+.history > ol > li {
   position: relative;
-  background-color: #f3f3f3;
-  margin-inline: -3em;
-  padding-inline: 1em;
-  -webkit-padding-before: 1em;
-          padding-block-start: 1em;
-  width: 99%;
-  border-bottom: 2px solid #ddd;
-  z-index: 1;
-}
-
-.experience-timeline > li {
-  -webkit-box-shadow: 0px 3px 6px -1px rgba(0, 0, 0, 0.2);
-          box-shadow: 0px 3px 6px -1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
   padding: 5px 25px 5px 25px;
   margin: 10px 32px;
   line-height: 2;
-  cursor: pointer;
-  position: relative;
+  -webkit-box-shadow: 0px 3px 6px -1px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 3px 6px -1px rgba(0, 0, 0, 0.2);
+  z-index: 2;
   -webkit-transition: all 500ms;
   transition: all 500ms;
 }
 
-.experience-timeline > li:hover {
+.history > ol > li:hover {
   -webkit-box-shadow: 1px 6px 16px -1px rgba(0, 0, 0, 0.1);
           box-shadow: 1px 6px 16px -1px rgba(0, 0, 0, 0.1);
 }
 
-.experience-timeline > li:hover .logo, .experience-timeline > li:hover .badge {
+.history > ol > li:hover .logo, .history > ol > li:hover .badge {
   border: 2px solid #069992;
 }
 
-.experience-timeline > li .logo, .experience-timeline > li .badge {
+.history > ol > li span {
+  display: block;
+  height: 55px;
+}
+
+.history > ol > li .logo, .history > ol > li .badge {
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -351,7 +361,7 @@ footer .details {
   overflow: hidden;
 }
 
-.experience-timeline > li .logo > img, .experience-timeline > li .badge > img {
+.history > ol > li .logo > img, .history > ol > li .badge > img {
   display: block;
   width: 32px;
   height: 32px;
@@ -359,23 +369,23 @@ footer .details {
           transform: translate(28%, 28%);
 }
 
-.experience-timeline > li .logo > img[alt="Quovant Logo"], .experience-timeline > li .badge > img[alt="Quovant Logo"] {
+.history > ol > li .logo > img[alt="Quovant Logo"], .history > ol > li .badge > img[alt="Quovant Logo"] {
   -webkit-transform: scale(1.6) translate(18%, 18%);
           transform: scale(1.6) translate(18%, 18%);
 }
 
-.experience-timeline > li .logo > img[alt="MT Logo"], .experience-timeline > li .badge > img[alt="MT Logo"] {
+.history > ol > li .logo > img[alt="MT Logo"], .history > ol > li .badge > img[alt="MT Logo"] {
   width: 40px;
   -webkit-transform: translate(15%, 28%);
           transform: translate(15%, 28%);
 }
 
-.experience-timeline > li .badge > img {
+.history > ol > li .badge > img {
   -webkit-transform: scale(2) translate(0.3rem, 11%);
           transform: scale(2) translate(0.3rem, 11%);
 }
 
-.experience-timeline > li .header {
+.history > ol > li .header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -389,7 +399,7 @@ footer .details {
   margin-top: 2.5rem;
 }
 
-.experience-timeline > li .header .icon {
+.history > ol > li .header .icon {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -405,19 +415,19 @@ footer .details {
   margin-right: .4rem;
   margin-bottom: .4rem;
   position: absolute;
-  top: 5px;
+  top: 15px;
   left: 32px;
 }
 
-.experience-timeline > li .header .duration {
+.history > ol > li .header .duration {
   font-weight: bold;
   position: absolute;
-  top: 6px;
+  top: 10px;
   left: 45px;
 }
 
 @media (min-width: 800px) {
-  .experience-timeline > li .header .duration {
+  .history > ol > li .header .duration {
     top: 20px;
     left: -100px;
     line-height: 1;
@@ -429,7 +439,7 @@ footer .details {
   }
 }
 
-.experience-timeline > li .header .title {
+.history > ol > li .header .title {
   font-size: 20px;
   line-height: 1;
   margin: 0;
@@ -438,56 +448,59 @@ footer .details {
   width: 100%;
 }
 
-.experience-timeline > li .content {
+.history > ol > li .content {
   font-size: .93rem;
 }
 
-.experience-timeline > li .content .job-title, .experience-timeline > li .content .major, .experience-timeline > li .content .issuer {
+.history > ol > li .content .job-title, .history > ol > li .content .major, .history > ol > li .content .issuer {
   margin: 0;
   font-weight: bold;
   font-size: 1rem;
 }
 
-.experience-timeline > li .content .issuer {
+.history > ol > li .content .issuer {
   line-height: 2.5;
 }
 
-.experience-timeline > li .content .key-achievements {
+.history > ol > li .content .key-achievements {
   display: -ms-grid;
   display: grid;
-  grid-auto-flow: row;
   list-style-type: arrow;
+  gap: 0;
   -webkit-padding-start: 32px;
           padding-inline-start: 32px;
-  line-height: 1.2;
+  -webkit-margin-before: 10px;
+          margin-block-start: 10px;
+  line-height: 1.6;
 }
 
-.experience-timeline > li .content .key-achievements > li {
-  margin: 10px 0;
+.history > ol > li .content .key-achievements > li {
+  -webkit-margin-before: 8px;
+          margin-block-start: 8px;
 }
 
-.experience-timeline > li .content .key-achievements > li::marker {
+.history > ol > li .content .key-achievements > li::marker {
   color: #069992;
 }
 
-.experience-timeline > li .content .degree {
+.history > ol > li .content .degree {
   margin-bottom: 0;
 }
 
-.experience-timeline .certification .icon:before {
+.history > ol .certification .icon:before {
   content: "\f5f3";
 }
 
-.experience-timeline .profession .icon:before, .experience-timeline .internship .icon:before {
+.history > ol .profession .icon:before, .history > ol .internship .icon:before {
   content: "\f0b1";
 }
 
-.experience-timeline .education .icon:before {
+.history > ol .education .icon:before {
   content: "\f19d";
 }
 
 @media (min-width: 700px) {
-  .experience-timeline {
+  .history > ol {
     max-width: 750px;
     padding-left: 80px;
   }
@@ -598,10 +611,6 @@ footer .details {
   .history .experience-timeline:before {
     top: 0;
   }
-  .history .key-achievements {
-    -webkit-column-gap: 2.5rem;
-            column-gap: 2.5rem;
-  }
   .personal-projects {
     background-color: transparent;
   }
@@ -609,6 +618,8 @@ footer .details {
     -ms-grid-column: 2;
     grid-column: 2;
     padding: 0 8px;
+    -webkit-padding-after: 1em;
+            padding-block-end: 1em;
     background-color: transparent;
     border-bottom: 2px solid #ddd;
   }
