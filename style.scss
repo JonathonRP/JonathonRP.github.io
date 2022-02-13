@@ -64,6 +64,12 @@ $spacing: 32px;
   }
 }
 
+@mixin headings {
+  h1, h2, h3, h4, h5, h6 {
+    @content;
+  }
+}
+
 body {
   display: grid;
   justify-items: center;
@@ -73,15 +79,10 @@ body {
   line-height: 1.5;
   margin: 0;
 
-  > h3 {
-    display: block;
-    justify-self: start;
-    padding: .4em 8px;
-    margin: 0;
-  }
-
-  h1, h2, h3, .title, .job-title, .major {
-    font-family: "Poppins", sans-serif;
+  @include headings() {
+    &, .title, .job-title, .major {
+      font-family: "Poppins", sans-serif;
+    }
   }
 }
 
@@ -110,6 +111,19 @@ header {
 
 section {
   position: relative;
+
+  @include headings() {
+    margin: 0;
+    padding-block: .2em;
+  }
+
+  ol {
+    > li {
+      .header {
+        margin-top: 1rem;
+      }
+    }
+  }
 }
 
 header, section, footer {
@@ -153,17 +167,27 @@ footer {
     content: '';
     border-right: 2px solid $primary-color;
     position: absolute;
-    top: 0;
-    height: 80%;
+    top: 43px;
+    height: 64%;
     width: 13.5em;
     z-index: 0;
   }
 
+  @include headings() {
+    display: block;
+    justify-self: start;
+    grid-column: span 2;
+    grid-row: 1;
+    padding: .4em 8px;
+    margin: 0;
+  }
+
   .details {
+    grid-column: span 2;
+    grid-row: 2;
     padding-block-start: 0;
     padding-block-end: 32px;
     z-index: 1;
-    grid-column: 1;
   }
 }
 
@@ -230,29 +254,74 @@ footer {
   }
 }
 
+.icon {
+  position: relative;
+  margin-inline-end: 10px;
+  // padding-block: 5%;
+  // padding-inline: 1%;
+  @include icon-regular();
+  // background-color: $accent-color;
+  // border-radius: 3px;
+  // color: $primary-color;
+  z-index: 2;
+
+  // display: none;
+}
+
+.certification:before {
+  //content: "\f0a3";
+  content: "\f5f3";
+}
+
+.education:before {
+  content: "\f19d";
+}
+
+.technical-skills .icon:before {
+  content: "\f121";
+}
+
+.soft-skills .icon:before{
+  content: "\f187";
+}
+
+.personal-projects .icon:before {
+  content: "\f85d";
+}
+
+.interests .icon:before {
+  content: "\f07c";
+}
+
+footer .icon:before {
+  content: "\f129";
+}
+
+.heading, .subheading {
+  margin-block: 0;
+  padding-block: .2em;
+  clear: both;
+  z-index: 1;
+}
+
+.heading {
+  // padding-block: 0;
+  padding-bottom: .5em;
+  // border-bottom: 2px solid $primary-color;
+}
+
+.subheading {
+  margin: 0;
+  padding-inline: .2em;
+  float: left;
+}
+
 .skills {
   position: relative;
   padding: 1em 8px;
   background-color: $primary-color;
   z-index: 1;
   overflow: hidden;
-
-  h4, h3 {
-    margin-block: 0;
-    padding-block: .2em;
-    clear: both;
-    z-index: 1;
-  }
-
-  h3 {
-    padding-bottom: .5em;
-  }
-
-  h4 {
-    margin: 0;
-    padding-inline: .2em;
-    float: left;
-  }
 
   ul {
     list-style: none;
@@ -272,7 +341,7 @@ footer {
     }
   }
 
-  .technical-skills {
+  div:first-of-type {
     padding-block-end: 1em;
 
     > div {
@@ -291,12 +360,9 @@ footer {
 
   h2 {
     position: relative;
-    // top: -55px;
     background-color: $body-color;
-    // margin-inline: -3em;
-    // padding-inline: 1em;
     margin-block-start: -1em;
-    margin-block-end: 1em;
+    // margin-block-end: 1em;
     padding-block-start: 1em;
     width: 98%;
     border-bottom: 2px solid $primary-color;
@@ -318,6 +384,23 @@ footer {
       width: 1px;
       border-left: 2px solid $primary-color;
       z-index: 0;
+    }
+
+    .profession, .internship {
+      .header {
+        // margin-top: 1.8rem;
+        margin-top: 2.5rem;
+
+        .title {
+          // margin-inline-start: 5%;
+        }
+      }
+
+      .content {
+        .job-title, .major, .issuer {
+          // margin-inline-start: 5%;
+        }
+      }
     }
 
     > li {
@@ -384,18 +467,16 @@ footer {
         display: flex;
         flex-flow: row wrap;
         justify-content: flex-start;
-        margin-top: 2.5rem;
 
         .icon {
           @include icon-regular();
           height: 16px;
           width: 16px;
-          margin-left: -$sizing;
           margin-right: .4rem;
           margin-bottom: .4rem;
           position: absolute;
-          top: 15px;
-          left: $spacing;
+          top: 10px;
+          left: 10px;
         }
 
         .duration {
@@ -463,19 +544,10 @@ footer {
       }
     }
 
-    .certification .icon:before {
-      //content: "\f0a3";
-      content: "\f5f3";
-    }
-
     .profession, .internship {
       .icon:before {
         content: "\f0b1";
       }
-    }
-
-    .education .icon:before {
-      content: "\f19d";
     }
 
     @media (min-width: 700px) {
@@ -493,11 +565,6 @@ footer {
   background-color: $primary-color;
   z-index: 1;
   border-bottom: 2px solid $body-color;
-
-  > h3 {
-    margin: 0;
-    padding-block: .2em;
-  }
 
   .projects {
     list-style: none;
@@ -520,11 +587,6 @@ footer {
   background-color: $primary-color;
   z-index: 1;
   overflow: hidden;
-
-  > h3 {
-    margin: 0;
-    padding-block: .2em;
-  }
 
   ul {
     list-style: none;
@@ -549,10 +611,6 @@ footer {
 
   body {
     margin: 10px 32px;
-
-    > h3 {
-      display: none;
-    }
   }
 
   header {
