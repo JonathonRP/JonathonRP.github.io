@@ -156,7 +156,7 @@ gulp.task('prod: SEO', function() {
             keywords: ['Software Developer', 'Web Developer', 'MVC 5', 'C#', '.Net', 'SQL'],
             robots: {
                 index: true,
-                folow: true
+                follow: true
             },
             revisitAfter: '1 month'
         }
