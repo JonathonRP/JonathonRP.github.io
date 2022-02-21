@@ -149,13 +149,14 @@ gulp.task('prod: SEO', function() {
             webauthor: 'Jonathon Reese Perry',
             locale: 'en_US',
             url: 'https://JonathonRP.github.io/Resume/',
+            image: 'https://JonathonRP.github.io/Resume/assets/images/profile.png',
             title: 'Jonathon Reese Perry Software Developer Resume',
             description: 'Hard working and detail oriented professional, seeking a software development position where I can use my skills and contribute to the growth of a company.',
             site_name: 'Software Developer Resume',
             keywords: ['Software Developer', 'Web Developer', 'MVC 5', 'C#', '.Net', 'SQL'],
             robots: {
                 index: true,
-                folow: true
+                follow: true
             },
             revisitAfter: '1 month'
         }
