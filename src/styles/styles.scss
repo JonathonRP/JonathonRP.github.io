@@ -1,92 +1,9 @@
-@use 'abstracts' as *;
-
-// utility classes
-
-@include icon('github', true) {
-  //content: "\f092";
-  content: "\f09b";
-}
-@include icon('linkedin', true) {
-  //content: "\f08c";
-  content: "\f0e1";
-}
-@include icon('email', false) {
-  //content: "\f0e0";
-  content: "\f1fa";
-}
-@include icon('location', false) {
-  content: "\f3c5";
-}
-@include icon('phone', false) {
-  // content: "\f879";
-  content: "\f10b";
-}
-
-.icon {
-  position: relative;
-  margin-inline-end: 10px;
-  // padding-block: 5%;
-  // padding-inline: 1%;
-  @include icon-regular();
-  // background-color: $accent-color;
-  // border-radius: 3px;
-  // color: $primary-color;
-  z-index: 2;
-
-  // display: none;
-}
-
-.certification .icon::before {
-  //content: "\f0a3";
-  content: "\f5f3";
-}
-
-.education .icon::before {
-  content: "\f19d";
-}
-
-.tech-stack .icon::before {
-  content: "\f121";
-}
-
-.skills .icon::before{
-  content: "\f187";
-}
-
-.personal-projects .icon::before {
-  content: "\f85d";
-}
-
-.interests .icon::before {
-  content: "\f07c";
-}
-
-.details .icon::before {
-  content: "\f129";
-}
-
-.heading, .subheading {
-  margin-block: 0;
-  padding-block: .4em;
-  clear: both;
-  z-index: 1;
-}
-
-.heading {
-  // padding-block: 0;
-  padding-bottom: .3em;
-  // border-bottom: 2px solid $primary-color;
-}
-
-.subheading {
-  margin: 0;
-  padding-inline: .2em;
-  float: left;
-}
-
-.text-accent {
-  color: $accent-color;
-}
+@use 'base';
+@use 'utilities';
+@use 'components';
+@use 'layout';
+@use 'pages';
+@use 'block-sections';
 
 // mobile/tablet first
 
@@ -310,7 +227,7 @@ a {
     }
 
     .profession, .internship {
-      padding-bottom: 25px;
+      padding-bottom: 1.6rem;
 
       .header {
         // margin-top: 1.8rem;
@@ -335,8 +252,8 @@ a {
     > li {
       position: relative;
       cursor: pointer;
-      padding: 5px 25px 5px 25px;
-      margin: 10px $spacing;
+      padding: .3125rem 1.6rem;
+      margin: .625rem 2rem;
       line-height: 2;
       box-shadow: 0px 3px 6px -1px rgba(0, 0, 0, 0.2);
       z-index: 2;
@@ -348,11 +265,6 @@ a {
         .logo, .badge {
           border: 2px solid $accent-color;
         }
-      }
-
-      span {
-        display: block;
-        height: 55px;
       }
 
       .logo, .badge {
@@ -440,7 +352,7 @@ a {
 
         .key-achievements {
           padding-inline-start: $spacing;
-          margin-block-start: 10px;
+          margin-block-start: .625rem;
           display: grid;
           list-style-type: arrow;
           line-height: 1.6;
@@ -471,7 +383,7 @@ a {
 
     @include respond(sm) {
       max-width: 750px;
-      padding-left: 80px;
+      padding-left: 5rem;
     }
   }
 }
@@ -511,31 +423,31 @@ a {
   }
 }
 
-.interests {
-  position: relative;
-  padding: 1em 8px;
-  background-color: $primary-color;
-  z-index: 1;
-  overflow: hidden;
+// .interests {
+//   position: relative;
+//   padding: 1em 8px;
+//   background-color: $primary-color;
+//   z-index: 1;
+//   overflow: hidden;
 
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    color: $accent-color;
-    z-index: 1;
+//   ul {
+//     list-style: none;
+//     margin: 0;
+//     padding: 0;
+//     color: $accent-color;
+//     z-index: 1;
 
-    > li {
-      float: left;
-      background-color: $body-color;
-      border-radius: 3px;
-      margin: 2px;
-      padding: 5px;
-      font-size: .75em;
-      z-index: 1;
-    }
-  }
-}
+//     > li {
+//       float: left;
+//       background-color: $body-color;
+//       border-radius: 3px;
+//       margin: 2px;
+//       padding: 5px;
+//       font-size: .75em;
+//       z-index: 1;
+//     }
+//   }
+// }
 
 // tablets
 @include respond(md) {

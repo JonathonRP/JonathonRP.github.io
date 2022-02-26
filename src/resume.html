@@ -52,7 +52,7 @@
     <meta name="image" property="og:image" content="https://JonathonRP.github.io/Resume/assets/images/profile.png">
 </head>
 <body>
-    <main>
+    <main class="grid">
         <img src="assets/images/profile.png" height="1" width="1" hidden="" aria-hidden="true">
 
         <!-- Profile -->
@@ -79,12 +79,12 @@
         </header>
 
         <!-- Technology Stack -->
-        <section class="tech-stack" aria-labelledby="tech-stack-title">
+        <section class="tag-list tech-stack" aria-labelledby="tech-stack-title">
             <h2 id="tech-stack-title" class="heading">
                 <i class="icon"></i>
                 Tech Stack
             </h2>
-            <ul>
+            <ul role="list">
                 <li aria-label="MVC 5">MVC 5</li>
                 <li aria-label="Webforms">Webforms</li>
                 <li aria-label="ASP.Net">ASP.Net</li>
@@ -95,7 +95,7 @@
         </section>
 
         <!-- Skills -->
-        <section class="skills" aria-labelledby="skills-title">
+        <section class="tag-list skills" aria-labelledby="skills-title">
             <h2 id="skills-title" class="heading">
                 <i class="icon"></i>
                 Skills
@@ -109,9 +109,9 @@
                 </h3>
 
                 <!-- Technologies -->
-                <section class="technologies" aria-labelledby="technologies-title">
+                <div class="technologies" aria-labelledby="technologies-title">
                     <h4 id="technologies-title" class="subheading">Technologies:</h4>
-                    <ul>
+                    <ul role="list">
                         <li aria-label="MVC 5">MVC 5</li>
                         <li aria-label="Webforms">Webforms</li>
                         <li aria-label="HTML 5">HTML 5</li>
@@ -133,21 +133,21 @@
                         <li aria-label="Electron">Electron</li>
                         <li aria-label="Xamarin">Xamarin</li>
                     </ul>
-                </section>
+                </div>
 
                 <!-- Databases -->
-                <section class="databases" aria-labelledby="database-title">
+                <div class="databases" aria-labelledby="database-title">
                     <h4 id="database-title" class="subheading">Databases:</h4>
-                    <ul>
+                    <ul role="list">
                         <li aria-label="SQL">SQL Server</li>
                         <li aria-label="PostgreSQL">PostgreSQL</li>
                     </ul>
-                </section>
+                </div>
 
                 <!-- Tools -->
-                <section class="tools" aria-labelledby="tools-title">
+                <div class="tools" aria-labelledby="tools-title">
                     <h4 id="tools-title" class="subheading">Tools:</h4>
-                    <ul>
+                    <ul role="list">
                         <li>Visual Studio</li>
                         <li>SQL Server</li>
                         <li>Azure Devops</li>
@@ -171,7 +171,7 @@
                         <li>Adobe Photoshop</li>
                         <li>Adobe XD</li>
                     </ul>
-                </section>
+                </div>
             </section>
 
             <!-- Soft Skills -->
@@ -180,7 +180,7 @@
                     <!-- <i class="icon"></i> -->
                     Soft Skills
                 </h3>
-                <ul>
+                <ul role="list">
                     <li>Collaborative</li>
                     <li>Adaptability/Flexability</li>
                     <li>Strong Work Ethic</li>
@@ -194,7 +194,7 @@
         <section class="history" aria-labelledby="History">
 
             <!-- Work -->
-            <ol>
+            <ol role="list">
                 <li class="profession">
                     <div class="logo">
                         <img src="assets/images/MiraTech+Quovant.jfif" alt="Quovant Logo">
@@ -249,12 +249,12 @@
                     </div>
                     <div class="header">
                         <i class="icon"></i>
-                        <section class="duration">
+                        <div class="duration">
                             May 2018
-                        </section>
-                        <section class="title">
+                        </div>
+                        <div class="title">
                             HCA - TriStar
-                        </section>
+                        </div>
                     </div>
                     <div class="content">
                         <p class="job-title">
@@ -282,12 +282,12 @@
                     </div>
                     <div class="header">
                         <i class="icon"></i>
-                        <section class="duration">
+                        <div class="duration">
                             May 2017
-                        </section>
-                        <section class="title">
+                        </div>
+                        <div class="title">
                             HCA - HealthTrust
-                        </section>
+                        </div>
                     </div>
                     <div class="content">
                         <p class="job-title">
@@ -317,7 +317,7 @@
                     <i class="icon"></i>
                     Certifications
                 </h2>
-                <ol>
+                <ol role="list">
                     <li>
                         <div class="badge">
                             <img src="assets/images/Developing_ASP.NET_MVC_Web_Applications-Certification_Logo.png" alt="Certification Logo">
@@ -345,7 +345,7 @@
                     <i class="icon"></i>
                     Education
                 </h2>
-                <ol>
+                <ol role="list">
                     <li>
                         <div class="logo">
                             <img src="assets/images/MTSU.png" alt="MT Logo">
@@ -368,25 +368,25 @@
                         </div>
                     </li>
                     <!-- <li>
-                        <section class="logo">
+                        <div class="logo">
                             <img src="assets/images/ColumbiaState.png" alt="CS Logo"/>
-                        </section>
-                        <section class="header">
-                            <section class="duration">
+                        </div>
+                        <div class="header">
+                            <div class="duration">
                                 May 2016
-                            </section>
-                            <section class="title">
+                            </div>
+                            <div class="title">
                                 Columbia State
-                            </section>
-                        </section>
-                        <section class="content">
+                            </div>
+                        </div>
+                        <div class="content">
                             <p class="degree">
                                 Associate of Science
                             </p>
                             <p class="major">
                                 Information Systems
                             </p>
-                        </section>
+                        </div>
                     </li> -->
                 </ol>
             </section>
@@ -399,7 +399,7 @@
                 Personal Projects
             </h2>
 
-            <ul class="projects">
+            <ol class="projects" role="list">
                 <li class="project">
                     <div class="screen-shot">
                         <img alt="Date Night App screen-shot">
@@ -504,16 +504,16 @@
                         </p>
                     </div>
                 </li>
-            </ul>
+            </ol>
         </section>
 
         <!-- Interests -->
-        <section class="interests" aria-labelledby="interests-title">
+        <section class="tag-list interests" aria-labelledby="interests-title">
             <h2 id="interests-title" class="heading">
                 <i class="icon"></i>
                 Interests
             </h2>
-            <ul>
+            <ul role="list">
                 <li>Pursuing Azure/AWS Cloud Certification</li>
             </ul>
         </section>

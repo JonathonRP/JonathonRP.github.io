@@ -1,0 +1,20 @@
+.personal-projects {
+	background-color: $primary-color;
+	border-bottom: 2px solid $body-color;
+
+	.projects {
+		.project {
+			.screen-shot {
+				> img {
+					display: none;
+					// position: relative;
+					// left: -9999%;
+				}
+			}
+
+			.summary {
+				max-width: 60ch;
+			}
+		}
+	}
+}

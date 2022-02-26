@@ -1,0 +1,13 @@
+header {
+    display: contents;
+    grid-column: 1/-1;
+    grid-row: 1;
+
+    p {
+        grid-column: span 2;
+    }
+
+    .details {
+        display: none;
+    }
+}

@@ -1,0 +1,115 @@
+// tablets
+@include respond(md) {
+	body {
+		margin: 10px auto;
+	}
+}
+
+// small desktop view *note: 960px = 60em 1440px = 90em
+@include respond(lg) {
+	body {
+		margin: 10px 1em;
+		max-width: 1200px;
+	}
+
+	main {
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+
+		header {
+			margin: 0;
+
+			p {
+				grid-column: 1;
+			}
+
+			.details {
+				display: grid;
+				justify-self: end;
+			}
+		}
+
+		ol {
+			> li {
+				.header {
+					margin-top: 1rem;
+				}
+			}
+		}
+
+		> .details {
+			display: none;
+		}
+	}
+
+	.tech-stack,
+	.skills {
+		padding: 1em 0 8px 8px;
+		background-color: transparent;
+
+		ul {
+			> li {
+				background-color: $primary-color;
+			}
+		}
+	}
+
+	.tech-stack {
+		border-top: 2px solid $primary-color;
+	}
+
+	.history {
+		grid-column: 1;
+		grid-row: 3/7;
+		border-top: 2px solid $primary-color;
+
+		> ol {
+			&:first-of-type::before {
+				height: 75%;
+			}
+		}
+
+		ol {
+			&::before {
+				height: 50%;
+			}
+
+			.profession,
+			.internship,
+			> li {
+				.header > .duration {
+					top: 20px;
+					left: -100px;
+					line-height: 1.2;
+					height: 20px;
+					width: 12%;
+					transform: translateX(-55%);
+					text-align: right;
+				}
+			}
+		}
+	}
+
+	.personal-projects {
+		background-color: transparent;
+	}
+
+	.interests {
+		grid-column: 2;
+		background-color: transparent;
+		border-bottom: 2px solid $primary-color;
+
+		> ul {
+			> li {
+				background-color: $primary-color;
+			}
+		}
+	}
+}
+
+// full desktop *note: 1280px = 80em
+@include respond(xl) {
+	body {
+		margin: 10px auto;
+	}
+}

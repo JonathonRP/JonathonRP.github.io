@@ -1,0 +1,22 @@
+.tag-list {
+	position: relative;
+	background-color: $primary-color;
+	z-index: 1;
+	overflow: hidden;
+
+	ul {
+        max-width: 60ch;
+		color: $accent-color;
+		z-index: 1;
+
+		> li {
+			float: left;
+			background-color: $body-color;
+			border-radius: 3px;
+			margin: 2px;
+			padding: 5px;
+			font-size: .75em;
+			z-index: 1;
+		}
+	}
+}

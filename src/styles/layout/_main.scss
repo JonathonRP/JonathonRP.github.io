@@ -1,0 +1,35 @@
+main {
+	grid-column: 2/6;
+	position: relative;
+
+	.personal-projects {
+		grid-column: 2;
+		grid-row: 6;
+		position: relative;
+		z-index: 1;
+	}
+
+	> .details {
+		grid-column: span 2;
+		grid-template-rows: 50px repeat(5, 25px);
+
+		&::before {
+			position: absolute;
+			content: '';
+			border-right: 2px solid $primary-color;
+			top: 66px;
+			height: 60%;
+			width: 13.5em;
+			z-index: 0;
+		}
+
+		@include headings() {
+			grid-column: span 2;
+			grid-row: 1;
+		}
+
+		.heading {
+			width: 100%;
+		}
+	}
+}
