@@ -1,20 +1,33 @@
 .personal-projects {
-	background-color: $primary-color;
-	border-bottom: 2px solid $body-color;
+	background-color: var(--primary-color);
 
-	.projects {
-		.project {
-			.screen-shot {
-				> img {
-					display: none;
-					// position: relative;
-					// left: -9999%;
-				}
-			}
+	&__project {
+		padding-block: var(--xsmall-size);
+		font-size: 0.9em;
+	}
 
-			.summary {
-				max-width: 60ch;
+	&__list {
+		padding: 0;
+	}
+
+	&__proj {
+
+		&-img {
+			> img {
+				display: none;
+				// position: relative;
+				// left: -9999%;
 			}
+		}
+
+		&-name {
+			font-weight: bold;
+			font-size: 1rem;
+		}
+
+		&-summary {
+			margin: var(--auto-size) var(--xsmall-size);
+			max-width: 60ch;
 		}
 	}
 }

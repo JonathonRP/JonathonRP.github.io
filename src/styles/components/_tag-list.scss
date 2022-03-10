@@ -1,22 +1,37 @@
+@use '../abstracts' as *;
+
 .tag-list {
-	position: relative;
-	background-color: $primary-color;
-	z-index: 1;
-	overflow: hidden;
+	padding: 0;
+	max-width: 60ch;
+	color: var(--accent-color);
 
-	ul {
-        max-width: 60ch;
-		color: $accent-color;
-		z-index: 1;
+	&__container {
+		background-color: var(--primary-color);
+		overflow: hidden;
+	}
 
-		> li {
-			float: left;
-			background-color: $body-color;
-			border-radius: 3px;
-			margin: 2px;
-			padding: 5px;
-			font-size: .75em;
-			z-index: 1;
+	&__tag {
+		float: left;
+		background-color: var(--body-color);
+		border-radius: 3px;
+		margin: var(--micro-size);
+		padding: var(--tiny-size);
+		font-size: 0.8rem;
+	}
+
+	&--tech-stack {
+		.tag-list__tag {
+			background-color: var(--primary-color);
+		}
+	}
+
+	@include respond-to(lg) {
+		&__container {
+			background-color: transparent;
+		}
+
+		&__tag {
+			background-color: var(--primary-color);
 		}
 	}
 }

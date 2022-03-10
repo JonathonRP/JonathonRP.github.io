@@ -1,3 +1,0 @@
-User-agent:*
-Disallow:
-Sitemap: https://JonathonRP.github.io/Resume/
