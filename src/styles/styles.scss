@@ -1,116 +1,113 @@
-$body-color: #f3f3f3;
-// $subdued-color: #ddd;
-$text-color: #4d4d4d;
+@use 'abstracts' as *;
 
-// $primary-color: #2c963e;
-// $accent-color: #d8b907;
+// utility classes
 
-$accent-color: #2c963e;
-$primary-color: #d8b907;
-
-$link-color: #037224;
-
-// $primary-color: #037224;
-$primary-color: #ddd;
-$accent-color: #069992;
-$link-color: #069968;
-
-$logo-size: 50px;
-$image-size: 32px;
-
-$sizing: 1rem;
-$spacing: 32px;
-
-@mixin icon {
-  -moz-osx-font-smoothing:grayscale;
-  -webkit-font-smoothing:antialiased;
-  display:inline-block;
-  font-style:normal;
-  font-variant:normal;
-  text-rendering:auto;
-  line-height: 1;
-  @content;
+@include icon('github', true) {
+  //content: "\f092";
+  content: "\f09b";
+}
+@include icon('linkedin', true) {
+  //content: "\f08c";
+  content: "\f0e1";
+}
+@include icon('email', false) {
+  //content: "\f0e0";
+  content: "\f1fa";
+}
+@include icon('location', false) {
+  content: "\f3c5";
+}
+@include icon('phone', false) {
+  // content: "\f879";
+  content: "\f10b";
 }
 
-@mixin icon-brand {
-  @include icon() {
-    font-family:"Font Awesome 5 Brands";
-    font-weight:400;
-    @content;
-  }
+.icon {
+  position: relative;
+  margin-inline-end: 10px;
+  // padding-block: 5%;
+  // padding-inline: 1%;
+  @include icon-regular();
+  // background-color: $accent-color;
+  // border-radius: 3px;
+  // color: $primary-color;
+  z-index: 2;
+
+  // display: none;
 }
 
-@mixin icon-solid {
-  @include icon() {
-    font-family:"Font Awesome 5 Pro";
-    font-weight:900;
-    @content;
-  }
+.certification .icon::before {
+  //content: "\f0a3";
+  content: "\f5f3";
 }
 
-@mixin icon-regular {
-  @include icon() {
-    font-family: "Font Awesome 5 Pro";
-    font-weight: 400;
-    @content;
-  }
+.education .icon::before {
+  content: "\f19d";
 }
 
-@mixin icon-light {
-  @include icon() {
-    font-family: "Font Awesome 5 Pro";
-    font-weight: 300;
-    @content;
-  }
+.tech-stack .icon::before {
+  content: "\f121";
 }
 
-@mixin headings {
-  h1, h2, h3, h4, h5, h6 {
-    @content;
-  }
+.skills .icon::before{
+  content: "\f187";
 }
+
+.personal-projects .icon::before {
+  content: "\f85d";
+}
+
+.interests .icon::before {
+  content: "\f07c";
+}
+
+.details .icon::before {
+  content: "\f129";
+}
+
+.heading, .subheading {
+  margin-block: 0;
+  padding-block: .4em;
+  clear: both;
+  z-index: 1;
+}
+
+.heading {
+  // padding-block: 0;
+  padding-bottom: .3em;
+  // border-bottom: 2px solid $primary-color;
+}
+
+.subheading {
+  margin: 0;
+  padding-inline: .2em;
+  float: left;
+}
+
+.text-accent {
+  color: $accent-color;
+}
+
+// mobile/tablet first
 
 body {
-  display: grid;
-  justify-items: center;
-  align-self: center;
+  margin: 0;
+  max-width: 800px;
   background-color: $body-color;
   font-family: "Roboto", sans-serif;
   color: $text-color;
   line-height: 1.5;
-  margin: 0;
 
   @include headings() {
     &, .title, .job-title, .major {
       font-family: "Poppins", sans-serif;
+      line-height: 1.2;
     }
   }
 }
 
-header {
-  display: grid;
-  grid-template-columns: 2fr .2fr;
-  column-gap: 8em;
-  margin: 0 8px;
-
-  h1 {
-    margin: .67em 0 0 0;
-  }
-
-  h2 {
-    margin: 0;
-  }
-
-  p {
-    grid-column: span 2;
-  }
-
-  .details {
-    display: none;
-  }
-}
-
 main {
+  grid-column: 2/6;
   position: relative;
 
   @include headings() {
@@ -118,17 +115,76 @@ main {
     padding-block: .2em;
   }
 
+  header {
+    display: contents;
+    grid-column: 1/-1;
+    grid-row: 1;
+
+    > * {
+      margin: 0 8px;
+    }
+
+    h1 {
+      margin: .67em 0 0 0;
+    }
+
+    @include headings() {
+      padding-block: 0;
+    }
+
+    p {
+      margin-block: 1em;
+      grid-column: span 2;
+    }
+
+    .details {
+      display: none;
+    }
+  }
+
   ol {
+    position: relative;
+
     > li {
+      padding-bottom: 25px;
+
       .header {
         margin-top: 2.5rem;
       }
     }
   }
-}
 
-header, main, footer {
-  max-width: 1000px;
+  > .details {
+    grid-column: span 2;
+    grid-template-rows: 50px repeat(5,25px);
+    padding: 1em 8px;
+    position: relative;
+    background-color: $body-color;
+    z-index: 1;
+
+    &::before {
+      content: '';
+      border-right: 2px solid $primary-color;
+      position: absolute;
+      top: 66px;
+      height: 60%;
+      width: 13.5em;
+      z-index: 0;
+    }
+
+    @include headings() {
+      grid-column: span 2;
+      grid-row: 1;
+      display: block;
+      margin: 0;
+      justify-self: start;
+      text-align: start;
+    }
+
+    .heading {
+      width: 100%;
+    }
+  }
 }
 
 a {
@@ -154,49 +210,6 @@ a {
   }
 }
 
-footer {
-  position: relative;
-  display: grid;
-  grid-template-columns: .2fr auto;
-  column-gap: 2px;
-  height: 100%;
-  width: 96%;
-
-  &:before {
-    content: '';
-    border-right: 2px solid $primary-color;
-    position: absolute;
-    top: 48px;
-    height: 64%;
-    width: 13.5em;
-    z-index: 0;
-  }
-
-  @include headings() {
-    display: block;
-    justify-self: start;
-    grid-column: span 2;
-    grid-row: 1;
-    margin: 0;
-  }
-
-  .heading {
-    width: 100%;
-  }
-
-  .details {
-    grid-column: span 2;
-    grid-row: 2;
-    padding-block-start: 0;
-    padding-block-end: 32px;
-    padding-top: 0;
-    z-index: 1;
-  }
-}
-
-.text-accent {
-  color: $accent-color;
-}
 
 .details {
   display: grid;
@@ -205,10 +218,9 @@ footer {
   column-gap: .5em;
   grid-column: 2;
   grid-row: 1/3;
-  align-self: center;
   align-items: center;
   text-align: end;
-  padding-top: 32px;
+  padding-top: 0.67em;
 
   span {
     grid-column: 1;
@@ -226,102 +238,6 @@ footer {
   }
 }
 
-.location:before {
-  @include icon-regular() {
-    content: "\f3c5";
-  }
-}
-
-.github:before {
-  @include icon-brand() {
-    //content: "\f092";
-    content: "\f09b";
-  }
-}
-
-.linkedin:before {
-  @include icon-brand() {
-    //content: "\f08c";
-    content: "\f0e1";
-  }
-}
-
-.email:before {
-  @include icon-regular() {
-    //content: "\f0e0";
-    content: "\f1fa";
-  }
-}
-
-.phone:before {
-  @include icon-regular() {
-    // content: "\f879";
-    content: "\f10b";
-  }
-}
-
-.icon {
-  position: relative;
-  margin-inline-end: 10px;
-  // padding-block: 5%;
-  // padding-inline: 1%;
-  @include icon-regular();
-  // background-color: $accent-color;
-  // border-radius: 3px;
-  // color: $primary-color;
-  z-index: 2;
-
-  // display: none;
-}
-
-.certification:before {
-  //content: "\f0a3";
-  content: "\f5f3";
-}
-
-.education:before {
-  content: "\f19d";
-}
-
-.tech-stack .icon:before {
-  content: "\f121";
-}
-
-.skills .icon:before{
-  content: "\f187";
-}
-
-.personal-projects .icon:before {
-  content: "\f85d";
-}
-
-.interests .icon:before {
-  content: "\f07c";
-}
-
-footer .icon:before {
-  content: "\f129";
-}
-
-.heading, .subheading {
-  margin-block: 0;
-  padding-block: .2em;
-  clear: both;
-  z-index: 1;
-}
-
-.heading {
-  // padding-block: 0;
-  padding-bottom: .5em;
-  // border-bottom: 2px solid $primary-color;
-}
-
-.subheading {
-  margin: 0;
-  padding-inline: .2em;
-  float: left;
-}
-
 .tech-stack, .skills {
   position: relative;
   padding: 1em 8px;
@@ -333,6 +249,7 @@ footer .icon:before {
     list-style: none;
     margin: 0;
     padding: 0;
+    max-width: 60ch;
     color: $accent-color;
     z-index: 1;
 
@@ -342,7 +259,7 @@ footer .icon:before {
       border-radius: 3px;
       margin: 2px;
       padding: 5px;
-      font-size: .7em;
+      font-size: .75em;
       z-index: 1;
     }
   }
@@ -350,7 +267,7 @@ footer .icon:before {
   .technical-skills {
     padding-block-end: 1em;
 
-    > div {
+    > section {
       overflow: auto;
       margin-block-end: 1em;
 
@@ -370,29 +287,31 @@ footer .icon:before {
     margin-block-start: -1em;
     // margin-block-end: 1em;
     padding-block-start: 1em;
-    width: 98%;
+    width: calc(98% - 1vw);
     border-bottom: 2px solid $primary-color;
     z-index: 1;
   }
 
-  > ol {
+  ol {
     list-style: none;
 
     margin: 0 auto;
     padding-top: 5px;
     width: 90%;
 
-    &:before {
+    &::before {
       content: '';
       position: absolute;
       top: 0;
-      height: 98%;
+      height: 100%;
       width: 1px;
       border-left: 2px solid $primary-color;
       z-index: 0;
     }
 
     .profession, .internship {
+      padding-bottom: 25px;
+
       .header {
         // margin-top: 1.8rem;
         margin-top: 2.5rem;
@@ -400,6 +319,10 @@ footer .icon:before {
         // .title {
         //   margin-inline-start: 5%;
         // }
+
+        .duration {
+          left: 35px;
+        }
       }
 
       // .content {
@@ -438,7 +361,7 @@ footer .icon:before {
         height: $logo-size;
         border: 2px solid $primary-color;
         position: absolute;
-        left: -$spacing;
+        left: calc(-1 * $spacing);
         border-radius: 50%;
         top: 0;
         transform: translate(-50%, 5%);
@@ -486,18 +409,8 @@ footer .icon:before {
         .duration {
           position: absolute;
           top: 5px;
-          left: 35px;
+          left: auto;
           font-weight: bold;
-
-          @media (min-width: 800px) {
-            top: 20px;
-            left: -100px;
-            line-height: 1;
-            height: 50px;
-            width: 12%;
-            transform: translateX(-50%);
-            text-align: right;
-          }
         }
 
         .title {
@@ -526,18 +439,20 @@ footer .icon:before {
         }
 
         .key-achievements {
-          display: grid;
-          list-style-type: arrow;
-          gap: 0;
           padding-inline-start: $spacing;
           margin-block-start: 10px;
+          display: grid;
+          list-style-type: arrow;
           line-height: 1.6;
+          max-width: 60ch;
 
           > li {
             margin-block-start: 8px;
 
             &::marker {
+              content: "\2192   ";
               color: $accent-color;
+              margin-right: 1em;
             }
           }
         }
@@ -549,12 +464,12 @@ footer .icon:before {
     }
 
     .profession, .internship {
-      .icon:before {
+      .icon::before {
         content: "\f0b1";
       }
     }
 
-    @media (min-width: 700px) {
+    @include respond(sm) {
       max-width: 750px;
       padding-left: 80px;
     }
@@ -563,7 +478,7 @@ footer .icon:before {
 
 .personal-projects {
   grid-column: 2;
-  grid-row: 4;
+  grid-row: 6;
   position: relative;
   padding: 1em 8px;
   background-color: $primary-color;
@@ -587,6 +502,10 @@ footer .icon:before {
       }
       .name {
         font-weight: bold;
+      }
+
+      .summary {
+        max-width: 60ch;
       }
     }
   }
@@ -612,35 +531,43 @@ footer .icon:before {
       border-radius: 3px;
       margin: 2px;
       padding: 5px;
-      font-size: .7em;
+      font-size: .75em;
       z-index: 1;
     }
   }
 }
 
-@media (min-width: 50em) {
+// tablets
+@include respond(md) {
+  body {
+    margin: 10px auto;
+  }
+}
+
+// small desktop view *note: 960px = 60em 1440px = 90em
+@include respond(lg) {
 
   body {
-    margin: 10px 32px;
-  }
-
-  header {
-    margin: 0;
-
-    p {
-      grid-column: 1;
-    }
-
-    .details {
-      display: grid;
-    }
+    margin: 10px 1em;
+    max-width: 1200px;
   }
 
   main {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 0;
-    border-top: 2px solid $primary-color;
+
+    header {
+      margin: 0;
+
+      p {
+        grid-column: 1;
+      }
+
+      .details {
+        display: grid;
+        justify-self: end;
+      }
+    }
 
     ol {
       > li {
@@ -649,10 +576,10 @@ footer .icon:before {
         }
       }
     }
-  }
 
-  footer {
-    display: none;
+    > .details {
+      display: none;
+    }
   }
 
   .tech-stack, .skills {
@@ -666,19 +593,37 @@ footer .icon:before {
     }
   }
 
+  .tech-stack {
+    border-top: 2px solid $primary-color;
+  }
+
   .history {
     grid-column: 1;
-    grid-row: 1/5;
+    grid-row: 3/7;
+    border-top: 2px solid $primary-color;
 
     > ol {
-      position: relative;
+      &:first-of-type::before {
+        height: 75%;
+      }
+    }
 
-      &:before {
+    ol {
+
+      &::before {
         height: 50%;
       }
 
-      &:first-of-type:before {
-        height: 75%;
+      .profession, .internship, > li {
+        .header > .duration {
+          top: 20px;
+          left: -100px;
+          line-height: 1.2;
+          height: 20px;
+          width: 12%;
+          transform: translateX(-55%);
+          text-align: right;
+        }
       }
     }
   }
@@ -700,8 +645,9 @@ footer .icon:before {
   }
 }
 
-@counter-style arrow {
-  system: cyclic;
-  symbols: "\2192";
-  suffix: "  ";
+// full desktop *note: 1280px = 80em
+@include respond(xl) {
+  body {
+    margin: 10px auto;
+  }
 }

@@ -11,11 +11,16 @@
             "type": "gulp",
             "task": "start debugging",
             "isBackground": true,
-            "dependsOn":["build dev"]
-        },
-        {
-            "type": "gulp",
-            "task": "dev: StopWebserver"
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "."
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".",
+                    "endsPattern": "."
+                }
+            }
         },
         {
             "type": "gulp",
@@ -24,6 +29,20 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "stop debugging",
+            "type": "shell",
+            "command": "echo ${input:terminate}",
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "terminate",
+            "type": "command",
+            "command": "workbench.action.tasks.terminate",
+            "args": "gulp: start debugging"
         }
     ]
 }
