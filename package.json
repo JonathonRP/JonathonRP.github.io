@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "My Web Developer Resume",
   "main": "index.html",
-  "scripts": {},
+  "scripts": {
+    "sass-compile": "sass --no-source-map --style=expanded --verbose --trace --stop-on-error src/styles:public/styles"
+  },
   "repository": {
     "type": "git",
     "url": "github.com/JonathonRP/Resume"
@@ -27,6 +29,7 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-imagemin": "^8.0.0",
     "gulp-postcss": "^9.0.1",
+    "gulp-rename": "^2.0.0",
     "gulp-responsive": "^3.0.1",
     "gulp-sass": "^5.1.0",
     "gulp-seo": "^1.0.2",
@@ -36,7 +39,7 @@
     "node-notifier": "^10.0.1",
     "postcss": "^8.4.6",
     "postcss-preset-env": "^7.3.3",
-    "sass": "^1.49.7",
+    "sass": "^1.49.9",
     "typescript": "^4.5.5"
   }
 }

@@ -1,0 +1,36 @@
+@use 'breakpoints' as *;
+@use 'placeholders' as *;
+
+@mixin icon($class, $is-brand: false) {
+	// @debug $selector;
+
+	.#{$class}::before {
+
+		@if $is-brand {
+			@extend %brand-icon;
+		} @else {
+			@extend %regular-icon;
+		}
+
+		@content;
+	}
+}
+
+@mixin headings {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@content;
+	}
+}
+
+@mixin respond-to($key) {
+	$size: map-get($breakpoints, $key);
+
+	@media only screen and (min-width: $size) {
+		@content;
+	}
+}

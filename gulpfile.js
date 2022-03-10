@@ -2,7 +2,7 @@
 
 var gulp = require('gulp'),
     del = require('del'),
-    { NotificationPipe } = require('./assets/development/gulp-utilities/gulp-notification-pipe.js'),
+    { NotificationPipe } = require('./gulp-utilities/gulp-notification-pipe.js'),
     sass = require('gulp-sass')(require('sass')),
     postcss = require('gulp-postcss'),
     preset_env = require('postcss-preset-env'),
@@ -13,10 +13,11 @@ var gulp = require('gulp'),
     // imagemin = require('gulp-imagemin'),
     // responsive = require('gulp-responsive'),
     seo = require('gulp-seo'),
-    stylesLoc = './*.scss',
-    scriptsLoc = './*.ts',
-    stylesDest = './assets/css',
-    scriptsDest = './assets/js',
+    rename = require('gulp-rename'),
+    stylesLoc = './src/styles/*.scss',
+    scriptsLoc = './src/scripts/*.ts',
+    stylesDest = './public/styles',
+    scriptsDest = './public/scripts',
     plugins = [
         preset_env({stage: 3, autoprefixer: {add: true, grid: "autoplace"}})
     ],
@@ -41,11 +42,10 @@ function compileJS(success, error) {
 function buildDevelopmentWebserver(success, error) {
     if (devWebserver != null) return;
 
-    return devWebserver = gulp.src('./')
+    return devWebserver = gulp.src('./public')
         .pipe(webserver({
-            fallback: 'index.html',
-            livereload: true,
-            open: true
+            fallback: './index.html',
+            livereload: true
         }).on('error', error));
 }
 
@@ -67,9 +67,16 @@ function Uglify(success, error) {
         .pipe(gulp.dest(scriptsDest));
 }
 
+function ServeIndex(success, error) {
+    return gulp.src('./src/resume.html')
+    .pipe(rename({ basename: 'index'}))
+    .pipe(gulp.dest('./public'));
+}
+
 // Notification tasks
 gulp.task('dev: BuildStyles', NotificationPipe(compileCSS, {message: "CSS compiled!"}));
 gulp.task('dev: BuildScripts', NotificationPipe(compileJS, {message: "JavaScript compiled!"}));
+gulp.task('dev: BuildPublic', NotificationPipe(ServeIndex, {message: "Public dist ready!"}));
 gulp.task('dev: StartWebserver', NotificationPipe(buildDevelopmentWebserver, {message: "Dev webserver started!"}));
 gulp.task('dev: StopWebserver', NotificationPipe(destroyDevelopmentWebserver, {message: "Dev webserver stopped!"}));
 
@@ -78,17 +85,20 @@ gulp.task('prod: MinifyScripts', NotificationPipe(Uglify, {message: "JavaScript 
 
 // silent tasks
 gulp.task('clean', function() {
-    return del([`${stylesDest}/**`, `${scriptsDest}/**`], {force: true});
+    return del([`${stylesDest}/*.css`, `${scriptsDest}/*.js`], {force: true});
 });
 gulp.task('hotreload: WatchStyles', function() {
     if (watchStyles != null) return;
 
-    return watchStyles = gulp.watch(stylesLoc, gulp.task('buildStyles'));
+    return watchStyles = gulp.watch(stylesLoc, gulp.task('dev: BuildStyles'));
 });
 gulp.task('hotreload: WatchScripts', function() {
     if (watchScripts != null) return;
 
-    return watchScripts = gulp.watch(scriptsLoc, gulp.task('buildScripts'));
+    return watchScripts = gulp.watch(scriptsLoc, gulp.task('dev: BuildScripts'));
+});
+gulp.task('hotreload: WatchHtml', function() {
+    return gulp.watch('./src/resume.html', gulp.task('dev: BuildPublic'));
 });
 
 gulp.task('prod: SEO', function() {
@@ -140,7 +150,7 @@ gulp.task('prod: SEO', function() {
     //         imagemin.optipng({optimizationLevel: 1})
     //     ]))
     //     .pipe(gulp.dest('./assets/img'));
-    return gulp.src('./index.html')
+    return gulp.src('./src/resume.html')
     .pipe(seo({
         list: ['og', 'se', 'schema', 'twitter'],
         meta: {
@@ -161,11 +171,12 @@ gulp.task('prod: SEO', function() {
             revisitAfter: '1 month'
         }
     }))
-    .pipe(gulp.dest('./'));
+    .pipe(rename({ basename: 'index'}))
+    .pipe(gulp.dest('./public'));
 });
 
 // logical grouping tasks
-gulp.task('dev: build', gulp.series('clean', gulp.parallel('dev: BuildStyles', 'dev: BuildScripts')));
-gulp.task('start debugging', gulp.parallel('hotreload: WatchStyles', 'hotreload: WatchScripts', 'dev: StartWebserver'));
+gulp.task('dev: build', gulp.series('clean', gulp.parallel('dev: BuildStyles', 'dev: BuildScripts', 'dev: BuildPublic')));
+gulp.task('start debugging', gulp.series('dev: build', gulp.parallel('hotreload: WatchStyles', 'hotreload: WatchScripts', 'dev: StartWebserver')));
 
 gulp.task('prod: build', gulp.series('dev: build', gulp.parallel('prod: MinifyStyles', 'prod: MinifyScripts', 'prod: SEO')));

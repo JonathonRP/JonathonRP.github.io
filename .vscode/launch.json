@@ -9,9 +9,9 @@
             "request": "launch",
             "name": "Launch Edge against localhost",
             "url": "http://localhost:8000/",
-            "webRoot": "${workspaceFolder}",
+            "webRoot": "${workspaceFolder}/public",
             "preLaunchTask": "gulp: start debugging",
-            "postDebugTask": "gulp: dev: StopWebserver"
+            "postDebugTask": "stop debugging"
         }
     ]
 }
