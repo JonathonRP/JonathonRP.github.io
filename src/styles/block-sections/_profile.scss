@@ -1,0 +1,17 @@
+@use '../components/contact-details';
+.profile {
+
+	&__contact-details {
+		@extend .contact-details;
+		grid-template-rows: repeat(5, 25px);
+
+		&::before {
+			content: none;
+		}
+	}
+
+	&__paragraph {
+		max-width: 70ch;
+		color: var(--accent-color);
+	}
+}

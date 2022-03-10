@@ -1,0 +1,37 @@
+@use '../abstracts' as *;
+
+.tag-list {
+	padding: 0;
+	max-width: 60ch;
+	color: var(--accent-color);
+
+	&__container {
+		background-color: var(--primary-color);
+		overflow: hidden;
+	}
+
+	&__tag {
+		float: left;
+		background-color: var(--body-color);
+		border-radius: 3px;
+		margin: var(--micro-size);
+		padding: var(--tiny-size);
+		font-size: 0.8rem;
+	}
+
+	&--tech-stack {
+		.tag-list__tag {
+			background-color: var(--primary-color);
+		}
+	}
+
+	@include respond-to(lg) {
+		&__container {
+			background-color: transparent;
+		}
+
+		&__tag {
+			background-color: var(--primary-color);
+		}
+	}
+}
