@@ -1,0 +1,6 @@
+User-agent:*
+Disallow: /styles/
+Disallow: /assets/ColumbiaState.png
+Disallow: /assets/HCA.png
+Disallow: /assets/MTSU.png
+Disallow: /assets/Quovant.png

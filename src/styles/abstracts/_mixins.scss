@@ -1,54 +1,15 @@
 @use 'breakpoints' as *;
+@use 'placeholders' as *;
 
-@mixin fa-icon {
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-font-smoothing: antialiased;
-	display: inline-block;
-	font-style: normal;
-	font-variant: normal;
-	text-rendering: auto;
-	line-height: 1;
-	@content;
-}
+@mixin icon($class, $is-brand: false) {
+	// @debug $selector;
 
-@mixin icon-brand {
-	@include fa-icon() {
-		font-family: 'Font Awesome 5 Brands';
-		font-weight: 400;
-		@content;
-	}
-}
+	.#{$class}::before {
 
-@mixin icon-solid {
-	@include fa-icon() {
-		font-family: 'Font Awesome 5 Pro';
-		font-weight: 900;
-		@content;
-	}
-}
-
-@mixin icon-regular {
-	@include fa-icon() {
-		font-family: 'Font Awesome 5 Pro';
-		font-weight: 400;
-		@content;
-	}
-}
-
-@mixin icon-light {
-	@include fa-icon() {
-		font-family: 'Font Awesome 5 Pro';
-		font-weight: 300;
-		@content;
-	}
-}
-
-@mixin icon($name, $brand) {
-	.#{$name}::before {
-		@if $brand {
-			@include icon-brand();
+		@if $is-brand {
+			@extend %brand-icon;
 		} @else {
-			@include icon-regular();
+			@extend %regular-icon;
 		}
 
 		@content;
@@ -66,7 +27,7 @@
 	}
 }
 
-@mixin respond($key) {
+@mixin respond-to($key) {
 	$size: map-get($breakpoints, $key);
 
 	@media only screen and (min-width: $size) {

@@ -1,52 +1,10 @@
 @charset "UTF-8";
-
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&family=Poppins&display=swap");
-@font-face {
-  font-family: "Font Awesome 5 Brands";
-  font-style: normal;
-  font-weight: 400;
-  font-display: block;
-  src: url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.eot");
-  src: url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.eot?#iefix") format("embedded-opentype"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.woff2") format("woff2"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.woff") format("woff"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.ttf") format("truetype"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-brands-400.svg#fontawesome") format("svg");
-}
-@font-face {
-  font-family: "Font Awesome 5 Pro";
-  font-style: normal;
-  font-weight: 300;
-  font-display: block;
-  src: url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-light-300.eot");
-  src: url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-light-300.eot?#iefix") format("embedded-opentype"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-light-300.woff2") format("woff2"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-light-300.woff") format("woff"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-light-300.ttf") format("truetype"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-light-300.svg#fontawesome") format("svg");
-}
-@font-face {
-  font-family: "Font Awesome 5 Pro";
-  font-style: normal;
-  font-weight: 400;
-  font-display: block;
-  src: url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.eot");
-  src: url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.eot?#iefix") format("embedded-opentype"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.woff2") format("woff2"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.woff") format("woff"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.ttf") format("truetype"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-regular-400.svg#fontawesome") format("svg");
-}
-@font-face {
-  font-family: "Font Awesome 5 Pro";
-  font-style: normal;
-  font-weight: 900;
-  font-display: block;
-  src: url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.eot");
-  src: url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.woff2") format("woff2"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.woff") format("woff"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.ttf") format("truetype"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-solid-900.svg#fontawesome") format("svg");
-}
-@font-face {
-  font-family: "Font Awesome 5 Duotone";
-  font-style: normal;
-  font-weight: 900;
-  font-display: block;
-  src: url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-duotone-900.eot");
-  src: url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-duotone-900.eot?#iefix") format("embedded-opentype"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-duotone-900.woff2") format("woff2"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-duotone-900.woff") format("woff"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-duotone-900.ttf") format("truetype"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-duotone-900.svg#fontawesome") format("svg");
-}
 a:after, .location::before, .phone::before, .email::before, .heading__icon--tech-stack::before, .heading__icon--skills::before, .heading__icon--certifications::before, .heading__icon--education::before, .heading__icon--personal-projects::before, .heading__icon--interests::before, .heading__icon--contact-details::before, .timeline .timeline__icon--work::before, .linkedin::before, .github::before {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
   font-style: normal;
-  font-feature-settings: normal;
   font-variant: normal;
   text-rendering: auto;
   line-height: 1;
@@ -62,97 +20,75 @@ a:after, .location::before, .phone::before, .email::before, .heading__icon--tech
   font-weight: 400;
 }
 
-:root {
-  --primary-ff: Roboto, sans-serif;
-  --secondary-ff: Poppins, sans-serif;
-  --accent-ff: Pacifico, cursive;
-  --auto-size: 1rem;
-  --micro-size: 0.125rem;
-  --mini-size: 0.2rem;
-  --tiny-size: 0.3125rem;
-  --xsmall-size: 0.5rem;
-  --small-size: 0.625rem;
-  --medium-size: 0.67rem;
-  --large-size: 1.6rem;
-  --xlarge-size: 2rem;
-  --huge-size: 2.5rem;
-  --gigentic-size: 5rem;
-  --body-color: #f3f3f3;
-  --text-color: #4d4d4d;
-  --primary-color: #ddd;
-  --accent-color: #069992;
-  --link-color: #069968;
+.contact-details {
+  display: grid;
+  grid-template-columns: 165px 35px;
+  grid-template-rows: 50px repeat(5, 25px);
+  column-gap: 0.5em;
+  padding: var(--auto-size) var(--xsmall-size);
+  background-color: var(--body-color);
+  align-items: center;
+}
+.contact-details::before {
+  content: "";
+  border-right: 2px solid var(--primary-color);
+  position: absolute;
+  top: 66px;
+  height: 60%;
+  width: 13.5em;
+}
+.contact-details h1,
+.contact-details h2,
+.contact-details h3,
+.contact-details h4,
+.contact-details h5,
+.contact-details h6 {
+  grid-column: span 2;
+  grid-row: 1;
+}
+.contact-details .heading {
+  width: 100%;
+}
+.contact-details__text, .contact-details__link {
+  grid-column: 1;
+  font-size: 1rem;
+  text-align: end;
+}
+.contact-details__icon {
+  font-size: 20px;
+  text-align: center;
+  color: var(--accent-color);
 }
 
-/* Box sizing rules */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+.tag-list {
+  padding: 0;
+  max-width: 60ch;
+  color: var(--accent-color);
 }
-
-/* Remove default margin */
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-figure,
-blockquote,
-dl,
-dd {
-  margin: 0;
+.tag-list__container, .tech-stack, .skills, .interests {
+  background-color: var(--primary-color);
+  overflow: hidden;
 }
-
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role=list],
-ol[role=list] {
-  margin: 0;
-  list-style: none;
+.tag-list__tag {
+  float: left;
+  background-color: var(--body-color);
+  border-radius: 3px;
+  margin: var(--micro-size);
+  padding: var(--tiny-size);
+  font-size: 0.8rem;
 }
-
-/* Set core root defaults */
-html:focus-within {
-  scroll-behavior: smooth;
+.tag-list--tech-stack .tag-list__tag {
+  background-color: var(--primary-color);
 }
-
-/* Set core body defaults */
-body {
-  min-height: 100vh;
-  text-rendering: optimizeSpeed;
-}
-
-/* Make images easier to work with */
-img,
-picture {
-  max-width: 100%;
-  display: block;
-}
-
-/* Inherit fonts for inputs and buttons */
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-
-/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
-@media (prefers-reduced-motion: reduce) {
-  html:focus-within {
-    scroll-behavior: auto;
+@media only screen and (min-width: 60rem) {
+  .tag-list__container, .tech-stack, .skills, .interests {
+    background-color: transparent;
   }
-
-  *,
-*::before,
-*::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  .tag-list__tag {
+    background-color: var(--primary-color);
   }
 }
+
 body {
   font-family: var(--primary-ff);
   color: var(--text-color);
@@ -281,84 +217,6 @@ ol:not([class]),
 ul:not([class]),
 li:not([class]) {
   max-width: 60ch;
-}
-
-body {
-  background-color: var(--body-color);
-}
-
-.contact-details, .profile__contact-details {
-  display: grid;
-  grid-template-columns: 165px 35px;
-  grid-template-rows: 50px repeat(5, 25px);
-  column-gap: 0.5em;
-  padding: var(--auto-size) var(--xsmall-size);
-  background-color: var(--body-color);
-  align-items: center;
-}
-.contact-details::before, .profile__contact-details::before {
-  content: "";
-  border-right: 2px solid var(--primary-color);
-  position: absolute;
-  top: 66px;
-  height: 60%;
-  width: 13.5em;
-}
-.contact-details h1, .profile__contact-details h1,
-.contact-details h2,
-.profile__contact-details h2,
-.contact-details h3,
-.profile__contact-details h3,
-.contact-details h4,
-.profile__contact-details h4,
-.contact-details h5,
-.profile__contact-details h5,
-.contact-details h6,
-.profile__contact-details h6 {
-  grid-column: span 2;
-  grid-row: 1;
-}
-.contact-details .heading, .profile__contact-details .heading {
-  width: 100%;
-}
-.contact-details__text, .contact-details__link {
-  grid-column: 1;
-  font-size: 1rem;
-  text-align: end;
-}
-.contact-details__icon {
-  font-size: 20px;
-  text-align: center;
-  color: var(--accent-color);
-}
-
-.tag-list {
-  padding: 0;
-  max-width: 60ch;
-  color: var(--accent-color);
-}
-.tag-list__container, .tech-stack, .skills, .interests {
-  background-color: var(--primary-color);
-  overflow: hidden;
-}
-.tag-list__tag {
-  float: left;
-  background-color: var(--body-color);
-  border-radius: 3px;
-  margin: var(--micro-size);
-  padding: var(--tiny-size);
-  font-size: 0.8rem;
-}
-.tag-list--tech-stack .tag-list__tag {
-  background-color: var(--primary-color);
-}
-@media only screen and (min-width: 60rem) {
-  .tag-list__container, .tech-stack, .skills, .interests {
-    background-color: transparent;
-  }
-  .tag-list__tag {
-    background-color: var(--primary-color);
-  }
 }
 
 .timeline {
@@ -543,39 +401,6 @@ body {
     max-width: 750px;
     padding-inline-start: var(--gigentic-size);
   }
-}
-
-.profile__contact-details {
-  grid-template-rows: repeat(5, 25px);
-}
-.profile__contact-details::before {
-  content: none;
-}
-.profile__paragraph {
-  max-width: 70ch;
-  color: var(--accent-color);
-}
-
-.personal-projects {
-  background-color: var(--primary-color);
-}
-.personal-projects__project {
-  padding-block: var(--xsmall-size);
-  font-size: 0.9em;
-}
-.personal-projects__list {
-  padding: 0;
-}
-.personal-projects__proj-img > img {
-  display: none;
-}
-.personal-projects__proj-name {
-  font-weight: bold;
-  font-size: 1rem;
-}
-.personal-projects__proj-summary {
-  margin: var(--auto-size) var(--xsmall-size);
-  max-width: 60ch;
 }
 
 @media only screen and (min-width: 50rem) {

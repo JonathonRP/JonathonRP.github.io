@@ -1,0 +1,42 @@
+@use '../abstracts/mixins' as *;
+
+.contact-details {
+	display: grid;
+	grid-template-columns: 165px 35px;
+	grid-template-rows: 50px repeat(5, 25px);
+	column-gap: 0.5em;
+	padding: var(--auto-size) var(--xsmall-size);
+	background-color: var(--body-color);
+	align-items: center;
+
+	&::before {
+		content: '';
+		border-right: 2px solid var(--primary-color);
+		position: absolute;
+		top: 66px;
+		height: 60%;
+		width: 13.5em;
+	}
+
+	@include headings() {
+		grid-column: span 2;
+		grid-row: 1;
+	}
+
+	.heading {
+		width: 100%;
+	}
+
+	&__text,
+	&__link {
+		grid-column: 1;
+		font-size: 1rem;
+		text-align: end;
+	}
+
+	&__icon {
+		font-size: 20px;
+		text-align: center;
+		color: var(--accent-color);
+	}
+}
