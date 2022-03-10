@@ -45,6 +45,7 @@ a:after, .location::before, .phone::before, .email::before, .heading__icon--tech
   -webkit-font-smoothing: antialiased;
   display: inline-block;
   font-style: normal;
+  font-feature-settings: normal;
   font-variant: normal;
   text-rendering: auto;
   line-height: 1;
