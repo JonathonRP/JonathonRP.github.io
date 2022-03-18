@@ -43,6 +43,7 @@
 		position: relative;
 		padding-inline: var(--auto-size);
 		cursor: pointer;
+		background-color: #f3f3f3;
 		box-shadow: 0px 3px 6px rgb(0 0 0 / 30%);
 
 		&:hover::after,
@@ -50,6 +51,10 @@
 		&:active::after {
 			color: var(--bg-color);
 		}
+	}
+
+	&:checked + &__label {
+		background-color: #4d4d4d;
 	}
 
 	&__label::before,
@@ -237,6 +242,14 @@ main {
 			--primary-color: var(--base-primary);
 			--accent-color: var(--base-accent);
 			--link-color: var(--base-link);
+		}
+
+		&__label {
+			background-color: #4d4d4d;
+		}
+
+		&:checked + &__label {
+			background-color: #f3f3f3;
 		}
 
 		&__label::after {

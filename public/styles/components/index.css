@@ -26,7 +26,6 @@ a:after, .theme-switch__label::before, .theme-switch:checked + .theme-switch__la
   grid-template-rows: 50px repeat(5, 25px);
   column-gap: 0.5em;
   padding: var(--auto-size) var(--xsmall-size);
-  background-color: var(--body-color);
   align-items: center;
 }
 .contact-details::before {

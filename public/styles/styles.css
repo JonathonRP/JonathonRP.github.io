@@ -45,6 +45,7 @@ a:after, .theme-switch__label::before, .theme-switch:checked + .theme-switch__la
   -webkit-font-smoothing: antialiased;
   display: inline-block;
   font-style: normal;
+  font-feature-settings: normal;
   font-variant: normal;
   text-rendering: auto;
   line-height: 1;
@@ -317,7 +318,6 @@ main {
   grid-template-rows: 50px repeat(5, 25px);
   column-gap: 0.5em;
   padding: var(--auto-size) var(--xsmall-size);
-  background-color: var(--body-color);
   align-items: center;
 }
 .contact-details::before, .profile__contact-details::before {
@@ -623,10 +623,14 @@ main {
   position: relative;
   padding-inline: var(--auto-size);
   cursor: pointer;
+  background-color: #f3f3f3;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
 }
 .theme-switch__label:hover::after, .theme-switch__label:focus::after, .theme-switch__label:active::after {
   color: var(--bg-color);
+}
+.theme-switch:checked + .theme-switch__label {
+  background-color: #4d4d4d;
 }
 .theme-switch__label::before, .theme-switch__label::after, .theme-switch:checked + .theme-switch__label::before, .theme-switch:checked + .theme-switch__label::after {
   margin-block: 0.425rem;
@@ -788,6 +792,12 @@ main > section {
     --primary-color: var(--base-primary);
     --accent-color: var(--base-accent);
     --link-color: var(--base-link);
+  }
+  .theme-switch__label {
+    background-color: #4d4d4d;
+  }
+  .theme-switch:checked + .theme-switch__label {
+    background-color: #f3f3f3;
   }
   .theme-switch__label::after {
     background-color: #eca74c;
