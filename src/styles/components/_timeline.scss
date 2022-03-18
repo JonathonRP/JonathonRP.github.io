@@ -14,13 +14,12 @@
 	&__section-heading {
 		@extend .heading;
 		position: relative;
-		background-color: var(--body-color);
+		// background-color: var(--bg-color);
 		margin-block-start: calc(-1 * var(--auto-size));
 		// margin-block-end: 1em;
 		padding-block-start: var(--auto-size);
 		width: 96%;
 		border-bottom: 2px solid var(--primary-color);
-		z-index: -1;
 	}
 
 	&::before {
@@ -31,7 +30,7 @@
 		width: 1px;
 		border-left: 2px solid var(--primary-color);
 
-		@include respond-to(lg) {
+		@include respond-to(md) {
 			height: 50%;
 		}
 	}
@@ -100,11 +99,6 @@
 	}
 
 	%badge {
-		// position: absolute;
-		// top: 10px;
-		// left: 10px;
-		// height: 16px;
-		// width: 16px;
 		transform: translateY(6px);
 		padding-inline-end: var(--tiny-size);
 
@@ -119,9 +113,6 @@
 	}
 
 	&__duration {
-		// position: absolute;
-		// top: 5px;
-		// left: 35px;
 		font-weight: bold;
 
 		@include respond-to(xl) {
@@ -138,11 +129,11 @@
 
 	&__title {
 		margin: 0;
-		// font-family: "Poppins", sans-serif;
+		font-family: 'Poppins', sans-serif;
 		// font-family: "Pacifico", cursive;
 		font-size: 20px;
 		line-height: 1;
-		color: #00272b;
+		color: var(--accent-color);
 		border-bottom: 1px solid var(--primary-color);
 		width: 100%;
 	}
@@ -153,7 +144,7 @@
 
 	&__subheading {
 		margin: 0;
-		font-size: 1rem;
+		font-size: 0.95rem;
 		font-weight: bold;
 	}
 
@@ -192,14 +183,20 @@
 
 	&--professions {
 		&::before {
-			@include respond-to(lg) {
+			@include respond-to(md) {
+				height: 78%;
+			}
+			@include respond-to(xl) {
 				height: 76%;
 			}
 		}
 
 		.timeline__item {
-			margin-block-start: var(--huge-size);
 			padding: var(--large-size);
+
+			@include respond-to(xl) {
+				margin-block-start: var(--huge-size);
+			}
 		}
 
 		.timeline__logo {

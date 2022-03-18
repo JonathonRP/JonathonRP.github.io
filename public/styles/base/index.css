@@ -39,7 +39,7 @@
   src: url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-duotone-900.eot");
   src: url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-duotone-900.eot?#iefix") format("embedded-opentype"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-duotone-900.woff2") format("woff2"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-duotone-900.woff") format("woff"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-duotone-900.ttf") format("truetype"), url("https://pro.fontawesome.com/releases/v5.15.4/webfonts/fa-duotone-900.svg#fontawesome") format("svg");
 }
-a:after, .location::before, .phone::before, .email::before, .heading__icon--tech-stack::before, .heading__icon--skills::before, .heading__icon--certifications::before, .heading__icon--education::before, .heading__icon--personal-projects::before, .heading__icon--interests::before, .heading__icon--contact-details::before, .linkedin::before, .github::before {
+a:after, .theme-switch__label::before, .theme-switch:checked + .theme-switch__label::before, .location::before, .phone::before, .email::before, .heading__icon--tech-stack::before, .heading__icon--skills::before, .heading__icon--certifications::before, .heading__icon--education::before, .heading__icon--personal-projects::before, .heading__icon--interests::before, .heading__icon--contact-details::before, .linkedin::before, .github::before {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -54,7 +54,7 @@ a:after, .location::before, .phone::before, .email::before, .heading__icon--tech
   font-weight: 400;
 }
 
-a:after, .location::before, .phone::before, .email::before, .heading__icon--tech-stack::before, .heading__icon--skills::before, .heading__icon--certifications::before, .heading__icon--education::before, .heading__icon--personal-projects::before, .heading__icon--interests::before, .heading__icon--contact-details::before {
+a:after, .theme-switch__label::before, .theme-switch:checked + .theme-switch__label::before, .location::before, .phone::before, .email::before, .heading__icon--tech-stack::before, .heading__icon--skills::before, .heading__icon--certifications::before, .heading__icon--education::before, .heading__icon--personal-projects::before, .heading__icon--interests::before, .heading__icon--contact-details::before {
   font-family: "Font Awesome 5 Pro";
   font-weight: 400;
 }
@@ -63,6 +63,16 @@ a:after, .location::before, .phone::before, .email::before, .heading__icon--tech
   --primary-ff: Roboto, sans-serif;
   --secondary-ff: Poppins, sans-serif;
   --accent-ff: Pacifico, cursive;
+  --dark-bg: #4d4d4d;
+  --dark-text: #f3f3f3;
+  --dark-primary: #777777;
+  --dark-accent: #07c185;
+  --dark-link: #069968;
+  --base-bg: #f3f3f3;
+  --base-text: #4d4d4d;
+  --base-primary: #ddd;
+  --base-accent: #069992;
+  --base-link: #069968;
   --auto-size: 1rem;
   --micro-size: 0.125rem;
   --mini-size: 0.2rem;
@@ -74,11 +84,6 @@ a:after, .location::before, .phone::before, .email::before, .heading__icon--tech
   --xlarge-size: 2rem;
   --huge-size: 2.5rem;
   --gigentic-size: 5rem;
-  --body-color: #f3f3f3;
-  --text-color: #4d4d4d;
-  --primary-color: #ddd;
-  --accent-color: #069992;
-  --link-color: #069968;
 }
 
 /* Box sizing rules */
@@ -150,11 +155,10 @@ select {
     scroll-behavior: auto !important;
   }
 }
-body {
+main {
   font-family: var(--primary-ff);
   color: var(--text-color);
   line-height: 1.5;
-  max-width: 800px;
 }
 
 h1,
@@ -201,6 +205,24 @@ a:hover {
 }
 a:hover:after {
   color: var(--accent-color);
+}
+
+.theme-switch__label::before {
+  content: "\f186";
+}
+@media (prefers-color-scheme: dark) {
+  .theme-switch__label::before {
+    content: "\f185";
+  }
+}
+
+.theme-switch:checked + .theme-switch__label::before {
+  content: "\f185";
+}
+@media (prefers-color-scheme: dark) {
+  .theme-switch:checked + .theme-switch__label::before {
+    content: "\f186";
+  }
 }
 
 .location::before {
@@ -280,6 +302,10 @@ li:not([class]) {
   max-width: 60ch;
 }
 
-body {
-  background-color: var(--body-color);
+main {
+  --bg-color: #f3f3f3;
+  --text-color: #4d4d4d;
+  --primary-color: #ddd;
+  --accent-color: #069992;
+  --link-color: #069968;
 }

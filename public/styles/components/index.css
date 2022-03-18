@@ -1,6 +1,6 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&family=Poppins&display=swap");
-a:after, .location::before, .phone::before, .email::before, .heading__icon--tech-stack::before, .heading__icon--skills::before, .heading__icon--certifications::before, .heading__icon--education::before, .heading__icon--personal-projects::before, .heading__icon--interests::before, .heading__icon--contact-details::before, .timeline .timeline__icon--work::before, .linkedin::before, .github::before {
+a:after, .theme-switch__label::before, .theme-switch:checked + .theme-switch__label::before, .location::before, .phone::before, .email::before, .heading__icon--tech-stack::before, .heading__icon--skills::before, .heading__icon--certifications::before, .heading__icon--education::before, .heading__icon--personal-projects::before, .heading__icon--interests::before, .heading__icon--contact-details::before, .timeline .timeline__icon--work::before, .linkedin::before, .github::before {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -15,7 +15,7 @@ a:after, .location::before, .phone::before, .email::before, .heading__icon--tech
   font-weight: 400;
 }
 
-a:after, .location::before, .phone::before, .email::before, .heading__icon--tech-stack::before, .heading__icon--skills::before, .heading__icon--certifications::before, .heading__icon--education::before, .heading__icon--personal-projects::before, .heading__icon--interests::before, .heading__icon--contact-details::before, .timeline .timeline__icon--work::before {
+a:after, .theme-switch__label::before, .theme-switch:checked + .theme-switch__label::before, .location::before, .phone::before, .email::before, .heading__icon--tech-stack::before, .heading__icon--skills::before, .heading__icon--certifications::before, .heading__icon--education::before, .heading__icon--personal-projects::before, .heading__icon--interests::before, .heading__icon--contact-details::before, .timeline .timeline__icon--work::before {
   font-family: "Font Awesome 5 Pro";
   font-weight: 400;
 }
@@ -71,7 +71,7 @@ a:after, .location::before, .phone::before, .email::before, .heading__icon--tech
 }
 .tag-list__tag {
   float: left;
-  background-color: var(--body-color);
+  background-color: var(--bg-color);
   border-radius: 3px;
   margin: var(--micro-size);
   padding: var(--tiny-size);
@@ -89,11 +89,10 @@ a:after, .location::before, .phone::before, .email::before, .heading__icon--tech
   }
 }
 
-body {
+main {
   font-family: var(--primary-ff);
   color: var(--text-color);
   line-height: 1.5;
-  max-width: 800px;
 }
 
 h1,
@@ -140,6 +139,24 @@ a:hover {
 }
 a:hover:after {
   color: var(--accent-color);
+}
+
+.theme-switch__label::before {
+  content: "\f186";
+}
+@media (prefers-color-scheme: dark) {
+  .theme-switch__label::before {
+    content: "\f185";
+  }
+}
+
+.theme-switch:checked + .theme-switch__label::before {
+  content: "\f185";
+}
+@media (prefers-color-scheme: dark) {
+  .theme-switch:checked + .theme-switch__label::before {
+    content: "\f186";
+  }
 }
 
 .location::before {
@@ -229,12 +246,10 @@ li:not([class]) {
 }
 .timeline__section-heading {
   position: relative;
-  background-color: var(--body-color);
   margin-block-start: calc(-1 * var(--auto-size));
   padding-block-start: var(--auto-size);
   width: 96%;
   border-bottom: 2px solid var(--primary-color);
-  z-index: -1;
 }
 .timeline::before {
   content: "";
@@ -244,7 +259,7 @@ li:not([class]) {
   width: 1px;
   border-left: 2px solid var(--primary-color);
 }
-@media only screen and (min-width: 60rem) {
+@media only screen and (min-width: 50rem) {
   .timeline::before {
     height: 50%;
   }
@@ -333,9 +348,10 @@ li:not([class]) {
 }
 .timeline__title {
   margin: 0;
+  font-family: "Poppins", sans-serif;
   font-size: 20px;
   line-height: 1;
-  color: #00272b;
+  color: var(--accent-color);
   border-bottom: 1px solid var(--primary-color);
   width: 100%;
 }
@@ -344,7 +360,7 @@ li:not([class]) {
 }
 .timeline__subheading {
   margin: 0;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: bold;
 }
 .timeline__responsabilities-achievements {
@@ -374,14 +390,23 @@ li:not([class]) {
 .timeline__degree {
   margin-block-end: 0;
 }
-@media only screen and (min-width: 60rem) {
+@media only screen and (min-width: 50rem) {
+  .timeline--professions::before {
+    height: 78%;
+  }
+}
+@media only screen and (min-width: 80rem) {
   .timeline--professions::before {
     height: 76%;
   }
 }
 .timeline--professions .timeline__item {
-  margin-block-start: var(--huge-size);
   padding: var(--large-size);
+}
+@media only screen and (min-width: 80rem) {
+  .timeline--professions .timeline__item {
+    margin-block-start: var(--huge-size);
+  }
 }
 .timeline--professions .timeline__logo {
   transform: translate(-50%, 90%);
