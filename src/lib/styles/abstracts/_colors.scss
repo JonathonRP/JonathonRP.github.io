@@ -1,0 +1,33 @@
+// primary: #2c963e,
+// accent: #d8b907,
+// primary: #d8b907,
+// accent: #2c963e,
+// link: #037224,
+
+// subdued: #ddd,
+
+$light: (
+	bg: #f3f3f3,
+	text: #4d4d4d,
+	primary: #ddd,
+	accent: #069992,
+	link: #069968,
+	card-title: #002b22
+);
+
+$dark: (
+	bg: #4d4d4d,
+	text: #f3f3f3,
+	primary: #777777,
+	accent: #07c185,
+	link: #069968,
+	card-title: #39dfc0
+);
+
+$giza-bg: #4d4d4d;
+$giza-text: #f3f3f3;
+$giza-primary: #2c963e;
+$giza-accent: #d8b907;
+$giza-link: #037224;
+
+$colors: $light !default;

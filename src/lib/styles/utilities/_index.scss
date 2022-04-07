@@ -1,0 +1,43 @@
+@forward 'wrapper';
+@forward 'grid';
+@forward 'generate';
+@forward 'flow';
+@forward 'extend';
+
+@use '../abstracts/mixins' as *;
+
+.bg-none {
+    background-color: transparent;
+}
+
+.bg-primary {
+    background-color: var(--primary-color);
+}
+
+.category {
+    --spacer: var(--xsmall-space);
+    padding-block-end: var(--default-space);
+
+    > .sub-category {
+        overflow: auto;
+        padding-inline: var(--small-space);
+    }
+}
+
+.tags-catalog {
+    overflow: hidden;
+}
+
+.lg\:bg-none {
+    @include respond-to(lg) {
+        background-color: transparent;
+    }
+}
+
+.lg\:grid-column {
+    border-top: 2px solid var(--primary-color);
+
+    @include respond-to(lg) {
+        grid-row: span var(--grid-rows);
+    }
+}

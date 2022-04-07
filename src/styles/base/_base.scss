@@ -1,7 +1,0 @@
-@use '../abstracts/colors' as *;
-
-main {
-	@each $color, $value in $colors {
-		--#{$color}-color: #{$value};
-	}
-}
