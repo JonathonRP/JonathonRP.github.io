@@ -1,27 +1,32 @@
 <script lang="ts">
-	import path from 'path';
 	import Image from 'svelte-image';
 
-	export let experiences: { image: string, startDate?: string, endDate?: string, date?: string, name?: string, institution?: string, position?: string, issuer?: string, area?: string, highlights?: string[], studyType?: string }[];
-    export let work:boolean = false, certifications:boolean = false, education:boolean = false;
+	export let experiences: { image: string, startDate?: string, endDate?: string, date?: string, name?: string, institution?: string, position?: string, issuer?: string, area?: string, summary?: string, highlights?: string[], studyType?: string }[];
+    export let work:boolean = false, certificates:boolean = false, education:boolean = false;
 
     $: icon = work ? "timeline__icon" : null;
 </script>
-
-<ol class="timeline" data-type:professional={work}>
-	{#each experiences as experience (experience.date = new Date(`${work ? experience.startDate : certifications ? experience.date : experience.endDate}`).toLocaleDateString(navigator.language, {month: 'short', year: 'numeric'}))}
+{#if !work}
+	<h2 id="{certificates ? "cert" : "ed"}-title" class="heading__icon timeline__section-heading" data-icon="{ certificates ? "certificates" : "education"}">
+		{certificates ? "Certificates" : "Education"}
+	</h2>
+{/if}
+<ol class="timeline" data-type={work ? "professional" : ""}>
+	{#each experiences as experience (experience.date = Intl.DateTimeFormat(navigator.language, {month: 'short', year: 'numeric'}).format(new Date(`${work ? experience.startDate : certificates ? experience.date : experience.endDate}`)))}
 		<li class="timeline__item">
 			<div class="timeline__logo">
-				<Image src={experience.image} alt={path.parse(experience.image).name} />
+				<Image src={experience.image} alt={experience.image.split('/').pop().split('.').slice(0, -1)} />
 			</div>
-			<div class="{icon} timeline__header" data-icon:work>
+			<div class="{icon} timeline__header" data-icon={work ? "work" : ""}>
 				<time class="timeline__duration" datetime="{experience.date}"> {experience.date} </time>
 				<div class="timeline__title">{education ? experience.institution : experience.name}</div>
 			</div>
 			<div class="timeline__body">
 				{#if work}
 					<p class="timeline__heading">{experience.position}</p>
-					{#if experience.highlights}
+					{#if experience.summary}
+						<p>{experience.summary}</p>
+					{:else if experience.highlights}
 						<ul class="timeline__responsabilities-achievements">
 							{#each experience.highlights as highlight}
 								<li>
@@ -30,7 +35,7 @@
 							{/each}
 						</ul>
 					{/if}
-				{:else if certifications}
+				{:else if certificates}
 					<p class="timeline__issuer">
 						{experience.issuer}
 					</p>
@@ -46,15 +51,14 @@
 </ol>
 
 <style lang="scss">
-	@use '../styles/abstracts/mixins' as *;
-	@use '../styles/base/typography' as *;
+	@use 'static/assets/styles/abstracts/mixins' as *;
+	@use 'static/assets/styles/base/typography' as *;
 
 	.timeline {
 		--logo-size: 50px;
 		--image-size: var(--xlarge-space);
 
-		list-style: none;
-		margin: 0 auto;
+		padding: revert;
 		padding-top: 5px;
 		position: relative;
 		// width: 90%;
@@ -115,27 +119,27 @@
 			transition: all 500ms;
 			overflow: hidden;
 
-			> img {
+			img {
 				display: block;
 				width: var(--image-size);
 				height: var(--image-size);
 				transform: translate(28%, 28%);
 			}
 
-			> img[alt='70-486 Logo'] {
+			img[alt='70-486 Logo'] {
 				transform: scale(2) translate(0.3rem, 11%);
 			}
 
-			> img[alt='Quovant Logo'] {
+			img[alt='MitraTech+Quovant'] {
 				transform: scale(1.6) translate(18%, 18%);
 			}
 
-			> img[alt='MT Logo'] {
+			img[alt='MTSU'] {
 				width: calc(var(--logo-size) - 0.7px);
 				transform: scale(0.9) translate(4%, 32%);
 			}
 
-			@include respond-to(xl) {
+			@include respond-to(sm) {
 				transform: translate(-50%, 15%);
 			}
 		}
@@ -150,7 +154,7 @@
 			transform: translateY(6px);
 			padding-inline-end: var(--tiny-space);
 
-			@include respond-to(xl) {
+			@include respond-to(sm) {
 				transform: translateY(-10px);
 			}
 		}
@@ -166,14 +170,14 @@
 		&__duration {
 			font-weight: bold;
 
-			@include respond-to(xl) {
+			@include respond-to(sm) {
 				position: absolute;
 				top: 20px;
 				left: -100px;
 				line-height: 1.2;
 				height: 20px;
-				width: 15%;
-				transform: translateX(-65%);
+				width: 10%;
+				transform: translateX(-25%);
 				text-align: right;
 			}
 		}
@@ -216,7 +220,7 @@
 				}
 			}
 
-			@include respond-to(lg) {
+			@include respond-to(sm) {
 				padding-inline-start: var(--xlarge-space);
 
 				> li {
@@ -228,45 +232,46 @@
 			}
 		}
 
-		&__degree {
+		&__issuer {
 			margin-block-end: 0;
+		}
+
+		&__degree {
+			margin-block: 0;
 		}
 
 		&[data-type='professional'] {
 			&::before {
-				@include respond-to(md) {
-					height: 78%;
-				}
-				@include respond-to(xl) {
-					height: 76%;
+				@include respond-to(sm) {
+					height: 82%;
 				}
 			}
 
 			.timeline__item {
-				padding: var(--large-space);
+				padding: var(--xlarge-space);
 
-				@include respond-to(xl) {
-					margin-block-start: var(--huge-space);
+				@include respond-to(sm) {
+					margin-block-start: var(--large-space);
 				}
 			}
 
 			.timeline__logo {
-				transform: translate(-50%, 90%);
+				transform: translate(-50%, 100%);
 
-				@include respond-to(xl) {
-					transform: translate(-50%, 70%);
+				@include respond-to(sm) {
+					transform: translate(-50%, 50%);
 				}
 			}
 
 			.timeline__duration {
-				@include respond-to(xl) {
-					top: 50px;
+				@include respond-to(sm) {
+					top: var(--xlarge-space);
 				}
 			}
 		}
 
 		@include respond-to(sm) {
-			max-width: 750px;
+			// max-width: 750px;
 			padding-inline-start: var(--gigentic-space);
 		}
 	}

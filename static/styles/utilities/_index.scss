@@ -15,10 +15,10 @@
 }
 
 .category {
-    --spacer: var(--xsmall-space);
-    padding-block-end: var(--default-space);
+    --extend-space: 0;
 
     > .sub-category {
+        --extend-space: var(--xsmall-space);
         overflow: auto;
         padding-inline: var(--small-space);
     }
@@ -29,7 +29,7 @@
 }
 
 .lg\:bg-none {
-    @include respond-to(lg) {
+    @include respond-to(sm) {
         background-color: transparent;
     }
 }
@@ -37,7 +37,7 @@
 .lg\:grid-column {
     border-top: 2px solid var(--primary-color);
 
-    @include respond-to(lg) {
+    @include respond-to(sm) {
         grid-row: span var(--grid-rows);
     }
 }

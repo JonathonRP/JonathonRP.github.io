@@ -9,17 +9,20 @@ var app_root = in_prod ? "/Resume" : "";
 const config = {
 	kit: {
 		adapter: static_adapter({
-			pages: site_root,
-			assets: site_root,
-			fallback: undefined
+			fallback: undefined,
+			pages: site_root
 		}),
+		paths: {
+			base: app_root
+		},
 		prerender: {
 			default: true,
 			crawl: true,
 			enabled:true,
 			onError: 'fail',
 			entries: ['*']
-		}
+		},
+		target: "#svelteApp"
 	},
 	amp: true,
 	csp: {
@@ -40,18 +43,16 @@ const config = {
 			postcss: true,
 			scss: true,
 			sass: true,
-			typescript: true
+			typescript: true,
+			renderSync: true
 		}),
 		image({
-			breakpoints: [700, 800, 960, 1280],
 			componentExtensions: ["jfif", "png"],
 			compressionLevel: 1,
 			imgTagExtensions: ["jfif", "png"],
 			outputDir: 'images',
 			publicDir: `.${site_root}/`,
-			placeholder: "blur",
 			quality: 80,
-			sizes: [200, 400, 800, 1000, 1200],
 			webpOptions: {
 				quality: 80,
 				lossless: true,

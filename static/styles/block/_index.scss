@@ -1,29 +1,41 @@
 @use '../abstracts/mixins' as *;
 
 .profile {
+	--flow-space: var(--medium-space);
 	display: contents;
-	margin-inline: var(--xsmall-space);
-	margin-block-start: var(--medium-space);
+
+	> * {
+		margin-inline: var(--xsmall-space);
+	}
 
 	div {
 		// grid-row: 1;
+
+		@include respond-to(sm){
+			grid-column: span 2;
+		}
 	}
 
 	p {
 		// grid-row: 2;
 		max-width: 70ch;
+
+		@include respond-to(sm) {
+			grid-column: span 2;
+		}
 	}
 
 	section {
 		display: none;
 
-		grid-row: 1/3;
-		justify-self: end;
+		grid-column: span 2;
+		justify-self: start;
 	}
 }
 
 .interests {
-	margin-block: var(--micro-space);
+	// --flow-space: var(--micro-size);
+	// margin-block-end: var(--flow-space);
 
 	// @include respond-to(lg) {
 	// 	border-bottom: 2px solid var(--primary-color);
@@ -31,12 +43,6 @@
 }
 
 .personal-projects {
-	background-color: var(--primary-color);
-
-	ol {
-		padding: 0;
-	}
-
 	li {
 		padding-block: var(--xsmall-space);
 		font-size: 0.9em;
@@ -56,17 +62,5 @@
 	p {
 		margin: var(--default-space) var(--xsmall-space);
 		max-width: 60ch;
-	}
-}
-
-.contact-details {
-	@include respond-to(lg) {
-		&[data-visibility='mobile'] {
-			display: none;
-		}
-
-		&[data-visibility='desktop'] {
-			display: grid;
-		}
 	}
 }

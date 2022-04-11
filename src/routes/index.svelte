@@ -1,31 +1,27 @@
 <script lang="ts">
 	/// <reference path="$lib/utils/global.d.ts" />
 	import '$lib/utils/groupby';
-	import resume from '$lib/data/resume.json';
-	import config from '../../static/website.config';
+	import { slug } from '$lib/utils/slug';
+	import config from '../website.config';
 	import SEO from '$lib/components/SEO/index.svelte';
 	import PWA from '$lib/components/PWA.svelte';
+	import resume from '/static/data/resume.json';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 	import ContactDetails from '$lib/components/ContactDetails.svelte';
 	import Timeline from '$lib/components/Timeline.svelte';
 	import TagsCatalog from '$lib/components/TagsCatalog.svelte';
-	import { slug } from '$lib/utils/slug';
-
-	console.log(import.meta.env.BASE_URL);
-
-	let { basics, work, certificates, education, skills, interests, projects }: JsonResume = resume;
 
 	const { author, siteUrl } = config;
 
 	let title = 'Resume',
-		metadescription = 'Hard working and detail oriented professional, seeking a software development position where I can use my skills and contribute to the growth of a company.';
+	metadescription = 'Hard working and detail oriented professional, seeking a software development position where I can use my skills and contribute to the growth of a company.';
 
 	const breadcrumbs = [
 		// {
-		// 	name: 'Home',
-		// 	slug: ''
-		// },
-		{
+			// 	name: 'Home',
+			// 	slug: ''
+			// },
+			{
 			name: title,
 			slug: ''
 		}
@@ -39,37 +35,37 @@
 	};
 
 	const seo = {
-		articel: false,
+		article: false,
 		title,
 		slug: '',
 		entityMeta,
 		breadcrumbs,
 		metadescription
 	};
+
+	let { basics, work, certificates, education, skills, interests, projects }: JsonResume = resume;
 </script>
 
 <svelte:head>
 	<SEO {...seo} />
 	<PWA />
 </svelte:head>
-
-<img src="images/profile.png" alt="" height="0" width="0" hidden />
 <div class="action bar">
 	<ThemeToggle />
 	<span class="download">
-		<form action="/pdf">
-			<input type="submit" class="pdf"/>
+		<form action="/pdf" class="pdf">
+			<input type="submit"/>
 		</form>
 	</span>
 	<span class="download">
-		<form action="/word">
-			<input type="submit" class="word"/>
+		<form action="/word" class="word">
+			<input type="submit" hidden/>
 		</form>
 	</span>
 </div>
-<main>
+<main class="wrapper">
 	<!-- Profile -->
-	<header class="profile [ wrapper flow ]">
+	<header class="profile [ flow ]">
 		<!-- Introduction -->
 		<div aria-label="Introduction">
 			<h1 aria-label={basics.name}>{basics.name}</h1>
@@ -86,55 +82,45 @@
 	</header>
 
 	<!-- Relevant Experience History -->
-	<section class="[ wrapper lg:grid-column ]" aria-label="Relevant Experience History">
+	<section class="[ lg:grid-column ]" aria-label="Relevant Experience History">
 		<section class="experience" aria-label="Relevant Professional Experience">
 			<Timeline experiences={work} work />
 		</section>
 
-		<!-- Certifications -->
+		<!-- Certificates -->
 		<section class="experience" aria-labelledby="cert-title">
-			<h2
-				id="cert-title"
-				class="heading__icon timeline__section-heading"
-				data-icon="certifications"
-			>
-				Certifications
-			</h2>
-			<Timeline experiences={certificates} certifications />
+			<Timeline experiences={certificates} certificates />
 		</section>
 
 		<!-- Education -->
 		<section class="experience" aria-labelledby="ed-title">
-			<h2 id="ed-title" class="heading__icon timeline__section-heading" data-icon="education">
-				Education
-			</h2>
 			<Timeline experiences={education} education />
 		</section>
 	</section>
 
-	<div class="[ lg:grid-column ] [ wrapper flow ]">
+	<div class="[ lg:grid-column ] [ flow ]">
 		<!-- Skills -->
-		<section class="skills [ tags-catalog extend bg-primary lg:bg-none ]" aria-label="skills">
-			{#each Object.entries(skills.groupBy((skill) => skill.category)) as [category, collectiveSkills] ((collectiveSkills.tag = slug(category)))}
+		<section class="skills [ tags-catalog extend ] [ lg:bg-none ]" aria-label="skills">
+			{#each Object.entries(skills.groupBy((skill) => skill.category)) as [category, collectiveSkills]}
 				<section
 					class="category"
 					class:extend={collectiveSkills.length > 1}
-					aria-labelledby="{collectiveSkills.tag}-title"
+					aria-labelledby="{slug(category)}-title"
 				>
 					<h2
-						id="{collectiveSkills.tag}-title"
+						id="{slug(category)}-title"
 						class="heading__icon heading"
-						data-icon={collectiveSkills.tag}
+						data-icon={slug(category)}
 					>
-						{category}
+						{collectiveSkills[0].name}
 					</h2>
 					{#if collectiveSkills.length === 1}
 						<TagsCatalog labels={collectiveSkills[0].keywords} />
 					{:else if collectiveSkills.length > 1}
-						{#each collectiveSkills as skill ((skill.tag = slug(category)))}
+						{#each collectiveSkills as skill (skill.tag = slug(skill.name))}
 							<div class="sub-category" aria-labelledby="{skill.tag}-title">
 								<h4 id="{skill.tag}-title" class="subheading">{skill.name}:</h4>
-								<TagsCatalog labels={skill.keywords} />
+								<TagsCatalog labels={skill.keywords.sort()} />
 							</div>
 						{/each}
 					{/if}
@@ -143,34 +129,36 @@
 		</section>
 
 		<!-- Interests -->
-		<section
-			class="interests [ tags-catalog ]"
-			class:extend={interests.length > 1}
-			aria-labelledby="interests-title"
-		>
-			<h2 id="interests-title" class="heading__icon heading" data-icon="interests">Interests</h2>
-			{#if interests.length === 1}
-				<TagsCatalog labels={interests[0].keywords} />
-			{:else if interests.length > 1}
-				{#each interests as interest ((interest.tag = slug(interest.name)))}
-					<div class="sub-category" aria-labelledby="{interest.tag}-title">
-						<h4 id="{interest.tag}-title" class="subheading">{interest.name}:</h4>
-						<TagsCatalog labels={interest.keywords} />
-					</div>
-				{/each}
-			{/if}
-		</section>
+		{#if interests}
+			<section
+				class="interests [ tags-catalog ]"
+				class:extend={interests.length > 1}
+				aria-labelledby="interests-title"
+			>
+				<h2 id="interests-title" class="heading__icon heading" data-icon="interests">Interests</h2>
+				{#if interests.length === 1}
+					<TagsCatalog labels={interests[0].keywords} />
+				{:else if interests.length > 1}
+					{#each interests as interest ((interest.tag = slug(interest.name)))}
+						<div class="sub-category" aria-labelledby="{interest.tag}-title">
+							<h4 id="{interest.tag}-title" class="subheading">{interest.name}:</h4>
+							<TagsCatalog labels={interest.keywords} />
+						</div>
+					{/each}
+				{/if}
+			</section>
+		{/if}
 
 		<!-- Personal Projects -->
 		<section
-			class="personal-projects [ flow ] [ lg:bg-none ]"
+			class="personal-projects [ flow ]"
 			aria-labelledby="personal-projects-title"
 		>
 			<h2 id="personal-projects-title" class="heading__icon heading" data-icon="personal-projects">
 				Personal Projects
 			</h2>
 
-			<ol>
+			<ol class="project gallery">
 				{#each projects as project}
 					<li>
 						<header>
@@ -210,20 +198,20 @@
 	</div>
 </main>
 
-<style lang="scss">
-	@use '../lib/styles/abstracts' as *;
-	@use '../lib/styles' as *;
+<style lang="scss" global>
+	@use 'static/assets/styles/abstracts' as *;
+	@use 'static/assets/styles' as *;
 
 	// theme
 	:root {
 		&[data-theme='dark'] {
-			@each $color, $value in $dark {
+			@each $color, $value in $light {
 				--#{$color}-color: #{$value};
 			}
 		}
 
 		@media (prefers-color-scheme: dark) {
-			@each $color, $value in $dark {
+			@each $color, $value in $light {
 				--#{$color}-color: #{$value};
 			}
 		}
@@ -242,7 +230,7 @@
 		&::before {
 			position: absolute;
 			top: 0;
-			transform: translate(-50%, 50%);
+			transform: translate(50%, 50%);
 			color: var(--text-color);
 		}
 

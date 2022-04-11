@@ -1,4 +1,5 @@
 @use '../abstracts/mixins' as *;
+@use '../utilities/extend' as *;
 
 main {
 	font-family: var(--primary-ff);
@@ -133,20 +134,17 @@ a {
 
 .heading,
 .subheading {
-	margin-block: 0;
-	padding-block: calc(var(--mini-space) + 0.2rem);
+	margin: 0;
 	clear: both;
 }
 
 .heading {
-	// padding-block: 0;
-	padding-block-end: calc(var(--mini-space) + 0.1rem);
-	// border-bottom: 2px solid $primary-color;
+	padding-block-start: var(--default-space);
 }
 
 .subheading {
-	margin: 0;
-	padding-inline: var(--mini-space);
+	// padding-block: calc(var(--mini-space) + 0.2rem);
+	padding-inline-end: var(--mini-space);
 	float: left;
 }
 

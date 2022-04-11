@@ -1,4 +1,4 @@
-import resume from '$lib/data/resume.json';
+import resume from '/static/assets/data/resume.json';
 
 let {basics: {email, profiles}} = resume;
 
@@ -8,7 +8,7 @@ const config = {
   siteLanguage: 'en-US',
   siteTitle: 'Jonathon Reese Perry Portfolio',
   siteShortTitle: 'Reese Portfolio',
-  siteUrl: import.meta.env ? import.meta.env.BASE_URL : '',
+  siteUrl: import.meta.env ? import.meta.env.VITE_SITE_URL.toString() : '',
   icon: 'static/profile.png',
   backgroundColor: '#1b4079',
   themeColor: '#d62828',

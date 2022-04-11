@@ -1,75 +1,122 @@
 <script lang="ts">
-    export let basics: { [x: string]: any, location?: {address: string, city: string, countryCode: string, postalCode: string, region: string}, phone?: string, email?: string, profiles?: {network: string, username: string, url: string}[]};
-    let {location, phone, email, profiles} = {...basics};
+	export let basics: {
+		[x: string]: any;
+		location?: {
+			address: string;
+			city: string;
+			countryCode: string;
+			postalCode: string;
+			region: string;
+		};
+		phone?: string;
+		email?: string;
+		profiles?: { network: string; username: string; url: string }[];
+	};
+	let { location, phone, email, profiles } = { ...basics };
+	$: rows = 0;
 </script>
 
 <section class="contact-details" {...$$restProps}>
-    {#if $$slots.heading}
-        <slot name="heading"/>
-    {/if}
-    {#if location}
-        <span class="contact-details__text" aria-label="{location.city}, {location.region}"><p>{location.city}, {location.region}</p></span>        <span class="contact-details__icon location"/>
-    {/if}
-    {#if phone}
-        <span class="contact-details__text"><p>{phone}</p></span>                                                                                   <span class="contact-details__icon phone"/>
-    {/if}
-    {#if email}
-        <span class="contact-details__link"><a href="mailto:{email}" rel="external nofollow noopener noreferrer" target="blank">{email}</a></span>                                              <span class="contact-details__icon email" />
-    {/if}
+	{#if $$slots.heading}
+		<slot name="heading" />
+	{/if}
+	{#if location && rows + 1}
+		<span class="contact-details__text" aria-label="{location.city}, {location.region}"
+			><p>{location.city}, {location.region}</p></span
+		> <span class="contact-details__icon location" />
+	{/if}
+	{#if phone && rows + 1}
+		<span class="contact-details__text"><p>{phone}</p></span>
+		<span class="contact-details__icon phone" />
+	{/if}
+	{#if email && rows + 1}
+		<span class="contact-details__link"
+			><a href="mailto:{email}" rel="external nofollow noopener noreferrer" target="blank"
+				>{email}</a
+			></span
+		> <span class="contact-details__icon email" />
+	{/if}
 
-    {#if profiles}
-        {#each profiles as profile}
-            <span class="contact-details__link"><a href="{profile.url}" rel="external nofollow noopener noreferrer" target="blank">{profile.network} Profile</a></span>                         <span class="contact-details__icon {profile.network.toLowerCase()}" />
-        {/each}
-    {/if}
+	{#if profiles && rows + profiles.length}
+		{#each profiles as profile}
+			<span class="contact-details__link"
+				><a href={profile.url} rel="external nofollow noopener noreferrer" target="blank"
+					>{profile.network} Profile</a
+				></span
+			> <span class="contact-details__icon {profile.network.toLowerCase()}" />
+		{/each}
+	{/if}
 </section>
 
 <style lang="scss">
-    @use '../styles/abstracts/mixins' as *;
+	@use 'static/assets/styles/abstracts/mixins' as *;
+
+	a {
+		&::before {
+            content: none;
+		}
+
+        &::after {
+            content: none;
+        }
+	}
 
 	.contact-details {
-		display: grid;
+		display: none;
 		grid-template-columns: 165px 35px;
 		column-gap: 0.5em;
-		padding: var(--default-space) var(--xsmall-space);
+		padding-block: var(--small-space);
 		align-items: center;
+		position: relative;
 
-        &[data-visibility='mobile'] {
-            grid-template-rows: 50px repeat(5, 25px);
+		--grid-rows: #{rows};
 
-            &::before {
-                content: '';
-                border-right: 2px solid var(--primary-color);
-                position: absolute;
-                top: 66px;
-                height: 60%;
-                width: 13.5em;
-            }
+		&[data-visibility='mobile'] {
+			display: grid;
+			grid-template-rows: 50px repeat(var(--grid-rows), 25px);
+			// padding-inline: 0;
 
-            @include headings() {
-                grid-column: span 2;
-                grid-row: 1;
-            }
+			&::before {
+				content: '';
+				border-right: 2px solid var(--primary-color);
+				position: absolute;
+				top: 62px;
+				height: 60%;
+				width: 13.5em;
+			}
 
-            .heading {
-                width: 100%;
-            }
-        }
+			@include headings() {
+				grid-column: span 2;
+				grid-row: 1;
+			}
 
-        &[data-visibility='desktop'] {
-            grid-template-rows: repeat(5, 25px);
-        }
+			.heading {
+				width: 100%;
+			}
 
+			@include respond-to(sm) {
+				display: none;
+			}
+		}
+
+		&[data-visibility='desktop'] {
+			grid-template-rows: repeat(var(--grid-rows), 25px);
+
+			@include respond-to(sm) {
+				display: inline-block;
+			}
+		}
 
 		&__text,
 		&__link {
 			grid-column: 1;
 			font-size: 1rem;
-			text-align: end;
+			// text-align: center;
 		}
 
 		&__icon {
-			font-size: 20px;
+			// font-size: 20px;
+            padding-inline-end: var(--small-space);
 			text-align: center;
 			color: var(--accent-color);
 		}

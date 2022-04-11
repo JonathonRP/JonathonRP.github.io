@@ -1,5 +1,5 @@
 import puppeteer from "puppeteer";
-import config from "../../static/website.config";
+import config from "../website.config";
 
 export async function get() {
     const browser = await puppeteer.launch();

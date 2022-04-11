@@ -1,19 +1,18 @@
 <script lang="ts">
-	import jquery from 'Jquery';
 	import { onMount } from 'svelte';
 
 	onMount(() => {
 		let darkmode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-		let toggle = jquery('.theme-switch');
+		let toggle:HTMLInputElement = document.querySelector('.theme-switch');
 
 		let themeAttr = 'data-theme',
 			scheme = 'color-scheme',
 			theme = 'dark';
 
-		toggle.attr('checked', darkmode.toString());
+		toggle.checked = darkmode;
 
-		toggle.on('change', toggle_theme);
+		toggle.addEventListener('change', toggle_theme);
 
 		function toggle_theme(event: any) {
 			if (event.target.checked) {
@@ -36,7 +35,7 @@
 />
 
 <style lang="scss">
-	@use '../styles/abstracts/mixins' as *;
+	@use 'static/assets/styles/abstracts/mixins' as *;
 
 	@include icon('theme-switch__label') {
 		content: '\f186';
@@ -66,7 +65,7 @@
 		&:checked + &__label::before {
 			position: absolute;
 			top: 0;
-			transform: translate(-50%, 50%);
+			transform: translate(50%, 50%);
 			color: var(--text-color);
 		}
 
