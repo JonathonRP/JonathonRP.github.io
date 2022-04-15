@@ -33,4 +33,7 @@
 	@media only screen and (min-width: $size) {
 		@content;
 	}
+	@media print and (min-width: $size) {
+		@content;
+	}
 }

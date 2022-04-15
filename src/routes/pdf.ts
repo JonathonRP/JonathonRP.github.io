@@ -6,7 +6,7 @@ export async function get() {
     const page = await browser.newPage();
 
     await page.goto(config.siteUrl);
-    await page.emulateMediaType('screen');
+    await page.emulateMediaType('print');
 
     const pdfBuffer = await page.pdf({format: 'letter'});
 

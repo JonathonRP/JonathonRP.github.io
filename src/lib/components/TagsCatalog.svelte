@@ -11,7 +11,7 @@
 </ul>
 
 <style lang="scss">
-	@use 'static/assets/styles/abstracts/mixins' as *;
+	@use 'static/styles/abstracts/mixins' as *;
 
 	ul {
 		max-width: 60ch;

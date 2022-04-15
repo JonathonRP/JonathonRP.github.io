@@ -4,9 +4,9 @@
 	import SchemaOrg from './SchemaOrg.svelte';
 	import Twitter from './Twitter.svelte';
 
-	import defaultFeaturedImage from '../../../../static/profile.png';
-	import defaultOgImage from '../../../../static/profile.png';
-	import defaultOgSquareImage from '../../../../static/profile.png';
+	import defaultFeaturedImage from '/static/profile.png';
+	import defaultOgImage from '/static/profile.png';
+	import defaultOgSquareImage from '/static/profile.png';
 
 	const {
 		author,

@@ -5,7 +5,7 @@
 	import config from '../website.config';
 	import SEO from '$lib/components/SEO/index.svelte';
 	import PWA from '$lib/components/PWA.svelte';
-	import resume from '/static/data/resume.json';
+	import resume from '/src/data/resume.json';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 	import ContactDetails from '$lib/components/ContactDetails.svelte';
 	import Timeline from '$lib/components/Timeline.svelte';
@@ -52,16 +52,8 @@
 </svelte:head>
 <div class="action bar">
 	<ThemeToggle />
-	<span class="download">
-		<form action="/pdf" class="pdf">
-			<input type="submit"/>
-		</form>
-	</span>
-	<span class="download">
-		<form action="/word" class="word">
-			<input type="submit" hidden/>
-		</form>
-	</span>
+	<a id="pdf" class="download pdf" href="/pdf"></a>
+	<a id="word" class="download word" href="/word"></a>
 </div>
 <main class="wrapper">
 	<!-- Profile -->
@@ -199,8 +191,8 @@
 </main>
 
 <style lang="scss" global>
-	@use 'static/assets/styles/abstracts' as *;
-	@use 'static/assets/styles' as *;
+	@use 'static/styles/abstracts' as *;
+	@use 'static/styles' as *;
 
 	// theme
 	:root {
@@ -242,15 +234,11 @@
 			border-radius: var(--small-space);
 			box-shadow: 0 0 8px rgb(255 255 255 / 0.3);
 			clear: both;
-		}
-
-		.word {
-			&::after {
+	
+			.word {
 				background-color: #5174a8;
 			}
-		}
-		.pdf {
-			&::after {
+			.pdf {
 				background-color: #c05757;
 			}
 		}

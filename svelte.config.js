@@ -21,8 +21,7 @@ const config = {
 			enabled:true,
 			onError: 'fail',
 			entries: ['*']
-		},
-		target: "#svelteApp"
+		}
 	},
 	amp: true,
 	csp: {

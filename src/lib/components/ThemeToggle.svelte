@@ -35,7 +35,7 @@
 />
 
 <style lang="scss">
-	@use 'static/assets/styles/abstracts/mixins' as *;
+	@use 'static/styles/abstracts/mixins' as *;
 
 	@include icon('theme-switch__label') {
 		content: '\f186';
