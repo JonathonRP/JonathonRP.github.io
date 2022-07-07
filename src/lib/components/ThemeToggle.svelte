@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { browser } from "$app/env";
 
-	onMount(() => {
+	if (browser) {
 		let darkmode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 		let toggle:HTMLInputElement = document.querySelector('.theme-switch');
@@ -24,7 +24,7 @@
 				document.documentElement.style.removeProperty(scheme);
 			}
 		}
-	});
+	}
 </script>
 
 <input class="theme-switch" id="theme-switcher" type="checkbox" hidden />

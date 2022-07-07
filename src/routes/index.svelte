@@ -5,8 +5,6 @@
 	import config from '../website.config';
 	import SEO from '$lib/components/SEO/index.svelte';
 	import PWA from '$lib/components/PWA.svelte';
-	import resume from '/src/data/resume.json';
-	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 	import ContactDetails from '$lib/components/ContactDetails.svelte';
 	import Timeline from '$lib/components/Timeline.svelte';
 	import TagsCatalog from '$lib/components/TagsCatalog.svelte';
@@ -18,9 +16,9 @@
 
 	const breadcrumbs = [
 		// {
-			// 	name: 'Home',
-			// 	slug: ''
-			// },
+		// 	name: 'Home',
+		// 	slug: ''
+		// },
 			{
 			name: title,
 			slug: ''
@@ -43,6 +41,7 @@
 		metadescription
 	};
 
+	export let resume: JsonResume;
 	let { basics, work, certificates, education, skills, interests, projects }: JsonResume = resume;
 </script>
 
@@ -50,11 +49,7 @@
 	<SEO {...seo} />
 	<PWA />
 </svelte:head>
-<div class="action bar">
-	<ThemeToggle />
-	<a id="pdf" class="download pdf" href="/pdf"></a>
-	<a id="word" class="download word" href="/word"></a>
-</div>
+
 <main class="wrapper">
 	<!-- Profile -->
 	<header class="profile [ flow ]">
@@ -94,24 +89,23 @@
 		<!-- Skills -->
 		<section class="skills [ tags-catalog extend ] [ lg:bg-none ]" aria-label="skills">
 			{#each Object.entries(skills.groupBy((skill) => skill.category)) as [category, collectiveSkills]}
+				{@const category_kabab = slug(category)}
 				<section
 					class="category"
 					class:extend={collectiveSkills.length > 1}
-					aria-labelledby="{slug(category)}-title"
-				>
+					aria-labelledby="{category_kabab}-title">
 					<h2
-						id="{slug(category)}-title"
+						id="{category_kabab}-title"
 						class="heading__icon heading"
-						data-icon={slug(category)}
-					>
-						{collectiveSkills[0].name}
+						data-icon={category_kabab}>
+						{collectiveSkills.length === 1 ? collectiveSkills[0]?.name : collectiveSkills.length > 1 ? category : ""}
 					</h2>
 					{#if collectiveSkills.length === 1}
-						<TagsCatalog labels={collectiveSkills[0].keywords} />
+						<TagsCatalog labels={collectiveSkills[0]?.keywords ?? ''} />
 					{:else if collectiveSkills.length > 1}
 						{#each collectiveSkills as skill (skill.tag = slug(skill.name))}
 							<div class="sub-category" aria-labelledby="{skill.tag}-title">
-								<h4 id="{skill.tag}-title" class="subheading">{skill.name}:</h4>
+								<h3 id="{skill.tag}-title" class="subheading">{skill.name}:</h3>
 								<TagsCatalog labels={skill.keywords.sort()} />
 							</div>
 						{/each}
@@ -129,7 +123,7 @@
 			>
 				<h2 id="interests-title" class="heading__icon heading" data-icon="interests">Interests</h2>
 				{#if interests.length === 1}
-					<TagsCatalog labels={interests[0].keywords} />
+					<TagsCatalog labels={interests[0]?.keywords ?? ''} />
 				{:else if interests.length > 1}
 					{#each interests as interest ((interest.tag = slug(interest.name)))}
 						<div class="sub-category" aria-labelledby="{interest.tag}-title">
@@ -189,58 +183,3 @@
 		</ContactDetails>
 	</div>
 </main>
-
-<style lang="scss" global>
-	@use 'static/styles/abstracts' as *;
-	@use 'static/styles' as *;
-
-	// theme
-	:root {
-		&[data-theme='dark'] {
-			@each $color, $value in $light {
-				--#{$color}-color: #{$value};
-			}
-		}
-
-		@media (prefers-color-scheme: dark) {
-			@each $color, $value in $light {
-				--#{$color}-color: #{$value};
-			}
-		}
-	}
-
-	.download {
-		position: relative;
-		padding-inline: var(--default-space);
-		cursor: pointer;
-
-		&::before,
-		&::after {
-			margin-block: 0.425rem;
-		}
-
-		&::before {
-			position: absolute;
-			top: 0;
-			transform: translate(50%, 50%);
-			color: var(--text-color);
-		}
-
-		&::after {
-			content: '';
-			display: inline-block;
-			height: var(--xlarge-space);
-			width: var(--xlarge-space);
-			border-radius: var(--small-space);
-			box-shadow: 0 0 8px rgb(255 255 255 / 0.3);
-			clear: both;
-	
-			.word {
-				background-color: #5174a8;
-			}
-			.pdf {
-				background-color: #c05757;
-			}
-		}
-	}
-</style>

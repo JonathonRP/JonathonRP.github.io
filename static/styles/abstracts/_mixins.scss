@@ -30,10 +30,7 @@
 @mixin respond-to($key) {
 	$size: map-get($breakpoints, $key);
 
-	@media only screen and (min-width: $size) {
-		@content;
-	}
-	@media print and (min-width: $size) {
+	@media screen, print and (min-width: $size) {
 		@content;
 	}
 }

@@ -7,7 +7,7 @@ export async function get() {
     const page = await browser.newPage();
 
     await page.goto(config.siteUrl);
-    await page.emulateMediaType('print');
+    await page.emulateMediaType('screen');
     await page.setViewport({width: 816, height: 1054 });
 
     // page.evaluate((select:string) => {

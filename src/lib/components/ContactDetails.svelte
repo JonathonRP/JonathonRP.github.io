@@ -15,7 +15,7 @@
 	let { location, phone, email, profiles } = { ...basics };
 
 	let row = 0;
-	const rows = { add: (inc: number = 0): number => row + inc || 1 };
+	const rows = { add: (inc: number = 0): number => row += inc || 1 };
 </script>
 
 <section class="contact-details" {...$$restProps}>
@@ -53,10 +53,6 @@
 	@use 'static/styles/abstracts/mixins' as *;
 
 	a {
-		&::before {
-			content: none;
-		}
-
 		&::after {
 			content: none;
 		}
@@ -66,11 +62,12 @@
 		--grid-rows: #{rows()};
 
 		display: none;
-		grid-template-columns: 165px 35px;
-		column-gap: 0.5em;
-		padding-block: var(--small-space);
+		grid-template-columns: 125px 25px;
+		// column-gap: 0.5em;
 		align-items: center;
+		justify-items: end;
 		position: relative;
+		font-size: .85rem;
 
 		&[data-visibility='mobile'] {
 			display: grid;
@@ -104,21 +101,20 @@
 			grid-template-rows: repeat(var(--grid-rows), 25px);
 
 			@include respond-to(sm) {
-				display: inline-block;
+				display: grid;
 			}
 		}
 
 		&__text,
 		&__link {
 			grid-column: 1;
-			font-size: 1rem;
 			// text-align: center;
 		}
 
 		&__icon {
 			// font-size: 20px;
-			padding-inline-end: var(--small-space);
-			text-align: center;
+			// padding-inline-end: var(--small-space);
+			// text-align: center;
 			color: var(--accent-color);
 		}
 	}

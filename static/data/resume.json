@@ -26,13 +26,10 @@
             "startDate": "2019-03",
             "highlights": [
                 "Perform full stack development working in an agile environment with daily scrum meetings and implementing frontend and backend features as well as resolving bugs.",
-                "Stack primarily consist of using Azure DevOps, Visual Studio, .NET Framework, MVC 5, C#, Webforms, Microsoft SQL, and a custom ORM implementation of entity framework. In addition, I use JavaScript/Typescript, HTML5, CSS/SASS and PostgressSQL",
-                "Current on new and alternate technologies, languages, frameworks, design patterns, architecture structures and assess their value against needs.",
                 "Shared Visual Studio enhancements to enable Gulp and webpack file watching features to save development time, as well as leverage NPM Task Runner, and pull request extensions to work with the repo from within Visual Studio.",
                 "Mocked and proposed login screen enhancements that were implemented, improving the user experience and alleviating client confusion with the proper access screens.",
                 "Proposed welcome screen changes to include widgets and analytics for faster user navigation and better utilization of the screen. This proposal is currently in process of being implemented.",
-                "Coach and support other team members with my knowledge and experience and maintain a positive attitude even when things get tough as well as ask for help when needed.",
-                "Facilitated Quovant adopting the ReSharper tool for a better developer and IDE experience.",
+                "Coached and support other team members with my knowledge and experience.",
                 "Completed 70-461 Querying Microsoft SQL Server with Transact-SQL course."
             ]
         },
