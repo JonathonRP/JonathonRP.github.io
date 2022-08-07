@@ -49,7 +49,7 @@
 </section>
 
 <style lang="scss">
-	@use 'static/assets/styles/abstracts/mixins' as *;
+	@use 'static/styles/abstracts/mixins' as *;
 
 	a {
 		&::before {

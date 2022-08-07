@@ -199,8 +199,8 @@
 </main>
 
 <style lang="scss" global>
-	@use 'static/assets/styles/abstracts' as *;
-	@use 'static/assets/styles' as *;
+	@use 'static/styles/abstracts' as *;
+	@use 'static/styles' as *;
 
 	// theme
 	:root {

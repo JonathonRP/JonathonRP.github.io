@@ -51,8 +51,8 @@
 </ol>
 
 <style lang="scss">
-	@use 'static/assets/styles/abstracts/mixins' as *;
-	@use 'static/assets/styles/base/typography' as *;
+	@use 'static/styles/abstracts/mixins' as *;
+	@use 'static/styles/base/typography' as *;
 
 	.timeline {
 		--logo-size: 50px;

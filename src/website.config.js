@@ -1,4 +1,4 @@
-import resume from '/static/assets/data/resume.json';
+import resume from '/static/data/resume.json';
 
 let {basics: {email, profiles}} = resume;
 
