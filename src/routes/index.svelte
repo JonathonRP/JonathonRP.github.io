@@ -5,8 +5,6 @@
 	import config from '../website.config';
 	import SEO from '$lib/components/SEO/index.svelte';
 	import PWA from '$lib/components/PWA.svelte';
-	import resume from '/static/data/resume.json';
-	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 	import ContactDetails from '$lib/components/ContactDetails.svelte';
 	import Timeline from '$lib/components/Timeline.svelte';
 	import TagsCatalog from '$lib/components/TagsCatalog.svelte';
@@ -18,9 +16,9 @@
 
 	const breadcrumbs = [
 		// {
-			// 	name: 'Home',
-			// 	slug: ''
-			// },
+		// 	name: 'Home',
+		// 	slug: ''
+		// },
 			{
 			name: title,
 			slug: ''
@@ -43,6 +41,7 @@
 		metadescription
 	};
 
+	export let resume: JsonResume;
 	let { basics, work, certificates, education, skills, interests, projects }: JsonResume = resume;
 </script>
 
@@ -50,19 +49,7 @@
 	<SEO {...seo} />
 	<PWA />
 </svelte:head>
-<div class="action bar">
-	<ThemeToggle />
-	<span class="download">
-		<form action="/pdf" class="pdf">
-			<input type="submit"/>
-		</form>
-	</span>
-	<span class="download">
-		<form action="/word" class="word">
-			<input type="submit" hidden/>
-		</form>
-	</span>
-</div>
+
 <main class="wrapper">
 	<!-- Profile -->
 	<header class="profile [ flow ]">
@@ -102,24 +89,23 @@
 		<!-- Skills -->
 		<section class="skills [ tags-catalog extend ] [ lg:bg-none ]" aria-label="skills">
 			{#each Object.entries(skills.groupBy((skill) => skill.category)) as [category, collectiveSkills]}
+				{@const category_kabab = slug(category)}
 				<section
 					class="category"
 					class:extend={collectiveSkills.length > 1}
-					aria-labelledby="{slug(category)}-title"
-				>
+					aria-labelledby="{category_kabab}-title">
 					<h2
-						id="{slug(category)}-title"
+						id="{category_kabab}-title"
 						class="heading__icon heading"
-						data-icon={slug(category)}
-					>
-						{collectiveSkills[0].name}
+						data-icon={category_kabab}>
+						{collectiveSkills.length === 1 ? collectiveSkills[0]?.name : collectiveSkills.length > 1 ? category : ""}
 					</h2>
 					{#if collectiveSkills.length === 1}
-						<TagsCatalog labels={collectiveSkills[0].keywords} />
+						<TagsCatalog labels={collectiveSkills[0]?.keywords ?? ''} />
 					{:else if collectiveSkills.length > 1}
 						{#each collectiveSkills as skill (skill.tag = slug(skill.name))}
 							<div class="sub-category" aria-labelledby="{skill.tag}-title">
-								<h4 id="{skill.tag}-title" class="subheading">{skill.name}:</h4>
+								<h3 id="{skill.tag}-title" class="subheading">{skill.name}:</h3>
 								<TagsCatalog labels={skill.keywords.sort()} />
 							</div>
 						{/each}
@@ -137,7 +123,7 @@
 			>
 				<h2 id="interests-title" class="heading__icon heading" data-icon="interests">Interests</h2>
 				{#if interests.length === 1}
-					<TagsCatalog labels={interests[0].keywords} />
+					<TagsCatalog labels={interests[0]?.keywords ?? ''} />
 				{:else if interests.length > 1}
 					{#each interests as interest ((interest.tag = slug(interest.name)))}
 						<div class="sub-category" aria-labelledby="{interest.tag}-title">

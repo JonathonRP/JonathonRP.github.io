@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let labels: string[];
+	export let labels: string[] | '';
 </script>
 
 <ul>
@@ -14,7 +14,6 @@
 	@use 'static/styles/abstracts/mixins' as *;
 
 	ul {
-		max-width: 60ch;
 		color: var(--accent-color);
 		filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
 
@@ -24,7 +23,6 @@
 			border-radius: var(--large-space);
 			margin: var(--micro-space);
 			padding: var(--micro-space) var(--tiny-space);
-			font-size: 0.8rem;
 
 			@include respond-to(sm) {
 				background-color: var(--primary-color);

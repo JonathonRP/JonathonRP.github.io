@@ -4,7 +4,7 @@
 main {
 	font-family: var(--primary-ff);
 	color: var(--text-color);
-	line-height: 1.5;
+	font-size: 0.75rem;
 }
 
 @include headings() {
@@ -12,7 +12,7 @@ main {
 
 	&,
 	.timeline__title,
-	.timeline__subheading {
+	.timeline__heading {
 		font-family: var(--secondary-ff);
 		line-height: 1.2;
 	}
@@ -102,32 +102,33 @@ a {
 	// border-radius: 3px;
 	// color: $primary-color;
 }
+
 @include icon('heading__icon') {
 	@extend %category;
 
-	&[data-icon='tech-stack'] {
+	@at-root #{selector-unify(&, "[data-icon='tech-stack']")} {
+		content: '\f5fd';
+	}
+	@at-root #{selector-unify(&, "[data-icon='technical-skills']")} {
 		content: '\f121';
 	}
-	&[data-icon='technical-skills'] {
-		content: '\f121';
-	}
-	&[data-icon='soft-skills'] {
+	@at-root #{selector-unify(&, "[data-icon='soft-skills']")} {
 		content: '\f187';
 	}
-	&[data-icon='certifications'] {
+	@at-root #{selector-unify(&, "[data-icon='certificates']")} {
 		//content: '\f0a3';
 		content: '\f5f3';
 	}
-	&[data-icon='education'] {
+	@at-root #{selector-unify(&, "[data-icon='education']")} {
 		content: '\f19d';
 	}
-	&[data-icon='personal-projects'] {
+	@at-root #{selector-unify(&, "[data-icon='personal-projects']")} {
 		content: '\f85d';
 	}
-	&[data-icon='interests'] {
+	@at-root #{selector-unify(&, "[data-icon='interests']")} {
 		content: '\f07c';
 	}
-	&[data-icon='contact-details'] {
+	@at-root #{selector-unify(&, "[data-icon='contact-details']")} {
 		content: '\f129';
 	}
 }
@@ -140,12 +141,13 @@ a {
 
 .heading {
 	padding-block-start: var(--default-space);
+	font-size: 1rem;
 }
 
 .subheading {
-	// padding-block: calc(var(--mini-space) + 0.2rem);
 	padding-inline-end: var(--mini-space);
 	float: left;
+	font-size: .95rem;
 }
 
 .text-accent {
@@ -154,7 +156,7 @@ a {
 
 p,
 ol:not([class]),
-ul:not([class]),
-li:not([class]) {
+ul,
+li {
 	max-width: 60ch;
 }

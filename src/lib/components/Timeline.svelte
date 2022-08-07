@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Image from 'svelte-image';
-
 	export let experiences: { image: string, startDate?: string, endDate?: string, date?: string, name?: string, institution?: string, position?: string, issuer?: string, area?: string, summary?: string, highlights?: string[], studyType?: string }[];
     export let work:boolean = false, certificates:boolean = false, education:boolean = false;
 
@@ -15,7 +13,7 @@
 	{#each experiences as experience (experience.date = Intl.DateTimeFormat(navigator.language, {month: 'short', year: 'numeric'}).format(new Date(`${work ? experience.startDate : certificates ? experience.date : experience.endDate}`)))}
 		<li class="timeline__item">
 			<div class="timeline__logo">
-				<Image src={experience.image} alt={experience.image.split('/').pop().split('.').slice(0, -1)} />
+				<img src=".{experience.image}" alt={experience.image.split('/').pop()?.split('.').slice(0, -1)[0]} />
 			</div>
 			<div class="{icon} timeline__header" data-icon={work ? "work" : ""}>
 				<time class="timeline__duration" datetime="{experience.date}"> {experience.date} </time>
@@ -27,7 +25,7 @@
 					{#if experience.summary}
 						<p>{experience.summary}</p>
 					{:else if experience.highlights}
-						<ul class="timeline__responsabilities-achievements">
+						<ul class="timeline__responsabilities-achievements flow">
 							{#each experience.highlights as highlight}
 								<li>
 									{highlight}
@@ -55,7 +53,7 @@
 	@use 'static/styles/base/typography' as *;
 
 	.timeline {
-		--logo-size: 50px;
+		--logo-size: 42px;
 		--image-size: var(--xlarge-space);
 
 		padding: revert;
@@ -66,6 +64,7 @@
 		&__section-heading {
 			@extend .heading;
 			position: relative;
+			margin-inline: var(--xsmall-space);
 			// background-color: var(--bg-color);
 			margin-block-start: calc(-1 * var(--default-space));
 			// margin-block-end: 1em;
@@ -91,8 +90,7 @@
 			position: relative;
 			cursor: pointer;
 			margin: var(--default-space) var(--xlarge-space);
-			padding: var(--default-space) var(--large-space);
-			line-height: 2;
+			padding: var(--default-space) var(--medium-space);
 			box-shadow: 0px 3px 6px -1px rgba(0, 0, 0, 0.2);
 			transition: all 500ms;
 
@@ -119,24 +117,33 @@
 			transition: all 500ms;
 			overflow: hidden;
 
-			img {
-				display: block;
-				width: var(--image-size);
-				height: var(--image-size);
-				transform: translate(28%, 28%);
+			:global(.wrapper) {
+				padding: 0;
 			}
 
-			img[alt='70-486 Logo'] {
-				transform: scale(2) translate(0.3rem, 11%);
-			}
+			// img {
+			// 	display: block;
+			// 	width: var(--image-size);
+			// 	height: var(--image-size);
+			// 	transform: translate(28%, 28%);
+			// }
 
-			img[alt='MitraTech+Quovant'] {
-				transform: scale(1.6) translate(18%, 18%);
-			}
+			// img[alt='70-486 Logo'] {
+			// 	transform: scale(2) translate(0.3rem, 11%);
+			// }
 
-			img[alt='MTSU'] {
-				width: calc(var(--logo-size) - 0.7px);
-				transform: scale(0.9) translate(4%, 32%);
+			// img[alt='MitraTech+Quovant'] {
+			// 	transform: scale(1.6) translate(18%, 18%);
+			// }
+
+			// img[alt='MTSU'] {
+			// 	width: calc(var(--logo-size) - 0.7px);
+			// 	transform: scale(0.9) translate(4%, 32%);
+			// }
+
+			:global(img[alt="MTSU"]) {
+				// top: var(--xsmall-space);
+				padding-top: var(--xsmall-space);
 			}
 
 			@include respond-to(sm) {
@@ -159,13 +166,22 @@
 			}
 		}
 
-        @include icon('timeline__icon') {
+		&__icon {
+
+			@at-root &[data-icon='work']::before {
+				--icon: '\f0b1';
+			}
+
+		}
+
+		@include icon('timeline__icon') {
 			@extend %badge;
 
-            &[data-icon="work"]{
-			    content: '\f0b1';
-            }
-        }
+			content: var(--icon);
+			// @at-root #{selector-unify(&, "[data-icon='work']")}{
+			// 	content: '\f0b1';
+			// }
+		}
 
 		&__duration {
 			font-weight: bold;
@@ -186,32 +202,24 @@
 			margin: 0;
 			font-family: 'Poppins', sans-serif;
 			// font-family: "Pacifico", cursive;
-			font-size: 20px;
+			font-size: .99rem;
 			line-height: 1;
 			color: var(--accent-color);
 			border-bottom: 1px solid var(--primary-color);
 			width: 100%;
 		}
 
-		&__body {
-			font-size: 0.93rem;
-		}
-
-		&__head-line {
+		&__heading {
 			margin: 0;
-			font-size: 0.95rem;
+			line-height: 2;
 			font-weight: bold;
 		}
 
 		&__responsabilities-achievements {
 			display: grid;
 			padding-inline-start: var(--tiny-space);
-			margin-block-start: var(--small-space);
-			line-height: 1.6;
-			max-width: 60ch;
 
 			> li {
-				margin-block-start: var(--xsmall-space);
 
 				&::marker {
 					content: '\203a   ';
@@ -221,7 +229,7 @@
 			}
 
 			@include respond-to(sm) {
-				padding-inline-start: var(--xlarge-space);
+				padding-inline-start: var(--large-space);
 
 				> li {
 					&::marker {
@@ -248,18 +256,14 @@
 			}
 
 			.timeline__item {
-				padding: var(--xlarge-space);
-
-				@include respond-to(sm) {
-					margin-block-start: var(--large-space);
-				}
+				padding-block-start: calc(var(--default-space) + .4rem);
 			}
 
 			.timeline__logo {
 				transform: translate(-50%, 100%);
 
 				@include respond-to(sm) {
-					transform: translate(-50%, 50%);
+					transform: translate(-50%, 55%);
 				}
 			}
 

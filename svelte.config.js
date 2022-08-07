@@ -18,7 +18,7 @@ const config = {
 		prerender: {
 			default: true,
 			crawl: true,
-			enabled:true,
+			enabled: true,
 			onError: 'fail',
 			entries: ['*']
 		}
@@ -40,10 +40,11 @@ const config = {
 	preprocess: [
 		preprocess({
 			postcss: true,
+			preserve: ['ld+json', 'module'],
+			renderSync: true,
 			scss: true,
 			sass: true,
-			typescript: true,
-			renderSync: true
+			typescript: true
 		}),
 		image({
 			componentExtensions: ["jfif", "png"],

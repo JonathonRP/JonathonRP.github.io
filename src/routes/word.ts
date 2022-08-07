@@ -10,10 +10,10 @@ export async function get() {
     await page.emulateMediaType('screen');
     await page.setViewport({width: 816, height: 1054 });
 
-    page.evaluate((select:string) => {
-        var element = document.querySelector(select);
-        element?.parentNode?.removeChild(element);
-    }, '.action.bar');
+    // page.evaluate((select:string) => {
+    //     var element = document.querySelector(select);
+    //     element?.parentNode?.removeChild(element);
+    // }, '.action.bar');
 
     const html = await page.content();
     const docxBuffer = await htmldocx(html);
