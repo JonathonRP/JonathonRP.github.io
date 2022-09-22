@@ -327,7 +327,7 @@
         "additionalItems": false,
         "items": {
           "type": "object",
-          "additionalProperties": true,
+          "additionalProperties": false,
           "properties": {
             "name": {
               "type": "string",

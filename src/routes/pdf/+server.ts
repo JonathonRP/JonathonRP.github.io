@@ -1,7 +1,7 @@
-import puppeteer from "puppeteer";
-import config from "../website.config";
+import * as puppeteer from "puppeteer";
+import config from '$lib/website.config'
 
-export async function get() {
+export async function GET() {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
@@ -12,13 +12,11 @@ export async function get() {
 
     await browser.close();
 
-    return {
-        status: 200,
+    return new Response(pdfBuffer, { 
         headers: {
-            'Content-Type': 'application/pdf',
-            'Content-Disposition': `attachment;filename="${config.siteTitle}.pdf"`,
-            'Content-Length': pdfBuffer.length
-        },
-        body: pdfBuffer
-    }
+            'content-type': 'application/pdf',
+            'content-disposition': `attachment;filename="${config.siteTitle}.pdf"`,
+            'content-length': pdfBuffer.length.toString()
+        }
+    });
 }

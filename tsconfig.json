@@ -1,5 +1,6 @@
 {
 	"extends": "./.svelte-kit/tsconfig.json",
+	"include": ["./static/data/*.json"],
 	"compilerOptions": {
 		"outDir": "/public",
 		"strict": true,
@@ -10,6 +11,8 @@
 		"noImplicitReturns": true,
 		"noImplicitThis": true,
 		"noFallthroughCasesInSwitch": true,
-		"noUncheckedIndexedAccess": true
-	}
+		"noUncheckedIndexedAccess": true,
+		"resolveJsonModule": true,
+		"esModuleInterop": true
+	},
 }

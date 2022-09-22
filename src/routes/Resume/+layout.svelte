@@ -4,6 +4,8 @@
 
 <div class="action bar">
 	<ThemeToggle />
+    <a sveltekit:prefetch id="pdf" class="download pdf" href="./pdf"  title="download pdf">download pdf</a>
+    <a sveltekit:prefetch id="word" class="download word" href="./word" title="download word">download word</a>
 </div>
 
 <slot />

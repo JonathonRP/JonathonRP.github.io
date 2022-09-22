@@ -81,6 +81,7 @@
         {
             "category": "Tech Stack",
             "name": "Technology Stack",
+            "slug": "tech-stack",
             "keywords": [
                 "MVC 5",
                 "Webforms",
@@ -93,6 +94,7 @@
         {
             "category": "Technical Skills",
             "name": "Technologies",
+            "slug": "technologies",
             "keywords": [
                 "MVC 5",
                 "Webforms",
@@ -122,6 +124,7 @@
         {
             "category": "Technical Skills",
             "name": "Database",
+            "slug": "databse",
             "keywords": [
                 "SQL Sever",
                 "PostgresSQL"
@@ -130,6 +133,7 @@
         {
             "category": "Technical Skills",
             "name": "Tools",
+            "slug": "tools",
             "keywords": [
                 "Visual Studio",
                 "SQL Server",
@@ -143,6 +147,7 @@
         {
             "category": "Soft Skills",
             "name": "Soft Skills",
+            "slug": "soft-skills",
             "keywords": [
                 "Collaborative",
                 "Adaptability/Flexability",

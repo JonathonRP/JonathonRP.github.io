@@ -13,4 +13,4 @@ const config = {
   linkedinProfile: "Jonathon Reese Perry"
 };
 
-export { config as default };
+export default config;

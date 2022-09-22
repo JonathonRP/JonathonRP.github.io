@@ -1,5 +1,5 @@
 declare global {
-    type Group<T, K extends Extract<keyof T, string>> = Record<K, T[]>;
+    type Group<T, K extends Extract<keyof T, string | number | symbol>> = Record<K, T[]>;
 
     interface Array<T> {
         /**
@@ -7,7 +7,7 @@ declare global {
          * @param func: property to group on.
          * @returns Group
          */
-        groupBy<K extends Extract<keyof T, string>>(func: (item: T) => V): Group<T, K>
+        groupBy<K extends Extract<keyof T, string | number | symbol>, V>(func: (item: T) => V): Group<T, K>
     }
 
     interface String {
@@ -54,7 +54,7 @@ declare global {
             studyType: string
         }[],
         skills: {
-            tag?: string
+            slug?: string
             category: string,
             name: string,
             keywords: string[]

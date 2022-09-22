@@ -1,5 +1,5 @@
 <script lang="ts">
-	import config from '../../../website.config.js';
+	import config from '../../website.config.js';
 	import OpenGraph from './OpenGraph.svelte';
 	import SchemaOrg from './SchemaOrg.svelte';
 	import Twitter from './Twitter.svelte';

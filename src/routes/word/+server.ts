@@ -1,8 +1,8 @@
-import puppeteer from "puppeteer";
-import htmldocx from "html-to-docx";
-import config from "../website.config";
+import * as puppeteer from "puppeteer";
+import { asBlob } from "html-docx-js-typescript";
+import config from "$lib/website.config";
 
-export async function get() {
+export async function GET() {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
@@ -16,17 +16,15 @@ export async function get() {
     // }, '.action.bar');
 
     const html = await page.content();
-    const docxBuffer = await htmldocx(html);
+    const docxBuffer = await asBlob(html) as Buffer;
 
     await browser.close();
 
-    return {
-        status: 200,
+    return new Response(docxBuffer, {
         headers: {
             'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
             'Content-Disposition': `attachment;filename="${config.siteTitle}.docx"`,
-            'Content-Length': docxBuffer.length
-        },
-        body: docxBuffer
-    }
+            'Content-Length': docxBuffer.length.toString()
+        }
+    })
 }

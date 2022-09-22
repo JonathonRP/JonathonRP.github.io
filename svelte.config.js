@@ -1,9 +1,9 @@
-import { site_root, in_prod } from './src/lib/utils/constants.js';
+import { site_root } from './src/lib/utils/constants.js';
 import static_adapter from '@sveltejs/adapter-static';
 import preprocess from 'svelte-preprocess';
 import image from 'svelte-image';
 
-var app_root = in_prod ? "/Resume" : "";
+var app_root = "";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -15,13 +15,6 @@ const config = {
 		paths: {
 			base: app_root
 		},
-		prerender: {
-			default: true,
-			crawl: true,
-			enabled: true,
-			onError: 'fail',
-			entries: ['*']
-		}
 	},
 	amp: true,
 	csp: {
@@ -32,8 +25,8 @@ const config = {
 	endpointExtensions: ['.js', '.ts'],
 	outDir: site_root,
 	paths: {
-		base: app_root,
-		assets: app_root
+		base: site_root,
+		assets: site_root
 	},
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors

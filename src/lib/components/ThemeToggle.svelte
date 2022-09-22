@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { browser } from "$app/env";
+	import { browser } from "$app/environment";
 
 	if (browser) {
 		let darkmode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-		let toggle:HTMLInputElement = document.querySelector('.theme-switch');
+		let toggle:HTMLInputElement = document.querySelector('.theme-switch') as HTMLInputElement;
 
 		let themeAttr = 'data-theme',
 			scheme = 'color-scheme',
