@@ -3,6 +3,7 @@
         "vite": "npm:vite",
         "@sveltejs/kit": "npm:@sveltejs/kit",
         "@sveltejs/kit/vite": "npm:@sveltejs/kit/vite",
-        "adapter": "npm:@sveltejs/adapter-static"
+        "adapter": "npm:@sveltejs/adapter-static",
+        "svelteToy": "npm:@leveluptuts/svelte-toy@2.0.2"
     }
 }

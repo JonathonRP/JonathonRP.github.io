@@ -1,5 +1,5 @@
 import type { RequestHandler } from './$types';
-import config from "../../../website.config.mts";
+import config from "../../../website.config.ts";
 import { resumeHtml } from '../../lib/utils/constants.ts';
 import { asBlob, Buffer } from "npm:html-docx-js-typescript";
 

@@ -1,9 +1,8 @@
 <script lang="ts">
-	import type from "../../global";
-
 	import { writable } from 'svelte/store';
 	import { slug } from '$lib/utils/slug';
-	import config from '../../../website.config';
+	import config from '../../../website.config.ts';
+	import { Toy }  from 'svelteToy';
 	import SEO from '$lib/components/SEO/index.svelte';
 	import PWA from '$lib/components/PWA.svelte';
 	import ContactDetails from '$lib/components/ContactDetails.svelte';
@@ -12,7 +11,7 @@
 	import Resume from '$lib/data/resume.json';
 	
 	let resume = writable(Resume);
-	$: ({ basics, work, certificates, education, skills, projects } = $resume);
+	$: ({ basics, work, certificates, education, skills, projects } = $resume satisfies JsonResume);
 
 	$: ({ author, siteUrl } = config);
 
@@ -187,6 +186,8 @@
 		</ContactDetails>
 	</div>
 </main>
+
+<Toy register={{resume}} />
 
 <style lang="scss" global>
 	@use 'static/styles/abstracts' as *;
