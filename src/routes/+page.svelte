@@ -1,5 +1,5 @@
 <script lang="ts">
-	import config from '$lib/website.config';
+	import config from '../../website.config';
 	import SEO from '$lib/components/SEO/index.svelte';
 	import PWA from '$lib/components/PWA.svelte';
 
@@ -11,7 +11,7 @@
 	const breadcrumbs = [
 		{
 			name: 'Home',
-			slug: ''
+			slug: '/'
 		}
 	];
 

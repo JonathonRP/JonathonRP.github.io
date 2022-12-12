@@ -1,1 +1,0 @@
-export let site_root = './public'

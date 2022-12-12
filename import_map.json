@@ -1,0 +1,8 @@
+{
+    "imports": {
+        "vite": "npm:vite",
+        "@sveltejs/kit": "npm:@sveltejs/kit",
+        "@sveltejs/kit/vite": "npm:@sveltejs/kit/vite",
+        "adapter": "npm:@sveltejs/adapter-static"
+    }
+}

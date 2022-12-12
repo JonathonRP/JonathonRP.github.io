@@ -14,7 +14,7 @@ var notifier = require('node-notifier'),
         }
     };
 
-exports.NotificationPipe = function (taskFn, success = null) {
+exports.NotificationPipe = function (taskFn, success = {}) {
     return function(done) {
         var onSuccess = function() {
             notifier.notify(extend(defaults.regular, success.message ? extend(defaults.success, {message: success.message}) : defaults.success));

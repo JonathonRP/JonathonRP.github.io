@@ -1,30 +1,19 @@
-import * as puppeteer from "puppeteer";
-import { asBlob } from "html-docx-js-typescript";
-import config from "$lib/website.config";
+import type { RequestHandler } from './$types';
+import config from "../../../website.config.mts";
+import { resumeHtml } from '../../lib/utils/constants.ts';
+import { asBlob, Buffer } from "npm:html-docx-js-typescript";
 
-export async function GET() {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
+export const GET = (async ({ request }) => {
 
-    await page.goto(config.siteUrl);
-    await page.emulateMediaType('screen');
-    await page.setViewport({width: 816, height: 1054 });
-
-    // page.evaluate((select:string) => {
-    //     var element = document.querySelector(select);
-    //     element?.parentNode?.removeChild(element);
-    // }, '.action.bar');
-
-    const html = await page.content();
-    const docxBuffer = await asBlob(html) as Buffer;
-
-    await browser.close();
+    const docxBuffer = await asBlob(resumeHtml) as Buffer;
 
     return new Response(docxBuffer, {
+        status: 200,
+        statusText: "OK",
         headers: {
             'Content-Type': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
             'Content-Disposition': `attachment;filename="${config.siteTitle}.docx"`,
             'Content-Length': docxBuffer.length.toString()
         }
     })
-}
+}) satisfies RequestHandler

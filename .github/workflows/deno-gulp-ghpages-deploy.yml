@@ -1,0 +1,42 @@
+name: GhPages Deploy - Gulp with Deno
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        deno-version: [1.28.x]
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v3
+
+      - name: Use Deno ${{ matrix.deno-version }}
+        # uses: denoland/setup-deno@v1
+        uses: denoland/setup-deno@v1.1.1
+        with:
+          deno-version: ${{ matrix.deno-version }}
+
+      - name: Verify formatting
+        run: deno fmt --check
+
+      - name: Run linter
+        run: deno lint
+
+      - name: Run tests
+        run: deno test -A
+
+      - name: GHPage Deploy
+        run: |
+        gulp 'prod: deploy'
