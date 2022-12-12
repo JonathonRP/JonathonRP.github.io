@@ -10,8 +10,8 @@
 	import TagsCatalog from '$lib/components/TagsCatalog.svelte';
 	import Resume from '$lib/data/resume.json';
 	
-	let resume = writable(Resume);
-	$: ({ basics, work, certificates, education, skills, projects } = $resume satisfies JsonResume);
+	const resume = writable(Resume);
+	$: ({ basics, work, certificates, education, skills, projects } = $resume as JsonResume);
 
 	$: ({ author, siteUrl } = config);
 
