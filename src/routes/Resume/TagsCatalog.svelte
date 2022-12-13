@@ -11,7 +11,7 @@
 </ul>
 
 <style lang="scss">
-	@use 'static/styles/abstracts/mixins' as *;
+	@use '$styles/abstracts/mixins' as *;
 
 	ul {
 		color: var(--accent-color);

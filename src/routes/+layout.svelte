@@ -1,6 +1,42 @@
 <script lang="ts">
+	import config from '../../website.config';
+	import SEO from '$lib/components/SEO/index.svelte';
+	import PWA from '$lib/components/PWA.svelte';
     import ThemeToggle from '$lib/components/ThemeToggle.svelte';
+
+	$: ({ author, siteUrl } = config);
+
+	let title = 'Home',
+	metadescription = 'Portfolio';
+
+	const breadcrumbs = [
+		{
+			name: 'Home',
+			slug: '/'
+		}
+	];
+
+	const entityMeta = {
+		url: `${siteUrl}/`,
+		faviconWidth: 512,
+		faviconHeight: 512,
+		caption: author
+	};
+
+	const seo = {
+		article: false,
+		title,
+		slug: '',
+		entityMeta,
+		breadcrumbs,
+		metadescription
+	};
 </script>
+
+<svelte:head>
+	<SEO {...seo} />
+	<PWA />
+</svelte:head>
 
 <div class="action bar">
 	<ThemeToggle />
@@ -9,8 +45,8 @@
 <slot />
 
 <style lang="scss" global>
-	@use 'static/styles/abstracts' as *;
-	@use 'static/styles' as *;
+	@use '$styles/abstracts' as *;
+	@use '$styles' as *;
 
 	// theme
 	:root {

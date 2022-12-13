@@ -2,6 +2,10 @@
 	export let experiences: { image: string, startDate?: string, endDate?: string, date?: string, name?: string, institution?: string, position?: string, issuer?: string, area?: string, summary?: string, highlights?: string[], studyType?: string }[];
     export let work:boolean = false, certificates:boolean = false, education:boolean = false;
 
+	const Logo = (image: string) => {
+		return new URL(image,"$images").href;
+	}
+
     $: icon = work ? "timeline__icon" : null;
 </script>
 {#if !work}
@@ -13,10 +17,10 @@
 	{#each experiences as experience (experience.date = Intl.DateTimeFormat(navigator.language, {month: 'short', year: 'numeric'}).format(new Date(`${work ? experience.startDate : certificates ? experience.date : experience.endDate}`)))}
 		<li class="timeline__item">
 			<div class="timeline__logo">
-				<img src="{experience.image}" alt={experience.image.split('/').pop()?.split('.').slice(0, -1)[0]} />
+				<img src={Logo(experience.image)} alt={experience.image.split('/').pop()?.split('.').slice(0, -1)[0]} />
 			</div>
 			<div class="{icon} timeline__header" data-icon={work ? "work" : ""}>
-				<time class="timeline__duration" datetime="{experience.date}"> {experience.date} </time>
+				<time class="timeline__duration" datetime={experience.date}> {experience.date} </time>
 				<div class="timeline__title">{education ? experience.institution : experience.name}</div>
 			</div>
 			<div class="timeline__body">
@@ -49,8 +53,8 @@
 </ol>
 
 <style lang="scss">
-	@use 'static/styles/abstracts/mixins' as *;
-	@use 'static/styles/base/typography' as *;
+	@use '$styles/abstracts/mixins' as *;
+	@use '$styles/base/typography' as *;
 
 	.timeline {
 		--logo-size: 42px;

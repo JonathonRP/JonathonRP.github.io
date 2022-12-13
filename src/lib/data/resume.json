@@ -20,7 +20,7 @@
     },
     "work": [
         {
-            "image": "/images/MiraTech+Quovant.jfif",
+            "image": "MiraTech+Quovant.jfif",
             "name": "Quovant",
             "position": "Junior Software Developer",
             "startDate": "2019-03",
@@ -34,7 +34,7 @@
             ]
         },
         {
-            "image": "/images/HCA.png",
+            "image": "HCA.png",
             "name": "HCA - TriStar",
             "position": "Intern Software Developer",
             "startDate": "2018-05",
@@ -47,7 +47,7 @@
             ]
         },
         {
-            "image": "/images/HCA.png",
+            "image": "HCA.png",
             "name": "HCA - HealthTrust",
             "position": "Intern Software Developer",
             "startDate": "2017-05",
@@ -62,7 +62,7 @@
     ],
     "certificates": [
         {
-            "image": "/images/Developing_ASP.NET_MVC_Web_Applications-Certification_Logo.png",
+            "image": "Developing_ASP.NET_MVC_Web_Applications-Certification_Logo.png",
             "date": "2020-02-14",
             "name": "Developing ASP.NET MVC Web Applications",
             "issuer": "Microsoft"
@@ -70,7 +70,7 @@
     ],
     "education": [
         {
-            "image": "/images/MTSU.png",
+            "image": "MTSU.png",
             "endDate": "2018-12",
             "institution": "MTSU",
             "area": "Computer Information Technology",

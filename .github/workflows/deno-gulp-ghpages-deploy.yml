@@ -34,9 +34,6 @@ jobs:
       - name: Run linter
         run: deno lint
 
-      - name: Run tests
-        run: deno test -A
-
       - name: GHPage Deploy
         run: |
-        gulp 'prod: deploy'
+        deno task deploy 

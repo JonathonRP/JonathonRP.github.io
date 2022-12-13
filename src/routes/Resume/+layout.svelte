@@ -1,18 +1,62 @@
 <script lang="ts">
+	import config from '../../../website.config';
+	import SEO from '$lib/components/SEO/index.svelte';
+	import PWA from '$lib/components/PWA.svelte';
     import ThemeToggle from '$lib/components/ThemeToggle.svelte';
+
+	$: ({ author, siteUrl } = config);
+
+	let title = 'Resume',
+	metadescription = 'Hard working and detail oriented professional, seeking a software development position where I can use my skills and contribute to the growth of a company.';
+
+	const breadcrumbs = [
+		{
+			name: 'Home',
+			slug: '/'
+		},
+		{
+			name: title,
+			slug: 'resume'
+		}
+	];
+
+	const entityMeta = {
+		url: `${siteUrl}/`,
+		faviconWidth: 512,
+		faviconHeight: 512,
+		caption: author
+	};
+
+	const seo = {
+		article: false,
+		title,
+		slug: '',
+		entityMeta,
+		breadcrumbs,
+		metadescription
+	};
 </script>
+
+<svelte:head>
+	<SEO {...seo} />
+	<PWA />
+</svelte:head>
 
 <div class="action bar">
 	<ThemeToggle />
-    <a sveltekit:prefetch id="pdf" class="download pdf" href="./pdf"  title="download pdf">download pdf</a>
-    <a sveltekit:prefetch id="word" class="download word" href="./word" title="download word">download word</a>
+    <a data-sveltekit-preload-data="hover" data-sveltekit-preload-code="eager" id="pdf" class="download pdf" href="./pdf"  title="download pdf">
+		download pdf
+	</a>
+    <a data-sveltekit-preload-data="hover" data-sveltekit-preload-code="eager" id="word" class="download word" href="./word" title="download word">
+		download word
+	</a>
 </div>
 
 <slot />
 
 <style lang="scss" global>
-	@use 'static/styles/abstracts' as *;
-	@use 'static/styles' as *;
+	@use '$styles/abstracts' as *;
+	@use '$styles' as *;
 
 	// theme
 	:root {

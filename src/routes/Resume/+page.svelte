@@ -1,57 +1,16 @@
 <script lang="ts">
 	import { writable } from 'svelte/store';
-	import { slug } from '$lib/utils/slug';
-	import config from '../../../website.config.ts';
-	import { Toy }  from 'svelteToy';
-	import SEO from '$lib/components/SEO/index.svelte';
-	import PWA from '$lib/components/PWA.svelte';
-	import ContactDetails from '$lib/components/ContactDetails.svelte';
-	import Timeline from '$lib/components/Timeline.svelte';
-	import TagsCatalog from '$lib/components/TagsCatalog.svelte';
 	import Resume from '$lib/data/resume.json';
+	import { slug } from '$lib/utils/slug';
+	
+	import ContactDetails from './ContactDetails.svelte';
+	import Timeline from './Timeline.svelte';
+	import TagsCatalog from './TagsCatalog.svelte';
+	import { Toy }  from '@leveluptuts/svelte-toy';
 	
 	const resume = writable(Resume);
 	$: ({ basics, work, certificates, education, skills, projects } = $resume as JsonResume);
-
-	$: ({ author, siteUrl } = config);
-
-	let title = 'Resume',
-	metadescription = 'Hard working and detail oriented professional, seeking a software development position where I can use my skills and contribute to the growth of a company.';
-
-	const breadcrumbs = [
-		{
-			name: 'Home',
-			slug: '/'
-		},
-		{
-			name: title,
-			slug: 'resume'
-		}
-	];
-
-	const entityMeta = {
-		url: `${siteUrl}/`,
-		faviconWidth: 512,
-		faviconHeight: 512,
-		caption: author
-	};
-
-	const seo = {
-		article: false,
-		title,
-		slug: '',
-		entityMeta,
-		breadcrumbs,
-		metadescription
-	};
-
-	
 </script>
-
-<svelte:head>
-	<SEO {...seo} />
-	<PWA />
-</svelte:head>
 
 <main class="wrapper">
 	<!-- Profile -->
@@ -152,9 +111,9 @@
 					<li>
 						<header>
 							{#if project.url}
-								<a href={project.url} rel="external nofollow noopener noreferrer" target="blank"
-									>{project.name}</a
-								>
+								<a href={project.url} rel="external nofollow noopener noreferrer" target="blank">
+									{project.name}
+								</a>
 							{:else}
 								{project.name}
 							{/if}
@@ -190,8 +149,8 @@
 <Toy register={{resume}} />
 
 <style lang="scss" global>
-	@use 'static/styles/abstracts' as *;
-	@use 'static/styles' as *;
+	@use '$styles/abstracts' as *;
+	@use '$styles' as *;
 
 	// theme
 	:root {

@@ -50,7 +50,7 @@
 </section>
 
 <style lang="scss">
-	@use 'static/styles/abstracts/mixins' as *;
+	@use '$styles/abstracts/mixins' as *;
 
 	a {
 		&::after {
