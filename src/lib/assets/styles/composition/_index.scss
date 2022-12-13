@@ -1,0 +1,47 @@
+@use '../abstracts/mixins' as *;
+
+// layout
+
+html {
+    -webkit-print-color-adjust: exact;
+}
+
+.bar {
+    display: grid;
+    grid-auto-flow: column;
+    position: absolute;
+    inset: 0 0 auto 0;
+    background-color: var(--bg-color);
+    box-shadow: 0px 3px 6px rgb(0 0 0 / 30%);
+}
+
+.action {
+    justify-content: end;
+    column-gap: 5px;
+}
+
+main {
+    display: grid;
+    grid-column: 1/-1;
+    min-height: 279mm;
+    max-width: 216mm;
+    background-color: var(--resume-bg);
+    color: var(--resume-text);
+    filter: drop-shadow(0 10px 8px rgb(0 0 0 / .04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+
+    @include respond-to(sm) {
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: repeat(var(--grid-rows), auto);
+    }
+}
+
+@page {
+    size: letter;
+    margin: 0;
+}
+
+@media print {
+    .action.bar {
+        display: none;
+    }
+}

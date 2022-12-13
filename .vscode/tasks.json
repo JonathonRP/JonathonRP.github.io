@@ -2,47 +2,33 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build dev",
-            "type": "gulp",
-            "task": "dev: build",
-            "group": "build"
-        },
-        {
-            "type": "gulp",
-            "task": "start debugging",
+            "label": "deno: task dev",
+            "type": "deno",
             "isBackground": true,
-            "problemMatcher": {
-                "pattern": {
-                    "regexp": "."
-                },
-                "background": {
-                    "activeOnStart": true,
-                    "beginsPattern": ".",
-                    "endsPattern": "."
-                }
-            }
+            "command": "task",
+            "args": [
+                "dev"
+            ],
+            "env": {
+                "Stage": "Developement"
+            },
+            "problemMatcher": [
+                "$deno"
+            ]
         },
         {
-            "type": "gulp",
-            "task": "prod: build",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
-            "label": "stop debugging",
-            "type": "shell",
+            "label": "kill",
             "command": "echo ${input:terminate}",
+            "type": "shell",
             "problemMatcher": []
-        }
+        },
     ],
     "inputs": [
         {
             "id": "terminate",
             "type": "command",
             "command": "workbench.action.tasks.terminate",
-            "args": "gulp: start debugging"
+            "args": "dev"
         }
     ]
 }

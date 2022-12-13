@@ -8,10 +8,10 @@
             "type": "pwa-msedge",
             "request": "launch",
             "name": "Launch Edge against localhost",
-            "url": "http://localhost:8000/",
-            "webRoot": "${workspaceFolder}/public",
-            "preLaunchTask": "gulp: start debugging",
-            "postDebugTask": "stop debugging"
+            "url": "http://localhost:5173/",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "dev",
+            "postDebugTask": "kill"
         }
     ]
 }
