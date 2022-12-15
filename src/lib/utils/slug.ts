@@ -1,7 +1,7 @@
 export default String.prototype.asSlug = function() {
-    return this.normalize().toLowerCase().replace(' ', '-');
+    return slug(this.substring(0));
 }
 
-export function slug(str: string) {
+function slug(str: string) {
     return str.normalize().toLowerCase().replace(' ', '-');
 }

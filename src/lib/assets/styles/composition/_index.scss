@@ -6,7 +6,7 @@ html {
     -webkit-print-color-adjust: exact;
 }
 
-.bar {
+.navbar {
     display: grid;
     grid-auto-flow: column;
     position: absolute;
@@ -15,7 +15,7 @@ html {
     box-shadow: 0px 3px 6px rgb(0 0 0 / 30%);
 }
 
-.action {
+.actions {
     justify-content: end;
     column-gap: 5px;
 }
@@ -41,7 +41,7 @@ main {
 }
 
 @media print {
-    .action.bar {
+    .navbar {
         display: none;
     }
 }

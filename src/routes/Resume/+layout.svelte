@@ -2,7 +2,7 @@
 	import config from '../../../website.config';
 	import SEO from '$lib/components/SEO/index.svelte';
 	import PWA from '$lib/components/PWA.svelte';
-    import ThemeToggle from '$lib/components/ThemeToggle.svelte';
+    import Navbar from '../Navbar.svelte';
 
 	$: ({ author, siteUrl } = config);
 
@@ -42,36 +42,22 @@
 	<PWA />
 </svelte:head>
 
-<div class="action bar">
-	<ThemeToggle />
-    <a data-sveltekit-preload-data="hover" data-sveltekit-preload-code="eager" id="pdf" class="download pdf" href="./pdf"  title="download pdf">
-		download pdf
-	</a>
-    <a data-sveltekit-preload-data="hover" data-sveltekit-preload-code="eager" id="word" class="download word" href="./word" title="download word">
-		download word
-	</a>
-</div>
+<Navbar>
+	<span slot="action-bar">
+		<a  id="pdf" class="download pdf" href="/api/pdf"  title="download pdf" data-sveltekit-preload-data="hover" data-sveltekit-preload-code="eager">
+			download pdf
+		</a>
+		<a id="word" class="download word" href="/api/word" title="download word" data-sveltekit-preload-data="hover" data-sveltekit-preload-code="eager">
+			download word
+		</a>
+	</span>
+</Navbar>
 
 <slot />
 
 <style lang="scss" global>
 	@use '$styles/abstracts' as *;
 	@use '$styles' as *;
-
-	// theme
-	:root {
-		&[data-theme='dark'] {
-			@each $color, $value in $light {
-				--#{$color}-color: #{$value};
-			}
-		}
-
-		@media (prefers-color-scheme: dark) {
-			@each $color, $value in $light {
-				--#{$color}-color: #{$value};
-			}
-		}
-	}
 
 	.download {
 		position: relative;

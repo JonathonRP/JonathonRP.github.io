@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { writable } from 'svelte/store';
 	import Resume from '$lib/data/resume.json';
-	import { slug } from '$lib/utils/slug';
 	
 	import ContactDetails from './ContactDetails.svelte';
 	import Timeline from './Timeline.svelte';
 	import TagsCatalog from './TagsCatalog.svelte';
-	import { Toy }  from '@leveluptuts/svelte-toy';
+	import { CMS }  from './CMS';
 	
 	const resume = writable(Resume);
 	$: ({ basics, work, certificates, education, skills, projects } = $resume as JsonResume);
@@ -51,7 +50,7 @@
 		<!-- Skills -->
 		<section class="skills [ tags-catalog extend ] [ lg:bg-none ]" aria-label="skills">
 			{#each Object.entries(skills.groupBy((skill) => skill.category)) as [category, collectiveSkills]}
-				{@const category_kabab = slug(category)}
+				{@const category_kabab = category.asSlug()}
 				<section
 					class="category"
 					class:extend={collectiveSkills.length > 1}
@@ -65,7 +64,7 @@
 					{#if collectiveSkills.length === 1}
 						<TagsCatalog labels={collectiveSkills[0]?.keywords ?? ''} />
 					{:else if collectiveSkills.length > 1}
-						{#each collectiveSkills as skill (skill.slug = slug(skill.name))}
+						{#each collectiveSkills as skill (skill.slug = skill.name.asSlug())}
 							<div class="sub-category" aria-labelledby="{skill.slug}-title">
 								<h3 id="{skill.slug}-title" class="subheading">{skill.name}:</h3>
 								<TagsCatalog labels={skill.keywords.sort()} />
@@ -146,63 +145,4 @@
 	</div>
 </main>
 
-<Toy register={{resume}} />
-
-<style lang="scss" global>
-	@use '$styles/abstracts' as *;
-	@use '$styles' as *;
-
-	// theme
-	:root {
-		&[data-theme='dark'] {
-			@each $color, $value in $light {
-				--#{$color}-color: #{$value};
-			}
-		}
-
-		@media (prefers-color-scheme: dark) {
-			@each $color, $value in $light {
-				--#{$color}-color: #{$value};
-			}
-		}
-	}
-
-	.download {
-		position: relative;
-		padding-inline: var(--default-space);
-		cursor: pointer;
-
-		&::before,
-		&::after {
-			margin-block: 0.425rem;
-		}
-
-		&::before {
-			position: absolute;
-			top: 0;
-			transform: translate(50%, 50%);
-			color: var(--text-color);
-		}
-
-		&::after {
-			content: '';
-			display: inline-block;
-			height: var(--xlarge-space);
-			width: var(--xlarge-space);
-			border-radius: var(--small-space);
-			box-shadow: 0 0 8px rgb(255 255 255 / 0.3);
-			clear: both;
-		}
-
-		.word {
-			&::after {
-				background-color: #5174a8;
-			}
-		}
-		.pdf {
-			&::after {
-				background-color: #c05757;
-			}
-		}
-	}
-</style>
+<CMS register={{resume}} />

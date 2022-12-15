@@ -12,6 +12,13 @@
 		"outDir": "public",
 		"strict": true,
 		"resolveJsonModule": true,
+		"types": [
+			"@sveltejs/kit",
+			"svelte",
+			"./$types",
+			"vite/client",
+			"./types/vite.d.ts"
+		],
 		"esModuleInterop": true,
 		"allowUnreachableCode": false,
 		"exactOptionalPropertyTypes": true,

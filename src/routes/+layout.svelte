@@ -1,8 +1,8 @@
 <script lang="ts">
-	import config from '../../website.config';
+	import config from '../../../website.config';
 	import SEO from '$lib/components/SEO/index.svelte';
 	import PWA from '$lib/components/PWA.svelte';
-    import ThemeToggle from '$lib/components/ThemeToggle.svelte';
+    import Navbar from './Navbar.svelte';
 
 	$: ({ author, siteUrl } = config);
 
@@ -38,9 +38,7 @@
 	<PWA />
 </svelte:head>
 
-<div class="action bar">
-	<ThemeToggle />
-</div>
+<Navbar />
 
 <slot />
 
@@ -61,42 +59,5 @@
 				--#{$color}-color: #{$value};
 			}
 		}
-	}
-
-	.download {
-		position: relative;
-		padding-inline: var(--default-space);
-		cursor: pointer;
-
-		&::before,
-		&::after {
-			margin-block: 0.425rem;
-		}
-
-		&::before {
-			position: absolute;
-			top: 0;
-			left: calc(var(--small-space) + var(--small-space));
-			transform: translate(50%, 50%);
-			color: var(--text-color);
-		}
-
-		&::after {
-			content: ' ';
-			display: inline-block;
-			height: var(--xlarge-space);
-			width: var(--xlarge-space);
-			border-radius: var(--small-space);
-			box-shadow: 0 0 8px rgb(255 255 255 / 0.3);
-			clear: both;
-	
-		}
-	}
-	
-	.word::after {
-		background-color: #5174a8;
-	}
-	.pdf::after {
-		background-color: #c05757;
 	}
 </style>

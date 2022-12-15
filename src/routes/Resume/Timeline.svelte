@@ -3,7 +3,7 @@
     export let work:boolean = false, certificates:boolean = false, education:boolean = false;
 
 	const Logo = (image: string) => {
-		return new URL(image,"$images").href;
+		return import(`$images/${image}`);
 	}
 
     $: icon = work ? "timeline__icon" : null;
@@ -16,9 +16,18 @@
 <ol class="timeline" data-type={work ? "professional" : ""}>
 	{#each experiences as experience (experience.date = Intl.DateTimeFormat(navigator.language, {month: 'short', year: 'numeric'}).format(new Date(`${work ? experience.startDate : certificates ? experience.date : experience.endDate}`)))}
 		<li class="timeline__item">
-			<div class="timeline__logo">
-				<img src={Logo(experience.image)} alt={experience.image.split('/').pop()?.split('.').slice(0, -1)[0]} />
-			</div>
+			{#if experience.image}
+				{@const alt = experience.image.split('.').pop() + " Logo."}
+				<div class="timeline__logo">
+					{#await Logo(experience.image)}
+						<img alt={"Loading - " + alt} />
+					{:then src} 
+						<img {src} {alt} />
+					{/await}
+				</div>
+			{:else}
+				<div class="timeline__point"></div>
+			{/if}
 			<div class="{icon} timeline__header" data-icon={work ? "work" : ""}>
 				<time class="timeline__duration" datetime={experience.date}> {experience.date} </time>
 				<div class="timeline__title">{education ? experience.institution : experience.name}</div>
@@ -149,6 +158,28 @@
 				// top: var(--xsmall-space);
 				padding-top: var(--xsmall-space);
 			}
+
+			@include respond-to(sm) {
+				transform: translate(-50%, 15%);
+			}
+		}
+
+		&__point {
+			--point-size: calc(var(--logo-size) / 3);
+			--point-radius: calc(var(--point-size) / 2);
+
+			box-sizing: content-box;
+			position: absolute;
+			top: 0;
+			left: calc(-1 * var(--point-radius));
+			width: var(--point-size);
+			height: var(--point-size);
+			background: var(--primary-color);
+			border: 2px solid var(--primary-color);
+			border-radius: 50%;
+			transform: translate(-50%, 80%);
+			transition: all 500ms;
+			overflow: hidden;
 
 			@include respond-to(sm) {
 				transform: translate(-50%, 15%);

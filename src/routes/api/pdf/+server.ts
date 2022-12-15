@@ -1,6 +1,6 @@
 import type { RequestHandler } from './$types';
-import config from '../../../website.config.ts'
-import { resumeHtml } from '../../lib/utils/constants.ts';
+import config from '../../../../website.config.ts'
+import { resumeHtml } from '$lib/utils/constants.ts';
 import * as puppeteer from "npm:puppeteer";
 
 export const GET = (async ({ request }) => {

@@ -1,7 +1,3 @@
-/// <reference types="@sveltejs/kit" />
-/// <reference types="npm:svelte" />
-/// <reference types="npm:vite/client" />
-
 declare global {
     type Group<T, K extends Extract<keyof T, string | number | symbol>> = Record<K, T[]>;
 
