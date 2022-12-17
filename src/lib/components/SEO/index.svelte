@@ -1,5 +1,7 @@
 <script lang="ts">
-	import config from '../../../../website.config';
+	import website from '$lib/config/website.config';
+	import { PUBLIC_SITE_URL } from '$env/static/public';
+	import { PUBLIC_TWITTER_USERNAME } from '$env/static/public';
 	import OpenGraph from './OpenGraph.svelte';
 	import SchemaOrg from './SchemaOrg.svelte';
 	import Twitter from './Twitter.svelte';
@@ -7,17 +9,7 @@
 	import defaultFeaturedImage from '/static/profile.png';
 	import defaultOgImage from '/static/profile.png';
 	import defaultOgSquareImage from '/static/profile.png';
-
-	const {
-		author,
-		ogLanguage,
-		siteLanguage,
-		siteShortTitle,
-		siteTitle,
-		siteUrl,
-		githubPage,
-		linkedinProfile
-	} = config;
+	import defaultTwitterImage from '/static/profile.png';
 
 	export let article:boolean = false;
 	export let breadcrumbs: { name: string; slug: string }[] = [];
@@ -27,8 +19,11 @@
 	export let metadescription: string;
 	export let slug;
 	export let title;
+	export let timeToRead:number = 0;
 
-	const defaultAlt = 'Profile image with avatar of Jonathon Reese Perry saying Namaste';
+	const defaultAlt = 'Profile image with avatar of Jonathon Reese Perry saying Namaste',
+		siteUrl = PUBLIC_SITE_URL,
+		twitterUsername = PUBLIC_TWITTER_USERNAME;
 
 	// imported props with fallback defaults
 	export let featuredImage = {
@@ -46,7 +41,21 @@
 		url: defaultOgSquareImage,
 		alt: defaultAlt
 	};
+	export let twitterImage = {
+		url: defaultTwitterImage,
+		alt: defaultAlt,
+	};
 
+	const {
+		author,
+		ogLanguage,
+		siteLanguage,
+		siteTitleAlt,
+		siteTitle,
+		githubPage,
+		linkedinProfile
+	} = website;
+	
 	const pageTitle = `${siteTitle} | ${title}`;
 	const url = `${siteUrl}/${slug}`;
 	const openGraphProps = {
@@ -74,12 +83,19 @@
 		metadescription,
 		siteLanguage,
 		siteTitle,
-		siteTitleAlt: siteShortTitle,
+		siteTitleAlt,
 		siteUrl,
 		title: pageTitle,
 		url,
 		githubPage,
 		linkedinProfile
+	};
+	const twitterProps = {
+		article,
+		author,
+		twitterUsername,
+		image: twitterImage,
+		timeToRead,
 	};
 </script>
 
@@ -92,6 +108,7 @@
 	/>
 	<link rel="canonical" href={url} />
 </svelte:head>
-<Twitter />
-<OpenGraph {...openGraphProps} />
 <SchemaOrg {...schemaOrgProps} />
+<OpenGraph {...openGraphProps} />
+<Twitter {...twitterProps} />
+<html lang={siteLanguage} />

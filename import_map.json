@@ -1,8 +1,8 @@
 {
     "imports": {
         "vite": "npm:vite",
-        "@sveltejs/kit": "npm:@sveltejs/kit",
-        "@sveltejs/kit/vite": "npm:@sveltejs/kit/vite",
-        "@sveltejs/adapter-auto": "npm:@sveltejs/adapter-static"
+        "svelte": "npm:svelte",
+        "pupeeter": "npm:puppeteer",
+        "html-docx": "npm:html-docx-js-typescript"
     }
 }

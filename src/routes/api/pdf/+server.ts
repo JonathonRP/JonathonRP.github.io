@@ -1,7 +1,7 @@
 import type { RequestHandler } from './$types';
 import config from '../../../../website.config.ts'
 import { resumeHtml } from '$lib/utils/constants.ts';
-import * as puppeteer from "npm:puppeteer";
+import * as puppeteer from "puppeteer";
 
 export const GET = (async ({ request }) => {
     const browser = await puppeteer.launch();

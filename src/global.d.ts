@@ -1,3 +1,5 @@
+/// <reference types="@auth/sveltekit" />
+
 declare global {
     type Group<T, K extends Extract<keyof T, string | number | symbol>> = Record<K, T[]>;
 

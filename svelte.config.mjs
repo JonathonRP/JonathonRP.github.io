@@ -1,6 +1,6 @@
 import { site_root } from './src/lib/utils/constants.ts';
-import adapter from '@sveltejs/adapter-auto';
-import { preprocess } from 'npm:svelte-preprocess';
+import adapter from 'npm:@sveltejs/adapter-static';
+import { vitePreprocess } from 'npm:@sveltejs/kit/vite';
 import { image } from 'npm:svelte-image';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -11,27 +11,30 @@ const config = {
 			asserts: site_root,
 			fallback: null
 		}),
+		alias: {
+			'$styles': '$lib/assets/styles',
+			'$images': '$lib/assets/images'
+		},
 		csp: {
 			directives : {
 				'script-src': ['self']
 			}
 		},
-		alias: {
-			'$styles': '$lib/assets/styles',
-			'$images': '$lib/assets/images'
+		prerender: {
+			default: true,
+			entries: [
+				'*',
+				'/robots.txt',
+				'/sitemap.xml',
+				'/manifest.webmanifest'
+			]
 		}
 	},
 	
-	vitePlugin: {
-		experamental: {
-			inspector: true
-		}
-	},
-
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
 	preprocess: [
-		preprocess({
+		vitePreprocess({
 			postcss: {
 				configFilePath: "./postcss.config.mjs"
 			},
@@ -54,7 +57,13 @@ const config = {
 				force: true
 			}
 		})
-	]
+	],
+
+	vitePlugin: {
+		experamental: {
+			inspector: true
+		}
+	}
 };
 
 export default config;

@@ -1,15 +1,58 @@
 <script lang="ts">
 	import { writable } from 'svelte/store';
+	import { page } from "$app/stores"
+
+	import website from '$lib/config/website.config';
+
 	import Resume from '$lib/data/resume.json';
-	
+	import SEO from '$lib/components/SEO';
+	import CMS from '$lib/components/CMS';
+	import PWA from '$lib/components/PWA.svelte';
+
 	import ContactDetails from './ContactDetails.svelte';
 	import Timeline from './Timeline.svelte';
 	import TagsCatalog from './TagsCatalog.svelte';
-	import { CMS }  from './CMS';
+
+	const { author } = website,
+	pageTitle = 'Resume',
+	metadescription = 'Hard working and detail oriented professional, seeking a software development position where I can use my skills and contribute to the growth of a company.';
+
+	const breadcrumbs = [
+		{
+			name: 'Home',
+			slug: '/'
+		},
+		{
+			name: pageTitle,
+			slug: 'resume'
+		}
+	];
+
+	const entityMeta = {
+		url: `${import.meta.env.PUBLIC_SITE_URL}/`,
+		faviconWidth: 512,
+		faviconHeight: 512,
+		caption: author
+	};
+
+	const seo = {
+		article: false,
+		title: pageTitle,
+		slug: '/resume',
+		entityMeta,
+		breadcrumbs,
+		metadescription
+	};
 	
 	const resume = writable(Resume);
+
 	$: ({ basics, work, certificates, education, skills, projects } = $resume as JsonResume);
 </script>
+
+<svelte:head>
+	<SEO {...seo} />
+	<PWA />
+</svelte:head>
 
 <main class="wrapper">
 	<!-- Profile -->
@@ -145,4 +188,6 @@
 	</div>
 </main>
 
-<CMS register={{resume}} />
+{#if $page.data.session?.user?.isAdmin}
+	<CMS register={{resume}} />
+{/if}
