@@ -1,9 +1,8 @@
 <script lang="ts">
-	import config from '../../../website.config';
-	const { themeColor } = config;
+	import website from 'website.config';
 </script>
 
 <svelte:head>
-	<meta name="theme-color" content={themeColor} />
-	<link rel="apple-touch-icon" href="/static/profile.png" />
+	<meta name="theme-color" content={website.themeColor} />
+	<link rel="apple-touch-icon" href="%sveltekit.assets%/profile.png" />
 </svelte:head>

@@ -1,8 +1,9 @@
 import type { RequestHandler } from "@sveltejs/kit";
 import { error } from "@sveltejs/kit";
-import { PUBLIC_SITE_URL } from "$env/static/public";
+import { VITE_BUILD_TIME } from "$env/dynamic/private";
 
-const render = (pages: Array<string>, posts: Array<{lastUpdated:Date, slug:string}>): string => `<?xml version="1.0" encoding="UTF-8" ?>
+const render = (pages: Array<string>, posts: Array<{lastUpdated:Date, slug:URL}>): string =>
+`<?xml version="1.0" encoding="UTF-8" ?>
 <urlset
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
@@ -19,7 +20,7 @@ const render = (pages: Array<string>, posts: Array<{lastUpdated:Date, slug:strin
 			(element) => `
 	<url>
 	  <loc>${element}</loc>
-		<lastmod>${`${Deno.env.get('VITE_BUILD_TIME')}`}</lastmod>
+		<lastmod>${VITE_BUILD_TIME}</lastmod>
 	</url>`,
 		)
 		.join('\n')}
@@ -28,7 +29,7 @@ const render = (pages: Array<string>, posts: Array<{lastUpdated:Date, slug:strin
 			const { lastUpdated, slug } = element;
 			return `
 	<url>
-	  <loc>${PUBLIC_SITE_URL}/${slug}</loc>
+	  <loc>${slug.href}</loc>
 		<lastmod>${`${new Date(lastUpdated).toISOString()}`}</lastmod>
 	</url>
 	`;
@@ -36,18 +37,21 @@ const render = (pages: Array<string>, posts: Array<{lastUpdated:Date, slug:strin
 		.join('')}
 </urlset>`;
 
-export const GET = (({ request }) => {
+export const prerender = true;
+
+export const GET = (({ request, url }) => {
   try
   {
     // const mdModules = import.meta.glob('../../content/blog/**/index.md');
-		// const posts = await Promise.all(
-		// 	Object.keys(mdModules).map(async (path) => {
-		// 		const slug = path.split('/').at(-2);
-		// 		const { metadata } = await mdModules[path]();
-		// 		const { lastUpdated } = metadata;
-		// 		return { lastUpdated, slug };
-		// 	}),
-		// );
+	// const posts = await Promise.all(
+	// 	Object.keys(mdModules).map(async (path) => {
+	// 		const slug = path.split('/').at(-2);
+	// 		const { metadata } = await mdModules[path]();
+	// 		const { lastUpdated } = metadata;
+	// 		return { lastUpdated, new URL(slug, url.origin) };
+	// 	}),
+	// );
+
     const xml = render(['','/Resume'], [])
 
     return new Response(xml, {

@@ -1,5 +1,5 @@
 node_modules/**/**
-deno.lock
+/deno.lock
 .DS_Store
 node_modules
 /public

@@ -1,16 +1,16 @@
-import SvelteKitAuth from "@auth/sveltekit"
-import GitHub from "@auth/core/providers/github"
-import { GITHUB_ID, GITHUB_SECRET, ADMIN_EMAIL } from "$env/static/private"
+import { getPreviewCookie } from '$lib/utils';
+import type { Handle } from '@sveltejs/kit';
 
-export const handle = SvelteKitAuth({
-  providers: [GitHub({ clientId: GITHUB_ID, clientSecret: GITHUB_SECRET })],
-  callbacks: {
-    jwt(token, user, account, profile, isNewUser) {
-        if (user) {
-            const administrators = [ADMIN_EMAIL];
-            user.isAdmin = administrators.includes(user?.email);
-        }
-        return token
-    }
-  }
-})
+export const handle = (async ({ event, resolve }) => {
+	const previewModeCookie = getPreviewCookie(event.cookies);
+
+	event.locals.previewMode = false;
+
+	if (previewModeCookie === 'true') {
+		event.locals.previewMode = true;
+	}
+
+	const response = await resolve(event);
+
+	return response;
+}) satisfies Handle;

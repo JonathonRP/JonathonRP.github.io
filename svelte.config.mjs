@@ -1,19 +1,24 @@
-import { site_root } from './src/lib/utils/constants.ts';
-import adapter from 'npm:@sveltejs/adapter-static';
-import { vitePreprocess } from 'npm:@sveltejs/kit/vite';
-import { image } from 'npm:svelte-image';
+import { BUILD_PATH as site_root } from '$env/static/private';
+import { PUBLIC_SITE_URL as siteUrl } from '$env/static/public';
+import adapter from 'https://esm.sh/@sveltejs/adapter-static';
+import { vitePreprocess } from '@sveltejs/kit/vite';
+import autoprefixer from 'https://esm.sh/autoprefixer';
+import { purgecss } from 'https://esm.sh/@fullhuman/postcss-purgecss';
+import { cssnano } from 'https://esm.sh/cssnano';
 
-/** @type {import('@sveltejs/kit').Config} */
+const in_dev = Deno.args.includes('dev');
+
+/** @deno-type {import('https://esm.sh/@sveltejs/kit').Config} */
 const config = {
 	kit: {
 		adapter: adapter({
 			pages: site_root,
 			asserts: site_root,
-			fallback: null
+			fallback: '404.html'
 		}),
 		alias: {
 			'$styles': '$lib/assets/styles',
-			'$images': '$lib/assets/images'
+			'$images': '$lib/assets/images' // this may not be needed after sanity.io v3 included
 		},
 		csp: {
 			directives : {
@@ -21,9 +26,12 @@ const config = {
 			}
 		},
 		prerender: {
-			default: true,
+			default: false,
+			origin: siteUrl,
 			entries: [
 				'*',
+				'/resume.pdf',
+				'/resume.docx',
 				'/robots.txt',
 				'/sitemap.xml',
 				'/manifest.webmanifest'
@@ -36,26 +44,18 @@ const config = {
 	preprocess: [
 		vitePreprocess({
 			postcss: {
-				configFilePath: "./postcss.config.mjs"
+				syntax: 'postcss-scss',
+				plugins: [
+					// purgecss({ content: ['./public/*.html'] }),
+					autoprefixer({ cascade: in_dev }),
+					!in_dev && cssnano({ preset: 'advanced' })
+				]
 			},
 			preserve: ['ld+json', 'module'],
 			renderSync: true,
 			scss: true,
 			sass: true,
 			typescript: true
-		}),
-		image({
-			componentExtensions: ["jfif", "png"],
-			compressionLevel: 1,
-			imgTagExtensions: ["jfif", "png"],
-			outputDir: 'images',
-			publicDir: site_root,
-			quality: 80,
-			webpOptions: {
-				quality: 80,
-				lossless: true,
-				force: true
-			}
 		})
 	],
 

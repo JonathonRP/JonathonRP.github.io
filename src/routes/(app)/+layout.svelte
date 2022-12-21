@@ -1,18 +1,24 @@
 <script lang="ts">
-    import Navbar from '$lib/components/Navbar.svelte';
+	import { PUBLIC_AUTHOR as author } from '$env/static/public';
+	import { base } from '$app/paths';
 	import { page } from '$app/stores';
+
+	import PWA from '$lib/components/PWA.svelte';
+    import Navbar from '$lib/components/Navbar.svelte';
 </script>
+
+<svelte:head>
+	<PWA />
+</svelte:head>
 
 <Navbar>
 	{#if $page.url.pathname == '/resume' }
-		<span slot="action-bar">
-			<a  id="pdf" class="download pdf" href="/api/pdf"  title="download pdf" data-sveltekit-preload-data="hover" data-sveltekit-preload-code="eager">
-				download pdf
-			</a>
-			<a id="word" class="download word" href="/api/word" title="download word" data-sveltekit-preload-data="hover" data-sveltekit-preload-code="eager">
-				download word
-			</a>
-		</span>
+		<a  id="pdf" class="download pdf" href="{base}/resume.pdf" download="{author} Resume" title="download pdf" data-sveltekit-preload-data="hover" data-sveltekit-preload-code="eager">
+			download pdf
+		</a>
+		<a id="word" class="download word" href="{base}/resume.docx" download="{author} Resume" title="download word" data-sveltekit-preload-data="hover" data-sveltekit-preload-code="eager">
+			download word
+		</a>
 	{/if}
 </Navbar>
 

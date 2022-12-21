@@ -1,15 +1,15 @@
 <script lang="ts">
-	import website from '$lib/config/website.config';
-	import { PUBLIC_SITE_URL } from '$env/static/public';
-	import { PUBLIC_TWITTER_USERNAME } from '$env/static/public';
+	import { PUBLIC_SITE_URL as siteUrl, PUBLIC_AUTHOR as author, PUBLIC_TWITTER_USERNAME as twitterUsername } from '$env/static/public';
+	import website from 'website.config';
+	
+	import defaultFeaturedImage from '$images/profile.png';
+	import defaultOgImage from '$images/profile.png';
+	import defaultOgSquareImage from '$images/profile.png';
+	import defaultTwitterImage from '$images/profile.png';
+
 	import OpenGraph from './OpenGraph.svelte';
 	import SchemaOrg from './SchemaOrg.svelte';
 	import Twitter from './Twitter.svelte';
-
-	import defaultFeaturedImage from '/static/profile.png';
-	import defaultOgImage from '/static/profile.png';
-	import defaultOgSquareImage from '/static/profile.png';
-	import defaultTwitterImage from '/static/profile.png';
 
 	export let article:boolean = false;
 	export let breadcrumbs: { name: string; slug: string }[] = [];
@@ -21,9 +21,7 @@
 	export let title;
 	export let timeToRead:number = 0;
 
-	const defaultAlt = 'Profile image with avatar of Jonathon Reese Perry saying Namaste',
-		siteUrl = PUBLIC_SITE_URL,
-		twitterUsername = PUBLIC_TWITTER_USERNAME;
+	const defaultAlt = 'Profile image with avatar of Jonathon Reese Perry saying Namaste';
 
 	// imported props with fallback defaults
 	export let featuredImage = {
@@ -47,7 +45,6 @@
 	};
 
 	const {
-		author,
 		ogLanguage,
 		siteLanguage,
 		siteTitleAlt,

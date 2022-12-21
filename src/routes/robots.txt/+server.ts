@@ -1,9 +1,12 @@
 import type { RequestHandler } from "@sveltejs/kit";
 
-export const GET = (({ request }) => {
+export const prerender = true;
+
+export const GET = (({ request, url }) => {
 	const content = 
 	`User-agent: *
-	Disallow:`;
+	Disallow:
+	sitemap: https://${url.origin}/sitemap.xml`;
 
 	return new Response(content, {
 		status: 200,

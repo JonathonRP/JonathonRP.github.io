@@ -5,6 +5,6 @@
 <nav class="navbar">
 	<div class="actions">
 		<ThemeToggle />
-		<slot name="action-bar" />
+		<slot />
 	</div>
 </nav>

@@ -17,7 +17,8 @@
 			"svelte",
 			"./$types",
 			"vite/client",
-			"./types/vite.d.ts"
+			"./types/vite.d.ts",
+			"./**/*.d.ts"
 		],
 		"esModuleInterop": true,
 		"allowUnreachableCode": false,

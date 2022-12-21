@@ -1,10 +1,15 @@
 {
-    "importMap": "import_map.json",
-    "tasks": {
-        "dev": "deno run -A --node-modules-dir npm:vite",
-        "build": "deno run -A --node-modules-dir npm:vite build",
-        "preview": "deno run -A --node-modules-dir npm:vite preview",
-        "serve": "deno run --allow-env --allow-read --allow-net public/index.js",
-        "deploy": "deno task build && deno run -A npm:gh-pages -d public -b site_root -t true"
-    }
+  "importMap": "import_map.json",
+  "tasks": {
+    "vite": "deno run -A https://esm.sh/v99/vite",
+    "gh-pages": "deno run -A npm:gh-pages -d public -b site_root -t true",
+    "dev": "deno task vite",
+    "build": "deno task vite build",
+    "preview": "deno task vite preview",
+    "serve": "deno run --allow-env --allow-read --allow-net public/index.js",
+    "deploy": "deno task build && deno task gh-pages",
+    "npm:add": "deno run -A https://esm.sh/v99 add",
+    "npm:update": "deno run -A https://esm.sh/v99 update",
+    "npm:remove": "deno run -A https://esm.sh/v99 remove"
+  }
 }

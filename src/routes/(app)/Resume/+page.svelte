@@ -1,58 +1,19 @@
 <script lang="ts">
-	import { writable } from 'svelte/store';
-	import { page } from "$app/stores"
+	import type { PageData } from './$types';
+	import type { Resume } from '$lib/types';
 
-	import website from '$lib/config/website.config';
-
-	import Resume from '$lib/data/resume.json';
 	import SEO from '$lib/components/SEO';
-	import CMS from '$lib/components/CMS';
-	import PWA from '$lib/components/PWA.svelte';
 
 	import ContactDetails from './ContactDetails.svelte';
 	import Timeline from './Timeline.svelte';
 	import TagsCatalog from './TagsCatalog.svelte';
 
-	const { author } = website,
-	pageTitle = 'Resume',
-	metadescription = 'Hard working and detail oriented professional, seeking a software development position where I can use my skills and contribute to the growth of a company.';
-
-	const breadcrumbs = [
-		{
-			name: 'Home',
-			slug: '/'
-		},
-		{
-			name: pageTitle,
-			slug: 'resume'
-		}
-	];
-
-	const entityMeta = {
-		url: `${import.meta.env.PUBLIC_SITE_URL}/`,
-		faviconWidth: 512,
-		faviconHeight: 512,
-		caption: author
-	};
-
-	const seo = {
-		article: false,
-		title: pageTitle,
-		slug: '/resume',
-		entityMeta,
-		breadcrumbs,
-		metadescription
-	};
+	export let data: PageData;
 	
-	const resume = writable(Resume);
-
-	$: ({ basics, work, certificates, education, skills, projects } = $resume as JsonResume);
+	const { basics, work, certificates, education, skills, projects } = data.resume as Resume;
 </script>
 
-<svelte:head>
-	<SEO {...seo} />
-	<PWA />
-</svelte:head>
+<SEO {...data.seo} />
 
 <main class="wrapper">
 	<!-- Profile -->
@@ -187,7 +148,3 @@
 		</ContactDetails>
 	</div>
 </main>
-
-{#if $page.data.session?.user?.isAdmin}
-	<CMS register={{resume}} />
-{/if}

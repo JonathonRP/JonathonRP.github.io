@@ -1,6 +1,6 @@
 import type { RequestHandler } from "@sveltejs/kit";
 import { json } from '@sveltejs/kit';
-import website from '$lib/config/website';
+import website from 'website.config';
 
 export const prerender = true;
 

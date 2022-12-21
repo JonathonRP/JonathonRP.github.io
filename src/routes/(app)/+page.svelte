@@ -1,39 +1,10 @@
 <script lang="ts">
-	import website from '$lib/config/website.config';
+	import type { PageData } from './$types';
 	import SEO from '$lib/components/SEO';
-	import PWA from '$lib/components/PWA.svelte';
 
-	const { author } = website,
-	pageTitle = 'Home',
-	metadescription = 'Portfolio';
-
-	const breadcrumbs = [
-		{
-			name: pageTitle,
-			slug: '/'
-		}
-	];
-
-	const entityMeta = {
-		url: `${import.meta.env.PUBLIC_SITE_URL}/`,
-		faviconWidth: 512,
-		faviconHeight: 512,
-		caption: author
-	};
-
-	const seo = {
-		article: false,
-		title: pageTitle,
-		slug: '',
-		entityMeta,
-		breadcrumbs,
-		metadescription
-	};
+	export let data:PageData;
 </script>
 
-<svelte:head>
-	<SEO {...seo} />
-	<PWA />
-</svelte:head>
+<SEO {...data.seo} />
 
-<h2>Portfolio Home</h2>
+<h2>data.heading</h2>
