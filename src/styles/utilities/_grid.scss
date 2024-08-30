@@ -1,0 +1,46 @@
+@use '../abstracts/mixins' as *;
+
+.lg\:grid-column {
+    border-top: 2px solid var(--primary-color);
+
+    @include respond-to(lg) {
+        grid-row: span var(--grid-rows);
+    }
+}
+
+.content-grid {
+    --padding-inline: 2rem;
+    --content-max-width: 70ch;
+    --breakout-max-width: 85ch;
+    --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / 2);
+
+    display: grid;
+    grid-template-columns: 
+        [full-width-start] minmax(var(--padding-inline), 1fr) 
+        [breakout-start] minmax(0, var(--breakout-size) )
+        [content-start] min(100% - (var(--padding-inline) * 2), var(--content-max-width)) [content-end] 
+        minmax(0, var(--breakout-size)) [breakout-end] 
+        minmax(var(--padding-inline), 1fr) [full-width-end];
+
+    & > :not(.break-out, .full-width) {
+        grid-column: content;
+    }
+
+    & > .break-out {
+        grid-column: breakout;
+    }
+
+    & > .full-width {
+        grid-column: full-width;
+    }
+
+    & > .bg-full-width {
+        display: grid;
+        grid-template-columns: inherit;
+    }
+
+}
+
+// .full-width > :not(.break-out, .full-width) {
+//     grid-column: content;
+// }

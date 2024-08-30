@@ -1,3 +1,5 @@
 {
+    "jest.jestCommandLine": "deno task test",
+    "jest.rootPath": "./tests"
     
 }

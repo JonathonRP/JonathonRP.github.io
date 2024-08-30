@@ -1,0 +1,13 @@
+{
+  "imports": {
+    "$lib/": "./src/lib/"
+  },
+  "tasks": {
+    "gh-pages": "deno run -A npm:gh-pages -d public -b site_root -t true",
+    "dev": "deno run -A --node-modules-dir npm:vite",
+    "build": "deno run -A --node-modules-dir npm:vite build",
+    "preview": "deno run -A --node-modules-dir npm:vite preview",
+    "serve": "deno run --allow-env --allow-read --allow-net public/index.js",
+    "deploy": "deno task build && deno task gh-pages"
+  }
+}

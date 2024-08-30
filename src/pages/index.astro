@@ -1,0 +1,38 @@
+---
+	import AppLayout from './app.astro';
+	import website from '../website.config';
+	import SEO from '../components/SEO/index.svelte';
+
+	const pageTitle = 'Portfolio',
+		metadescription = 'Portfolio Showcase',
+		slug = Astro.url.origin,
+		{ author } = website;
+
+	const breadcrumbs = [
+		{
+			name: pageTitle,
+			slug,
+		},
+	];
+
+	const entityMeta = {
+		url: slug,
+		faviconWidth: 512,
+		faviconHeight: 512,
+		caption: author,
+	};
+
+	const seo = {
+		article: false,
+		title: pageTitle,
+		slug,
+		entityMeta,
+		breadcrumbs,
+		metadescription,
+	};
+---
+
+<AppLayout>
+	<SEO {...seo} />
+	<h2>{'Hello'.toUpperCase()}</h2>
+</AppLayout>

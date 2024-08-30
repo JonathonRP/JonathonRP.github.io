@@ -1,0 +1,105 @@
+ ---
+	import ThemeToggle from './ThemeToggle.svelte';
+	import siteConfig from '../website.config';
+
+	const { author } = siteConfig;
+---
+
+<nav class="navbar">
+	<div class="nav">
+		<a id="home" class="home" title="home" href="/"> Home </a>
+		<a id="resume" class="resume" title="resume" href="/Resume"> Resume </a>
+	</div>
+	<div class="actions">
+		<ThemeToggle client:only="svelte" />
+		<a
+			id="pdf"
+			class="download pdf"
+			href="/downloads/Resume.pdf"
+			download="{author} Resume.pdf"
+			title="download pdf"
+			data-sveltekit-preload-data="hover"
+			data-sveltekit-preload-code="eager">
+		</a>
+		<a
+			id="word"
+			class="download word"
+			href="/downloads/Resume.docx"
+			download="{author} Resume.docx"
+			title="download word"
+			data-sveltekit-preload-data="hover"
+			data-sveltekit-preload-code="eager">
+		</a>
+	</div>
+</nav>
+
+<style lang="scss">
+	.navbar {
+		background-color: var(--bg-color);
+		box-shadow: 0px 3px 6px rgb(0 0 0 / 30%);
+		padding-inline: 45px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		a {
+			font-family: var(--primary-ff);
+			color: var(--link-color);
+			font-size: 1rem;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		.nav {
+			display: flex;
+			column-gap: 25px;
+		}
+		.actions {
+			display: grid;
+			grid-auto-flow: column;
+			justify-content: center;
+			align-items: center;
+			column-gap: 5px;
+
+			.download {
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				padding-inline: var(--default-space);
+				cursor: pointer;
+				&::before,
+				&::after {
+					margin-block: 0.425rem;
+				}
+				&::before {
+					position: absolute;
+					// top: 0;
+					// left: calc(var(--small-space) + var(--small-space));
+					// transform: translate(50%, 50%);
+					color: var(--text-color);
+					font-size: 1.25rem;
+				}
+				&::after {
+					content: ' ';
+					display: inline-block;
+					height: var(--xlarge-space);
+					width: var(--xlarge-space);
+					border-radius: var(--small-space);
+					box-shadow: 0 0 8px rgb(255 255 255 / 0.3);
+					clear: both;
+				}
+			}
+
+			.word::after {
+				background-color: #5174a8;
+			}
+			.pdf::after {
+				background-color: #c05757;
+			}
+		}
+	}
+</style>

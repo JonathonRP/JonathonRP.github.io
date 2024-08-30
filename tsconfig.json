@@ -1,26 +1,31 @@
 {
-	"extends": "./.svelte-kit/tsconfig.json",
+	"extends": "astro/tsconfigs/strict",
 	"include": [
-		"./vite.config.mts",
-		"./src/lib/data/*.json"
+		"./src/lib/data/*.json",
+		"./src/types/**/*.d.ts",
+		"../vite.config.ts",
+		"../src/**/*.js",
+		"../src/**/*.ts",
+		"../src/**/*.svelte",
+		"../tests/**/*.js",
+		"../tests/**/*.ts",
+		"../tests/**/*.svelte",
+		"**/**/*.ts",
 	],
 	"compilerOptions": {
-		"module": "NodeNext",
-		"moduleResolution": "NodeNext",
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"]
+		},
 		"target": "ES2022",
-		"sourceMap": true,
-		"outDir": "public",
 		"strict": true,
+		"moduleResolution": "Node",
+		"module": "ESNext",
+		"noEmit": true,
+		"sourceMap": true,
 		"resolveJsonModule": true,
-		"types": [
-			"@sveltejs/kit",
-			"svelte",
-			"./$types",
-			"vite/client",
-			"./types/vite.d.ts",
-			"./**/*.d.ts"
-		],
 		"esModuleInterop": true,
+		"skipLibCheck": true,
 		"allowUnreachableCode": false,
 		"exactOptionalPropertyTypes": true,
 		"noImplicitAny": true,
@@ -29,5 +34,9 @@
 		"noImplicitThis": true,
 		"noFallthroughCasesInSwitch": true,
 		"noUncheckedIndexedAccess": true,
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"jsx": "preserve",
 	},
 }

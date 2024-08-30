@@ -1,9 +1,9 @@
 node_modules/**/**
+.pnpm-store/**/**
 /deno.lock
 .DS_Store
 node_modules
-/public
-/.svelte-kit
+.pnpm-store
 /package*
 .env
 .env.*

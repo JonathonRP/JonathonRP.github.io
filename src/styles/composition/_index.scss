@@ -1,0 +1,40 @@
+@use '../abstracts/mixins' as *;
+
+// layout
+
+html {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+}
+
+main {
+    display: grid;
+}
+
+main#resume.resume {
+    display: grid;
+    grid-column: 1/-1;
+    min-height: 279mm;
+    max-width: 216mm;
+    background-color: var(--resume-bg);
+    padding: var(--default-space);
+    color: var(--resume-text);
+    filter: drop-shadow(0 10px 8px rgb(0 0 0 / .04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+
+    @include respond-to(lg) {
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: repeat(var(--grid-rows, 7), auto);
+    }
+}
+
+@page {
+    size: letter;
+    margin: 0;
+}
+
+@media print {
+    .navbar {
+        display: none;
+        visibility: hidden;
+    }
+}

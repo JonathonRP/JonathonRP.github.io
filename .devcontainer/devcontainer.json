@@ -3,6 +3,13 @@
  	"build": {
 		"dockerfile": "Dockerfile"
 	},
+	"features": {
+		"ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {
+			"fisher": false
+		},
+		"ghcr.io/devcontainers-contrib/features/deno:1": {},
+		"ghcr.io/rocker-org/devcontainer-features/pandoc:1": {}
+	},
 
 	// Configure tool-specific properties.
 	"customizations": {
@@ -10,30 +17,84 @@
 		"vscode": {
 			// Set *default* container specific settings.json values on container create.
 			"settings": { 
+				"editor.fontLigatures": "'calt', 'ss01'",
+
 				// Enables the project as a Deno project
-				"deno.enable": true,
+				"deno.enable": false,
 
 				// Enables Deno linting for the project
-				"deno.lint": true,
+				"deno.lint": false,
 
-				"deno.suggest.completeFunctionCalls": true,
+				"typescript.suggest.completeFunctionCalls": true,
+
+				"deno.codeLens.test": true,
 
 				// Sets Deno as the default formatter for the project
-				"editor.defaultFormatter": "denoland.vscode-deno",
+				// "editor.defaultFormatter": "denoland.vscode-deno",
 
 				"svelte.enable-ts-plugin": true,
+				"svelte.plugin.svelte.defaultScriptLanguage": "ts",
+				"svelte.plugin.svelte.note-new-transformation": true,
+				"svelte.plugin.css.diagnostics.enable": false,
 
-				"svelte.plugin.svelte.note-new-transformation": false,
+				"editor.codeActionsOnSave": {
+					"source.fixAll.eslint": true
+					// "source.organizeImports": true
+				},
 
+				"[astro]": {
+					"editor.defaultFormatter": "astro-build.astro-vscode"
+				},
 				"[svelte]": {
 					"editor.defaultFormatter": "svelte.svelte-vscode"
+				},
+				"[javascript][typescript]": {
+					"editor.defaultFormatter": "esbenp.prettier-vscode",
+					"prettier.configPath": "./.prettierrc.cjs",
+					"prettier.prettierPath": "./node_modules/prettier"
+				},
+
+				"eslint.validate": ["javascript", "typescript", "svelte"],
+				"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
+
+				"dotfiles.repository": "https://github.com/JonathonRP/.dotfiles",
+				"dotfiles.targetPath": "~/dotfiles",
+
+				"editor.fontFamily": "'cascadia code', Consolas, 'Courier New', monospace",
+				"terminal.integrated.fontFamily": "'MesloLGM Nerd Font'",
+				"terminal.integrated.defaultProfile.linux": "fish",
+				"terminal.integrated.profiles.linux": {
+					"bash": {
+						"path": "bash",
+						"icon": "terminal-bash"
+					},
+					"zsh": {
+						"path": "zsh"
+					},
+					"fish": {
+						"path": "fish",
+						"icon": "terminal-linux"
+					},
+					"tmux": {
+						"path": "tmux",
+						"icon": "terminal-tmux"
+					},
+					"pwsh": {
+						"path": "pwsh",
+						"icon": "terminal-powershell"
+					}
 				}
 			},
 			
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
+				"ms-azuretools.vscode-docker",
 				"denoland.vscode-deno",
-				"svelte.svelte-vscode"
+				"svelte.svelte-vscode",
+				"csstools.postcss",
+				"esbenp.prettier-vscode",
+				"dbaeumer.vscode-eslint",
+				"eamodio.gitlens"
 			]
 		}
 	},
