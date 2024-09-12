@@ -15,5 +15,5 @@ export const hash = <T>(value: T, visited?: Set<number>): number => {
 		}
 	}
 
-	throw Error('not supported');
+	throw Error('not supported type: ' + type);
 };

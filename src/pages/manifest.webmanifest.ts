@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import website from '../../website.config';
+import website from '@/website.config';
 
 export const GET: APIRoute = async () => {
 	const { backgroundColor, siteTitle, themeColor, siteTitleAlt } = website;

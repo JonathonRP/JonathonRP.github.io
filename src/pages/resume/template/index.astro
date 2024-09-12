@@ -1,0 +1,19 @@
+---
+	import { getCollection } from 'astro:content';
+	import TemplateLayout from '@/layouts/template.astro';
+	import Resume from '@/components/resume';
+	
+	const entries = await getCollection('resume');
+---
+
+<TemplateLayout>
+	{entries.map(({ data }) =>
+		<Resume {data} />
+	)}
+</TemplateLayout>
+
+<style lang="scss">
+	:global(section#resume.resume) {
+		display: block;
+	}
+</style>

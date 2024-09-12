@@ -1,4 +1,4 @@
-@use '../abstracts' as *;
+@use '@/styles/abstracts' as *;
 
 :root {
 	// custom props
@@ -9,6 +9,11 @@
 	--primary-ff: #{$primary-ff};
 	--secondary-ff: #{$secondary-ff};
 	--accent-ff: #{$accent-ff};
+
+	// spacings
+	@each $size, $value in $spacings {
+		--#{$size}-space: #{$value}rem;
+	}
 
 	// theme
 	@each $color, $value in $colors {
@@ -21,12 +26,6 @@
 		}
 	}
 
-	// spacings
-	@each $size, $value in $spacings {
-		--#{$size}-space: #{$value};
-	}
-
-	// theme
 	@media (prefers-color-scheme: dark) {
 		@each $color, $value in $dark {
 			--#{$color}-color: #{$value};
@@ -36,6 +35,12 @@
 			@each $color, $value in $light {
 				--#{$color}-color: #{$value};
 			}
+		}
+	}
+
+	@media print {
+		@each $size, $value in $spacings {
+			--#{$size}-space: #{((($value * 16) * 0.74999943307122) + 0pt)};
 		}
 	}
 }

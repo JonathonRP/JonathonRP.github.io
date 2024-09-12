@@ -1,12 +1,13 @@
 <svelte:options runes />
 <script lang="ts">
 	import { format, parseISO } from 'date-fns';
+	import { Work, Education, Certificates } from  '@/lib';
+
+	type TimelineItemType = Work | Education | Certificates;
 
 	const {
 		experiences,
-		work = false,
-		certificates = false,
-		education = false
+		type
 	}: {
 		experiences: {
 			image: string;
@@ -24,35 +25,32 @@
 			highlights?: string[];
 			studyType?: string;
 		}[];
-		work: boolean;
-		certificates: boolean;
-		education: boolean;
+		type: TimelineItemType
 	} = $props();
 
 	const Logo = (image: string) => {
-		return Object.entries(import.meta.glob('../../images/*.{png,jpg}', { eager: true, query: '?url', import: 'default' })).reduce(
-			(prev, [key, value]) => ({ ...prev, [key.substring(key.indexOf(image))]: value }),
+		return Object.entries(import.meta.glob('@/images/*.{png,jpg}', { eager: true, query: '?url', import: 'default' })).reduce(
+			(prev, [key, value]) => ({ ...prev, [key.substring(key.indexOf(image))]: value as string }),
 			{} as Record<string, string>
 		)[image];
 	};
-
-	let icon = $derived(work ? 'timeline__icon' : null);
 </script>
 
-{#if !work}
+{#if type.heading}
 	<h2
-		id="{certificates ? 'cert' : 'ed'}-title"
+		id="{type.heading.id}-title"
 		class="heading__icon timeline__section-heading"
-		data-icon={certificates ? 'certificates' : 'education'}>
-		{certificates ? 'Certificates' : 'Education'}
+		data-icon={type.heading.icon}>
+		{type.heading.title}
 	</h2>
 {/if}
-<ol class="timeline" data-type={work ? 'professional' : ''}>
+<div class="timeline" data-type={type.experience}>
 	{#each experiences as {startDate, endDate, date, eventDate = format(
-			parseISO((work ? startDate : certificates ? date : endDate) ?? ''),
+			parseISO((type.work ? startDate : type.certificates ? date : endDate) ?? ''),
 			'MMM yyyy'
 		), ...experience} (eventDate)}
-		<li class="timeline__item">
+		<div class="timeline__item">
+			<time class="timeline__duration" datetime={eventDate}>{eventDate}</time>
 			{#if experience.image}
 				{@const alt = experience.image.split('.').reverse().pop() + ' Logo.'}
 				<div class="timeline__logo">
@@ -66,17 +64,18 @@
 				<div class="timeline__point"></div>
 			{/if}
 			<div class="timeline__header">
-				<span class={icon} data-icon={work ? 'work' : ''} />
-				<time class="timeline__duration" datetime={eventDate}>{eventDate}</time>
-				<div class="timeline__title">{education ? experience.institution : experience.name}</div>
+				{#if type.icon}
+					<span class="timeline__icon" data-icon={type.icon} />
+				{/if}
+				<div class="timeline__title">{type.education ? experience.institution : experience.name}</div>
 			</div>
 			<div class="timeline__body">
-				{#if work}
+				{#if type.work}
 					<p class="timeline__heading">{experience.position}</p>
 					{#if experience.useSummary}
 						<p>{experience.summary}</p>
 					{:else if experience.highlights}
-						<ul class="timeline__responsabilities-achievements flow">
+						<ul class="timeline__responsabilities-achievements [ flow ]">
 							{#each experience.highlights as highlight}
 								<li>
 									{highlight}
@@ -84,20 +83,20 @@
 							{/each}
 						</ul>
 					{/if}
-				{:else if certificates}
+				{:else if type.certificates}
 					<p class="timeline__issuer">
 						{experience.issuer}
 					</p>
-				{:else if education}
+				{:else if type.education}
 					<p class="timeline__heading">{experience.area}</p>
 					<p class="timeline__degree">
 						{experience.studyType}
 					</p>
 				{/if}
 			</div>
-		</li>
+		</div>
 	{/each}
-</ol>
+</div>
 
 <style lang="scss">
 	@use '@/styles/abstracts/mixins' as *;
@@ -106,21 +105,24 @@
 	.timeline {
 		--logo-size: 42px;
 		--image-size: var(--xlarge-space);
+		--flow-space: var(--small-space);
+		// --flow-space: var(--micro-space);
 
 		padding: revert;
 		padding-top: 5px;
 		position: relative;
+		padding-inline-start: var(--gigentic-space);
 		// width: 90%;
 
 		&__section-heading {
 			@extend .heading;
 			position: relative;
-			margin-inline: var(--xsmall-space);
+			// margin-inline: var(--xsmall-space);
 			// background-color: var(--bg-color);
 			margin-block-start: calc(-1 * var(--default-space));
 			// margin-block-end: 1em;
 			padding-block-start: var(--default-space);
-			width: 96%;
+			margin-inline-end: var(--huge-space);
 			border-bottom: 2px solid var(--primary-color);
 		}
 
@@ -129,8 +131,8 @@
 			position: absolute;
 			top: 0;
 			height: 50%;
-			width: 1px;
-			border-left: 2px solid var(--primary-color);
+			width: 2px;
+			border-left: 1px solid var(--primary-color);
 		}
 
 		&__item {
@@ -139,6 +141,7 @@
 			margin: var(--default-space) var(--xlarge-space);
 			padding: var(--default-space) var(--medium-space);
 			box-shadow: 0px 3px 6px -1px rgba(0, 0, 0, 0.2);
+			border-radius: var(--xsmall-space);
 			transition: all 500ms;
 
 			&:hover {
@@ -146,6 +149,21 @@
 
 				.timeline__logo {
 					border: 2px solid var(--accent-color);
+				}
+			}
+
+			&:where(:not(:last-child)) {
+				&::after {
+					content: '';
+					width: 1px;
+					height: 100%;
+					margin: var(--huge-space) 0;
+					background: var(--primary-color);
+					position: absolute;
+					top: 0;
+					// transform: translateY(-5%);
+					left: -2rem;
+					z-index: -1;
 				}
 			}
 
@@ -175,7 +193,7 @@
 			background: #fff;
 			border: 2px solid var(--primary-color);
 			border-radius: 50%;
-			transform: translateY(-50%, 80%);
+			transform: translate(-50%, 40%);
 			transition: all 500ms;
 			overflow: hidden;
 
@@ -204,9 +222,9 @@
 			// 	// padding-top: 0.1rem;
 			// }
 
-			@include respond-to(sm) {
-				transform: translate(-50%, 15%);
-			}
+			// @include respond-to(sm) {
+			// 	transform: translate(-50%, 15%);
+			// }
 		}
 
 		&__point {
@@ -222,13 +240,9 @@
 			background: var(--primary-color);
 			border: 2px solid var(--primary-color);
 			border-radius: 50%;
-			transform: translate(-50%, 80%);
+			transform: translate(-50%, 40%);
 			transition: all 500ms;
 			overflow: hidden;
-
-			@include respond-to(sm) {
-				transform: translate(-50%, 15%);
-			}
 		}
 
 		&__header {
@@ -239,17 +253,25 @@
 
 		&__duration {
 			font-weight: bold;
+			position: absolute;
+			top: 0;
+			left: -85px;
+			line-height: 1.2;
+			height: 20px;
+			width: 10%;
+			transform: translateX(-25%);
+			text-align: center;
 
-			@include respond-to(sm) {
-				position: absolute;
-				top: 20px;
-				left: -100px;
-				line-height: 1.2;
-				height: 20px;
-				width: 10%;
-				transform: translateX(-25%);
-				text-align: right;
-			}
+			// @include respond-to(sm) {
+			// 	position: absolute;
+			// 	top: 0;
+			// 	left: -85px;
+			// 	line-height: 1.2;
+			// 	height: 20px;
+			// 	width: 10%;
+			// 	transform: translateX(-25%);
+			// 	text-align: right;
+			// }
 		}
 
 		&__title {
@@ -271,26 +293,24 @@
 
 		&__responsabilities-achievements {
 			display: grid;
-			padding-inline-start: var(--tiny-space);
+			// padding-inline-start: var(--tiny-space);
+			padding-inline-start: var(--large-space);
+			padding-block-start: var(--flow-space);
 
 			> li {
 				&::marker {
-					content: '\203a   ';
-					color: var(--accent-color);
-					font-size: 20px;
+					content: '\2192     ';
+					// font-size: unset;
 				}
 			}
 
-			@include respond-to(sm) {
-				padding-inline-start: var(--large-space);
-
-				> li {
-					&::marker {
-						content: '\2192     ';
-						font-size: unset;
-					}
-				}
-			}
+			// > li {
+			// 	&::marker {
+			// 		// content: '\203a  ';
+			// 		// color: var(--accent-color);
+			// 		// font-size: 20px;
+			// 	}
+			// }
 		}
 
 		&__issuer {
@@ -302,49 +322,13 @@
 		}
 
 		&[data-type='professional'] {
-			.timeline__item {
-				&::after {
-					content: '';
-					width: 2px;
-					height: 100%;
-					margin: var(--huge-space) 0;
-					background: var(--primary-color);
-					position: absolute;
-					top: 0;
-					// transform: translateY(-50%);
-					left: -2rem;
-					z-index: -1;
-				}
-
-				&:last-child {
-					&::after {
-						content: none;
-					}
-				}
-			}
-
 			.timeline__body {
 				margin: 0 var(--tiny-space);
 			}
-
-			.timeline__logo {
-				transform: translate(-50%, 100%);
-
-				@include respond-to(sm) {
-					transform: translate(-50%, 55%);
-				}
-			}
-
-			.timeline__duration {
-				@include respond-to(sm) {
-					top: var(--xlarge-space);
-				}
-			}
 		}
 
-		@include respond-to(sm) {
-			// max-width: 750px;
-			padding-inline-start: var(--gigentic-space);
-		}
+		// @include respond-to(sm) {
+		// 	--flow-space: var(--small-space);
+		// }
 	}
 </style>

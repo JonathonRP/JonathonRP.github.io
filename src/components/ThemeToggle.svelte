@@ -36,13 +36,16 @@
 	title="theme toggle" />
 
 <style lang="scss">
+	@use '@/styles/abstracts/mixins' as *;
+
 	.theme-switch {
 		&__label {
+			--flow-space: var(--default-space);
 			position: relative;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			padding-inline: var(--default-space);
+			margin-right: var(--flow-space);
 			cursor: pointer;
 			font-size: large;
 			line-height: 1.5rem;

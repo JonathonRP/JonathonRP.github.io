@@ -28,7 +28,13 @@
 }
 
 .lg\:bg-none {
-    @include respond-to(sm) {
+    @include respond-to(lg) {
         background-color: transparent;
+    }
+}
+
+.lg\:hidden {
+    @include respond-to(lg) {
+        display: none;
     }
 }

@@ -1,0 +1,61 @@
+---
+	import website from '@/website.config';
+	import { getCollection } from 'astro:content';
+
+	import AppLayout from '@/layouts/app.astro';
+	import SEO from '@/components/SEO/index.svelte';
+	import {Picture} from 'astro:assets';
+	import resumePreview from '@/images/ResumePreview.png';
+	import Resume from '@/components/resume';
+
+	const pageTitle = 'Resume',
+		metadescription =
+			'Hard working and detail oriented professional, seeking a software development position where I can use my skills and contribute to the growth of a company.',
+		slug = '/Resume',
+		{ author } = website;
+
+	const breadcrumbs = [
+		{
+			name: 'Home',
+			slug: Astro.url.origin,
+		},
+		{
+			name: pageTitle,
+			slug,
+		},
+	];
+
+	const entityMeta = {
+		url: slug,
+		faviconWidth: 512,
+		faviconHeight: 512,
+		caption: author,
+	};
+
+	const seo = {
+		article: false,
+		title: pageTitle,
+		slug,
+		entityMeta,
+		breadcrumbs,
+		metadescription,
+	};
+
+	const entries = await getCollection('resume');
+---
+
+<AppLayout>
+<SEO {...seo} />
+
+<div class="lg:hidden">
+	<Picture src={resumePreview}
+		formats={["avif", "webp", "png"]}
+		widths={[240, 540, 720, resumePreview.width]}
+  		sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${resumePreview.width}px`}
+		alt="Resume" />
+</div>
+<!-- TODO: make this image at smaller than lg/xlg -->
+{entries.map(({ data }) =>
+	<Resume {data} />
+)}
+</AppLayout>

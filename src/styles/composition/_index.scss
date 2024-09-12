@@ -11,24 +11,31 @@ main {
     display: grid;
 }
 
-main#resume.resume {
-    display: grid;
+section#resume.resume {
+    display: none;
     grid-column: 1/-1;
-    min-height: 279mm;
-    max-width: 216mm;
+    max-width: 297mm;
+    max-height: 420mm;
     background-color: var(--resume-bg);
     padding: var(--default-space);
     color: var(--resume-text);
     filter: drop-shadow(0 10px 8px rgb(0 0 0 / .04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
 
     @include respond-to(lg) {
-        grid-template-columns: 2fr 1fr;
-        grid-template-rows: repeat(var(--grid-rows, 7), auto);
+        display: grid;
+        // thead, tbody {
+        //     width: 100%;
+        //     display: grid;
+        //     grid-auto-flow: column;
+        //     // justify-content: space-between;
+        // }
+        // grid-template-columns: 2fr 1fr;
+        // grid-template-rows: repeat(var(--grid-rows, 7), auto);
     }
 }
 
 @page {
-    size: letter;
+    size: A3;
     margin: 0;
 }
 

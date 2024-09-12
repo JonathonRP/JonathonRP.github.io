@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import pandoc from 'node-pandoc';
-import fs from 'fs';
+import fs from 'node:fs';
 
 export const GET: APIRoute = async ({ params: { Resume }, url }) => {
 	if (Resume === 'Resume.docx' || Resume === 'Resume.pdf') {

@@ -1,14 +1,14 @@
- ---
+---
 	import ThemeToggle from './ThemeToggle.svelte';
-	import siteConfig from '../website.config';
+	import siteConfig from '@/website.config';
 
 	const { author } = siteConfig;
 ---
 
 <nav class="navbar">
 	<div class="nav">
-		<a id="home" class="home" title="home" href="/"> Home </a>
-		<a id="resume" class="resume" title="resume" href="/Resume"> Resume </a>
+		<a id="home" class="home" title="home" href="/">Home</a>
+		<a id="resume" class="resume" title="resume" href="/resume">Resume</a>
 	</div>
 	<div class="actions">
 		<ThemeToggle client:only="svelte" />
@@ -16,7 +16,7 @@
 			id="pdf"
 			class="download pdf"
 			href="/downloads/Resume.pdf"
-			download="{author} Resume.pdf"
+			download=`${author} Resume.pdf`
 			title="download pdf"
 			data-sveltekit-preload-data="hover"
 			data-sveltekit-preload-code="eager">
@@ -25,7 +25,7 @@
 			id="word"
 			class="download word"
 			href="/downloads/Resume.docx"
-			download="{author} Resume.docx"
+			download=`${author} Resume.docx`
 			title="download word"
 			data-sveltekit-preload-data="hover"
 			data-sveltekit-preload-code="eager">
@@ -34,13 +34,16 @@
 </nav>
 
 <style lang="scss">
+	@use '@/styles/abstracts/mixins' as *;
+
 	.navbar {
 		background-color: var(--bg-color);
 		box-shadow: 0px 3px 6px rgb(0 0 0 / 30%);
-		padding-inline: 45px;
+		padding-inline: 16px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		height: 56px;
 
 		a {
 			font-family: var(--primary-ff);
@@ -55,7 +58,7 @@
 
 		.nav {
 			display: flex;
-			column-gap: 25px;
+			column-gap: var(--large-space);
 		}
 		.actions {
 			display: grid;
@@ -65,11 +68,12 @@
 			column-gap: 5px;
 
 			.download {
+				--flow-space: var(--xsmall-space);
 				position: relative;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				padding-inline: var(--default-space);
+				margin-right: var(--flow-space);
 				cursor: pointer;
 				&::before,
 				&::after {
@@ -100,6 +104,10 @@
 			.pdf::after {
 				background-color: #c05757;
 			}
+		}
+
+		@include respond-to(lg) {
+			padding-inline: 46px;
 		}
 	}
 </style>

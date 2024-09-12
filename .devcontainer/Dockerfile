@@ -18,3 +18,6 @@ RUN apt-get update -q --no-allow-insecure-repositories \
      texlive \
      lmodern \
     && rm -rf /var/lib/apt/lists/*
+
+RUN sudo apt update && sudo apt install weasyprint
+RUN sudo apt update && sudo apt install wkhtmltopdf

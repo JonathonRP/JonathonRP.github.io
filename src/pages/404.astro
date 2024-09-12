@@ -1,13 +1,10 @@
-<script lang="ts">
-	import { page } from '$app/stores';
-</script>
+---
+const { returnTo } = Astro.params;
+---
 
 <main>
 	<div class="banner">
-		<h4>
-			{$page.status}
-		</h4>
-
+		<h4>404</h4>
 		<div>
 			<div>deja vu!</div>
 			<div>Seems there was glitch in the Matrix!</div>
@@ -15,6 +12,7 @@
 	</div>
 
 	<button type="button" style="color: rgba(255, 0, 0, 0.356);"><a href="/">Return home</a></button>
+	<button type="button" style="color: rgba(0, 0, 255, 0.356);"><a href={returnTo}>Return to previous page</a></button>
 </main>
 
 <style lang="scss">

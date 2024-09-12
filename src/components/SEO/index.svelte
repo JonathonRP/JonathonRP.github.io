@@ -2,10 +2,10 @@
 <script lang="ts">
 	import website from '@/website.config';
 
-	import defaultFeaturedImage from '../../images/profile.png';
-	import defaultOgImage from '../../images/profile.png';
-	import defaultOgSquareImage from '../../images/profile.png';
-	import defaultTwitterImage from '../../images/profile.png';
+	import defaultFeaturedImage from '@/images/profile.png';
+	import defaultOgImage from '@/images/profile.png';
+	import defaultOgSquareImage from '@/images/profile.png';
+	import defaultTwitterImage from '@/images/profile.png';
 
 	import OpenGraph from './OpenGraph.svelte';
 	import SchemaOrg from './SchemaOrg.svelte';

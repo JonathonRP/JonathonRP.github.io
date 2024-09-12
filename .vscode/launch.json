@@ -5,13 +5,28 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "pwa-msedge",
-            "request": "launch",
-            "name": "Launch Edge against localhost",
-            "url": "http://localhost:3000/",
-            "webRoot": "${workspaceFolder}",
-            "preLaunchTask": "deno: task dev",
-            "postDebugTask": "kill"
-        }
+			"name": "full stack edge",
+			"request": "launch",
+			"type": "node",
+			"runtimeArgs": ["task", "dev"],
+            "runtimeExecutable": "deno",
+            "attachSimplePort": 9229,
+			"console": "integratedTerminal",
+			"skipFiles": ["<node_internals>/**"],
+			"serverReadyAction": {
+				"pattern": "https://localhost:.*m([0-9]+)",
+				"uriFormat": "https://localhost:%s/overview",
+				"action": "debugWithEdge"
+			}
+		},
+        // {
+        //     "type": "pwa-msedge",
+        //     "request": "launch",
+        //     "name": "Launch Edge against localhost",
+        //     "url": "http://localhost:3000/",
+        //     "webRoot": "${workspaceFolder}",
+        //     "preLaunchTask": "deno: dev",
+        //     "postDebugTask": "kill"
+        // }
     ]
 }

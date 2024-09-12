@@ -18,19 +18,20 @@
 			// Set *default* container specific settings.json values on container create.
 			"settings": { 
 				"editor.fontLigatures": "'calt', 'ss01'",
+				"editor.formatOnSave": true,
 
 				// Enables the project as a Deno project
-				"deno.enable": false,
+				"deno.enable": true,
 
 				// Enables Deno linting for the project
-				"deno.lint": false,
+				"deno.lint": true,
 
 				"typescript.suggest.completeFunctionCalls": true,
 
 				"deno.codeLens.test": true,
 
 				// Sets Deno as the default formatter for the project
-				// "editor.defaultFormatter": "denoland.vscode-deno",
+				"editor.defaultFormatter": "denoland.vscode-deno",
 
 				"svelte.enable-ts-plugin": true,
 				"svelte.plugin.svelte.defaultScriptLanguage": "ts",
@@ -38,7 +39,7 @@
 				"svelte.plugin.css.diagnostics.enable": false,
 
 				"editor.codeActionsOnSave": {
-					"source.fixAll.eslint": true
+					"source.fixAll.ts": true,
 					// "source.organizeImports": true
 				},
 
@@ -49,13 +50,8 @@
 					"editor.defaultFormatter": "svelte.svelte-vscode"
 				},
 				"[javascript][typescript]": {
-					"editor.defaultFormatter": "esbenp.prettier-vscode",
-					"prettier.configPath": "./.prettierrc.cjs",
-					"prettier.prettierPath": "./node_modules/prettier"
+					"editor.defaultFormatter": "denoland.vscode-deno"
 				},
-
-				"eslint.validate": ["javascript", "typescript", "svelte"],
-				"eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
 
 				"dotfiles.repository": "https://github.com/JonathonRP/.dotfiles",
 				"dotfiles.targetPath": "~/dotfiles",
@@ -92,8 +88,6 @@
 				"denoland.vscode-deno",
 				"svelte.svelte-vscode",
 				"csstools.postcss",
-				"esbenp.prettier-vscode",
-				"dbaeumer.vscode-eslint",
 				"eamodio.gitlens"
 			]
 		}

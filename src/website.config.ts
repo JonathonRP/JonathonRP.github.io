@@ -1,4 +1,4 @@
-import { basics } from './data/resume.json';
+import { basics } from './content/resume/data.json';
 const website = {
 	ogLanguage: 'en_US',
 	siteLanguage: 'en-US',

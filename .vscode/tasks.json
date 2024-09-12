@@ -2,16 +2,13 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "deno: task dev",
+            "label": "deno: dev",
             "type": "deno",
             "isBackground": true,
             "command": "task",
             "args": [
                 "dev"
             ],
-            "env": {
-                "Stage": "Developement"
-            },
             "problemMatcher": [
                 "$deno"
             ]
