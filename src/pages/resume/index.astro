@@ -1,12 +1,12 @@
 ---
 	import website from '@/website.config';
-	import { getCollection } from 'astro:content';
 
 	import AppLayout from '@/layouts/app.astro';
 	import SEO from '@/components/SEO/index.svelte';
 	import {Picture} from 'astro:assets';
 	import resumePreview from '@/images/ResumePreview.png';
 	import Resume from '@/components/resume';
+	import { Content } from '@/lib/content';
 
 	const pageTitle = 'Resume',
 		metadescription =
@@ -41,7 +41,7 @@
 		metadescription,
 	};
 
-	const entries = await getCollection('resume');
+	const data = await Content.getLatestResumeData();
 ---
 
 <AppLayout>
@@ -55,7 +55,5 @@
 		alt="Resume" />
 </div>
 <!-- TODO: make this image at smaller than lg/xlg -->
-{entries.map(({ data }) =>
-	<Resume {data} />
-)}
+<Resume {data} />
 </AppLayout>

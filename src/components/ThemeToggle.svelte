@@ -33,7 +33,8 @@
 	for="theme-switcher"
 	class="theme-switch__label"
 	aria-label="switch theme between 'light' or 'dark'"
-	title="theme toggle" />
+	title="theme toggle">
+</label>
 
 <style lang="scss">
 	@use '@/styles/abstracts/mixins' as *;

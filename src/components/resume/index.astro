@@ -1,5 +1,5 @@
 ---
-	import resume from '@/content/resume/data.json';
+	import type { InferEntrySchema } from 'astro:content';
 	import { Certificates, Education, hash, linq, Work } from '@/lib';
     
 	import ContactDetails from './ContactDetails.svelte';
@@ -7,10 +7,29 @@
 	import TagsCatalog from './TagsCatalog.svelte';
 
 	interface Props {
-		data: typeof resume;
+		data: InferEntrySchema<'resume'> | undefined;
 	};
 
-    const { data: { basics, work, certificates, education, skills, projects } } = Astro.props;
+    const {
+		data: {
+			basics,
+			work,
+			certificates,
+			education,
+			skills,
+			projects
+		} = {
+			basics: {
+				name: undefined,
+				label: undefined
+			},
+			work: undefined,
+			certificates: undefined,
+			education: undefined,
+			skills: [],
+			projects: []
+		}
+	} = Astro.props;
 ---
 
 <section id="resume" class="resume">
@@ -58,13 +77,13 @@
 			<td colspan="2" style="width: 270.77px" class="[ lg:grid-column ]">
 				<!-- Skills -->
 				<section class="skills [ tags-catalog extend ] [ lg:bg-none ]" aria-label="skills">
-					{[...linq(skills)
+					{linq(skills)
 						.groupBy(({ category, categoryTag }) => [category, categoryTag], {
 							equals: ([a, b], [c, d]) => a === c && b === d,
 							getHashCode: hash,
 						})
-						.select((g) => [g.key, g.select((s) => ({ tag: s.tag, name: s.name, keywords: s.keywords })).toArray()] as const)]
-						.map(([[category, categoryTag], collectiveSkills]) => (
+						.select((g) => [g.key, g.select((s) => ({ tag: s.tag, name: s.name, keywords: s.keywords })).toArray()] as const)
+						.select(([[category, categoryTag], collectiveSkills]) => (
 						<section class:list={['category', { 'extend': collectiveSkills.length > 1 }]} aria-labelledby={categoryTag}>
 							<h2 id={categoryTag} class="heading__icon heading" data-icon={categoryTag}>
 								{collectiveSkills.length === 1

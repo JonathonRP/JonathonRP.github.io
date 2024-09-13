@@ -128,4 +128,3 @@
 <SchemaOrg {...schemaOrgProps} />
 <OpenGraph {...openGraphProps} />
 <Twitter {...twitterProps} />
-<html lang={siteLanguage} />

@@ -1,6 +1,10 @@
- <svelte:options runes />
- <script lang="ts">
-	const {  basics, ...restProps }: {
+<svelte:options runes />
+
+<script lang="ts">
+	const {
+		basics,
+		...restProps
+	}: {
 		basics: {
 			location?: {
 				address: string;
@@ -12,17 +16,22 @@
 			phone?: string;
 			email?: string;
 			profiles?: { network: string; username: string; url: string }[];
-		}
+		};
 	} = $props();
 
-	const { location, phone, email, profiles = [] } = $derived(basics)
+	const { location, phone, email, profiles = [] } = $derived(basics);
 </script>
 
 <section class="contact-details" {...restProps}>
 	<table border={0} width={175.47}>
-		{#if (location)}
+		{#if location}
 			<tr>
-				<td colspan="2" style="width: 170px" class="contact-details__text" aria-label="{location.city}, ${location.region}">
+				<td
+					colspan="2"
+					style="width: 170px"
+					class="contact-details__text"
+					aria-label="{location.city}, ${location.region}"
+				>
 					<p>{location.city}, {location.region}</p>
 				</td>
 				<td style="width: 15px" class="contact-details__icon location">
@@ -30,32 +39,55 @@
 			</tr>
 		{/if}
 
-		{#if (phone)}
+		{#if phone}
 			<tr>
-				<td colspan="2" style="width: 170px" class="contact-details__text">
+				<td
+					colspan="2"
+					style="width: 170px"
+					class="contact-details__text"
+				>
 					<p>{phone}</p>
 				</td>
 				<td style="width: 15px" class="contact-details__icon phone">
 				</td>
 			</tr>
 		{/if}
-		{#if (email)}
+		{#if email}
 			<tr>
-				<td colspan="2" style="width: 170px" class="contact-details__link">
-						<a href="mailto:{email}" rel="external nofollow noopener noreferrer" target="blank">{email}</a>
+				<td
+					colspan="2"
+					style="width: 170px"
+					class="contact-details__link"
+				>
+					<a
+						href="mailto:{email}"
+						rel="external nofollow noopener noreferrer"
+						target="blank">{email}</a
+					>
 				</td>
 				<td style="width: 15px" class="contact-details__icon email">
 				</td>
 			</tr>
 		{/if}
 
-		{#if (profiles)}
+		{#if profiles}
 			{#each profiles as profile (profile.network)}
 				<tr>
-					<td colspan="2" style="width: 170px" class="contact-details__link">
-							<a href={profile.url} rel="external nofollow noopener noreferrer" target="blank">{profile.username}</a>
+					<td
+						colspan="2"
+						style="width: 170px"
+						class="contact-details__link"
+					>
+						<a
+							href={profile.url}
+							rel="external nofollow noopener noreferrer"
+							target="blank">{profile.username}</a
+						>
 					</td>
-					<td style="width: 15px" class="contact-details__icon {profile.network.toLowerCase()}">
+					<td
+						style="width: 15px"
+						class="contact-details__icon {profile.network.toLowerCase()}"
+					>
 					</td>
 				</tr>
 			{/each}
@@ -64,11 +96,13 @@
 </section>
 
 <style lang="scss">
-	@use '@/styles/abstracts/mixins' as *;
+	@use "@/styles/abstracts/mixins" as *;
 
-	a {
-		&::after {
-			content: none;
+	:global(section#resume.resume) {
+		a {
+			&:after {
+				content: none;
+			}
 		}
 	}
 
@@ -83,7 +117,7 @@
 		font-size: 0.85rem;
 
 		// &[data-visibility='desktop'] {
-			// grid-template-rows: repeat(var(--grid-rows), 25px);
+		// grid-template-rows: repeat(var(--grid-rows), 25px);
 
 		// 	@include respond-to(sm) {
 		// 		display: block;
@@ -100,7 +134,7 @@
 			// text-align: center;
 			padding-block: 0;
 			// margin-inline-end: .5em;
-			padding-inline-end: .25em;
+			padding-inline-end: 0.25em;
 		}
 
 		&__icon {
