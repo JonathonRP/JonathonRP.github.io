@@ -7,7 +7,6 @@ export class Content {
         let current: string;
         const entries = await getCollection('resume', ({id}) => {
             current = id ?? '';
-            console.log(id)
             if(maximumBetween([current, max])) {
                 max = current;
             }
