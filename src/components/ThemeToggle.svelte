@@ -1,34 +1,43 @@
 <svelte:options runes />
 <script lang="ts">
-	const darkmodeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-	const state = $state({ isDark: darkmodeMediaQuery.matches });
 	const themeAttr = "data-theme";
 	const scheme = "color-scheme";
-	
-	$effect(() => {
-		const handler = (e: MediaQueryListEvent) => {
-			state.isDark = e.matches;
-		};
 
-		// @ts-expect-error
-		'addEventListener' in darkmodeMediaQuery ? darkmodeMediaQuery.addEventListener("change", handler) : darkmodeMediaQuery.addListener(handler);
+	$effect.root(() => {
+		const darkMode = window.matchMedia("(prefers-color-scheme: dark)");
+		const themeState = $state({ inDarkMode: darkMode.matches });
+		
+		$effect(() => {
+			const handler = (e: MediaQueryListEvent) => {
+				themeState.inDarkMode = e.matches;
+			};
 
-		// @ts-expect-error
-		return () => 'removeEventListener' in darkmodeMediaQuery ? darkmodeMediaQuery.removeEventListener("change", handler) : darkmodeMediaQuery.removeListener(handler);
-	});
-	
-	$effect(() => {
-		const theme = state.isDark ? "dark" : "light";
-		document.documentElement.setAttribute(themeAttr, theme);
-		document.documentElement.style.setProperty(scheme, theme);
-	});
+			// @ts-expect-error
+			'addEventListener' in darkMode ? darkMode.addEventListener("change", handler) : darkMode.addListener(handler);
 
-	function toggle_theme(event: any) {
-		state.isDark = !state.isDark;
-	}
+			// @ts-expect-error
+			return () => 'removeEventListener' in darkMode ? darkMode.removeEventListener("change", handler) : darkMode.removeListener(handler);
+		});
+		
+		$effect(() => {
+			const theme = themeState.inDarkMode ? "dark" : "light";
+			document.documentElement.setAttribute(themeAttr, theme);
+			document.documentElement.style.setProperty(scheme, theme);
+		});
+
+		function toggle_theme(event: any) {
+			themeState.inDarkMode = !themeState.inDarkMode;
+		}
+
+		const themeToggle = document.getElementById("theme-switcher");
+		themeToggle?.setAttribute('checked', themeState.inDarkMode.toString());
+		themeToggle?.addEventListener('click', toggle_theme);
+
+		return () => themeToggle?.removeEventListener('click', toggle_theme);
+	})
 </script>
 
-<input class="theme-switch" id="theme-switcher" type="checkbox" hidden checked={state.isDark} onclick={toggle_theme} />
+<input class="theme-switch" id="theme-switcher" type="checkbox" hidden />
 <label
 	for="theme-switcher"
 	class="theme-switch__label"

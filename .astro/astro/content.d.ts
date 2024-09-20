@@ -144,13 +144,12 @@ declare module 'astro:content' {
 	};
 
 	type DataEntryMap = {
-		"resume": {
-"2022/data": {
-	id: "2022/data";
+		"resume": Record<string, {
+  id: string;
   collection: "resume";
-  data: InferEntrySchema<"resume">
-};
-};
+  data: InferEntrySchema<"resume">;
+  rendered?: RenderedContent 
+}>;
 
 	};
 

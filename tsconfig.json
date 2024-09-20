@@ -1,7 +1,6 @@
 {
 	"extends": "astro/tsconfigs/strict",
 	"include": [
-		"./src/types/**/*.d.ts",
 		"./src/**/*.js",
 		"./src/**/*.ts",
 		"./src/**/*.svelte",
@@ -14,11 +13,12 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
-			"@/*": ["src/*"]
+			"@/*": ["src/*"],
+			"@components": ["src/components/*"],
 		},
-		"target": "ES2022",
+		"target": "ESNext",
 		"strict": true,
-		"moduleResolution": "Node",
+		"moduleResolution": "Bundler",
 		"module": "ESNext",
 		"noEmit": true,
 		"sourceMap": true,

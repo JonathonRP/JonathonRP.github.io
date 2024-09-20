@@ -1,14 +1,18 @@
 import { getCollection } from "astro:content";
+import { max as maximumBetween } from "date-fns/max";
 
 export class Content {
     static async getLatestResumeData() {
-        let max: number = 0;
-        let current = 0;
+        let max: string;
+        let current: string;
         const entries = await getCollection('resume', ({id}) => {
-            if((current = Number(id.split('/')[0])) > max) {
-                max = current
+            current = id ?? '';
+            console.log(id)
+            if(maximumBetween([current, max])) {
+                max = current;
             }
-            return id.startsWith(`${max}/`);
+
+            return id === max;
         });
 
         return entries[0]?.data;

@@ -1,5 +1,6 @@
 {
     "jest.jestCommandLine": "deno task test",
-    "jest.rootPath": "./tests"
+    "jest.rootPath": "./tests",
+    "typescript.tsdk": "node_modules/typescript/lib"
     
 }

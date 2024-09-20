@@ -1,7 +1,8 @@
 import { defineCollection, z } from "astro:content";
+import { glob, file } from "astro/loaders";
 
 const resume = defineCollection({
-    type: 'data',
+    loader: glob({ pattern: "**\/*.json", base: "./src/data/resume" }),
     schema: z.object({
         basics: z.object({
             name: z.string(),
@@ -99,5 +100,5 @@ const resume = defineCollection({
 });
 
 export const collections = {
-    'resume': resume,
+    resume
 }
