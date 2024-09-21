@@ -63,36 +63,38 @@
 			{:else}
 				<div class="timeline__point"></div>
 			{/if}
-			<div class="timeline__header">
+			<div class="timeline__content">
 				{#if type.icon}
 					<span class="timeline__icon" data-icon={type.icon} />
 				{/if}
-				<div class="timeline__title">{type.education ? experience.institution : experience.name}</div>
-			</div>
-			<div class="timeline__body">
-				{#if type.work}
-					<p class="timeline__heading">{experience.position}</p>
-					{#if experience.useSummary}
-						<p>{experience.summary}</p>
-					{:else if experience.highlights}
-						<ul class="timeline__responsabilities-achievements [ flow ]">
-							{#each experience.highlights as highlight}
-								<li>
-									{highlight}
-								</li>
-							{/each}
-						</ul>
-					{/if}
-				{:else if type.certificates}
-					<p class="timeline__issuer">
-						{experience.issuer}
-					</p>
-				{:else if type.education}
-					<p class="timeline__heading">{experience.area}</p>
-					<p class="timeline__degree">
-						{experience.studyType}
-					</p>
-				{/if}
+				<div>
+					<h1 class="timeline__header">{type.education ? experience.institution : experience.name}</h1>
+					<div class="timeline__body">
+						{#if type.work}
+							<h2 class="timeline__sub">{experience.position}</h2>
+							{#if experience.useSummary}
+								<p>{experience.summary}</p>
+							{:else if experience.highlights}
+								<ul class="timeline__responsabilities-achievements [ flow ]">
+									{#each experience.highlights as highlight}
+										<li>
+											{highlight}
+										</li>
+									{/each}
+								</ul>
+							{/if}
+						{:else if type.certificates}
+							<p class="timeline__issuer">
+								{experience.issuer}
+							</p>
+						{:else if type.education}
+							<h2 class="timeline__sub">{experience.area}</h2>
+							<p class="timeline__degree">
+								{experience.studyType}
+							</p>
+						{/if}
+					</div>
+				</div>
 			</div>
 		</div>
 	{/each}
@@ -181,6 +183,29 @@
 			// }
 		}
 
+		&__duration {
+			font-weight: bold;
+			position: absolute;
+			top: 0;
+			left: -85px;
+			line-height: 1.2;
+			height: 20px;
+			width: 10%;
+			transform: translateX(-25%);
+			text-align: center;
+
+			// @include respond-to(sm) {
+			// 	position: absolute;
+			// 	top: 0;
+			// 	left: -85px;
+			// 	line-height: 1.2;
+			// 	height: 20px;
+			// 	width: 10%;
+			// 	transform: translateX(-25%);
+			// 	text-align: right;
+			// }
+		}
+
 		&__logo {
 			box-sizing: content-box;
 			position: absolute;
@@ -245,37 +270,19 @@
 			overflow: hidden;
 		}
 
-		&__header {
+		&__content {
 			display: flex;
 			flex-flow: row;
 			justify-content: flex-start;
-		}	
-
-		&__duration {
-			font-weight: bold;
-			position: absolute;
-			top: 0;
-			left: -85px;
-			line-height: 1.2;
-			height: 20px;
-			width: 10%;
-			transform: translateX(-25%);
-			text-align: center;
-
-			// @include respond-to(sm) {
-			// 	position: absolute;
-			// 	top: 0;
-			// 	left: -85px;
-			// 	line-height: 1.2;
-			// 	height: 20px;
-			// 	width: 10%;
-			// 	transform: translateX(-25%);
-			// 	text-align: right;
-			// }
+			[data-type='professional'] & {
+				flex-direction: row-reverse;
+				margin-inline: var(--small-space);
+			}
 		}
 
-		&__title {
+		&__header {
 			margin: 0;
+			padding: 0;
 			font-family: var(--secondary-ff);
 			// font-family: "Pacifico", cursive;
 			line-height: 1.5;
@@ -285,10 +292,22 @@
 			width: 100%;
 		}
 
-		&__heading {
+		&__sub {
 			margin: 0;
+			padding: 0;
 			line-height: 2;
 			font-weight: bold;
+			font-size: 0.75rem;
+		}
+
+		&__icon {
+			position:absolute;
+		}
+
+		&__body {
+			[data-type='professional'] & {
+				margin: 0 var(--tiny-space);
+			}
 		}
 
 		&__responsabilities-achievements {
@@ -319,12 +338,6 @@
 
 		&__degree {
 			margin-block: 0;
-		}
-
-		&[data-type='professional'] {
-			.timeline__body {
-				margin: 0 var(--tiny-space);
-			}
 		}
 
 		// @include respond-to(sm) {

@@ -124,10 +124,13 @@ section#resume.resume {
 
 	%badge {
 		display: inline-block;
-		padding-inline-end: var(--xsmall-space);
-		padding-block-start: var(--tiny-space);
-		font-size: 1rem;
-		// transform: translateY(6px);
+		// margin-inline: var(--xsmall-space);
+		// padding-inline: var(--small-space);
+		// margin-block-start: var(--tiny-space);
+		// padding-block-start: var(--tiny-space);
+		line-height: 1.2;
+		font-size: 1.5em;
+		// transform: translateY(-8px);
 
 		@include respond-to(sm) {
 			// transform: translateY(-10px);
