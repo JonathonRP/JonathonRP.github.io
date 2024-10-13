@@ -6,7 +6,7 @@ export const getBucket = <TKey, TValue>(
 	key: TKey,
 	buckets: KeyValuePair<TKey, TValue>[][],
 	{ getHashCode }: EqualityComparer<TKey>,
-	create: boolean = false
+	create: boolean = false,
 ) => {
 	const h = getHashCode(key);
 	const bucketIndex = mod(h, buckets.length);

@@ -18,5 +18,9 @@ export const GET: APIRoute = async () => {
 		],
 	};
 
-	return new Response(JSON.stringify(manifest), { status: 200, statusText: 'OK', headers: {'Content-Type': 'application/json'}});
-}
+	return new Response(JSON.stringify(manifest), {
+		status: 200,
+		statusText: 'OK',
+		headers: { 'Content-Type': 'application/json' },
+	});
+};

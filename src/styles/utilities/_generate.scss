@@ -19,7 +19,7 @@
 			t: block-start,
 			l: inline-start,
 			r: inline-end,
-			b: block-end
+			b: block-end,
 		);
 
 		@each $mod, $dir in $modifiers {

@@ -9,7 +9,7 @@ declare module '../Enumerable' {
 function aggregate<T, TOut>(
 	this: Enumerable<T>,
 	seed: TOut,
-	aggFunc: (prev: TOut, curr: T, idx: number) => TOut
+	aggFunc: (prev: TOut, curr: T, idx: number) => TOut,
 ): TOut {
 	let v = seed;
 	let i = 0;

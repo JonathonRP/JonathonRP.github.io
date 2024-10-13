@@ -1,26 +1,29 @@
 <svelte:options runes />
 <script lang="ts">
-	const themeAttr = "data-theme";
-	const scheme = "color-scheme";
+	const themeAttr = 'data-theme';
+	const scheme = 'color-scheme';
 
 	$effect.root(() => {
-		const darkMode = window.matchMedia("(prefers-color-scheme: dark)");
+		const darkMode = window.matchMedia('(prefers-color-scheme: dark)');
 		const themeState = $state({ inDarkMode: darkMode.matches });
-		
+
 		$effect(() => {
 			const handler = (e: MediaQueryListEvent) => {
 				themeState.inDarkMode = e.matches;
 			};
 
 			// @ts-expect-error
-			'addEventListener' in darkMode ? darkMode.addEventListener("change", handler) : darkMode.addListener(handler);
+			'addEventListener' in darkMode ? darkMode.addEventListener('change', handler) : darkMode.addListener(handler);
 
 			// @ts-expect-error
-			return () => 'removeEventListener' in darkMode ? darkMode.removeEventListener("change", handler) : darkMode.removeListener(handler);
+			return () =>
+				'removeEventListener' in darkMode
+					? darkMode.removeEventListener('change', handler)
+					: darkMode.removeListener(handler);
 		});
-		
+
 		$effect(() => {
-			const theme = themeState.inDarkMode ? "dark" : "light";
+			const theme = themeState.inDarkMode ? 'dark' : 'light';
 			document.documentElement.setAttribute(themeAttr, theme);
 			document.documentElement.style.setProperty(scheme, theme);
 		});
@@ -29,12 +32,12 @@
 			themeState.inDarkMode = !themeState.inDarkMode;
 		}
 
-		const themeToggle = document.getElementById("theme-switcher");
+		const themeToggle = document.getElementById('theme-switcher');
 		themeToggle?.setAttribute('checked', themeState.inDarkMode.toString());
 		themeToggle?.addEventListener('click', toggle_theme);
 
 		return () => themeToggle?.removeEventListener('click', toggle_theme);
-	})
+	});
 </script>
 
 <input class="theme-switch" id="theme-switcher" type="checkbox" hidden />
@@ -42,7 +45,8 @@
 	for="theme-switcher"
 	class="theme-switch__label"
 	aria-label="switch theme between 'light' or 'dark'"
-	title="theme toggle">
+	title="theme toggle"
+>
 </label>
 
 <style lang="scss">

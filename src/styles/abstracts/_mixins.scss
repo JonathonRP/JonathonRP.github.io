@@ -5,7 +5,6 @@
 	// @debug $selector;
 
 	.#{$class}::before {
-
 		@if $is-brand {
 			@extend %brand-icon;
 		} @else {

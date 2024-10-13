@@ -21,7 +21,7 @@ export class HashTable<TKey, TValue> implements Map<TKey, TValue> {
 		avgBucketFill: number,
 		initialCapacity: number,
 		comparer: EqualityComparer<TKey>,
-		hashTableFactory: (cap: number, comparer: EqualityComparer<TKey>) => HashTable<TKey, TValue>
+		hashTableFactory: (cap: number, comparer: EqualityComparer<TKey>) => HashTable<TKey, TValue>,
 	) {
 		this.buckets = buckets;
 		this.count = count;
@@ -110,9 +110,9 @@ export class HashTable<TKey, TValue> implements Map<TKey, TValue> {
 		const bucket = getBucket(key, this.buckets, this.comparer);
 		return bucket
 			? linq(bucket)
-					.where(([k]) => this.comparer.equals(k, key))
-					.select(([, v]) => v)
-					.firstOrDefault()
+				.where(([k]) => this.comparer.equals(k, key))
+				.select(([, v]) => v)
+				.firstOrDefault()
 			: undefined;
 	}
 	[Symbol.toStringTag]: 'Map';

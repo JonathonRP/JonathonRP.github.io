@@ -28,14 +28,14 @@
 	--icon: '\f186';
 	content: var(--icon);
 
-	@at-root[data-theme='dark'] & {
+	@at-root [data-theme='dark'] & {
 		--icon: '\f185';
 	}
 
 	@media (prefers-color-scheme: dark) {
 		--icon: '\f185';
 
-		@at-root[data-theme='light'] & {
+		@at-root [data-theme='light'] & {
 			--icon: '\f186';
 		}
 	}
@@ -133,7 +133,7 @@ section#resume.resume {
 	@include icon('timeline__icon') {
 		@extend %badge;
 
-		@at-root #{selector-unify(&, "[data-icon='work']")}{
+		@at-root #{selector-unify(&, "[data-icon='work']")} {
 			content: '\f0b1';
 		}
 		@at-root #{selector-unify(&, "[data-icon='certificates']")} {
@@ -186,7 +186,7 @@ section#resume.resume {
 	.subheading {
 		padding-inline-end: var(--mini-space);
 		float: left;
-		font-size: .95rem;
+		font-size: 0.95rem;
 	}
 
 	.text-accent {

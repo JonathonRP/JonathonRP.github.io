@@ -47,13 +47,13 @@ declare module '../Enumerable' {
 		toLookup<TKey>(
 			this: Enumerable<T>,
 			keySelector: IndexedSelector<T, TKey>,
-			equalityComparer?: EqualityComparer<TKey>
+			equalityComparer?: EqualityComparer<TKey>,
 		): MapIterable<TKey, Enumerable<T>>;
 		toLookup<TKey, TValue>(
 			this: Enumerable<T>,
 			keySelector: IndexedSelector<T, TKey>,
 			valueSelector: IndexedSelector<T, TValue>,
-			equalityComparer?: EqualityComparer<TKey>
+			equalityComparer?: EqualityComparer<TKey>,
 		): MapIterable<TKey, Enumerable<TValue>>;
 	}
 }
@@ -65,7 +65,7 @@ const isValueSelector = <T, TValue>(obj: any): obj is IndexedSelector<T, TValue>
 
 export const createComparerMap = <K, V>(
 	capacity: number = 0,
-	comparer?: { getHashCode: (value: K) => number; equals: (a: K, b: K) => boolean }
+	comparer?: { getHashCode: (value: K) => number; equals: (a: K, b: K) => boolean },
 ): Map<K, V> => {
 	if (!comparer) {
 		return new Map<K, V>();
@@ -76,19 +76,19 @@ export const createComparerMap = <K, V>(
 function toLookup<T, TKey>(
 	this: Enumerable<T>,
 	keySelector: IndexedSelector<T, TKey>,
-	equalityComparer?: EqualityComparer<TKey>
+	equalityComparer?: EqualityComparer<TKey>,
 ): MapIterable<TKey, Enumerable<T>>;
 function toLookup<T, TKey, TValue>(
 	this: Enumerable<T>,
 	keySelector: IndexedSelector<T, TKey>,
 	valueSelector: IndexedSelector<T, TValue>,
-	equalityComparer?: EqualityComparer<TKey>
+	equalityComparer?: EqualityComparer<TKey>,
 ): MapIterable<TKey, Enumerable<TValue>>;
 function toLookup<T, TKey, TValue = TKey>(
 	this: Enumerable<T>,
 	keySelector: IndexedSelector<T, TKey>,
 	valueSelectorOrEqualityComparer?: IndexedSelector<T, TValue> | EqualityComparer<TKey>,
-	equalityComparer?: EqualityComparer<TKey>
+	equalityComparer?: EqualityComparer<TKey>,
 ): MapIterable<TKey, Enumerable<T | TValue>> {
 	let comparer: EqualityComparer<TKey> | undefined;
 	let valueSelector: IndexedSelector<T, TValue> | undefined;

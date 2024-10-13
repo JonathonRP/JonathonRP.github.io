@@ -1,13 +1,13 @@
 <svelte:options runes />
 <script lang="ts">
 	import { format, parseISO } from 'date-fns';
-	import { Work, Education, Certificates } from  '@/lib';
+	import { Certificates, Education, Work } from '@/lib';
 
 	type TimelineItemType = Work | Education | Certificates;
 
 	const {
 		experiences,
-		type
+		type,
 	}: {
 		experiences: {
 			image: string;
@@ -25,14 +25,15 @@
 			highlights?: string[];
 			studyType?: string;
 		}[];
-		type: TimelineItemType
+		type: TimelineItemType;
 	} = $props();
 
 	const Logo = (image: string) => {
-		return Object.entries(import.meta.glob('@/images/*.{png,jpg}', { eager: true, query: '?url', import: 'default' })).reduce(
-			(prev, [key, value]) => ({ ...prev, [key.substring(key.indexOf(image))]: value as string }),
-			{} as Record<string, string>
-		)[image];
+		return Object.entries(import.meta.glob('@/images/*.{png,jpg}', { eager: true, query: '?url', import: 'default' }))
+			.reduce(
+				(prev, [key, value]) => ({ ...prev, [key.substring(key.indexOf(image))]: value as string }),
+				{} as Record<string, string>,
+			)[image];
 	};
 </script>
 
@@ -40,15 +41,24 @@
 	<h2
 		id="{type.heading.id}-title"
 		class="timeline__section-heading"
-		>
+	>
 		{type.heading.title}
 	</h2>
 {/if}
 <div class="timeline" data-type={type.experience}>
-	{#each experiences as {startDate, endDate, date, eventDate = format(
-			parseISO((type.work ? startDate : type.certificates ? date : endDate) ?? ''),
-			'MMM yyyy'
-		), ...experience} (eventDate)}
+	{#each experiences as
+		{
+	startDate,
+	endDate,
+	date,
+	eventDate = format(
+		parseISO((type.work ? startDate : type.certificates ? date : endDate) ?? ''),
+		'MMM yyyy',
+	),
+	...experience
+}
+		(eventDate)
+	}
 		<div class="timeline__item">
 			<time class="timeline__duration" datetime={eventDate}>{eventDate}</time>
 			{#if experience.image}

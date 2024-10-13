@@ -3,45 +3,45 @@
 // layout
 
 html {
-    print-color-adjust: exact;
-    -webkit-print-color-adjust: exact;
+	print-color-adjust: exact;
+	-webkit-print-color-adjust: exact;
 }
 
 main {
-    display: grid;
+	display: grid;
 }
 
 section#resume.resume {
-    display: none;
-    grid-column: 1/-1;
-    max-width: 297mm;
-    max-height: 420mm;
-    background-color: var(--resume-bg);
-    padding: var(--default-space);
-    color: var(--resume-text);
-    filter: drop-shadow(0 10px 8px rgb(0 0 0 / .04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+	display: none;
+	grid-column: 1/-1;
+	max-width: 297mm;
+	max-height: 420mm;
+	background-color: var(--resume-bg);
+	padding: var(--default-space);
+	color: var(--resume-text);
+	filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
 
-    @include respond-to(lg) {
-        display: grid;
-        // thead, tbody {
-        //     width: 100%;
-        //     display: grid;
-        //     grid-auto-flow: column;
-        //     // justify-content: space-between;
-        // }
-        // grid-template-columns: 2fr 1fr;
-        // grid-template-rows: repeat(var(--grid-rows, 7), auto);
-    }
+	@include respond-to(lg) {
+		display: grid;
+		// thead, tbody {
+		//     width: 100%;
+		//     display: grid;
+		//     grid-auto-flow: column;
+		//     // justify-content: space-between;
+		// }
+		// grid-template-columns: 2fr 1fr;
+		// grid-template-rows: repeat(var(--grid-rows, 7), auto);
+	}
 }
 
 @page {
-    size: A3;
-    margin: 0;
+	size: A3;
+	margin: 0;
 }
 
 @media print {
-    .navbar {
-        display: none;
-        visibility: hidden;
-    }
+	.navbar {
+		display: none;
+		visibility: hidden;
+	}
 }

@@ -1,4 +1,4 @@
-import { Enumerable, type HandleImplConst, type EqualityComparer, type IndexedSelector } from '../Enumerable';
+import { Enumerable, type EqualityComparer, type HandleImplConst, type IndexedSelector } from '../Enumerable';
 import WrapperIterable from '../WrapperIterable';
 
 class GroupedIterable<TKey, TValue> extends WrapperIterable<TValue> {
@@ -20,7 +20,7 @@ declare module '../Enumerable' {
 		groupBy<TKey>(
 			this: Enumerable<T>,
 			keySelector: IndexedSelector<T, TKey>,
-			equalityComparer?: EqualityComparer<TKey>
+			equalityComparer?: EqualityComparer<TKey>,
 		): Enumerable<HandleImplConst<GroupedIterable<TKey, T>>>;
 	}
 }
@@ -28,7 +28,7 @@ declare module '../Enumerable' {
 function groupBy<T, TKey>(
 	this: Enumerable<T>,
 	keySelector: IndexedSelector<T, TKey>,
-	equalityComparer?: EqualityComparer<TKey>
+	equalityComparer?: EqualityComparer<TKey>,
 ): Enumerable<HandleImplConst<GroupedIterable<TKey, T>>> {
 	const lookup = this.toLookup(keySelector, equalityComparer);
 

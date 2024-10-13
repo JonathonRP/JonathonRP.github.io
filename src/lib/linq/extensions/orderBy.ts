@@ -74,7 +74,7 @@ export default class OrderedIterable<T> extends GeneratorIterable<T> {
 	constructor(
 		src: Enumerable<OrderedItem<T>>,
 		comparerBuilder: ThenComparerBuilder<OrderedItem<T>>,
-		depth: number = 0
+		depth: number = 0,
 	) {
 		const comparer = comparerBuilder.build();
 		/* istanbul ignore next */

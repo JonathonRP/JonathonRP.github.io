@@ -6,7 +6,7 @@ export const resize = <TKey, TValue>(
 	count: number,
 	buckets: Iterable<KeyValuePair<TKey, TValue>[] | undefined>,
 	{ equals, getHashCode }: EqualityComparer<TKey>,
-	hashTableFactory: (cap: number, comparer: EqualityComparer<TKey>) => HashTable<TKey, TValue>
+	hashTableFactory: (cap: number, comparer: EqualityComparer<TKey>) => HashTable<TKey, TValue>,
 ) => {
 	const keyValuePairs = linq(buckets)
 		.where((b) => typeof b !== 'undefined')

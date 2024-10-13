@@ -16,7 +16,7 @@ function average<T extends number>(this: Enumerable<T>): number {
 			acc.tot += val;
 			acc.count++;
 			return acc;
-		}
+		},
 	);
 	if (f.count === 0) {
 		throw Error('sequence contains no elements');

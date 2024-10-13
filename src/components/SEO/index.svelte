@@ -43,7 +43,7 @@
 		twitterImage = {
 			url: defaultTwitterImage.src,
 			alt: defaultAlt,
-		}
+		},
 	}: {
 		article: boolean;
 		breadcrumbs: { name: string; slug: string }[];
@@ -55,24 +55,24 @@
 		title: string;
 		timeToRead: number;
 		featuredImage: {
-			url: typeof defaultFeaturedImage.src,
-			alt: string,
-			width: number,
-			height: number,
-			caption: string,
+			url: typeof defaultFeaturedImage.src;
+			alt: string;
+			width: number;
+			height: number;
+			caption: string;
 		};
 		ogImage: {
-			url: typeof defaultOgImage.src,
-			alt: string,
+			url: typeof defaultOgImage.src;
+			alt: string;
 		};
 		ogSquareImage: {
-			url: typeof defaultOgSquareImage.src,
-			alt: string,
+			url: typeof defaultOgSquareImage.src;
+			alt: string;
 		};
 		twitterImage: {
-			url: typeof defaultTwitterImage.src,
-			alt: string,
-		}
+			url: typeof defaultTwitterImage.src;
+			alt: string;
+		};
 	} = $props();
 
 	const { ogLanguage, siteLanguage, siteTitleAlt, siteTitle, githubPage, linkedinProfile } = website;
