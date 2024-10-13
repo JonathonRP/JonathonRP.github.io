@@ -30,7 +30,7 @@ jobs:
       - name: Run svelte-check
         run: deno task check
 
-  Format&Lint:
+  Format-Lint:
     runs-on: ubuntu-latest
     name: Format & Lint
     strategy:
