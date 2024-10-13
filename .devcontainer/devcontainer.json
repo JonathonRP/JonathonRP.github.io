@@ -39,7 +39,7 @@
 				"svelte.plugin.css.diagnostics.enable": false,
 
 				"editor.codeActionsOnSave": {
-					"source.fixAll.ts": true,
+					"source.fixAll.ts": "always",
 					// "source.organizeImports": true
 				},
 
@@ -52,34 +52,6 @@
 				"[javascript][typescript]": {
 					"editor.defaultFormatter": "denoland.vscode-deno"
 				},
-
-				"dotfiles.repository": "https://github.com/JonathonRP/.dotfiles",
-				"dotfiles.targetPath": "~/dotfiles",
-
-				"editor.fontFamily": "'cascadia code', Consolas, 'Courier New', monospace",
-				"terminal.integrated.fontFamily": "'MesloLGM Nerd Font'",
-				"terminal.integrated.defaultProfile.linux": "fish",
-				"terminal.integrated.profiles.linux": {
-					"bash": {
-						"path": "bash",
-						"icon": "terminal-bash"
-					},
-					"zsh": {
-						"path": "zsh"
-					},
-					"fish": {
-						"path": "fish",
-						"icon": "terminal-linux"
-					},
-					"tmux": {
-						"path": "tmux",
-						"icon": "terminal-tmux"
-					},
-					"pwsh": {
-						"path": "pwsh",
-						"icon": "terminal-powershell"
-					}
-				}
 			},
 			
 			// Add the IDs of extensions you want installed when the container is created.
@@ -87,8 +59,13 @@
 				"ms-azuretools.vscode-docker",
 				"denoland.vscode-deno",
 				"svelte.svelte-vscode",
+				"astro-build.astro-vscode",
+				"YoavBls.pretty-ts-errors",
+				"MylesMurphy.prettify-ts",
+				"Orta.vscode-twoslash-queries",
 				"csstools.postcss",
-				"eamodio.gitlens"
+				"eamodio.gitlens",
+				"mattpocock.ts-error-translator"
 			]
 		}
 	},

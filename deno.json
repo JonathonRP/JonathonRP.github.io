@@ -7,14 +7,14 @@
             "exclude": ["no-unused-vars"]
         }
     },
-    
     "fmt": {
-        "useTabs": false,
+        "useTabs": true,
         "lineWidth": 120,
         "indentWidth": 2,
         "semiColons": true,
         "singleQuote": true,
         "proseWrap": "preserve",
         "include": ["src/", "./**/*.ts"]
-    }
+    },
+    "unstable": ["byonm", "fmt-component"]
 }

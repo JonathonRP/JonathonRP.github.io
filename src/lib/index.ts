@@ -1,4 +1,4 @@
-export { linq, hash } from './linq/index.ts';
+export { hash, linq } from './linq/index.ts';
 
 export class Work {
 	heading = undefined;
@@ -6,34 +6,32 @@ export class Work {
 	work = true;
 	education = false;
 	certificates = false;
-	experience = 'professional'
-};
+	experience = 'professional';
+}
 
 export class Education {
 	heading = {
 		id: 'ed',
-		icon: 'education',
-		title: 'Education'
+		title: 'Education',
 	};
-	icon = undefined;
+	icon = 'education';
 	work = false;
 	education = true;
 	certificates = false;
 	experience = undefined;
-};
+}
 
 export class Certificates {
 	heading = {
 		id: 'cert',
-		icon: 'certificates',
-		title: 'Certificates'
+		title: 'Certificates',
 	};
-	icon = undefined;
+	icon = 'certificates';
 	work = false;
 	education = false;
 	certificates = true;
 	experience = undefined;
-};
+}
 
 export const createLoadObserver = (handler) => {
 	let waiting = 0;

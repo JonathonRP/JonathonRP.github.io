@@ -1,6 +1,10 @@
 {
     "jest.jestCommandLine": "deno task test",
     "jest.rootPath": "./tests",
-    "typescript.tsdk": "node_modules/typescript/lib"
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "deno.codeLens.references": true,
+    "deno.codeLens.implementations": true,
+    "deno.codeLens.referencesAllFunctions": true,
+    "deno.codeLens.test": true
     
 }

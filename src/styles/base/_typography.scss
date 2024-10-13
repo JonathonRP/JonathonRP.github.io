@@ -104,13 +104,6 @@ section#resume.resume {
 		@at-root #{selector-unify(&, "[data-icon='soft-skills']")} {
 			content: '\f187';
 		}
-		@at-root #{selector-unify(&, "[data-icon='certificates']")} {
-			//content: '\f0a3';
-			content: '\f5f3';
-		}
-		@at-root #{selector-unify(&, "[data-icon='education']")} {
-			content: '\f19d';
-		}
 		@at-root #{selector-unify(&, "[data-icon='personal-projects']")} {
 			content: '\f85d';
 		}
@@ -142,6 +135,13 @@ section#resume.resume {
 
 		@at-root #{selector-unify(&, "[data-icon='work']")}{
 			content: '\f0b1';
+		}
+		@at-root #{selector-unify(&, "[data-icon='certificates']")} {
+			//content: '\f0a3';
+			content: '\f5f3';
+		}
+		@at-root #{selector-unify(&, "[data-icon='education']")} {
+			content: '\f19d';
 		}
 	}
 

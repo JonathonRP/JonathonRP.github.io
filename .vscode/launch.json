@@ -5,18 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
-			"name": "full stack edge",
-			"request": "launch",
+            "name": "full stack edge",
+            "request": "launch",
 			"type": "node",
 			"runtimeArgs": ["task", "dev"],
             "runtimeExecutable": "deno",
-            "attachSimplePort": 9229,
 			"console": "integratedTerminal",
 			"skipFiles": ["<node_internals>/**"],
+            "attachSimplePort": 9229,
 			"serverReadyAction": {
-				"pattern": "https://localhost:.*m([0-9]+)",
-				"uriFormat": "https://localhost:%s/overview",
-				"action": "debugWithEdge"
+                "pattern": "\\bLocal\\s+(https?://\\S+\\d)",
+				"uriFormat": "%s/resume",
+				"action": "debugWithEdge",
+                "killOnServerStop": true
 			}
 		},
         // {

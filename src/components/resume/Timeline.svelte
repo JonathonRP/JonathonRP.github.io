@@ -39,8 +39,8 @@
 {#if type.heading}
 	<h2
 		id="{type.heading.id}-title"
-		class="heading__icon timeline__section-heading"
-		data-icon={type.heading.icon}>
+		class="timeline__section-heading"
+		>
 		{type.heading.title}
 	</h2>
 {/if}
@@ -64,14 +64,11 @@
 				<div class="timeline__point"></div>
 			{/if}
 			<div class="timeline__content">
-				{#if type.icon}
-					<span class="timeline__icon" data-icon={type.icon} />
-				{/if}
-				<div>
-					<h1 class="timeline__header">{type.education ? experience.institution : experience.name}</h1>
+				<div style="width: 100%">
+					<h3 class="timeline__header">{type.education ? experience.institution : experience.name}</h3>
 					<div class="timeline__body">
 						{#if type.work}
-							<h2 class="timeline__sub">{experience.position}</h2>
+							<h4 class="timeline__sub">{experience.position}</h4>
 							{#if experience.useSummary}
 								<p>{experience.summary}</p>
 							{:else if experience.highlights}
@@ -88,13 +85,14 @@
 								{experience.issuer}
 							</p>
 						{:else if type.education}
-							<h2 class="timeline__sub">{experience.area}</h2>
+							<h4 class="timeline__sub">{experience.area}</h4>
 							<p class="timeline__degree">
 								{experience.studyType}
 							</p>
 						{/if}
 					</div>
 				</div>
+				<span class="timeline__icon" data-icon={type.icon} />
 			</div>
 		</div>
 	{/each}
@@ -273,19 +271,19 @@
 		&__content {
 			display: flex;
 			flex-flow: row;
+			flex-direction: row-reverse;
 			justify-content: flex-start;
-			[data-type='professional'] & {
-				flex-direction: row-reverse;
-				margin-inline: var(--small-space);
-			}
+			margin-inline: var(--small-space);
+			// [data-type='professional'] & {
+			// }
 		}
 
 		&__header {
-			margin: 0;
-			padding: 0;
+			// margin: 0;
+			// padding: 0;
 			font-family: var(--secondary-ff);
 			// font-family: "Pacifico", cursive;
-			line-height: 1.5;
+			// line-height: 1.5;
 			font-size: 0.99rem;
 			color: var(--accent-color);
 			border-bottom: 1px solid var(--primary-color);
@@ -293,21 +291,19 @@
 		}
 
 		&__sub {
-			margin: 0;
-			padding: 0;
-			line-height: 2;
+			// margin: 0;
+			// padding: 0;
+			// line-height: 2;
 			font-weight: bold;
-			font-size: 0.75rem;
+			// font-size: 0.75rem;
 		}
 
 		&__icon {
-			position:absolute;
+			position: absolute;
 		}
 
 		&__body {
-			[data-type='professional'] & {
-				margin: 0 var(--tiny-space);
-			}
+			margin: 0 var(--tiny-space);
 		}
 
 		&__responsabilities-achievements {
