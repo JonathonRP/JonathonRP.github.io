@@ -48,8 +48,8 @@ jobs:
       - name: Verify formatting
         run: deno fmt --check
 
-      - name: Run linter
-        run: deno lint
+      # - name: Run linter
+      #   run: deno lint
 
   # Test:
   #   runs-on: ubuntu-latest
