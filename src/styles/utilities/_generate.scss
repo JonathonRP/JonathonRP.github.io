@@ -1,56 +1,56 @@
-@use '../abstracts' as *;
+@use "../abstracts" as *;
 
 // generated utility classes
 @each $size, $value in $spacings {
-	$i: index(($spacings), ($size $value)) - 1;
+  $i: index(($spacings), ($size $value)) - 1;
 
-	.p-#{$i} {
-		padding: #{$value};
-	}
-	.m-#{$i} {
-		margin: #{$value};
-	}
+  .p-#{$i} {
+    padding: #{$value};
+  }
+  .m-#{$i} {
+    margin: #{$value};
+  }
 
-	// respond to break point size
-	@each $screen-size, $screen-value in $breakpoints {
-		$modifiers: (
-			x: inline,
-			y: block,
-			t: block-start,
-			l: inline-start,
-			r: inline-end,
-			b: block-end,
-		);
+  // respond to break point size
+  @each $screen-size, $screen-value in $breakpoints {
+    $modifiers: (
+      x: inline,
+      y: block,
+      t: block-start,
+      l: inline-start,
+      r: inline-end,
+      b: block-end,
+    );
 
-		@each $mod, $dir in $modifiers {
-			.p#{$mod}-#{$i} {
-				padding-#{$dir}: #{$value};
-			}
-			.m#{$mod}-#{$i} {
-				margin-#{$dir}: #{$value};
-			}
+    @each $mod, $dir in $modifiers {
+      .p#{$mod}-#{$i} {
+        padding-#{$dir}: #{$value};
+      }
+      .m#{$mod}-#{$i} {
+        margin-#{$dir}: #{$value};
+      }
 
-			.#{$screen-size}\:p-#{$i} {
-				@include respond-to($screen-size) {
-					padding: #{$value};
-				}
-			}
-			.#{$screen-size}\:m-#{$i} {
-				@include respond-to($screen-size) {
-					margin: #{$value};
-				}
-			}
+      .#{$screen-size}\:p-#{$i} {
+        @include respond-to($screen-size) {
+          padding: #{$value};
+        }
+      }
+      .#{$screen-size}\:m-#{$i} {
+        @include respond-to($screen-size) {
+          margin: #{$value};
+        }
+      }
 
-			.#{$screen-size}\:p#{$mod}-#{$i} {
-				@include respond-to($screen-size) {
-					padding-#{$dir}: #{$value};
-				}
-			}
-			.#{$screen-size}\:m#{$mod}-#{$i} {
-				@include respond-to($screen-size) {
-					margin-#{$dir}: #{$value};
-				}
-			}
-		}
-	}
+      .#{$screen-size}\:p#{$mod}-#{$i} {
+        @include respond-to($screen-size) {
+          padding-#{$dir}: #{$value};
+        }
+      }
+      .#{$screen-size}\:m#{$mod}-#{$i} {
+        @include respond-to($screen-size) {
+          margin-#{$dir}: #{$value};
+        }
+      }
+    }
+  }
 }

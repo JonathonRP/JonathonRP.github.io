@@ -1,8 +1,8 @@
 ---
-	import ThemeToggle from './ThemeToggle.svelte';
-	import siteConfig from '@/website.config';
+import ThemeToggle from "./ThemeToggle.svelte";
+import siteConfig from "@/website.config";
 
-	const { author } = siteConfig;
+const { author } = siteConfig;
 ---
 
 <nav class="navbar">
@@ -16,23 +16,25 @@
 			id="pdf"
 			class="download pdf"
 			href="resume/download/pdf"
-			download=`${author} Resume.pdf`
+			download=`${author} Resume`
 			title="download pdf"
-			data-astro-preload="hover">
+			data-astro-preload="hover"
+		>
 		</a>
 		<a
 			id="word"
 			class="download word"
 			href="resume/download/docx"
-			download=`${author} Resume.docx`
+			download=`${author} Resume`
 			title="download word"
-			data-astro-preload="hover">
+			data-astro-preload="hover"
+		>
 		</a>
 	</div>
 </nav>
 
 <style lang="scss">
-	@use '@/styles/abstracts/mixins' as *;
+	@use "@/styles/abstracts/mixins" as *;
 
 	.navbar {
 		background-color: var(--bg-color);
@@ -86,7 +88,7 @@
 					font-size: 1.25rem;
 				}
 				&::after {
-					content: ' ';
+					content: " ";
 					display: inline-block;
 					height: var(--xlarge-space);
 					width: var(--xlarge-space);

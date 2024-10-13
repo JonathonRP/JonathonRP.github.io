@@ -1,43 +1,48 @@
-@use '../abstracts/mixins' as *;
+@use "../abstracts/mixins" as *;
 
 .lg\:grid-column {
-	border-top: 2px solid var(--primary-color);
+  border-top: 2px solid var(--primary-color);
 
-	@include respond-to(lg) {
-		grid-row: span var(--grid-rows);
-	}
+  @include respond-to(lg) {
+    grid-row: span var(--grid-rows);
+  }
 }
 
 .content-grid {
-	--gutter-gap: 2rem;
-	--content-max-width: 70ch;
-	--breakout-max-width: 85ch;
-	--breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / 2);
+  --gutter-gap: 2rem;
+  --content-max-width: 70ch;
+  --breakout-max-width: 85ch;
+  --breakout-size: calc(
+    (var(--breakout-max-width) - var(--content-max-width)) / 2
+  );
 
-	display: grid;
-	grid-template-columns:
-		[full-width-start] minmax(var(--gutter-gap), 1fr)
-		[breakout-start] minmax(0, var(--breakout-size))
-		[content-start] min(100% - var(--gutter-gap) * 2, var(--content-max-width)) [content-end]
-		minmax(0, var(--breakout-size)) [breakout-end]
-		minmax(var(--gutter-gap), 1fr) [full-width-end];
+  display: grid;
+  grid-template-columns:
+    [full-width-start] minmax(var(--gutter-gap), 1fr)
+    [breakout-start] minmax(0, var(--breakout-size))
+    [content-start] min(
+    100% - var(--gutter-gap) * 2,
+    var(--content-max-width)
+  ) [content-end]
+    minmax(0, var(--breakout-size)) [breakout-end]
+    minmax(var(--gutter-gap), 1fr) [full-width-end];
 
-	& > :not(.break-out, .full-width) {
-		grid-column: content;
-	}
+  & > :not(.break-out, .full-width) {
+    grid-column: content;
+  }
 
-	& > .break-out {
-		grid-column: breakout;
-	}
+  & > .break-out {
+    grid-column: breakout;
+  }
 
-	& > .full-width {
-		grid-column: full-width;
-	}
+  & > .full-width {
+    grid-column: full-width;
+  }
 
-	& > .bg-full-width {
-		display: grid;
-		grid-template-columns: inherit;
-	}
+  & > .bg-full-width {
+    display: grid;
+    grid-template-columns: inherit;
+  }
 }
 
 // .full-width > :not(.break-out, .full-width) {
