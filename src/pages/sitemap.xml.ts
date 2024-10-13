@@ -1,7 +1,7 @@
-import type { APIRoute } from "astro";
+import type { APIRoute } from 'astro';
 
 const render = (pages: Array<string>): string =>
-  `<?xml version="1.0" encoding="UTF-8" ?>
+	`<?xml version="1.0" encoding="UTF-8" ?>
 <urlset
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
@@ -14,35 +14,35 @@ const render = (pages: Array<string>): string =>
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
 	>
 	${
-    pages
-      .map(
-        (element) => `
+		pages
+			.map(
+				(element) => `
 	<url>
 	  <loc>${element}</loc>
 	  <lastmod>${import.meta.env.VITE_BUILD_TIME}</lastmod>
 	</url>`,
-      )
-      .join("\n")
-  }
+			)
+			.join('\n')
+	}
 </urlset>`;
 
 export const GET: APIRoute = async ({ request, url }) => {
-  try {
-    const xml = render(["", "/Resume"]);
+	try {
+		const xml = render(['', '/Resume']);
 
-    return new Response(xml, {
-      status: 200,
-      statusText: "OK",
-      headers: {
-        "Cache-Control": `max-age=0, s-max-age=600`,
-        "Content-Type": "application/xml",
-      },
-    });
-  } catch (err) {
-    console.error(`Error in sitemap.xml: ${err}`);
-    return new Response(err, {
-      status: 500,
-      statusText: "Internal Server Error",
-    });
-  }
+		return new Response(xml, {
+			status: 200,
+			statusText: 'OK',
+			headers: {
+				'Cache-Control': `max-age=0, s-max-age=600`,
+				'Content-Type': 'application/xml',
+			},
+		});
+	} catch (err) {
+		console.error(`Error in sitemap.xml: ${err}`);
+		return new Response(err, {
+			status: 500,
+			statusText: 'Internal Server Error',
+		});
+	}
 };

@@ -1,40 +1,40 @@
-@forward "grid";
-@forward "generate";
-@forward "flow";
-@forward "extend";
+@forward 'grid';
+@forward 'generate';
+@forward 'flow';
+@forward 'extend';
 
-@use "../abstracts/mixins" as *;
+@use '../abstracts/mixins' as *;
 
 .bg-none {
-  background-color: transparent;
+	background-color: transparent;
 }
 
 .bg-primary {
-  background-color: var(--primary-color);
+	background-color: var(--primary-color);
 }
 
 .category {
-  --extend-space: 0;
+	--extend-space: 0;
 
-  > .sub-category {
-    --extend-space: var(--micro-space);
-    overflow: auto;
-    padding-inline: var(--small-space);
-  }
+	> .sub-category {
+		--extend-space: var(--micro-space);
+		overflow: auto;
+		padding-inline: var(--small-space);
+	}
 }
 
 .tags-catalog {
-  overflow: hidden;
+	overflow: hidden;
 }
 
 .lg\:bg-none {
-  @include respond-to(lg) {
-    background-color: transparent;
-  }
+	@include respond-to(lg) {
+		background-color: transparent;
+	}
 }
 
 .lg\:hidden {
-  @include respond-to(lg) {
-    display: none;
-  }
+	@include respond-to(lg) {
+		display: none;
+	}
 }

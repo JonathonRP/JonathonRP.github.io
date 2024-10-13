@@ -1,3 +1,3 @@
 .extend > :where(:not(:first-child)) {
-  padding-block-start: var(--extend-space, var(--mini-space));
+	padding-block-start: var(--extend-space, var(--mini-space));
 }

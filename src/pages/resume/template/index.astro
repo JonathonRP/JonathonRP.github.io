@@ -1,45 +1,45 @@
 ---
-import website from "@/website.config";
-import TemplateLayout from "@/layouts/template.astro";
-import Resume from "@/components/resume";
-import { Content } from "@/lib/content";
-import SEO from "@/components/SEO";
+import website from '@/website.config';
+import TemplateLayout from '@/layouts/template.astro';
+import Resume from '@/components/resume';
+import { Content } from '@/lib/content';
+import SEO from '@/components/SEO';
 
-const pageTitle = "Resume Template",
-  metadescription =
-    "Hard working and detail oriented professional, seeking a software development position where I can use my skills and contribute to the growth of a company.",
-  slug = "/template",
-  { author } = website;
+const pageTitle = 'Resume Template',
+	metadescription =
+		'Hard working and detail oriented professional, seeking a software development position where I can use my skills and contribute to the growth of a company.',
+	slug = '/template',
+	{ author } = website;
 
 const breadcrumbs = [
-  {
-    name: "Home",
-    slug: Astro.url.origin,
-  },
-  {
-    name: "Resume",
-    slug: "/resume",
-  },
-  {
-    name: pageTitle,
-    slug,
-  },
+	{
+		name: 'Home',
+		slug: Astro.url.origin,
+	},
+	{
+		name: 'Resume',
+		slug: '/resume',
+	},
+	{
+		name: pageTitle,
+		slug,
+	},
 ];
 
 const entityMeta = {
-  url: slug,
-  faviconWidth: 512,
-  faviconHeight: 512,
-  caption: author,
+	url: slug,
+	faviconWidth: 512,
+	faviconHeight: 512,
+	caption: author,
 };
 
 const seo = {
-  article: false,
-  title: pageTitle,
-  slug,
-  entityMeta,
-  breadcrumbs,
-  metadescription,
+	article: false,
+	title: pageTitle,
+	slug,
+	entityMeta,
+	breadcrumbs,
+	metadescription,
 };
 
 const data = await Content.getLatestResumeData();
@@ -48,11 +48,11 @@ const data = await Content.getLatestResumeData();
 <SEO {...seo} client:load="svelte" />
 
 <TemplateLayout>
-  <Resume {data} />
+	<Resume {data} />
 </TemplateLayout>
 
 <style lang="scss">
-  :global(section#resume.resume) {
-    display: block;
-  }
+	:global(section#resume.resume) {
+		display: block;
+	}
 </style>

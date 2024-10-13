@@ -1,44 +1,44 @@
 ---
-import website from "@/website.config";
+import website from '@/website.config';
 
-import AppLayout from "@/layouts/app.astro";
-import SEO from "@/components/SEO/index.svelte";
-import { Picture } from "astro:assets";
-import resumePreview from "@/images/ResumePreview.png";
-import Resume from "@/components/resume";
-import { Content } from "@/lib/content";
+import AppLayout from '@/layouts/app.astro';
+import SEO from '@/components/SEO/index.svelte';
+import { Picture } from 'astro:assets';
+import resumePreview from '@/images/ResumePreview.png';
+import Resume from '@/components/resume';
+import { Content } from '@/lib/content';
 
-const pageTitle = "Resume",
-  metadescription =
-    "Hard working and detail oriented professional, seeking a software development position where I can use my skills and contribute to the growth of a company.",
-  slug = "/Resume",
-  { author } = website;
+const pageTitle = 'Resume',
+	metadescription =
+		'Hard working and detail oriented professional, seeking a software development position where I can use my skills and contribute to the growth of a company.',
+	slug = '/Resume',
+	{ author } = website;
 
 const breadcrumbs = [
-  {
-    name: "Home",
-    slug: Astro.url.origin,
-  },
-  {
-    name: pageTitle,
-    slug,
-  },
+	{
+		name: 'Home',
+		slug: Astro.url.origin,
+	},
+	{
+		name: pageTitle,
+		slug,
+	},
 ];
 
 const entityMeta = {
-  url: slug,
-  faviconWidth: 512,
-  faviconHeight: 512,
-  caption: author,
+	url: slug,
+	faviconWidth: 512,
+	faviconHeight: 512,
+	caption: author,
 };
 
 const seo = {
-  article: false,
-  title: pageTitle,
-  slug,
-  entityMeta,
-  breadcrumbs,
-  metadescription,
+	article: false,
+	title: pageTitle,
+	slug,
+	entityMeta,
+	breadcrumbs,
+	metadescription,
 };
 
 const data = await Content.getLatestResumeData();
@@ -47,15 +47,15 @@ const data = await Content.getLatestResumeData();
 <SEO {...seo} client:load="svelte" />
 
 <AppLayout>
-  <div class="lg:hidden">
-    <Picture
-      src={resumePreview}
-      formats={["avif", "webp", "png"]}
-      widths={[240, 540, 720, resumePreview.width]}
-      sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${resumePreview.width}px`}
-      alt="Resume"
-    />
-  </div>
-  <!-- TODO: make this image at smaller than lg/xlg -->
-  <Resume {data} />
+	<div class="lg:hidden">
+		<Picture
+			src={resumePreview}
+			formats={['avif', 'webp', 'png']}
+			widths={[240, 540, 720, resumePreview.width]}
+			sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${resumePreview.width}px`}
+			alt="Resume"
+		/>
+	</div>
+	<!-- TODO: make this image at smaller than lg/xlg -->
+	<Resume {data} />
 </AppLayout>

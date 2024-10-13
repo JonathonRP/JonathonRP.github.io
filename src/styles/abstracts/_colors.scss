@@ -7,31 +7,31 @@
 // subdued: #ddd,
 
 $light: (
-  bg: #f3f3f3,
-  text: #4d4d4d,
-  primary: #ddd,
-  accent: #069992,
-  link: #069968,
-  card-title: #002b22,
-  theme-toggle: #eca74c,
+	bg: #f3f3f3,
+	text: #4d4d4d,
+	primary: #ddd,
+	accent: #069992,
+	link: #069968,
+	card-title: #002b22,
+	theme-toggle: #eca74c,
 );
 
 $dark: (
-  bg: #4d4d4d,
-  text: #f3f3f3,
-  primary: #777777,
-  accent: #069992,
-  link: #069968,
-  card-title: #002b22,
-  theme-toggle: #a17ece,
+	bg: #4d4d4d,
+	text: #f3f3f3,
+	primary: #777777,
+	accent: #069992,
+	link: #069968,
+	card-title: #002b22,
+	theme-toggle: #a17ece,
 );
 
 $trismegitus: (
-  bg: #4d4d4d,
-  text: #f3f3f3,
-  primary: #2c963e,
-  accent: #d8b907,
-  link: #037224,
+	bg: #4d4d4d,
+	text: #f3f3f3,
+	primary: #2c963e,
+	accent: #d8b907,
+	link: #037224,
 );
 
 $colors: $light !default;
