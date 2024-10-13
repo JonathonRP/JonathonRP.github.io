@@ -12,12 +12,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  strategy:
-    matrix:
-    deno: [2.x.x]
   Check:
     name: Run svelte-check
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        deno: [2.x.x]
     steps:
       - uses: actions/checkout@v4
       - uses: denoland/setup-deno@v2
@@ -32,7 +32,10 @@ jobs:
 
   Format&Lint:
     runs-on: ubuntu-latest
-    name: Format&Lint
+    name: Format & Lint
+    strategy:
+      matrix:
+        deno: [2.x.x]
     steps:
       - uses: actions/checkout@v4
       - uses: denoland/setup-deno@v2
