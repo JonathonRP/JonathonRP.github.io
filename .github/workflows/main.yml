@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "**"
+    pull_request:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  strategy:
+    matrix:
+    deno: [2.x.x]
+  Check:
+    name: Run svelte-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: ${{ matrix.deno }}
+
+      - name: Install dependencies
+        run: deno install
+
+      - name: Run svelte-check
+        run: deno task check
+
+  Format&Lint:
+    runs-on: ubuntu-latest
+    name: Format&Lint
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: ${{ matrix.deno }}
+
+      - name: Install dependencies
+        run: deno install
+
+      - name: Verify formatting
+        run: deno fmt --check
+
+      - name: Run linter
+        run: deno lint
+
+  # Test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: denoland/setup-deno@v2
+  #       with:
+  #         deno-version: ${{ matrix.deno }}
+
+  #     - name: Install dependencies
+  #       run: deno install
+
+  #     - name: Run tests
+  #       run: deno task test
