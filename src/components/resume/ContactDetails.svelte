@@ -31,9 +31,7 @@
 						colspan="2"
 						style="width: 170px"
 						class="contact-details__text"
-						aria-label={location.city}
-						,
-						${location.region}
+						aria-label={`${location.city}, ${location.region}`}
 					>
 						<p>{location.city}, {location.region}</p>
 					</td>
@@ -54,7 +52,8 @@
 					>
 						<p>{phone}</p>
 					</td>
-					<td style="width: 15px" class="contact-details__icon phone"></td>
+					<td style="width: 15px" class="contact-details__icon phone"
+					></td>
 				</tr>
 			{/if}
 			{#if email}
@@ -67,10 +66,11 @@
 						<a
 							href="mailto:{email}"
 							rel="external nofollow noopener noreferrer"
-							target="blank"
-						>{email}</a>
+							target="blank">{email}</a
+						>
 					</td>
-					<td style="width: 15px" class="contact-details__icon email"></td>
+					<td style="width: 15px" class="contact-details__icon email"
+					></td>
 				</tr>
 			{/if}
 
@@ -85,8 +85,8 @@
 							<a
 								href={profile.url}
 								rel="external nofollow noopener noreferrer"
-								target="blank"
-							>{profile.username}</a>
+								target="blank">{profile.username}</a
+							>
 						</td>
 						<td
 							style="width: 15px"
@@ -101,7 +101,7 @@
 </section>
 
 <style lang="scss">
-	@use '@/styles/abstracts/mixins' as *;
+	@use "@/styles/abstracts/mixins" as *;
 
 	:global(section#resume.resume) {
 		a {
