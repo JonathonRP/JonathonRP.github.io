@@ -9,6 +9,7 @@
 		"./tests/**/*.ts",
 		"./tests/**/*.svelte",
 		"**/**/*.ts",
+		"**/**/*.*.ts"
 	],
 	"compilerOptions": {
 		"baseUrl": ".",
