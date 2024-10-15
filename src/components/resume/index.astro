@@ -89,18 +89,18 @@ const {
 					>
 						{
 							linq(skills)
-		.groupBy(({ category, categoryTag }) => [category, categoryTag], {
-			equals: ([a, b], [c, d]) => a === c && b === d,
-			getHashCode: hash,
-		})
-		.select((g) =>
-			[
-				g.key,
-				g.select((s) => ({ tag: s.tag, name: s.name, keywords: s.keywords }))
-					.toArray(),
-			] as const
-		)
-		.select(([[category, categoryTag], collectiveSkills]) => (
+							.groupBy(({ category, categoryTag }) => [category, categoryTag], {
+								equals: ([a, b], [c, d]) => a === c && b === d,
+								getHashCode: hash,
+							})
+							.select((g) =>
+								[
+									g.key,
+									g.select((s) => ({ tag: s.tag, name: s.name, keywords: s.keywords }))
+										.toArray(),
+								] as const
+							)
+							.select(([[category, categoryTag], collectiveSkills]) => (
 								<section
 									class:list={['category', { 'extend': collectiveSkills.length > 1 }]}
 									aria-labelledby={categoryTag}
@@ -114,18 +114,14 @@ const {
 											collectiveSkills.length === 1 ? collectiveSkills[0]?.name : collectiveSkills.length > 1 ? category : ''
 										}
 									</h2>{
-										collectiveSkills.length === 1
-		? (
+										collectiveSkills.length === 1 ? (
 											<TagsCatalog labels={collectiveSkills[0]?.keywords ?? ''} />
-										)
-		: collectiveSkills.length > 1
-		? collectiveSkills.map((skill) => (
+										): collectiveSkills.length > 1 ? collectiveSkills.map((skill) => (
 											<div class="sub-category" aria-labelledby={skill.tag}>
 												<h3 id={skill.tag} class="subheading">{skill.name}:</h3>
 												<TagsCatalog labels={skill.keywords.sort()} />
 											</div>
-										))
-		: null
+										)): null
 									}
 								</section>
 							))
