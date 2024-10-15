@@ -22,8 +22,8 @@ RUN apt-get update -q --no-allow-insecure-repositories \
 
 # RUN sudo apt update && sudo apt install weasyprint
 
-ARG VARIANT="jammy"
-ARG PLATFORM="amd64"
+ARG VARIANT
+ARG PLATFORM
 # wkhtmltopdf
 # RUN sudo apt update && sudo apt install wkhtmltopdf
 RUN sudo apt update && apt -y upgrade
