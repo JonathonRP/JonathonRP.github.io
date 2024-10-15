@@ -39,19 +39,20 @@
 				"svelte.plugin.css.diagnostics.enable": false,
 
 				"editor.codeActionsOnSave": {
+					"source.fixAll": "always",
 					"source.fixAll.ts": "always",
-					// "source.organizeImports": true
+					"source.organizeImports": "always"
 				},
 
-				"[astro]": {
-					"editor.defaultFormatter": "astro-build.astro-vscode"
-				},
-				"[svelte]": {
-					"editor.defaultFormatter": "svelte.svelte-vscode"
-				},
-				"[javascript][typescript]": {
-					"editor.defaultFormatter": "denoland.vscode-deno"
-				},
+				// "[astro]": {
+				// 	"editor.defaultFormatter": "astro-build.astro-vscode"
+				// },
+				// "[svelte]": {
+				// 	"editor.defaultFormatter": "svelte.svelte-vscode"
+				// },
+				// "[javascript][typescript]": {
+				// 	"editor.defaultFormatter": "denoland.vscode-deno"
+				// },
 			},
 			
 			// Add the IDs of extensions you want installed when the container is created.
