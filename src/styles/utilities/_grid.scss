@@ -1,11 +1,8 @@
 @use '../abstracts/mixins' as *;
 
-.lg\:grid-column {
+.grid-column {
 	border-top: 2px solid var(--primary-color);
-
-	@include respond-to(lg) {
-		grid-row: span var(--grid-rows);
-	}
+	grid-row: span var(--grid-rows);
 }
 
 .content-grid {

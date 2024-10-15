@@ -21,7 +21,7 @@ section#resume.resume {
 	color: var(--resume-text);
 	filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
 
-	@include respond-to(lg) {
+	@include respond-to(resume) {
 		display: grid;
 		// thead, tbody {
 		//     width: 100%;

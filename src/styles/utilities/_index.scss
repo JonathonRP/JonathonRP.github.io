@@ -27,14 +27,12 @@
 	overflow: hidden;
 }
 
-.lg\:bg-none {
-	@include respond-to(lg) {
-		background-color: transparent;
-	}
+.bg-none {
+	background-color: transparent;
 }
 
-.lg\:hidden {
-	@include respond-to(lg) {
+.resume\:hidden {
+	@include respond-to(resume) {
 		display: none;
 	}
 }
