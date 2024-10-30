@@ -1,19 +1,6 @@
+@use 'sass:string' as *;
+@use 'sass:map' as *;
 @use 'breakpoints' as *;
-@use 'placeholders' as *;
-
-@mixin icon($class, $is-brand: false) {
-	// @debug $selector;
-
-	.#{$class}::before {
-		@if $is-brand {
-			@extend %brand-icon;
-		} @else {
-			@extend %regular-icon;
-		}
-
-		@content;
-	}
-}
 
 @mixin headings {
 	h1,
@@ -27,7 +14,7 @@
 }
 
 @mixin respond-to($key) {
-	$size: map-get($breakpoints, $key);
+	$size: get($breakpoints, $key);
 
 	@media screen and (min-width: $size) {
 		@content;

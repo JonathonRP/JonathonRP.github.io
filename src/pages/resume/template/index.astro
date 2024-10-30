@@ -1,9 +1,9 @@
 ---
-import website from '@/website.config';
-import TemplateLayout from '@/layouts/template.astro';
 import Resume from '@/components/resume';
-import { Content } from '@/lib/content';
 import SEO from '@/components/SEO';
+import BasicLayout from '@/layouts/basic.astro';
+import { Content } from '@/lib/content';
+import website from '@/website.config';
 
 const pageTitle = 'Resume Template',
 	metadescription =
@@ -47,9 +47,9 @@ const data = await Content.getLatestResumeData();
 
 <SEO {...seo} client:load="svelte" />
 
-<TemplateLayout>
+<BasicLayout>
 	<Resume {data} />
-</TemplateLayout>
+</BasicLayout>
 
 <style lang="scss">
 	:global(section#resume.resume) {

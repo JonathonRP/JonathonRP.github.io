@@ -39,8 +39,13 @@
 	}
 
 	@media print {
+		// point conversion
+		// @each $size, $value in $spacings {
+		// 	--#{$size}-space: #{((($value * 16) * 0.74999943307122) + 0pt)};
+		// }
+		// px conversion
 		@each $size, $value in $spacings {
-			--#{$size}-space: #{((($value * 16) * 0.74999943307122) + 0pt)};
+			--#{$size}-space: #{((($value * 16)) + 0px)};
 		}
 	}
 }

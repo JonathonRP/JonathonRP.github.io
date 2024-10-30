@@ -1,44 +1,60 @@
+@use "sass:selector" as *;
+@use "sass:map" as *;
+@use "sass:string" as *;
+@use "../abstracts/font-families" as *;
 @use '../abstracts/mixins' as *;
 @use '../utilities/extend' as *;
 
 @include headings() {
+	font-family: var(--secondary-ff);
 	padding-block: var(--mini-space);
 
 	&,
-	.timeline__title,
 	.timeline__heading {
-		font-family: var(--secondary-ff);
 		line-height: 1.2;
 	}
 }
 
-@include icon('download') {
-	content: '\f33d';
+h1 {
+	font-weight: 700;
+}
+h2 {
+	font-weight: 600;
 }
 
-@include icon('pdf') {
-	content: '\f1c1';
+.download {
+	@include icon('download');
 }
 
-@include icon('word') {
-	content: '\f1c2';
+.pdf {
+	@include icon('pdf');
 }
 
-@include icon('theme-switch__label') {
-	--icon: '\f186';
-	content: var(--icon);
+.word {
+	@include icon('word');
+}
+
+%toggle-light {
+	@include icon('moon');
 
 	@at-root [data-theme='dark'] & {
-		--icon: '\f185';
+		@include icon('sun');
 	}
+}
 
-	@media (prefers-color-scheme: dark) {
-		--icon: '\f185';
+@media (prefers-color-scheme: dark) {
+	%toggle-dark {
+		@include icon('sun');
 
 		@at-root [data-theme='light'] & {
-			--icon: '\f186';
+			@include icon('moon');
 		}
 	}
+}
+
+.theme-switch__label {
+	@extend %toggle-light;
+	@extend %toggle-dark;
 }
 
 // @include icon('theme-switch:checked + .theme-switch__label') {
@@ -51,35 +67,31 @@
 
 p,
 ol:not([class]),
-ul,
+ul:not([class]),
 li {
-	max-width: 78ch;
+	max-width: 65ch;
 	text-wrap: pretty;
 }
 
 section#resume.resume {
 	font-family: var(--primary-ff);
 	color: var(--text-color);
-	font-size: 0.75rem;
+	font-size: 0.8rem;
 
-	@include icon('location') {
-		content: '\f3c5';
+	& .location {
+		@include icon('location');
 	}
-	@include icon('phone') {
-		// content: "\f879";
-		content: '\f10b';
+	& .phone {
+		@include icon('phone');
 	}
-	@include icon('email') {
-		//content: "\f0e0";
-		content: '\f1fa';
+	& .email {
+		@include icon('email')
 	}
-	@include icon('linkedin', true) {
-		//content: "\f08c";
-		content: '\f0e1';
+	& .linkedin {
+		@include icon('linkedin-in', true)
 	}
-	@include icon('github', true) {
-		//content: "\f092";
-		content: '\f09b';
+	& .github {
+		@include icon('github', true)
 	}
 
 	%category {
@@ -92,26 +104,26 @@ section#resume.resume {
 		// color: $primary-color;
 	}
 
-	@include icon('heading__icon') {
+	& .heading__icon {
 		@extend %category;
 
-		@at-root #{selector-unify(&, "[data-icon='tech-stack']")} {
-			content: '\f5fd';
+		@at-root #{unify(&, "[data-icon='tech-stack']")} {
+			@include icon('tech-stack');
 		}
-		@at-root #{selector-unify(&, "[data-icon='technical-skills']")} {
-			content: '\f121';
+		@at-root #{unify(&, "[data-icon='technical-skills']")} {
+			@include icon('technical-skills');
 		}
-		@at-root #{selector-unify(&, "[data-icon='soft-skills']")} {
-			content: '\f187';
+		@at-root #{unify(&, "[data-icon='soft-skills']")} {
+			@include icon('soft-skills')
 		}
-		@at-root #{selector-unify(&, "[data-icon='personal-projects']")} {
-			content: '\f85d';
+		@at-root #{unify(&, "[data-icon='personal-projects']")} {
+			@include icon('personal-projects')
 		}
-		@at-root #{selector-unify(&, "[data-icon='interests']")} {
-			content: '\f07c';
+		@at-root #{unify(&, "[data-icon='interests']")} {
+			@include icon('interests')
 		}
-		@at-root #{selector-unify(&, "[data-icon='contact-details']")} {
-			content: '\f129';
+		@at-root #{unify(&, "[data-icon='contact-details']")} {
+			@include icon('contact-details')
 		}
 	}
 
@@ -130,31 +142,30 @@ section#resume.resume {
 		}
 	}
 
-	@include icon('timeline__icon') {
+	& .timeline__icon {
 		@extend %badge;
 
-		@at-root #{selector-unify(&, "[data-icon='work']")} {
-			content: '\f0b1';
+		@at-root #{unify(&, "[data-icon='work']")} {
+			@include icon('work')
 		}
-		@at-root #{selector-unify(&, "[data-icon='certificates']")} {
-			//content: '\f0a3';
-			content: '\f5f3';
+		@at-root #{unify(&, "[data-icon='certificates']")} {
+			@include icon('certificates-alt')
 		}
-		@at-root #{selector-unify(&, "[data-icon='education']")} {
-			content: '\f19d';
+		@at-root #{unify(&, "[data-icon='education']")} {
+			@include icon('education-alt')
 		}
 	}
 
-	a {
+	& a {
 		text-decoration: none;
 		color: var(--link-color);
 
 		&:after {
-			@extend %regular-icon;
+			@include regular-icon;
 			//content: '\f360';
-			content: '\f08e';
+			content: quote(get($icons, 'external-link'));
 			// font-size: 12px;
-			padding-left: var(--tiny-space);
+			padding-inline-start: var(--tiny-space);
 			color: var(--primary-color);
 		}
 
@@ -167,30 +178,53 @@ section#resume.resume {
 		}
 	}
 
-	:focus {
-		outline: 1px dotted var(--link-color);
-		outline-offset: 0.25rem;
-	}
-
-	.heading,
-	.subheading {
+	& .heading,
+	& .subheading {
 		margin: 0;
 		clear: both;
 	}
 
-	.heading {
+	& .heading {
 		padding-block-start: var(--default-space);
 		font-size: 1rem;
+		font-weight: 600;
 	}
 
-	.subheading {
+	& .subheading {
 		padding-inline-end: var(--mini-space);
 		float: left;
 		font-size: 0.95rem;
+		font-weight: 500;
 	}
 
-	.text-accent {
+	& .text-accent {
 		color: var(--accent-color);
 		font-weight: 400;
 	}
+
+	& .profile p {
+		font-weight: 500;
+		max-width: 70ch;
+		font-size: 0.85rem;
+		margin-block-end: var(--xsmall-space);
+	}
+
+	& .personal-projects {
+
+		header {
+			font-family: var(--secondary-ff);
+			font-weight: 600;
+			font-size: 0.8rem;
+			text-wrap: balance;
+		}
+
+		li {
+			padding-block: var(--mini-space);
+		}
+
+		p {
+			margin: var(--mini-space);
+		}
+	}
+
 }

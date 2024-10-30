@@ -1,28 +1,19 @@
 ---
-import '@/styles/index.scss';
-
-import PWA from '@/components/PWA.svelte';
 import Navbar from '@/components/Navbar.astro';
+import PWA from '@/components/PWA.svelte';
+import BasicLayout from '@/layouts/basic.astro';
+
+import '@/styles/index.scss';
 ---
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="description" content="" />
-		<link rel="icon" href="/favicon.png" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<PWA />
-	</head>
-	<body>
-		<Navbar />
-		<main>
-			<slot />
-		</main>
-	</body>
-</html>
+
+<BasicLayout>
+	<PWA slot="head" client:load="svelte" />
+	<Navbar slot="nav"/>
+	<slot />
+</BasicLayout>
 
 <style lang="scss">
-	main {
+	:global(main) {
 		margin-block: 26px;
 		margin-inline: 46px;
 		font-size: 1rem;

@@ -1,10 +1,22 @@
+// FIXME: https://github.com/withastro/roadmap/discussions/1046
+import ContactDetailsCss from '@/components/resume/ContactDetails.svelte?svelte&type=style&lang.css&inline';
+import TagsCatalogCss from '@/components/resume/TagsCatalog.svelte?svelte&type=style&lang.css&inline';
+import TimelineCss from '@/components/resume/Timeline.astro?astro&type=style&index=0&lang.css&inline';
+import Resume from '@/components/resume/index.astro';
+import ResumeCss from '@/components/resume/index.astro?astro&type=style&index=0&lang.css&inline';
+import BasicLayout from '@/layouts/basic.astro';
+import { Content } from '@/lib/content/index.ts';
+import StyleCss from '@/styles/index.scss?inline';
+import { getContainerRenderer as svelteContainerRenderer } from '@astrojs/svelte';
 import type { APIRoute } from 'astro';
-import pandoc from 'node-pandoc';
-import { default as wkhtmltopdf } from 'wkhtmltopdf';
-import fs from 'node:fs';
 import { experimental_AstroContainer } from 'astro/container';
-import { default as svelteRenderer } from '@astrojs/svelte/server-v5.js';
-import template from '../template/index.astro';
+import { loadRenderers } from 'astro:container';
+import { DOMParser } from 'https:deno.land/x/deno_dom/deno-dom-wasm.ts';
+import { unescapeHtml } from 'https:deno.land/x/escape/mod.ts';
+import pandoc from 'node-pandoc';
+import fs from 'node:fs';
+import { default as wkhtmltopdf } from 'wkhtmltopdf';
+const data = await Content.getLatestResumeData();
 
 export function getStaticPaths() {
 	return [
@@ -15,31 +27,50 @@ export function getStaticPaths() {
 
 export const GET: APIRoute = async ({ params: { file }, url }) => {
 	const temp = `./temp.${file}`;
+	const renderers = await loadRenderers([svelteContainerRenderer()]);
+	const container = await experimental_AstroContainer.create({ renderers });
+	const html = new DOMParser().parseFromString(
+		unescapeHtml(
+			await container.renderToString(BasicLayout, {
+				slots: {
+					default: await container.renderToString(Resume, { props: { data }, partial: false }),
+				},
+				partial: false,
+			}),
+		),
+		'text/html',
+	);
+	const head = html.head;
+	const style = html.createElement('style');
+	console.log(ResumeCss);
+	const css = ContactDetailsCss + TimelineCss + TagsCatalogCss + ResumeCss + StyleCss;
+	style.appendChild(html.createTextNode(css));
+	head.appendChild(style);
+	const input = html.documentElement?.innerHTML;
+
 	switch (file) {
 		case 'pdf': {
-			const container = await experimental_AstroContainer.create();
-			container.addServerRenderer({
-				name: '@astrojs/svelte',
-				renderer: svelteRenderer,
-			});
-			container.addClientRenderer({
-				name: '@astrojs/svelte',
-				entrypoint: '@astrojs/svelte/client.js',
-			});
-			await wkhtmltopdf(await container.renderToString(template), {
+			const { resolve, promise } = Promise.withResolvers();
+			const output = fs.createWriteStream(temp);
+
+			wkhtmltopdf(input, {
 				pageSize: 'A3',
 				pageWidth: '297mm',
+				pageHeight: '420mm',
 				zoom: 1,
 				dpi: 96,
 				disableSmartShrinking: true,
-				noPrintMediaType: true,
 				background: true,
 				marginBottom: 0,
 				marginTop: 0,
 				marginLeft: 0,
 				marginRight: 0,
-				output: temp,
-			});
+			}, (err, stream) => {
+				if (err) console.log(err);
+			}).pipe(output);
+			output.on('finish', resolve);
+
+			await promise;
 			return new Response(fs.readFileSync(temp, 'binary'), {
 				status: 200,
 				statusText: 'OK',
@@ -49,14 +80,7 @@ export const GET: APIRoute = async ({ params: { file }, url }) => {
 			});
 		}
 		case 'docx': {
-			const container = await experimental_AstroContainer.create();
-			container.addServerRenderer(svelteRenderer);
-			container.addClientRenderer({
-				name: '@astrojs/svelte',
-				entrypoint: '@astrojs/svelte/client.js',
-			});
-
-			const src = await container.renderToString(template),
+			const src = input,
 				args = [
 					'-s',
 					'-r',
@@ -64,14 +88,13 @@ export const GET: APIRoute = async ({ params: { file }, url }) => {
 					'-o',
 					temp,
 					'--reference-doc',
-					'../../ResumeTemplate.docx',
-				],
-				callback = (err, result) => {
-					if (err) console.log('Oh Nos: ', err);
-					return result;
-				};
+					'/workspaces/JonathonRP.github.io/public/ResumeTemplate.docx',
+				];
 
-			await pandoc(src, args, callback);
+			await pandoc(src, args, (err, result) => {
+				if (err) console.log('Oh Nos: ', err);
+				return result;
+			});
 
 			return new Response(fs.readFileSync(temp), {
 				status: 200,

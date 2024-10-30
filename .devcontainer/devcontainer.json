@@ -11,6 +11,8 @@
 		"ghcr.io/rocker-org/devcontainer-features/pandoc:1": {}
 	},
 
+	"postCreateCommand": "deno types > src/lib.deno.d.ts && deno install",
+
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.

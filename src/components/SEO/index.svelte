@@ -2,17 +2,14 @@
 <script lang="ts">
 	import website from '@/website.config';
 
-	import defaultFeaturedImage from '@/images/profile.png';
-	import defaultOgImage from '@/images/profile.png';
-	import defaultOgSquareImage from '@/images/profile.png';
-	import defaultTwitterImage from '@/images/profile.png';
+	import { default as defaultFeaturedImage, default as defaultOgImage, default as defaultOgSquareImage, default as defaultTwitterImage } from '@/images/profile.png';
 
 	import OpenGraph from './OpenGraph.svelte';
 	import SchemaOrg from './SchemaOrg.svelte';
 	import Twitter from './Twitter.svelte';
 
 	const defaultAlt = 'Profile image with avatar of Jonathon Reese Perry saying Namaste';
-	const siteUrl = import.meta.env?.BASE_URL;
+	const siteUrl = new URL(import.meta.url).origin;
 	const { author } = website;
 
 	const {

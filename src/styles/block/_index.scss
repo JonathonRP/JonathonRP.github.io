@@ -2,7 +2,6 @@
 
 .profile {
 	// --flow-space: var(--medium-space);
-	display: contents;
 
 	> * {
 		margin-inline: var(--xsmall-space);
@@ -18,9 +17,6 @@
 
 	p {
 		// grid-row: 2;
-		max-width: 70ch;
-		font-size: 0.85rem;
-		margin-block-end: var(--xsmall-space);
 
 		// @include respond-to(sm) {
 		// 	grid-column: span 2;
@@ -46,24 +42,10 @@
 }
 
 .personal-projects {
-	li {
-		padding-block: var(--mini-space);
-	}
-
-	header {
-		font-family: var(--secondary-ff);
-		font-weight: bold;
-		font-size: 0.8rem;
-		text-wrap: balance;
-	}
 
 	img {
 		display: none;
 		// position: relative;
 		// left: -9999%;
-	}
-
-	p {
-		margin: var(--mini-space);
 	}
 }

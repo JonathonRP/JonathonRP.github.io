@@ -1,12 +1,12 @@
 ---
 import website from '@/website.config';
 
-import AppLayout from '@/layouts/app.astro';
-import SEO from '@/components/SEO/index.svelte';
-import { Picture } from 'astro:assets';
-import resumePreview from '@/images/ResumePreview.png';
 import Resume from '@/components/resume';
+import SEO from '@/components/SEO/index.svelte';
+import resumePreview from '@/images/ResumePreview.png';
+import AppLayout from '@/layouts/app.astro';
 import { Content } from '@/lib/content';
+import { Picture } from 'astro:assets';
 
 const pageTitle = 'Resume',
 	metadescription =
@@ -59,3 +59,24 @@ const data = await Content.getLatestResumeData();
 	<!-- TODO: make this image at smaller than lg/xlg -->
 	<Resume {data} />
 </AppLayout>
+
+<style lang="scss">
+	@use '@/styles/abstracts/mixins' as *;
+
+	:global(section#resume.resume) {
+		display: none;
+		border-radius: 8px;
+
+		@include respond-to(resume) {
+			display: grid;
+			// thead, tbody {
+			//     width: 100%;
+			//     display: grid;
+			//     grid-auto-flow: column;
+			//     // justify-content: space-between;
+			// }
+			// grid-template-columns: 2fr 1fr;
+			// grid-template-rows: repeat(var(--grid-rows, 7), auto);
+		}
+	}
+</style>

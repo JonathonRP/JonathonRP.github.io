@@ -1,4 +1,4 @@
-import { Content } from './lib/content';
+import { Content } from '@/lib/content/index.ts';
 
 const { basics = undefined } = await Content.getLatestResumeData() ?? {};
 
@@ -7,7 +7,7 @@ const website = {
 	siteLanguage: 'en-US',
 	siteTitle: basics?.name,
 	siteTitleAlt: 'Reese Portfolio',
-	icon: 'profile.png',
+	icon: 'favicon.ico',
 	backgroundColor: '#1b4079',
 	themeColor: '#d62828',
 	author: basics?.name,

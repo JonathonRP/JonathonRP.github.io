@@ -5,11 +5,11 @@
 		"./src/**/*.ts",
 		"./src/**/*.svelte",
 		"./src/**/*.astro",
+		"./src/*.config.ts",
 		"./tests/**/*.js",
 		"./tests/**/*.ts",
 		"./tests/**/*.svelte",
-		"**/**/*.ts",
-		"**/**/*.*.ts"
+		"**/*.ts",
 	],
 	"compilerOptions": {
 		"baseUrl": ".",
@@ -38,5 +38,6 @@
 		"forceConsistentCasingInFileNames": true,
 		"lib": ["dom", "dom.iterable", "esnext", "deno.ns", "deno.unstable"],
 		"jsx": "preserve",
+		"types": ["./src/lib.deno.d.ts", "./src/env.d.ts"]
 	},
 }

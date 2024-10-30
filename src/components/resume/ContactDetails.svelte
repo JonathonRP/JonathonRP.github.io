@@ -36,7 +36,7 @@
 						<p>{location.city}, {location.region}</p>
 					</td>
 					<td
-						style="width: 15px"
+						style="width: 18px"
 						class="contact-details__icon location"
 					>
 					</td>
@@ -52,7 +52,7 @@
 					>
 						<p>{phone}</p>
 					</td>
-					<td style="width: 15px" class="contact-details__icon phone"></td>
+					<td style="width: 18px" class="contact-details__icon phone"></td>
 				</tr>
 			{/if}
 			{#if email}
@@ -68,7 +68,7 @@
 							target="blank"
 						>{email}</a>
 					</td>
-					<td style="width: 15px" class="contact-details__icon email"></td>
+					<td style="width: 18px" class="contact-details__icon email"></td>
 				</tr>
 			{/if}
 
@@ -87,7 +87,7 @@
 							>{profile.username}</a>
 						</td>
 						<td
-							style="width: 15px"
+							style="width: 18px"
 							class="contact-details__icon {profile.network.toLowerCase()}"
 						>
 						</td>
@@ -99,16 +99,13 @@
 </section>
 
 <style lang="scss">
+	@use '@/styles/base/root';
 	@use '@/styles/abstracts/mixins' as *;
 
-	:global(section#resume.resume) {
-		a {
-			&:after {
-				content: none;
-			}
-		}
+	:global(section#resume.resume) a:after {
+		content: none;
 	}
-
+	
 	.contact-details {
 		display: block;
 		// grid-template-columns: 160px 25px;
@@ -138,10 +135,11 @@
 			padding-block: 0;
 			// margin-inline-end: .5em;
 			padding-inline-end: 0.25em;
+			font-weight: 500;
 		}
 
 		&__icon {
-			// font-size: 20px;
+			// font-size: 15px;
 			// padding-inline-end: var(--small-space);
 			text-align: center;
 			color: var(--accent-color);

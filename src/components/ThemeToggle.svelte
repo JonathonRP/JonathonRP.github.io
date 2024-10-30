@@ -15,10 +15,10 @@
 			// @ts-expect-error
 			'addEventListener' in darkMode ? darkMode.addEventListener('change', handler) : darkMode.addListener(handler);
 
-			// @ts-expect-error
 			return () =>
-				'removeEventListener' in darkMode
-					? darkMode.removeEventListener('change', handler)
+			'removeEventListener' in darkMode
+			? darkMode.removeEventListener('change', handler)
+					// @ts-expect-error
 					: darkMode.removeListener(handler);
 		});
 
@@ -59,7 +59,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			margin-right: var(--flow-space);
+			margin-inline-end: var(--flow-space);
 			cursor: pointer;
 			font-size: large;
 			line-height: 1.5rem;

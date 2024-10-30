@@ -1,13 +1,13 @@
 ---
-import type { InferEntrySchema } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import { Certificates, Education, hash, linq, Work } from '@/lib';
 
 import ContactDetails from './ContactDetails.svelte';
-import Timeline from './Timeline.svelte';
+import Timeline from './Timeline.astro';
 import TagsCatalog from './TagsCatalog.svelte';
 
 interface Props {
-	data: InferEntrySchema<'resume'> | undefined;
+	data: CollectionEntry<'resume'>['data'] | undefined;
 }
 
 const {
@@ -59,7 +59,7 @@ const {
 				<!-- Relevant Experience History -->
 				<td
 					colspan="4"
-					style="width: 511.61px"
+					style="width: 500px"
 					class="[ grid-column ]"
 					aria-label="Relevant Experience History"
 				>
@@ -81,7 +81,7 @@ const {
 					</section>
 				</td>
 
-				<td colspan="2" style="width: 270.77px" class="[ grid-column ]">
+				<td colspan="2" style="width: 280px" class="[ grid-column ]">
 					<!-- Skills -->
 					<section
 						class="skills [ tags-catalog extend ] [ bg-none ]"
@@ -207,6 +207,7 @@ const {
 
 <style lang="scss">
 	@use 'sass:map';
+	@use '@/styles/base/root';
 	@use '@/styles/abstracts/colors' as *;
 
 	section#resume.resume {
@@ -247,6 +248,6 @@ const {
 
 	.project.gallery {
 		margin-block-start: var(--mini-space);
-		margin-inline-start: var(--tiny-space);
+		margin-inline: var(--tiny-space);
 	}
 </style>
