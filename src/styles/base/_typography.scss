@@ -1,7 +1,8 @@
 @use "sass:selector" as *;
 @use "sass:map" as *;
 @use "sass:string" as *;
-@use "../abstracts/font-families" as *;
+@use '../abstracts/font-families' as *;
+@use "../abstracts/icons" as *;
 @use '../abstracts/mixins' as *;
 @use '../utilities/extend' as *;
 
@@ -34,35 +35,31 @@ h2 {
 	@include icon('word');
 }
 
-%toggle-light {
-	@include icon('moon');
-
-	@at-root [data-theme='dark'] & {
-		@include icon('sun');
-	}
-}
-
-@media (prefers-color-scheme: dark) {
-	%toggle-dark {
-		@include icon('sun');
-
-		@at-root [data-theme='light'] & {
-			@include icon('moon');
-		}
-	}
-}
-
 .theme-switch__label {
-	@extend %toggle-light;
-	@extend %toggle-dark;
+	@include icon {
+		content: var(--toggle-switch-icon, "");
+	}
 }
 
-// @include icon('theme-switch:checked + .theme-switch__label') {
-// 	content: '\f185';
+// .theme-switch__label {
+// 	@include icon('moon');
 
-// 	// @media (prefers-color-scheme: dark) {
-// 	// 	content: '\f185';
+// 	.theme-switch:checked + & {
+// 		@include icon('sun')
+// 	}
+// 	// @at-root [data-theme='dark'] & {
+// 	// 	@include icon('sun');
 // 	// }
+// 	@media (prefers-color-scheme: dark) {
+// 		@include icon('sun');
+
+// 		.theme-switch:checked + & {
+// 			@include icon('moon')
+// 		}
+// 		// @at-root [data-theme='light'] & {
+// 		// 	@include icon('moon');
+// 		// }
+// 	}
 // }
 
 p,
@@ -161,7 +158,7 @@ section#resume.resume {
 		color: var(--link-color);
 
 		&:after {
-			@include regular-icon;
+			@extend %regular-icon;
 			//content: '\f360';
 			content: quote(get($icons, 'external-link'));
 			// font-size: 12px;

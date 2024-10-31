@@ -1,3 +1,5 @@
+@use 'sass:map' as *;
+@use 'sass:string' as *;
 @use '@/styles/abstracts' as *;
 
 :root {
@@ -19,23 +21,41 @@
 	@each $color, $value in $colors {
 		--#{$color}-color: #{$value};
 	}
+	--toggle-switch-icon: "#{get($icons, 'moon')}";
 
-	&[data-theme='dark'] {
+	&:has(.theme-switch:checked) {
 		@each $color, $value in $dark {
 			--#{$color}-color: #{$value};
 		}
+		--toggle-switch-icon: "#{get($icons, 'sun')}";
 	}
+
+	// &[data-theme='dark'] {
+	// 	@each $color, $value in $dark {
+	// 		--#{$color}-color: #{$value};
+	// 	}
+	// 	--toggle-switch-icon: get($icons, 'sun');
+	// }
 
 	@media (prefers-color-scheme: dark) {
 		@each $color, $value in $dark {
 			--#{$color}-color: #{$value};
 		}
+		--toggle-switch-icon: "#{get($icons, 'sun')}";
 
-		&[data-theme='light'] {
+		&:has(.theme-switch:checked) {
 			@each $color, $value in $light {
 				--#{$color}-color: #{$value};
 			}
+			--toggle-switch-icon: "#{get($icons, 'moon')}";
 		}
+
+		// &[data-theme='light'] {
+		// 	@each $color, $value in $light {
+		// 		--#{$color}-color: #{$value};
+		// 	}
+		//  --toggle-switch-icon: get($icons, 'moon');
+		// }
 	}
 
 	@media print {

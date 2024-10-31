@@ -219,10 +219,38 @@ const unitProcessor = (options = {}) => {
   };
 };
 
+const sassUnicodeRootCustomProperties = (opts = { }) => {
+
+  // Work with options here
+
+  const rootSelectorRegExp = /^:root$/i;
+  const customPropertyRegExp = /^--[A-z][\w-]*$/;
+  return (root, result) => {
+
+    root.walkRules(function(rule) {
+      if (rule.type === 'rule' && rule.selector.split(',').some(item => rootSelectorRegExp.test(item)) && Object(rule.nodes).length) {
+        rule.walkDecls(customPropertyRegExp,function(decl) {
+          let input = decl.value;
+
+          let new_value = input;
+          if(input.charCodeAt(1) > 255) {
+            new_value = "\"\\" + input.codePointAt(input.length - 2).toString(16) + "\"";
+            // console.log(input,input.toString(),input.charCodeAt(1),new_value);
+          }
+
+          decl.value = new_value;
+
+        });
+      }
+    });
+
+  }
+};
 
 module.exports = {
   plugins: [
     require('postcss-sass-unicode'),
+    sassUnicodeRootCustomProperties(),
     require('postcss-preset-env')({
       "minimumVendorImplementations": 1,
       "preserve": true

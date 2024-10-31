@@ -1,4 +1,4 @@
-import { Content } from '@/lib/content/index.ts';
+import { Content } from './lib/content/index.ts';
 
 const { basics = undefined } = await Content.getLatestResumeData() ?? {};
 
