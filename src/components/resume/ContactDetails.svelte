@@ -105,7 +105,7 @@
 	:global(section#resume.resume) a:after {
 		content: none;
 	}
-	
+
 	.contact-details {
 		display: block;
 		// grid-template-columns: 160px 25px;

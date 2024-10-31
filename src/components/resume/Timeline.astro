@@ -1,66 +1,72 @@
 ---
-	import { Certificates, Education, Work } from '@/lib';
-	import { Image } from 'astro:assets';
-	import { format, parseISO } from 'date-fns';
+import { Certificates, Education, Work } from '@/lib';
+import { Image } from 'astro:assets';
+import { format, parseISO } from 'date-fns';
 
-	type TimelineItemType = Work | Education | Certificates;
+type TimelineItemType = Work | Education | Certificates;
 
-	interface Props {
-		experiences: {
-			image: string;
-			startDate?: string;
-			endDate?: string;
-			date?: string;
-			eventDate?: string;
-			name?: string;
-			institution?: string;
-			position?: string;
-			issuer?: string;
-			area?: string;
-			summary?: string;
-			useSummary?: boolean;
-			highlights?: string[];
-			studyType?: string;
-		}[];
-		type: TimelineItemType;
-	}
+interface Props {
+	experiences: {
+		image: string;
+		startDate?: string;
+		endDate?: string;
+		date?: string;
+		eventDate?: string;
+		name?: string;
+		institution?: string;
+		position?: string;
+		issuer?: string;
+		area?: string;
+		summary?: string;
+		useSummary?: boolean;
+		highlights?: string[];
+		studyType?: string;
+	}[];
+	type: TimelineItemType;
+}
 
-	const {
-		experiences,
-		type,
-	} = Astro.props;
+const {
+	experiences,
+	type,
+} = Astro.props;
 
-	const Logo = (image: string) => {
-		return Object.entries(
-			import.meta.glob('@/images/*.{png,jpg}', {
-				eager: true,
-				query: '?url',
-				import: 'default',
+const Logo = (image: string) => {
+	return Object.entries(
+		import.meta.glob('@/images/*.{png,jpg}', {
+			eager: true,
+			query: '?url',
+			import: 'default',
+		}),
+	)
+		.reduce(
+			(prev, [key, value]) => ({
+				...prev,
+				[key.substring(key.indexOf(image))]: value as string,
 			}),
-		)
-			.reduce(
-				(prev, [key, value]) => ({
-					...prev,
-					[key.substring(key.indexOf(image))]: value as string,
-				}),
-				{} as Record<string, string>,
-			)[image];
-	};
+			{} as Record<string, string>,
+		)[image];
+};
 ---
 
-{type.heading &&
-	<h2
-		id="{type.heading.id}-title"
-		class="timeline__section-heading"
-	>
-		{type.heading.title}
-	</h2> ||
-	<h2 class="timeline__section-heading" data-sr-only>
-		Experience
-	</h2>
+{
+	type.heading &&
+			(
+		<h2
+			id="{type.heading.id}-title"
+			class="timeline__section-heading"
+		>
+			{type.heading.title}
+		</h2>
+	) ||
+		(
+		<h2 class="timeline__section-heading" data-sr-only>
+			Experience
+		</h2>
+	)
 }
-<div class="timeline" data-type={type.experience}> {
-	experiences.map(({
+<div class="timeline" data-type={type.experience}>
+	{
+		experiences.map(({
 		startDate,
 		endDate,
 		date,
@@ -74,45 +80,62 @@
 	}) => {
 		const alt = experience.image.split('.').reverse().pop() + ' Logo.';
 		const src = Logo(experience.image);
-		return (<div class="timeline__item">
-			<time class="timeline__duration" datetime={eventDate}>{eventDate}</time> {
-				experience.image && <div class="timeline__logo">
-					<Image {src} {alt} width="42" height="42" />
-				</div> || <div class="timeline__point"></div>
-			}
-			<div class="timeline__content">
-				<div style="width: 100%">
-					<h3 class="timeline__header">
-						{type.education ? experience.institution : experience.name}
-					</h3>
-					<div class="timeline__body"> {
-						type.work && <h4 class="timeline__sub">{experience.position}</h4>
-						<>
-							{experience.useSummary && <p>{experience.summary}</p>}
-							{experience.highlights && <ul class="timeline__responsabilities-achievements [ flow ]"> {
-								experience?.highlights?.map((highlight) =>
-									<li>
-										{highlight}
-									</li>
-								)}
-							</ul>
+		return (
+			<div class="timeline__item">
+				<time class="timeline__duration" datetime={eventDate}>{eventDate}</time>
+				{
+					experience.image && (
+						<div class="timeline__logo">
+							<Image {src} {alt} width="42" height="42" />
+						</div>
+					) || <div class="timeline__point"></div>
+				}
+				<div class="timeline__content">
+					<div style="width: 100%">
+						<h3 class="timeline__header">
+							{type.education ? experience.institution : experience.name}
+						</h3>
+						<div class="timeline__body">
+							{
+								type.work && (
+									<h4 class="timeline__sub">{experience.position}</h4>
+									<>
+										{experience.useSummary && <p>{experience.summary}</p>}
+										{
+											experience.highlights && (
+												<ul class="timeline__responsabilities-achievements [ flow ]">
+													{
+														experience?.highlights?.map((highlight) => (
+															<li>
+																{highlight}
+															</li>
+														))
+													}
+												</ul>
+											)
+										}
+									</>
+								) ||
+		type.certificates && (
+									<p class="timeline__issuer">
+										{experience.issuer}
+									</p>
+								) ||
+		type.education && (
+									<h4 class="timeline__sub">{experience.area}</h4>
+									<p class="timeline__degree">
+										{experience.studyType}
+									</p>
+								)
 							}
-						</> ||
-						type.certificates && <p class="timeline__issuer">
-							{experience.issuer}
-						</p> ||
-						type.education && <h4 class="timeline__sub">{experience.area}</h4>
-						<p class="timeline__degree">
-							{experience.studyType}
-						</p>
-					}
+						</div>
 					</div>
+					<span class="timeline__icon" data-icon={type.icon} />
 				</div>
-				<span class="timeline__icon" data-icon={type.icon} />
 			</div>
-		</div>)
+		);
 	})
-}
+	}
 </div>
 
 <style lang="scss">

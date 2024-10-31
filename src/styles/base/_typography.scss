@@ -1,8 +1,8 @@
-@use "sass:selector" as *;
-@use "sass:map" as *;
-@use "sass:string" as *;
+@use 'sass:selector' as *;
+@use 'sass:map' as *;
+@use 'sass:string' as *;
 @use '../abstracts/font-families' as *;
-@use "../abstracts/icons" as *;
+@use '../abstracts/icons' as *;
 @use '../abstracts/mixins' as *;
 @use '../utilities/extend' as *;
 
@@ -37,7 +37,7 @@ h2 {
 
 .theme-switch__label {
 	@include icon {
-		content: var(--toggle-switch-icon, "");
+		content: var(--toggle-switch-icon, '');
 	}
 }
 
@@ -82,13 +82,13 @@ section#resume.resume {
 		@include icon('phone');
 	}
 	& .email {
-		@include icon('email')
+		@include icon('email');
 	}
 	& .linkedin {
-		@include icon('linkedin-in', true)
+		@include icon('linkedin-in', true);
 	}
 	& .github {
-		@include icon('github', true)
+		@include icon('github', true);
 	}
 
 	%category {
@@ -111,16 +111,16 @@ section#resume.resume {
 			@include icon('technical-skills');
 		}
 		@at-root #{unify(&, "[data-icon='soft-skills']")} {
-			@include icon('soft-skills')
+			@include icon('soft-skills');
 		}
 		@at-root #{unify(&, "[data-icon='personal-projects']")} {
-			@include icon('personal-projects')
+			@include icon('personal-projects');
 		}
 		@at-root #{unify(&, "[data-icon='interests']")} {
-			@include icon('interests')
+			@include icon('interests');
 		}
 		@at-root #{unify(&, "[data-icon='contact-details']")} {
-			@include icon('contact-details')
+			@include icon('contact-details');
 		}
 	}
 
@@ -143,13 +143,13 @@ section#resume.resume {
 		@extend %badge;
 
 		@at-root #{unify(&, "[data-icon='work']")} {
-			@include icon('work')
+			@include icon('work');
 		}
 		@at-root #{unify(&, "[data-icon='certificates']")} {
-			@include icon('certificates-alt')
+			@include icon('certificates-alt');
 		}
 		@at-root #{unify(&, "[data-icon='education']")} {
-			@include icon('education-alt')
+			@include icon('education-alt');
 		}
 	}
 
@@ -207,7 +207,6 @@ section#resume.resume {
 	}
 
 	& .personal-projects {
-
 		header {
 			font-family: var(--secondary-ff);
 			font-weight: 600;
@@ -223,5 +222,4 @@ section#resume.resume {
 			margin: var(--mini-space);
 		}
 	}
-
 }
