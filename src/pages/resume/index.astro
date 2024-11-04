@@ -44,9 +44,8 @@ const seo = {
 const data = await Content.getLatestResumeData();
 ---
 
-<SEO {...seo} client:load="svelte" />
-
 <AppLayout>
+	<SEO {...seo} client:load />
 	<div class="resume:hidden">
 		<Picture
 			src={resumePreview}
@@ -60,15 +59,26 @@ const data = await Content.getLatestResumeData();
 	<Resume {data} />
 </AppLayout>
 
-<style lang="scss">
+<style is:global lang="scss">
 	@use '@/styles/abstracts/mixins' as *;
 
-	:global(main) {
-		place-content: center;
-		place-items: center;
+	@include headings() {
+		font-size: revert;
 	}
 
-	:global(section#resume.resume) {
+	main {
+		place-content: center;
+		place-items: center;
+		margin-block: 14px;
+		margin-inline: 16px;
+
+		@include respond-to(lg) {
+			margin-block: 26px;
+			margin-inline: 46px;
+		}
+	}
+
+	section#resume.resume {
 		display: none;
 		border-radius: 8px;
 

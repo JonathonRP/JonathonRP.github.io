@@ -7,8 +7,8 @@ const { author } = siteConfig;
 
 <nav class="navbar">
 	<div class="nav">
-		<a id="home" class="home" title="home" href="/">Home</a>
-		<a id="resume" class="resume" title="resume" href="/resume">Resume</a>
+		<a id="home" class="home" title="home" href="/" data-astro-prefetch data-astro-preload>Home</a>
+		<a id="resume" class="resume" title="resume" href="/resume" data-astro-prefetch data-astro-preload>Resume</a>
 	</div>
 	<div class="actions">
 		<ThemeToggle />
@@ -17,8 +17,9 @@ const { author } = siteConfig;
 			class="download pdf"
 			href="resume/download/pdf"
 			download={`${author} Resume`}
-			title="download pdf"
-			data-astro-preload="hover"
+			title="download resume/cv pdf"
+			data-astro-prefetch
+			data-astro-preload
 		>
 		</a>
 		<a
@@ -26,8 +27,9 @@ const { author } = siteConfig;
 			class="download word"
 			href="resume/download/docx"
 			download={`${author} Resume`}
-			title="download word"
-			data-astro-preload="hover"
+			title="download resume/cv word"
+			data-astro-prefetch
+			data-astro-preload
 		>
 		</a>
 	</div>

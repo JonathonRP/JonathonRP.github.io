@@ -6,23 +6,6 @@
 @use '../abstracts/mixins' as *;
 @use '../utilities/extend' as *;
 
-@include headings() {
-	font-family: var(--secondary-ff);
-	padding-block: var(--mini-space);
-
-	&,
-	.timeline__heading {
-		line-height: 1.2;
-	}
-}
-
-h1 {
-	font-weight: 700;
-}
-h2 {
-	font-weight: 600;
-}
-
 .download {
 	@include icon('download');
 }
@@ -67,7 +50,22 @@ ol:not([class]),
 ul:not([class]),
 li {
 	max-width: 65ch;
-	text-wrap: pretty;
+}
+
+.location {
+	@include icon('location');
+}
+.phone {
+	@include icon('phone');
+}
+.email {
+	@include icon('email');
+}
+.linkedin {
+	@include icon('linkedin-in', true);
+}
+.github {
+	@include icon('github', true);
 }
 
 section#resume.resume {
@@ -75,20 +73,11 @@ section#resume.resume {
 	color: var(--text-color);
 	font-size: 0.8rem;
 
-	& .location {
-		@include icon('location');
+	h1 {
+		font-weight: 700;
 	}
-	& .phone {
-		@include icon('phone');
-	}
-	& .email {
-		@include icon('email');
-	}
-	& .linkedin {
-		@include icon('linkedin-in', true);
-	}
-	& .github {
-		@include icon('github', true);
+	h2 {
+		font-weight: 600;
 	}
 
 	%category {

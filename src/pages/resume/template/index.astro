@@ -45,7 +45,7 @@ const seo = {
 const data = await Content.getLatestResumeData();
 ---
 
-<SEO {...seo} client:load="svelte" />
+<SEO {...seo} client:load />
 
 <BasicLayout>
 	<Resume {data} />

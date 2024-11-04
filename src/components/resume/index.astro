@@ -208,7 +208,15 @@ const {
 <style lang="scss">
 	@use 'sass:map';
 	@use '@/styles/base/root';
+	@use '@/styles/abstracts/mixins' as *;
 	@use '@/styles/abstracts/colors' as *;
+
+	@include headings() {
+		font-family: var(--secondary-ff);
+		font-optical-sizing: auto;
+		font-style: normal;
+		padding-block: var(--mini-space);
+	}
 
 	section#resume.resume {
 		--primary-color: #{map.get($light, 'primary')};

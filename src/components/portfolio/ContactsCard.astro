@@ -1,0 +1,81 @@
+---
+import website from "@/website.config";
+import Card from "./card/index.astro";
+---
+
+<Card colSpan={1} rowSpan={4}>
+  <section class="contacts" aria-label="Contact Info">
+    <header>
+      <h1>
+        Let's start working together!
+      </h1>
+    </header>
+    <address>
+      <h2>Contact Details</h2>
+      <p>jreesep@gmail.com</p>
+    </address>
+    <div class="contacts__links">
+      <h2>Socials</h2>
+      <ul role="list">
+        <li>
+          <a href={website.linkedinProfile} target="_blank">Linkedin</a>
+        </li>
+        <li>
+          <a href={website.githubPage} target="_blank">Github</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</Card>
+
+<style lang="scss">
+  .contacts {
+    height: 100%;
+
+    & header {
+      display: flex;
+      align-items: center;
+
+      & h1 {
+        color: white;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        font-weight: 700;
+      }
+    }
+
+    & address {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1rem;
+      
+      & h2 {
+        font-size: inherit;
+        font-weight: inherit;
+        // color: rgb(115 115 115 / var(--text-opacity, 1));
+        // color: var(--gray-500);
+        color: var(--primary-color);
+      }
+    }
+
+    &__links {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1rem;
+      width: fit-content;
+
+      & h2 {
+        font-size: inherit;
+        font-weight: inherit;
+        // color: rgb(115 115 115 / var(--text-opacity, 1));
+        // color: var(--gray-500);
+        color: color-mix(in srgb, white 5%, var(--primary-color));
+      }
+
+      & a {
+        color: inherit;
+        text-decoration: inherit;
+      }
+    }
+  }
+</style>

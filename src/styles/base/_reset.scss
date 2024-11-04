@@ -1,3 +1,6 @@
+@use 'sass:string' as *;
+@use '@/styles/abstracts/mixins' as *;
+
 /* Box sizing rules */
 *,
 *::before,
@@ -20,8 +23,8 @@ dd {
 }
 
 /* Remove list styles on ul, ol elements with a class attribute, which suggests default styling will be removed */
-ul[class],
-ol[class] {
+ul:is([class], [role="list"]),
+ol:is([class], [role="list"]) {
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -32,18 +35,46 @@ html:focus-within {
 	scroll-behavior: smooth;
 }
 
+html {
+	-ms-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-webkit-text-size-adjust: none;
+	text-size-adjust: none;
+    -moz-tab-size: 4;
+    tab-size: 4;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    -webkit-tap-highlight-color: transparent;
+}
+
 /* Set core body defaults */
 body {
 	min-height: 100vh;
+	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeSpeed;
+	font-optical-sizing: auto;
 	line-height: 1.5;
+}
+
+@include headings() {
+	text-wrap: balance;
+	font-size: inherit;
+	// font-family: inherit;
+	font-weight: inherit;
+	line-height: 1.2;
+
+	&, p {
+		overflow-wrap: break-word;
+	}
+}
+
+p {
+	text-wrap: pretty;
 }
 
 /* Make images easier to work with */
 img,
 picture {
-	font-style: italic;
-
 	max-width: 100%;
 	height: auto;
 	vertical-align: middle;
@@ -62,7 +93,13 @@ input,
 button,
 textarea,
 select {
+	font-family: inherit;
+	font-size: inherit;
 	font: inherit;
+}
+
+#root, #__next {
+  isolation: isolate;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */

@@ -73,6 +73,7 @@ $brand-icons: (
 @mixin basic-icon {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
+	text-size-adjust: 100%;
 	display: inline-block;
 	font-style: normal;
 	font-variant: normal;

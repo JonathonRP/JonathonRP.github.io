@@ -1,6 +1,10 @@
 import { Content } from './lib/content/index.ts';
 
-const { basics = undefined } = await Content.getLatestResumeData() ?? {};
+const { basics } = await Content.getLatestResumeData() ?? {};
+
+const githubPage = basics.profiles.filter((it) => it.network === 'Github')[0].url;
+
+const linkedinProfile = basics.profiles.filter((it) => it.network === 'Linkedin')[0].url;
 
 const website = {
 	ogLanguage: 'en_US',
@@ -12,9 +16,8 @@ const website = {
 	themeColor: '#d62828',
 	author: basics?.name,
 	contactEmail: basics?.email,
-	githubPage: basics?.profiles.find((it) => it.network === 'github')?.username,
-	linkedinProfile: basics?.profiles.find((it) => it.network === 'linkedin')
-		?.username,
+	githubPage,
+	linkedinProfile,
 };
 
 export default website;

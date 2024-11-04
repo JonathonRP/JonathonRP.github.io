@@ -2,8 +2,6 @@
 import Navbar from '@/components/Navbar.astro';
 import PWA from '@/components/PWA.svelte';
 import BasicLayout from '@/layouts/basic.astro';
-
-import '@/styles/index.scss';
 ---
 
 <BasicLayout>
@@ -11,10 +9,3 @@ import '@/styles/index.scss';
 	<Navbar slot="nav" />
 	<slot />
 </BasicLayout>
-
-<style lang="scss">
-	:global(main) {
-		margin-block: 26px;
-		margin-inline: 46px;
-	}
-</style>

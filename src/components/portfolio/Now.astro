@@ -1,0 +1,57 @@
+---
+import Card from "./card/index.astro";
+import Pulse from "./Pulse.astro";
+---
+
+<Card colSpan={1} rowSpan={2}>
+  <section class="now" aria-label="Now">
+      <h2 class="now__header">
+        Now
+        <span>-</span>
+        <a href="https://sive.rs/nowff" target="_blank">
+          <span>why?</span>
+        </a>
+      </h2>
+    <Pulse />
+  </section>
+  <p>Currently working at HealthStream.</p>
+</Card>
+
+<style lang="scss">
+  .now {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: start;
+    margin-bottom: 0.5rem;
+
+    &__header {
+      display: grid;
+      grid-auto-flow: column;
+      // flex-direction: column;
+      // flex-direction: row;
+      align-items: baseline;
+      justify-content: start;
+      gap: 0.5rem;
+      width: 100%;
+
+      a {
+        text-decoration: none;
+        
+        & span {
+          font-size: .75rem;
+          line-height: 1rem;
+          // color: rgb(115 115 115 / var(--text-opacity, 1));
+          // color: var(--gray-500);
+          color: color-mix(in srgb, white 5%, var(--primary-color));
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  p {
+    font-size: .75rem;
+    line-height: 1rem;
+  }
+</style>

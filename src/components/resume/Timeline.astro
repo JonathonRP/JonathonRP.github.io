@@ -149,13 +149,15 @@ const Logo = (image: string) => {
 		--flow-space: var(--small-space);
 		// --flow-space: var(--xsmall-space);
 
-		padding-top: 2px;
+		padding-top: var(--tiny-space);
 		position: relative;
 		padding-inline-start: var(--gigentic-space);
 		// width: 90%;
 
 		&__section-heading {
 			@extend .heading;
+			font-family: var(--secondary-ff);
+			line-height: 1.5;
 			position: relative;
 			// margin-inline: var(--xsmall-space);
 			// background-color: var(--bg-color);
@@ -164,18 +166,6 @@ const Logo = (image: string) => {
 			padding-block-start: var(--default-space);
 			margin-inline-end: var(--large-space);
 			border-bottom: 2px solid var(--primary-color);
-
-			&[data-sr-only] {
-				position: absolute;
-				width: 1px;
-				height: 1px;
-				padding: 0;
-				margin: -1px;
-				overflow: hidden;
-				clip: rect(0, 0, 0, 0);
-				white-space: nowrap;
-				border-width: 0;
-			}
 		}
 
 		&::before {
@@ -249,7 +239,6 @@ const Logo = (image: string) => {
 			// 	position: absolute;
 			// 	top: 0;
 			// 	left: -85px;
-			// 	line-height: 1.2;
 			// 	height: 20px;
 			// 	width: 10%;
 			// 	transform: translateX(-25%);
@@ -336,7 +325,9 @@ const Logo = (image: string) => {
 			// padding: 0;
 			font-family: var(--secondary-ff);
 			// font-family: "Pacifico", cursive;
-			// line-height: 1.5;
+			font-optical-sizing: auto;
+			font-style: normal;
+			line-height: 1.5;
 			font-size: 0.99rem;
 			font-weight: 600;
 			color: var(--accent-color);
@@ -348,6 +339,7 @@ const Logo = (image: string) => {
 			// margin: 0;
 			// padding: 0;
 			// line-height: 2;
+			line-height: 1.5;
 			font-weight: 500;
 			// font-size: 0.75rem;
 		}
