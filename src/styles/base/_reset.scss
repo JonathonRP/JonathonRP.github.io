@@ -23,8 +23,8 @@ dd {
 }
 
 /* Remove list styles on ul, ol elements with a class attribute, which suggests default styling will be removed */
-ul:is([class], [role="list"]),
-ol:is([class], [role="list"]) {
+ul:is([class], [role='list']),
+ol:is([class], [role='list']) {
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -40,11 +40,11 @@ html {
 	-moz-text-size-adjust: none;
 	-webkit-text-size-adjust: none;
 	text-size-adjust: none;
-    -moz-tab-size: 4;
-    tab-size: 4;
-    font-feature-settings: normal;
-    font-variation-settings: normal;
-    -webkit-tap-highlight-color: transparent;
+	-moz-tab-size: 4;
+	tab-size: 4;
+	font-feature-settings: normal;
+	font-variation-settings: normal;
+	-webkit-tap-highlight-color: transparent;
 }
 
 /* Set core body defaults */
@@ -99,7 +99,7 @@ select {
 }
 
 #root, #__next {
-  isolation: isolate;
+	isolation: isolate;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */

@@ -1,56 +1,57 @@
 ---
 interface Props {
-  rounded?: boolean;
+	rounded?: boolean;
 }
 
 const { rounded } = Astro.props;
 ---
 
-<button
-  class='btn'
->
-  <slot />
+<button class="btn">
+	<slot />
 </button>
 
 <style lang="scss" define:vars={{ rounded }}>
-  .btn {
-    // --shadow: 2px 2px 0 rgb(230 57 70 / var(--shadow-opacity, 1));
-    // --shadow: 2px 2px 0 var(--primary-500));
-    --shadow: 2px 2px 0 var(--accent-color);
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    // line-height: 1.2;
-    max-height: 50px;
-    // color: rgb(229 229 229 / var(--text-opacity, 1));
-    // color: var(--gray-200);
-    color:color-mix(in srgb, var(--text-color) 65%, var(--primary-color));
-    padding-inline: 1.25rem;
-    padding-block: 0.5rem;
-    // background-color: rgb(23 23 23 / var(--bg-opacity, 1));
-    // background-color: var(--gray-900);
-    background-color: color-mix(in srgb, var(--bg-color) 15%, var(--primary-color));
-    border-style: solid;
-    border-radius: 0.5rem;
-    border-width: 1px;
-    // border-color: rgb(230 57 70 / var(--border-opacity, 1));
-    // border-color: var(--primary-500);
-    border-color: var(--link-color);
-    box-shadow: var(--ring-offset-shadow, 0 0 rgb(0 0 0 / 0)), var(--ring-shadow, 0 0 rgb(0 0 0 / 0)), var(--shadow);
+	.btn {
+		// --shadow: 2px 2px 0 rgb(230 57 70 / var(--shadow-opacity, 1));
+		// --shadow: 2px 2px 0 var(--primary-500));
+		--shadow: 2px 2px 0 var(--accent-color);
+		font-size: 1.25rem;
+		line-height: 1.75rem;
+		// line-height: 1.2;
+		max-height: 50px;
+		// color: rgb(229 229 229 / var(--text-opacity, 1));
+		// color: var(--gray-200);
+		color: color-mix(in srgb, var(--text-color) 65%, var(--primary-color));
+		padding-inline: 1.25rem;
+		padding-block: 0.5rem;
+		// background-color: rgb(23 23 23 / var(--bg-opacity, 1));
+		// background-color: var(--gray-900);
+		background-color: color-mix(in srgb, var(--bg-color) 15%, var(--primary-color));
+		border-style: solid;
+		border-radius: 0.5rem;
+		border-width: 1px;
+		// border-color: rgb(230 57 70 / var(--border-opacity, 1));
+		// border-color: var(--primary-500);
+		border-color: var(--link-color);
+		box-shadow:
+			var(--ring-offset-shadow, 0 0 rgb(0 0 0 / 0)),
+			var(--ring-shadow, 0 0 rgb(0 0 0 / 0)),
+			var(--shadow);
 
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-    transition-timing-function: cubic-bezier(.4,0,.2,1);
-    transition-duration: .1s;
+		transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-duration: 0.1s;
 
-    cursor: pointer;
+		cursor: pointer;
 
-    &:hover {
-      // color: rgb(230 57 70 / var(--text-opacity, 1));
-      // color: var(--primary-500);
-      color: var(--accent-color)
-    }
+		&:hover {
+			// color: rgb(230 57 70 / var(--text-opacity, 1));
+			// color: var(--primary-500);
+			color: var(--accent-color);
+		}
 
-    @container style(--rounded: true) {
-        border-radius: 9999px;
-    }
-  }
+		@container style(--rounded: true) {
+			border-radius: 9999px;
+		}
+	}
 </style>

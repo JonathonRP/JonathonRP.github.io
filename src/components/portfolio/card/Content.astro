@@ -1,30 +1,28 @@
 ---
 interface Props {
-  title?: string;
-  body?: string;
+	title?: string;
+	body?: string;
 }
 
 const { title, body } = Astro.props;
 ---
 
 <>
-  {title && <h2 id="title" class="title">{title}</h2>}
-  {body && <p class="body">{body}</p>}
-  <slot />
+	{title && <h2 id="title" class="title">{title}</h2>} {body && <p class="body">{body}</p>} <slot />
 </>
 
 <style lang="scss">
-  .title {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    font-weight: 700;
-    margin: 0;
-    z-index: 20;
-  }
-  .body {
-    font-size: 1rem;
-    line-height: 1.5rem;
-    font-weight: 300;
-    margin: 0;
-  }
+	.title {
+		font-size: 1.25rem;
+		line-height: 1.75rem;
+		font-weight: 700;
+		margin: 0;
+		z-index: 20;
+	}
+	.body {
+		font-size: 1rem;
+		line-height: 1.5rem;
+		font-weight: 300;
+		margin: 0;
+	}
 </style>
