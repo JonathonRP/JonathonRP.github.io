@@ -6,6 +6,8 @@ import ContactsCard from "./ContactsCard.astro";
 import IntroCard from "./IntroCard.astro";
 import Now from './Now.astro';
 
+import ProjectsGallery from './projects/index.astro';
+
 const pageTitle = 'Portfolio',
 	metadescription = 'Portfolio Showcase',
 	slug = Astro.url.origin,
@@ -35,12 +37,15 @@ const seo = {
 };
 ---
 
-<SEO {...seo} client:load />
-<IntroCard />
-<AboutMe />
-<ContactsCard />
-<!-- projects -->
-<Now />
+<div class="full-width bento-box">
+	<SEO {...seo} client:load />
+	<IntroCard />
+	<AboutMe />
+	<ContactsCard />
+	<!-- projects -->
+	<Now />
+</div>
+<ProjectsGallery />
 
 <style lang="scss" is:global>
     @use 'sass:string' as *;
@@ -89,7 +94,8 @@ const seo = {
 	h4,
 	h5,
 	h6 {
-		font-family: quote('Merriweather Sans'), sans-serif;
+		// font-family: quote('Merriweather Sans'), sans-serif;
+		font-family: quote('Playfair Display'), serif;
 		-ms-text-size-adjust: 100%;
 		-moz-text-size-adjust: 100%;
 		-webkit-text-size-adjust: 100%;
@@ -99,16 +105,6 @@ const seo = {
 	}
 
 	main {
-		color: white;
-		margin: auto;
-		padding: 0.5rem;
-		display: grid;
-		gap: 0.5rem;
-		max-width: 72rem;
-		overflow: hidden;
-		position: relative;
-		width: 100%;
-
 		// font-family: quote('Newsreader'), serif;
         // font-family: quote('Noto Serif');
 		font-family: quote('Lora'), serif;
@@ -120,6 +116,19 @@ const seo = {
 		// text-size-adjust: 100%;
         font-style: normal;
         font-weight: 400;
+	}
+
+	.bento-box {
+		color: var(--text-color);
+		margin: auto;
+		padding: 0.5rem;
+		display: grid;
+		gap: 0.5rem;
+		max-width: 72rem;
+		overflow: hidden;
+		position: relative;
+		width: 100%;
+		margin-bottom: calc(100dvh - 900px);
 
 		@media (min-width: 640px) {
 			padding: 1rem;
@@ -131,12 +140,25 @@ const seo = {
 			padding: 1.5rem;
 		}
 
+		// @media (min-width: 900px) {
+		// 	margin-bottom: calc(100dvh - 864px);
+		// }
+
 		@media (min-width: 1024px) {
 			height: 100vh;
 			grid-template-rows: repeat(8, minmax(0, 1fr));
 			grid-template-columns: repeat(4, minmax(0, 1fr));
 			gap: 1rem;
 			max-height: 800px;
+			margin-block-end: calc(100dvh - 800px);
 		}
 	}
+
+	// .bento-box {
+	// 	display: grid;
+	// 	// grid-template-rows: subgrid;
+	// 	// grid-template-columns: subgrid;
+	// 	width: 100%;
+	// 	height: 100dvh;
+	// }
 </style>

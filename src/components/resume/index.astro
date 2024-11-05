@@ -7,7 +7,7 @@ import Timeline from './Timeline.astro';
 import TagsCatalog from './TagsCatalog.svelte';
 
 interface Props {
-	data: CollectionEntry<'resume'>['data'] | undefined;
+	data: CollectionEntry<'resume'>['data'];
 }
 
 const {
@@ -18,17 +18,7 @@ const {
 		education,
 		skills,
 		projects,
-	} = {
-		basics: {
-			name: undefined,
-			label: undefined,
-		},
-		work: undefined,
-		certificates: undefined,
-		education: undefined,
-		skills: [],
-		projects: [],
-	},
+	}
 } = Astro.props;
 ---
 

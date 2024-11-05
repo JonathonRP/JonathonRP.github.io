@@ -22,11 +22,11 @@
 		minmax(0, var(--breakout-size)) [breakout-end]
 		minmax(var(--gutter-gap), 1fr) [full-width-end];
 
-	& > :not(.break-out, .full-width) {
+	& > :not(.breakout, .full-width) {
 		grid-column: content;
 	}
 
-	& > .break-out {
+	& > .breakout {
 		grid-column: breakout;
 	}
 
