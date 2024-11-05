@@ -5,8 +5,12 @@ import AboutMe from "./AboutMe.astro";
 import ContactsCard from "./ContactsCard.astro";
 import IntroCard from "./IntroCard.astro";
 import Now from './Now.astro';
+import Feature from './projects/feature.astro';
 
+import Card from './card/index.astro';
+import Feature2 from "./projects/feature2.astro";
 import ProjectsGallery from './projects/index.astro';
+import Project2 from "./projects/project2.astro";
 
 const pageTitle = 'Portfolio',
 	metadescription = 'Portfolio Showcase',
@@ -42,8 +46,20 @@ const seo = {
 	<IntroCard />
 	<AboutMe />
 	<ContactsCard />
+	<Feature />
 	<!-- projects -->
 	<Now />
+	<Project2 />
+	<Feature2 />
+	<Card colSpan={1} rowSpan={1}>
+      <p style="font-size: .75rem; line-height: 1rem;">
+        © 2024 · Crafted with ♥️ using <a
+          href="https://astro.build/"
+          target="_blank"
+		  style="color: rgb(245 120 120 / 1); text-decoration: none;">Astro</a
+        > by Jonathon Reese Perry.
+      </p>
+    </Card>
 </div>
 <ProjectsGallery />
 
