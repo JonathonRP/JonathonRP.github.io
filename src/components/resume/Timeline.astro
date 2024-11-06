@@ -29,23 +29,6 @@ const {
 	experiences,
 	type,
 } = Astro.props;
-
-const Logo = (image: string) => {
-	return Object.entries(
-		import.meta.glob('@/images/*.{png,jpg}', {
-			eager: true,
-			query: '?url',
-			import: 'default',
-		}),
-	)
-		.reduce(
-			(prev, [key, value]) => ({
-				...prev,
-				[key.substring(key.indexOf(image))]: value as string,
-			}),
-			{} as Record<string, string>,
-		)[image];
-};
 ---
 
 {
@@ -79,14 +62,13 @@ const Logo = (image: string) => {
 		...experience
 	}) => {
 		const alt = experience.image.split('.').reverse().pop() + ' Logo.';
-		const src = Logo(experience.image);
 		return (
 			<div class="timeline__item">
 				<time class="timeline__duration" datetime={eventDate}>{eventDate}</time>
 				{
 					experience.image && (
 						<div class="timeline__logo">
-							<Image {src} {alt} width="42" height="42" />
+							<Image src={`/logos/${experience.image}`}` format="webp" {alt} width="42" height="42" loading="eager" />
 						</div>
 					) || <div class="timeline__point"></div>
 				}
