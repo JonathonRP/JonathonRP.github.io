@@ -1,5 +1,7 @@
 ---
-// Supports weights 400-900
+import '@/styles/index.scss';
+import styles from '@/styles/index.scss?url';
+
 import '@fontsource/playfair-display/400.css';
 import '@fontsource/playfair-display/500.css';
 import '@fontsource/playfair-display/600.css';
@@ -105,6 +107,7 @@ import poppins900Woff2 from '@fontsource/poppins/files/poppins-latin-900-normal.
 		<link rel="preload" as="font" type="font/woff2" href={poppins700Woff2} crossorigin="anonymous" />
 		<link rel="preload" as="font" type="font/woff2" href={poppins800Woff2} crossorigin="anonymous" />
 		<link rel="preload" as="font" type="font/woff2" href={poppins900Woff2} crossorigin="anonymous" />
+		<link rel="preload" as="style" href={styles} />
 		<slot name="head" />
 	</head>
 	<body>
@@ -118,13 +121,14 @@ import poppins900Woff2 from '@fontsource/poppins/files/poppins-latin-900-normal.
 <!-- <style is:global>
 	@import '@/styles/index.scss' layer(base);
 </style> -->
-<style is:global lang="scss">
+<!-- <style is:global lang="scss">
 	@use 'sass:meta';
 
+	// @include meta.load-css('@/styles');
 	@layer base {
 		@include meta.load-css('@/styles');
 	}
-</style>
+</style> -->
 <style lang="scss">
 	main {
 		display: grid;

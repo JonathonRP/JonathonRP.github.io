@@ -99,9 +99,6 @@
 </section>
 
 <style lang="scss">
-	@use '@/styles/base/root';
-	@use '@/styles/abstracts/mixins' as *;
-
 	:global(section#resume.resume) a:after {
 		content: none;
 	}

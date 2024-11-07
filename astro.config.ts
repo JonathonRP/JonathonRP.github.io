@@ -38,11 +38,12 @@ export default defineConfig({
 		],
 		css: {
 			preprocessorOptions: {
-				sass: {
-					api: 'modern-compiler',
-				},
 				scss: {
 					api: 'modern-compiler',
+					additionalData: `@use "${
+						path.resolve(import.meta.dirname || import.meta.url, './src/styles/abstracts')
+					}" as *;
+					@use "${path.resolve(import.meta.dirname || import.meta.url, './src/styles/base/root')}" as *;`,
 				},
 			},
 		},

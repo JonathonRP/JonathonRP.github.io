@@ -1,5 +1,6 @@
 @use 'sass:string' as *;
 @use 'sass:map' as *;
+@use 'font-families' as *;
 
 $icon-var-arrow-to-bottom: \f33d;
 $icon-var-file-pdf: \f1c1;
@@ -69,45 +70,6 @@ $brand-icons: (
 	'linkedin': $icon-var-linkedin,
 	'github-square': $icon-var-github-square,
 );
-
-@mixin basic-icon {
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-font-smoothing: antialiased;
-	text-size-adjust: 100%;
-	display: inline-block;
-	font-style: normal;
-	font-variant: normal;
-	text-rendering: auto;
-	line-height: 1;
-}
-
-%icon {
-	@include basic-icon;
-}
-
-%brands-icon {
-	@extend %icon;
-	font-family: 'Font Awesome 5 Brands';
-	font-weight: 400;
-}
-
-%solid-icon {
-	@extend %icon;
-	font-family: 'Font Awesome 5 Pro';
-	font-weight: 900;
-}
-
-%regular-icon {
-	@extend %icon;
-	font-family: 'Font Awesome 5 Pro';
-	font-weight: 400;
-}
-
-%light-icon {
-	@extend %icon;
-	font-family: 'Font Awesome 5 Pro';
-	font-weight: 300;
-}
 
 @mixin icon-regular($icon-var: null) {
 	&::before {

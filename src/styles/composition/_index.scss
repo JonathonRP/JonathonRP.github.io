@@ -1,3 +1,4 @@
+@forward 'layout';
 @use '../abstracts/mixins' as *;
 
 // layout
@@ -11,8 +12,8 @@ section#resume.resume {
 	grid-column: 1/-1;
 	width: 297mm;
 	max-height: 420mm;
-	background-color: var(--resume-bg);
 	padding: var(--default-space);
+	background-color: var(--resume-bg);
 	color: var(--resume-text);
 	filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
 

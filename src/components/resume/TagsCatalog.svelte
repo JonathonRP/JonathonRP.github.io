@@ -10,8 +10,6 @@
 </p>
 
 <style lang="scss">
-	@use '@/styles/base/root';
-	@use '@/styles/abstracts/mixins' as *;
 
 	p {
 		color: var(--accent-color);

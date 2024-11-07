@@ -1,7 +1,36 @@
 @use 'sass:string' as *;
+@use 'mixins' as *;
 
 $primary-ff: quote('Poppins'), sans-serif !default;
 $secondary-ff: quote('Inter'), sans-serif !default;
 $accent-ff: quote('Pacifico'), serif !default;
 
 $fa-font-path: 'https://pro.fontawesome.com/releases/v5.15.4/webfonts/' !default;
+
+%icon {
+	@include basic-icon;
+}
+
+%brands-icon {
+	@extend %icon;
+	font-family: 'Font Awesome 5 Brands';
+	font-weight: 400;
+}
+
+%solid-icon {
+	@extend %icon;
+	font-family: 'Font Awesome 5 Pro';
+	font-weight: 900;
+}
+
+%regular-icon {
+	@extend %icon;
+	font-family: 'Font Awesome 5 Pro';
+	font-weight: 400;
+}
+
+%light-icon {
+	@extend %icon;
+	font-family: 'Font Awesome 5 Pro';
+	font-weight: 300;
+}

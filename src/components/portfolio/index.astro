@@ -9,7 +9,6 @@ import Feature from './projects/feature.astro';
 
 import Card from './card/index.astro';
 import Feature2 from './projects/feature2.astro';
-import ProjectsGallery from './projects/index.astro';
 import Project2 from './projects/project2.astro';
 
 const pageTitle = 'Portfolio',
@@ -41,27 +40,28 @@ const seo = {
 };
 ---
 
-<div class="full-width bento-box">
-	<SEO {...seo} client:load />
-	<IntroCard />
-	<AboutMe />
-	<ContactsCard />
-	<Feature />
-	<!-- projects -->
-	<Now />
-	<Project2 />
-	<Feature2 />
-	<Card colSpan={1} rowSpan={1}>
-		<p style="font-size: 0.75rem; line-height: 1rem">
-			© 2024 · Crafted with ♥️ using <a
-				href="https://astro.build/"
-				target="_blank"
-				style="color: rgb(245 120 120 / 1); text-decoration: none"
-			>Astro</a> by Jonathon Reese Perry.
-		</p>
-	</Card>
-</div>
-<ProjectsGallery />
+<SEO {...seo} client:load />
+<section aria-label="Portfolio">
+	<div class="bento-box">
+		<IntroCard />
+		<AboutMe />
+		<ContactsCard />
+		<Feature />
+		<!-- projects -->
+		<Now />
+		<Project2 />
+		<Feature2 />
+		<Card colSpan={1} rowSpan={1}>
+			<p style="font-size: 0.75rem; line-height: 1rem">
+				© 2024 · Crafted with ♥️ using <a
+					href="https://astro.build/"
+					target="_blank"
+					style="color: rgb(245 120 120 / 1); text-decoration: none"
+				>Astro</a> by Jonathon Reese Perry.
+			</p>
+		</Card>
+	</div>
+</section>
 
 <style lang="scss" is:global>
 	@use 'sass:string' as *;
@@ -136,6 +136,10 @@ const seo = {
 		// text-size-adjust: 100%;
 		font-style: normal;
 		font-weight: 400;
+
+		& > section {
+			min-height: 100vh;
+		}
 	}
 
 	.bento-box {
@@ -148,7 +152,7 @@ const seo = {
 		overflow: hidden;
 		position: relative;
 		width: 100%;
-		margin-bottom: calc(100dvh - 900px);
+		// margin-bottom: calc(100dvh - 900px);
 
 		@media (min-width: 640px) {
 			padding: 1rem;
@@ -170,7 +174,7 @@ const seo = {
 			grid-template-columns: repeat(4, minmax(0, 1fr));
 			gap: 1rem;
 			max-height: 800px;
-			margin-block-end: calc(100dvh - 800px);
+			// margin-block-end: calc(100dvh - 800px);
 		}
 	}
 
