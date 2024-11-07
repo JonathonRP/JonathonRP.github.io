@@ -20,7 +20,12 @@ export default defineConfig({
 		svelte(),
 	],
 	prefetch: {
-		prefetchAll: false,
+		defaultStrategy: 'viewport',
+		prefetchAll: true,
+	},
+	image: {
+		// cacheDir: './.cache/image',
+		// defaultFormat: 'webp',
 	},
 	vite: {
 		resolve: {
@@ -54,5 +59,8 @@ export default defineConfig({
 	experimental: {
 		serverIslands: true,
 		contentLayer: true,
+		contentIntellisense: true,
+		contentCollectionCache: true,
+		clientPrerender: true,
 	},
 });

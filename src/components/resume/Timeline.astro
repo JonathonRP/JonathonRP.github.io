@@ -60,7 +60,7 @@ const {
 			'MMM yyyy',
 		),
 		...experience
-	}) => {
+	}, indx) => {
 		const alt = experience.image.split('.').reverse().pop() + ' Logo.';
 		return (
 			<div class="timeline__item">
@@ -68,7 +68,7 @@ const {
 				{
 					experience.image && (
 						<div class="timeline__logo">
-							<Image src={`/logos/${experience.image}`}` format="webp" {alt} width="42" height="42" loading="eager" />
+							<Image src={`/logos/${experience.image}`}` format="webp" {alt} width="42" height="42" loading={indx < 2 ? "eager" : "lazy"} decoding="sync" />
 						</div>
 					) || <div class="timeline__point"></div>
 				}

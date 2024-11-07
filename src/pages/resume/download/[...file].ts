@@ -43,7 +43,7 @@ export const GET: APIRoute = async ({ params: { file }, url }) => {
 	const head = html.head;
 	const style = html.createElement('style');
 	console.log(ResumeCss);
-	const css = ContactDetailsCss + TimelineCss + TagsCatalogCss + ResumeCss + StyleCss;
+	const css = StyleCss + ContactDetailsCss + TimelineCss + TagsCatalogCss + ResumeCss;
 	style.appendChild(html.createTextNode(css));
 	head.appendChild(style);
 	const input = html.documentElement?.innerHTML;

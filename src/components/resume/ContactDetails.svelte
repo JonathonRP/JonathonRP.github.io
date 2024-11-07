@@ -63,9 +63,13 @@
 						class="contact-details__link"
 					>
 						<a
+							class="contact-email"
 							href="mailto:{email}"
 							rel="external nofollow noopener noreferrer"
 							target="blank"
+							data-sveltekit-prefetch
+							data-sveltekit-preload-code="viewport"
+							data-sveltekit-preload-data="hover"
 						>{email}</a>
 					</td>
 					<td style="width: 18px" class="contact-details__icon email"></td>
@@ -81,9 +85,13 @@
 							class="contact-details__link"
 						>
 							<a
+								class="contact-profile"
 								href={profile.url}
 								rel="external nofollow noopener noreferrer"
 								target="blank"
+								data-sveltekit-prefetch
+								data-sveltekit-preload-code="viewport"
+								data-sveltekit-preload-data="hover"
 							>{profile.username}</a>
 						</td>
 						<td
@@ -99,9 +107,6 @@
 </section>
 
 <style lang="scss">
-	:global(section#resume.resume) a:after {
-		content: none;
-	}
 
 	.contact-details {
 		display: block;

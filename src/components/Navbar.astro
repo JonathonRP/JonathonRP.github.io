@@ -7,8 +7,8 @@ const { author } = siteConfig;
 
 <nav class="navbar">
 	<div class="nav">
-		<a id="home" class="home" title="home" href="/" data-astro-prefetch data-astro-preload>Home</a>
-		<a id="resume" class="resume" title="resume" href="/resume" data-astro-prefetch data-astro-preload>Resume</a>
+		<a id="home" title="home" href="/" data-astro-preload>Home</a>
+		<a id="resume" title="resume" href="/resume" data-astro-preload>Resume</a>
 	</div>
 	<div class="actions">
 		<ThemeToggle />
@@ -18,7 +18,7 @@ const { author } = siteConfig;
 			href="resume/download/pdf"
 			download={`${author} Resume`}
 			title="download resume/cv pdf"
-			data-astro-prefetch
+			data-astro-prefetch="hover"
 			data-astro-preload
 		>
 		</a>
@@ -28,7 +28,7 @@ const { author } = siteConfig;
 			href="resume/download/docx"
 			download={`${author} Resume`}
 			title="download resume/cv word"
-			data-astro-prefetch
+			data-astro-prefetch="hover"
 			data-astro-preload
 		>
 		</a>
@@ -50,11 +50,6 @@ const { author } = siteConfig;
 			font-family: var(--primary-ff);
 			color: var(--link-color);
 			font-size: 1rem;
-			text-decoration: none;
-
-			&:hover {
-				text-decoration: underline;
-			}
 		}
 
 		.nav {

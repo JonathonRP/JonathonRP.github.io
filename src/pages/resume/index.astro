@@ -54,6 +54,7 @@ const data = await Content.getLatestResumeData();
 			sizes={`(max-width: 360px) 720px, (max-width: 720px) 1080px, (max-width: 1080px) ${resumePreview.width}px`}
 			alt="Resume"
 			loading="eager"
+			decoding="sync"
 		/>
 	</div>
 	<!-- TODO: make this image at smaller than lg/xlg -->
