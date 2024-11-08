@@ -1,4 +1,4 @@
-@use '../abstracts/mixins' as *;
+@use '../../abstracts/mixins' as *;
 
 .profile {
 	// --flow-space: var(--medium-space);
@@ -24,27 +24,10 @@
 	}
 
 	section {
-		display: none;
+		display: grid;
 
 		grid-column: 2;
 		grid-row: 1/2;
 		justify-self: end;
-	}
-}
-
-.interests {
-	// --flow-space: var(--micro-size);
-	// margin-block-end: var(--flow-space);
-
-	// @include respond-to(lg) {
-	// 	border-bottom: 2px solid var(--primary-color);
-	// }
-}
-
-.personal-projects {
-	img {
-		display: none;
-		// position: relative;
-		// left: -9999%;
 	}
 }

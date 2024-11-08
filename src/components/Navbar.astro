@@ -36,7 +36,6 @@ const { author } = siteConfig;
 </nav>
 
 <style lang="scss">
-
 	.navbar {
 		background-color: var(--bg-color);
 		box-shadow: 0px 3px 6px rgb(0 0 0 / 30%);
@@ -45,6 +44,7 @@ const { author } = siteConfig;
 		justify-content: space-between;
 		align-items: center;
 		height: 56px;
+		// transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
 		a {
 			font-family: var(--primary-ff);
@@ -74,6 +74,7 @@ const { author } = siteConfig;
 				&::before,
 				&::after {
 					margin-block: 0.425rem;
+					// transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 				}
 				&::before {
 					position: absolute;

@@ -3,7 +3,7 @@ import website from '@/website.config';
 
 import Resume from '@/components/resume';
 import SEO from '@/components/SEO/index.svelte';
-import resumePreview from '@/images/resume.png';
+import resume from '@/images/resume.png';
 import AppLayout from '@/layouts/app.astro';
 import { Content } from '@/lib/content';
 import { Picture } from 'astro:assets';
@@ -48,13 +48,13 @@ const data = await Content.getLatestResumeData();
 	<SEO {...seo} client:load />
 	<div class="resume:hidden">
 		<Picture
-			src={resumePreview}
+			src={resume}
 			formats={['avif', 'webp']}
-			widths={[720, 1080, resumePreview.width]}
-			sizes={`(max-width: 360px) 720px, (max-width: 720px) 1080px, (max-width: 1080px) ${resumePreview.width}px`}
+			widths={[720, 1080, resume.width]}
+			sizes={`(max-width: 360px) 720px, (max-width: 720px) 1080px, (max-width: 1080px) ${resume.width}px`}
 			alt="Resume"
 			loading="eager"
-			decoding="sync"
+			decoding="async"
 		/>
 	</div>
 	<!-- TODO: make this image at smaller than lg/xlg -->
@@ -62,11 +62,6 @@ const data = await Content.getLatestResumeData();
 </AppLayout>
 
 <style is:global lang="scss">
-
-	@include headings() {
-		font-size: revert;
-	}
-
 	main {
 		place-content: center;
 		place-items: center;

@@ -2,6 +2,24 @@
 @use 'sass:string' as *;
 @use '@/styles/abstracts' as *;
 
+@each $color, $value in $light {
+	@property --#{$color}-color {
+		syntax: '<color>';
+		inherits: true;
+		initial-value: $value;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	@each $color, $value in $dark {
+		@property --#{$color}-color {
+			syntax: '<color>';
+			inherits: true;
+			initial-value: $value;
+		}
+	}
+}
+
 :root {
 	// custom props
 	--resume-bg: #ffffff;

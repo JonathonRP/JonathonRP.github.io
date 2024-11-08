@@ -3,14 +3,19 @@
 body {
 	background-color: var(--bg-color);
 	color: var(--text-color);
+
+	transition:
+		--bg-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+		--text-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+		--primary-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-a:not([class]), a[class*="contact"] {
+a:not([class]), a[class*='contact'] {
 	position: relative;
 	text-decoration: none;
 
 	&::before {
-		content: "";
+		content: '';
 		position: absolute;
 		display: block;
 		width: 100%;
@@ -20,7 +25,7 @@ a:not([class]), a[class*="contact"] {
 		background-color: var(--link-color);
 		transform: scaleX(0);
 		transform-origin: top left;
-		transition: transform 0.5s ease-in-out;
+		transition: transform 0.3s ease-in-out;
 	}
 
 	&:hover::before {

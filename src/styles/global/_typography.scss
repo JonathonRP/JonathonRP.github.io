@@ -161,13 +161,11 @@ section#resume.resume {
 
 	& .heading,
 	& .subheading {
-		margin: 0;
 		clear: both;
 	}
 
 	& .heading {
 		padding-block-start: var(--default-space);
-		font-size: 1rem;
 		font-weight: 600;
 	}
 

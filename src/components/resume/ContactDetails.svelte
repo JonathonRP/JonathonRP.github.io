@@ -67,9 +67,6 @@
 							href="mailto:{email}"
 							rel="external nofollow noopener noreferrer"
 							target="blank"
-							data-sveltekit-prefetch
-							data-sveltekit-preload-code="viewport"
-							data-sveltekit-preload-data="hover"
 						>{email}</a>
 					</td>
 					<td style="width: 18px" class="contact-details__icon email"></td>
@@ -89,9 +86,6 @@
 								href={profile.url}
 								rel="external nofollow noopener noreferrer"
 								target="blank"
-								data-sveltekit-prefetch
-								data-sveltekit-preload-code="viewport"
-								data-sveltekit-preload-data="hover"
 							>{profile.username}</a>
 						</td>
 						<td
@@ -105,46 +99,3 @@
 		</tbody>
 	</table>
 </section>
-
-<style lang="scss">
-
-	.contact-details {
-		display: block;
-		// grid-template-columns: 160px 25px;
-		// column-gap: 0.5em;
-		// align-items: center;
-		// justify-items: end;
-		text-align: end;
-		position: relative;
-		font-size: 0.85rem;
-
-		// &[data-visibility='desktop'] {
-		// grid-template-rows: repeat(var(--grid-rows), 25px);
-
-		// 	@include respond-to(sm) {
-		// 		display: block;
-		// 	}
-		// }
-
-		table {
-			border-collapse: collapse;
-		}
-
-		&__text,
-		&__link {
-			// grid-column: 1;
-			// text-align: center;
-			padding-block: 0;
-			// margin-inline-end: .5em;
-			padding-inline-end: 0.25em;
-			font-weight: 500;
-		}
-
-		&__icon {
-			// font-size: 15px;
-			// padding-inline-end: var(--small-space);
-			text-align: center;
-			color: var(--accent-color);
-		}
-	}
-</style>

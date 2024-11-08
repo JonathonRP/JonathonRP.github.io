@@ -47,8 +47,8 @@ export default defineConfig({
 					api: 'modern-compiler',
 					additionalData: `@use "${
 						path.resolve(import.meta.dirname || import.meta.url, './src/styles/abstracts')
-					}" as *;
-					@use "${path.resolve(import.meta.dirname || import.meta.url, './src/styles/base/root')}" as *;`,
+					}" as *;`,
+					// @use "${path.resolve(import.meta.dirname || import.meta.url, './src/styles/global/root')}" as *;`,
 				},
 			},
 		},

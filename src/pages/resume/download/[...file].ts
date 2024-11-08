@@ -1,12 +1,12 @@
 // FIXME: https://github.com/withastro/roadmap/discussions/1046
-import ContactDetailsCss from '@/components/resume/ContactDetails.svelte?svelte&type=style&lang.css&inline';
-import TagsCatalogCss from '@/components/resume/TagsCatalog.svelte?svelte&type=style&lang.css&inline';
-import TimelineCss from '@/components/resume/Timeline.astro?astro&type=style&index=0&lang.css&inline';
+// import ContactDetailsCss from '@/components/resume/ContactDetails.svelte?svelte&type=style&lang.css&inline';
+// import TagsCatalogCss from '@/components/resume/TagsCatalog.svelte?svelte&type=style&lang.css&inline';
+// import TimelineCss from '@/components/resume/Timeline.astro?astro&type=style&index=0&lang.css&inline';
 import Resume from '@/components/resume/index.astro';
-import ResumeCss from '@/components/resume/index.astro?astro&type=style&index=0&lang.css&inline';
+// import ResumeCss from '@/components/resume/index.astro?astro&type=style&index=0&lang.css&inline';
 import BasicLayout from '@/layouts/basic.astro';
 import { Content } from '@/lib/content/index.ts';
-import StyleCss from '@/styles/index.scss?inline';
+import styles from '@/styles/index.scss?inline';
 import { getContainerRenderer as svelteContainerRenderer } from '@astrojs/svelte';
 import type { APIRoute } from 'astro';
 import { experimental_AstroContainer } from 'astro/container';
@@ -42,8 +42,8 @@ export const GET: APIRoute = async ({ params: { file }, url }) => {
 	);
 	const head = html.head;
 	const style = html.createElement('style');
-	console.log(ResumeCss);
-	const css = StyleCss + ContactDetailsCss + TimelineCss + TagsCatalogCss + ResumeCss;
+	// const css = styles + ContactDetailsCss + TimelineCss + TagsCatalogCss + ResumeCss;
+	const css = styles;
 	style.appendChild(html.createTextNode(css));
 	head.appendChild(style);
 	const input = html.documentElement?.innerHTML;
@@ -54,12 +54,13 @@ export const GET: APIRoute = async ({ params: { file }, url }) => {
 			const output = fs.createWriteStream(temp);
 
 			wkhtmltopdf(input, {
-				pageSize: 'A3',
+				pageSize: 'A4',
 				pageWidth: '297mm',
 				pageHeight: '420mm',
 				zoom: 1,
 				dpi: 96,
 				disableSmartShrinking: true,
+				printMediaType: true,
 				background: true,
 				marginBottom: 0,
 				marginTop: 0,

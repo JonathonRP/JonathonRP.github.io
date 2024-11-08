@@ -8,3 +8,11 @@ import AppLayout from '@/layouts/app.astro';
 	<Portfolio />
 	<ProjectsGallery />
 </AppLayout>
+
+<style is:global lang="scss">
+	@include headings() {
+		font-size: inherit;
+		font-weight: inherit;
+		// font-family: inherit;
+	}
+</style>

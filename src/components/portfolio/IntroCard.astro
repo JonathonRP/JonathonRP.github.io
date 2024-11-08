@@ -16,13 +16,13 @@ import Card from './card/index.astro';
 				</p>
 			</div>
 			<div class="intro__links">
-				<a href={website.githubPage} aria-label="github profile" target="_blank">
+				<a class="link" href={website.githubPage} aria-label="github profile" target="_blank">
 					<Button aria-label="github profile">
 						<span class="github" style="display: block; height: 1.5rem; width: 1.25rem"></span>
 						<span data-sr-only>GitHub Profile</span>
 					</Button>
 				</a>
-				<a href={website.linkedinProfile} aria-label="linkedin profile" target="_blank">
+				<a class="link" href={website.linkedinProfile} aria-label="linkedin profile" target="_blank">
 					<Button aria-label="linkedin profile">
 						<span class="linkedin" style="display: block; height: 1.5rem; width: 1.25rem"></span>
 						<span data-sr-only>Linkedin Profile</span>
@@ -33,12 +33,12 @@ import Card from './card/index.astro';
 		<Image
 			width="300"
 			height="300"
-      src="/me.png"
-      format='webp'
+			src="/me.png"
+			format="webp"
 			class="intro__image"
 			alt="bitmoji of Jonathon Reese Perry"
-      loading="eager"
-      decoding="sync"
+			loading="eager"
+			decoding="sync"
 		/>
 	</section>
 </Card>
@@ -86,6 +86,10 @@ import Card from './card/index.astro';
 		&__links {
 			display: flex;
 			gap: 1rem;
+
+			& .link {
+				color: inherit;
+			}
 		}
 
 		&__image {
