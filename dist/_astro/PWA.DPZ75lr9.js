@@ -1,0 +1,1 @@
+import{s as r,w as s}from"./website.config.VcGrRPPD.js";import{p,h as m,a as n,f as i,n as c,t as f,b as h,c as l}from"./template.BC4T-a56.js";import"../content/entry.mjs";var u=l('<meta name="theme-color"> <link rel="apple-touch-icon" href="/favicon.ico">',1);function w(d,a){p(a,!0),m(e=>{var t=u(),o=i(t);c(2),f(()=>r(o,"content",s.themeColor)),h(e,t)}),n()}export{w as default};

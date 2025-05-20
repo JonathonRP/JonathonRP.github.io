@@ -5,6 +5,22 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "full stack chrome",
+            "request": "launch",
+			"type": "node",
+			"runtimeArgs": ["task", "dev"],
+            "runtimeExecutable": "deno",
+			"console": "integratedTerminal",
+			"skipFiles": ["<node_internals>/**"],
+            "attachSimplePort": 9229,
+			"serverReadyAction": {
+                "pattern": "\\bLocal\\s+(https?://\\S+\\d)",
+				"uriFormat": "%s/resume",
+				"action": "debugWithChrome",
+                "killOnServerStop": true
+			}
+		},
+        {
             "name": "full stack edge",
             "request": "launch",
 			"type": "node",

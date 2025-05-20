@@ -2,64 +2,22 @@
 import '@/styles/index.scss';
 import styles from '@/styles/index.scss?url';
 
-import '@fontsource/playfair-display/400.css';
-import '@fontsource/playfair-display/500.css';
-import '@fontsource/playfair-display/600.css';
-import '@fontsource/playfair-display/700.css';
-import '@fontsource/playfair-display/800.css';
-import '@fontsource/playfair-display/900.css';
+import '@fontsource/playfair-display';
 import playfairDisplay400Woff2 from '@fontsource/playfair-display/files/playfair-display-latin-400-normal.woff2?url';
-import playfairDisplay500Woff2 from '@fontsource/playfair-display/files/playfair-display-latin-500-normal.woff2?url';
-import playfairDisplay600Woff2 from '@fontsource/playfair-display/files/playfair-display-latin-600-normal.woff2?url';
 import playfairDisplay700Woff2 from '@fontsource/playfair-display/files/playfair-display-latin-700-normal.woff2?url';
-import playfairDisplay800Woff2 from '@fontsource/playfair-display/files/playfair-display-latin-800-normal.woff2?url';
-import playfairDisplay900Woff2 from '@fontsource/playfair-display/files/playfair-display-latin-900-normal.woff2?url';
 
-import '@fontsource/lora/400.css';
-import '@fontsource/lora/500.css';
-import '@fontsource/lora/600.css';
-import '@fontsource/lora/700.css';
+import '@fontsource/lora';
+import lora400ItalicWoff2 from '@fontsource/lora/files/lora-latin-400-italic.woff2?url';
 import lora400Woff2 from '@fontsource/lora/files/lora-latin-400-normal.woff2?url';
-import lora500Woff2 from '@fontsource/lora/files/lora-latin-500-normal.woff2?url';
-import lora600Woff2 from '@fontsource/lora/files/lora-latin-600-normal.woff2?url';
-import lora700Woff2 from '@fontsource/lora/files/lora-latin-700-normal.woff2?url';
 
-import '@fontsource/inter/100.css';
-import '@fontsource/inter/200.css';
-import '@fontsource/inter/300.css';
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
-import '@fontsource/inter/600.css';
-import '@fontsource/inter/700.css';
-import '@fontsource/inter/800.css';
-import '@fontsource/inter/900.css';
-import inter100Woff2 from '@fontsource/inter/files/inter-latin-100-normal.woff2?url';
-import inter200Woff2 from '@fontsource/inter/files/inter-latin-200-normal.woff2?url';
-import inter300Woff2 from '@fontsource/inter/files/inter-latin-300-normal.woff2?url';
-import inter400Woff2 from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
+import '@fontsource/inter';
 import inter500Woff2 from '@fontsource/inter/files/inter-latin-500-normal.woff2?url';
 import inter600Woff2 from '@fontsource/inter/files/inter-latin-600-normal.woff2?url';
 import inter700Woff2 from '@fontsource/inter/files/inter-latin-700-normal.woff2?url';
-import inter800Woff2 from '@fontsource/inter/files/inter-latin-800-normal.woff2?url';
 
-import '@fontsource/poppins/100.css';
-import '@fontsource/poppins/200.css';
-import '@fontsource/poppins/300.css';
-import '@fontsource/poppins/400.css';
-import '@fontsource/poppins/500.css';
-import '@fontsource/poppins/600.css';
-import '@fontsource/poppins/700.css';
-import '@fontsource/poppins/800.css';
-import '@fontsource/poppins/900.css';
-import poppins100Woff2 from '@fontsource/poppins/files/poppins-latin-100-normal.woff2?url';
-import poppins200Woff2 from '@fontsource/poppins/files/poppins-latin-200-normal.woff2?url';
-import poppins300Woff2 from '@fontsource/poppins/files/poppins-latin-300-normal.woff2?url';
+import '@fontsource/poppins';
 import poppins400Woff2 from '@fontsource/poppins/files/poppins-latin-400-normal.woff2?url';
 import poppins500Woff2 from '@fontsource/poppins/files/poppins-latin-500-normal.woff2?url';
-import poppins600Woff2 from '@fontsource/poppins/files/poppins-latin-600-normal.woff2?url';
-import poppins700Woff2 from '@fontsource/poppins/files/poppins-latin-700-normal.woff2?url';
-import poppins800Woff2 from '@fontsource/poppins/files/poppins-latin-800-normal.woff2?url';
-import poppins900Woff2 from '@fontsource/poppins/files/poppins-latin-900-normal.woff2?url';
 
 import resume from '../images/resume.png';
 ---
@@ -81,41 +39,26 @@ import resume from '../images/resume.png';
 			href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap"
 			rel="stylesheet"
 		/> -->
-		<link rel="preload" as="font" type="font/woff2" href={playfairDisplay400Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={playfairDisplay500Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={playfairDisplay600Woff2} crossorigin="anonymous" />
+		<link rel="preconnect" href="https://pro.fontawesome.com" />
+		<link
+			rel="preload"
+			as="font"
+			href="https://pro.fontawesome.com/releases/v5.15.4/webfonts"
+			crossorigin="anonymous"
+		/>
 		<link rel="preload" as="font" type="font/woff2" href={playfairDisplay700Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={playfairDisplay800Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={playfairDisplay900Woff2} crossorigin="anonymous" />
 		<link rel="preload" as="font" type="font/woff2" href={lora400Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={lora500Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={lora600Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={lora700Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={inter100Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={inter200Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={inter200Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={inter300Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={inter400Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={inter500Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={inter600Woff2} crossorigin="anonymous" />
+		<link rel="preload" as="font" type="font/woff2" href={lora400ItalicWoff2} crossorigin="anonymous" />
+		<link rel="preload" as="font" type="font/woff2" href={playfairDisplay400Woff2} crossorigin="anonymous" />
 		<link rel="preload" as="font" type="font/woff2" href={inter700Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={inter800Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={poppins100Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={poppins200Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={poppins300Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={poppins400Woff2} crossorigin="anonymous" />
+		<link rel="preload" as="font" type="font/woff2" href={inter600Woff2} crossorigin="anonymous" />
+		<link rel="preload" as="font" type="font/woff2" href={inter500Woff2} crossorigin="anonymous" />
 		<link rel="preload" as="font" type="font/woff2" href={poppins500Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={poppins600Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={poppins700Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={poppins800Woff2} crossorigin="anonymous" />
-		<link rel="preload" as="font" type="font/woff2" href={poppins900Woff2} crossorigin="anonymous" />
+		<link rel="preload" as="font" type="font/woff2" href={poppins400Woff2} crossorigin="anonymous" />
+
 		<link rel="preload" as="style" href={styles} />
 		<link rel="preload" as="image" href={resume.src} />
 		<link rel="preload" as="image" href="/me.png" />
-		<link rel="preload" as="image" href="/logos/MiraTech+Quovant.jpg" />
-		<link rel="preload" as="image" href="/logos/HCA.png" />
-		<link rel="preload" as="image" href="/logos/Developing_ASP.NET_MVC_Web_Applications-Certification.png" />
-		<link rel="preload" as="image" href="/logos/MTSU.png" />
 		<slot name="head" />
 	</head>
 	<body>

@@ -54,7 +54,7 @@ export const GET: APIRoute = async ({ params: { file }, url }) => {
 			const output = fs.createWriteStream(temp);
 
 			wkhtmltopdf(input, {
-				pageSize: 'A4',
+				pageSize: 'A3',
 				pageWidth: '297mm',
 				pageHeight: '420mm',
 				zoom: 1,

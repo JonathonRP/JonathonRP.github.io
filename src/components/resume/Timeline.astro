@@ -50,19 +50,19 @@ const {
 <div class="timeline" data-type={type.experience}>
 	{
 		experiences.map(({
-		startDate,
-		endDate,
-		date,
-		eventDate = format(
-			parseISO(
-				(type.work ? startDate : type.certificates ? date : endDate) ?? '',
+			startDate,
+			endDate,
+			date,
+			eventDate = format(
+				parseISO(
+					(type.work ? startDate : type.certificates ? date : endDate) ?? '',
+				),
+				'MMM yyyy',
 			),
-			'MMM yyyy',
-		),
-		...experience
-	}, indx) => {
-		const alt = experience.image.split('.').reverse().pop() + ' Logo.';
-		return (
+			...experience
+		}, indx) => {
+			const alt = experience.image.split('.').reverse().pop() + ' Logo.';
+			return (
 			<div class="timeline__item">
 				<time class="timeline__duration" datetime={eventDate}>{eventDate}</time>
 				{
@@ -70,13 +70,12 @@ const {
 						<div class="timeline__logo">
 							<Image
 								src={`/logos/${experience.image}`}
-								`
 								format="webp"
 								{alt}
 								width="42"
 								height="42"
-								loading={indx < 2 ? 'eager' : 'lazy'}
-								decoding="sync"
+								loading={indx < 5 ? 'eager' : 'lazy'}
+								decoding="async"
 							/>
 						</div>
 					) || <div class="timeline__point"></div>
@@ -107,12 +106,12 @@ const {
 										}
 									</>
 								) ||
-		type.certificates && (
+							type.certificates && (
 									<p class="timeline__issuer">
 										{experience.issuer}
 									</p>
 								) ||
-		type.education && (
+							type.education && (
 									<h4 class="timeline__sub">{experience.area}</h4>
 									<p class="timeline__degree">
 										{experience.studyType}
@@ -125,6 +124,6 @@ const {
 				</div>
 			</div>
 		);
-	})
+		})
 	}
 </div>
