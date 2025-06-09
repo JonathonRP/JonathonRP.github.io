@@ -1,23 +1,14 @@
 <svelte:options runes />
 
 <script lang="ts">
+	import type { CollectionEntry } from 'astro:content';
+	import type { SvelteHTMLElements } from 'svelte/elements';
 	const {
 		basics,
 		...restProps
 	}: {
-		basics: {
-			location?: {
-				address: string;
-				city: string;
-				countryCode: string;
-				postalCode: string;
-				region: string;
-			};
-			phone?: string;
-			email?: string;
-			profiles?: { network: string; username: string; url: string }[];
-		};
-	} = $props();
+		basics: CollectionEntry<'resume'>['data']['basics'];
+	} & SvelteHTMLElements['section'] = $props();
 
 	const { location, phone, email, profiles = [] } = $derived(basics);
 </script>
@@ -99,3 +90,7 @@
 		</tbody>
 	</table>
 </section>
+
+<style lang="scss">
+	@import '@/styles/blocks/resume/_contact-details.scss';
+</style>

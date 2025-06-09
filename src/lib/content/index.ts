@@ -14,6 +14,7 @@ export class Content {
 			return id === max;
 		});
 
-		return entries[0].data;
+		return entries.at(-1)?.data;
+		// return entries[0].data;
 	}
 }

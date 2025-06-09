@@ -1,3 +1,4 @@
+@use 'sass:selector' as *;
 @use '@/styles/global/typography' as *;
 
 .timeline {
@@ -150,13 +151,12 @@
 	}
 
 	&__point {
-		--point-size: calc(var(--logo-size) / 3);
-		--point-radius: calc(var(--point-size) / 2);
+		--point-size: calc(var(--image-size) * 0.875);
 
 		box-sizing: content-box;
 		position: absolute;
-		top: 0;
-		left: calc(-1 * var(--point-radius));
+		top: 2%;
+		left: calc(-1 * var(--image-size));
 		width: var(--point-size);
 		height: var(--point-size);
 		background: var(--primary-color);
@@ -209,16 +209,18 @@
 		margin: 0 var(--tiny-space);
 	}
 
-	&__responsabilities-achievements {
+	#{unify('.timeline__responsabilities-achievements', 'ul')} {
 		display: grid;
-		padding-inline-start: var(--medium-space);
+		padding-inline-start: var(--flow-space);
 		padding-block-start: var(--flow-space);
 
 		> li {
 			max-width: 77ch;
-			padding-inline-start: var(--medium-space);
+			padding-inline-start: var(--flow-space);
+
 			&::marker {
 				content: '\2192';
+				color: var(--accent-color);
 				// font-size: unset;
 			}
 		}

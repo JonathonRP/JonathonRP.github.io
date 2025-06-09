@@ -5,13 +5,15 @@
 		margin-inline-start: var(--tiny-space);
 
 		cite {
+			text-box-trim: trim-both;
+			text-box-edge: cap alphabetic;
 			font-style: normal;
 			float: left;
 			// background-color: var(--resume-bg);
 			background-color: var(--primary-color);
 			border-radius: var(--large-space);
 			margin: var(--micro-space);
-			padding: var(--micro-space) var(--tiny-space);
+			padding: var(--tiny-space) var(--tiny-space);
 
 			// @include respond-to(sm) {
 			// 	background-color: var(--primary-color);

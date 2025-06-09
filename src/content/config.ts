@@ -1,8 +1,8 @@
+import { glob } from 'astro/loaders';
 import { defineCollection, z } from 'astro:content';
-import { file, glob } from 'astro/loaders';
 
 const resume = defineCollection({
-	loader: glob({ pattern: '**\/*.json', base: './src/data/resume' }),
+	loader: glob({ pattern: '**/[^_]*.{resume.jsonc,resume.json}', base: './src/data/resume' }),
 	schema: z.object({
 		basics: z.object({
 			name: z.string(),
@@ -34,8 +34,7 @@ const resume = defineCollection({
 			url: z.string().url().optional(),
 			startDate: z.string(),
 			endDate: z.string().optional(),
-			useSummary: z.boolean(),
-			summary: z.string(),
+			summary: z.string().optional(),
 			highlights: z.array(z.string()),
 		})),
 		volunteer: z.array(z.object({

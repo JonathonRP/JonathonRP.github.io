@@ -142,7 +142,7 @@ section#resume.resume {
 	}
 
 	& a {
-		color: var(--link-color);
+		color: var(--accent-color);
 		text-decoration: none;
 
 		&:not([class]):after {
@@ -165,11 +165,15 @@ section#resume.resume {
 	}
 
 	& .heading {
+		display: flex;
+		gap: var(--small-space);
 		padding-block-start: var(--default-space);
 		font-weight: 600;
 	}
 
 	& .subheading {
+		text-box-trim: trim-end;
+		text-box-edge: cap alphabetic;
 		padding-inline-end: var(--mini-space);
 		float: left;
 		font-size: 0.95rem;
@@ -194,6 +198,7 @@ section#resume.resume {
 			font-weight: 600;
 			font-size: 0.8rem;
 			text-wrap: balance;
+			color: var(--accent-color);
 		}
 
 		li {
@@ -202,6 +207,7 @@ section#resume.resume {
 
 		p {
 			margin: var(--mini-space);
+			padding-block-end: var(--small-space);
 		}
 	}
 }

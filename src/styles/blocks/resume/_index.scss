@@ -1,9 +1,9 @@
-@use 'profile';
-@use 'contact-details';
-@use 'timeline';
-@use 'tags-catalog';
-@use 'personal-projects';
-@use 'interests';
+// @use 'profile';
+// @use 'contact-details';
+// @use 'timeline';
+// @use 'tags-catalog';
+// @use 'personal-projects';
+// @use 'interests';
 @use '../../abstracts/mixins' as *;
 
 section#resume.resume {
@@ -22,6 +22,7 @@ section#resume.resume {
 		border: 0;
 		border-collapse: collapse;
 		border-spacing: 0;
+		table-layout: fixed;
 
 		& th {
 			--flow-space: var(--small-space);

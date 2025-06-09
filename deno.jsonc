@@ -1,0 +1,31 @@
+{
+	"imports": {
+		// "astro:container": "./node_modules/astro/dist/virtual-modules/container.d.ts"
+		"util": "node:util",
+		"tty": "node:tty",
+		"crypto": "node:crypto",
+		"child_process":"node:child_process",
+		"path": "node:path",
+		"os": "node:os",
+		"fs": "node:fs"
+	},
+	"lint": {
+		"include": ["src/", "./**/*.ts"],
+		"rules": {
+			"tags": ["recommended"],
+			"include": ["ban-untagged-todo"],
+			"exclude": ["no-unused-vars"]
+		}
+	},
+	"fmt": {
+		"useTabs": true,
+		"lineWidth": 120,
+		"indentWidth": 2,
+		"semiColons": true,
+		"singleQuote": true,
+		"proseWrap": "preserve",
+		"include": ["src/", "./**/*.ts"]
+	},
+	"nodeModulesDir": "auto",
+	"unstable": ["byonm", "fmt-component"]
+}

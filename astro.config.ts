@@ -1,6 +1,7 @@
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import deno from '@deno/vite-plugin';
+import { enhancedImages } from '@sveltejs/enhanced-img';
 import robotsTxt from 'astro-robots-txt';
 import { defineConfig } from 'astro/config';
 import path from 'node:path';
@@ -30,7 +31,7 @@ export default defineConfig({
 	vite: {
 		resolve: {
 			alias: {
-				'@': path.resolve(import.meta.dirname || import.meta.url, 'src'),
+				'@/': `${path.resolve(import.meta.dirname || import.meta.url, 'src')}/`,
 			},
 		},
 		// server: {
@@ -39,15 +40,14 @@ export default defineConfig({
 		// 	},
 		// },
 		plugins: [
+			enhancedImages(),
 			deno(),
 		],
 		css: {
 			preprocessorOptions: {
 				scss: {
 					api: 'modern-compiler',
-					additionalData: `@use "${
-						path.resolve(import.meta.dirname || import.meta.url, './src/styles/abstracts')
-					}" as *;`,
+					additionalData: `@use "@/styles/abstracts" as *;`,
 					// @use "${path.resolve(import.meta.dirname || import.meta.url, './src/styles/global/root')}" as *;`,
 				},
 			},
@@ -57,10 +57,7 @@ export default defineConfig({
 	// 	inlineStylesheets: 'always',
 	// },
 	experimental: {
-		serverIslands: true,
-		contentLayer: true,
 		contentIntellisense: true,
-		contentCollectionCache: true,
 		clientPrerender: true,
 	},
 });

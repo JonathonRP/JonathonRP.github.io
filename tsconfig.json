@@ -10,8 +10,10 @@
 		"./tests/**/*.ts",
 		"./tests/**/*.svelte",
 		"**/*.ts",
+		"global.d.ts"
 	],
 	"compilerOptions": {
+		"allowJs": true,
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["src/*"],
@@ -38,6 +40,6 @@
 		"forceConsistentCasingInFileNames": true,
 		"lib": ["dom", "ES6", "ES2017", "esnext", "ESNext.AsyncIterable", "deno.ns", "deno.unstable"],
 		"jsx": "preserve",
-		"types": ["./src/lib.deno.d.ts", "./src/env.d.ts"]
+		"types": ["./global.d.ts"]
 	},
 }

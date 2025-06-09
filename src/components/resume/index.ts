@@ -1,1 +1,1 @@
-export { default } from './index.astro';
+export { default } from './resume.svelte';

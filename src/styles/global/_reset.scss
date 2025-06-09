@@ -23,8 +23,7 @@ dd {
 }
 
 /* Remove list styles on ul, ol elements with a class attribute, which suggests default styling will be removed */
-ul:is([class], [role='list']),
-ol:is([class], [role='list']) {
+ul[class], ul[role='list'], ol[class], ol[role='list'] {
 	margin: 0;
 	padding: 0;
 	list-style: none;

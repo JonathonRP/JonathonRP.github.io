@@ -15,7 +15,7 @@ const { author } = siteConfig;
 		<a
 			id="pdf"
 			class="download pdf"
-			href="resume/download/pdf"
+			href={`/resume/download/${author} Resume.pdf`}
 			download={`${author} Resume`}
 			title="download resume/cv pdf"
 			data-astro-prefetch="hover"
@@ -25,7 +25,7 @@ const { author } = siteConfig;
 		<a
 			id="word"
 			class="download word"
-			href="resume/download/docx"
+			href={`/resume/download/${author} Resume.docx`}
 			download={`${author} Resume`}
 			title="download resume/cv word"
 			data-astro-prefetch="hover"

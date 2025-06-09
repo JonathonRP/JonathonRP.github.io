@@ -1,6 +1,6 @@
 ---
-import '@/styles/index.scss';
-import styles from '@/styles/index.scss?url';
+// import '@/styles/index.scss';
+// import styles from '@/styles/index.scss?url';
 
 import '@fontsource/playfair-display';
 import playfairDisplay400Woff2 from '@fontsource/playfair-display/files/playfair-display-latin-400-normal.woff2?url';
@@ -40,12 +40,6 @@ import resume from '../images/resume.png';
 			rel="stylesheet"
 		/> -->
 		<link rel="preconnect" href="https://pro.fontawesome.com" />
-		<link
-			rel="preload"
-			as="font"
-			href="https://pro.fontawesome.com/releases/v5.15.4/webfonts"
-			crossorigin="anonymous"
-		/>
 		<link rel="preload" as="font" type="font/woff2" href={playfairDisplay700Woff2} crossorigin="anonymous" />
 		<link rel="preload" as="font" type="font/woff2" href={lora400Woff2} crossorigin="anonymous" />
 		<link rel="preload" as="font" type="font/woff2" href={lora400ItalicWoff2} crossorigin="anonymous" />
@@ -56,7 +50,7 @@ import resume from '../images/resume.png';
 		<link rel="preload" as="font" type="font/woff2" href={poppins500Woff2} crossorigin="anonymous" />
 		<link rel="preload" as="font" type="font/woff2" href={poppins400Woff2} crossorigin="anonymous" />
 
-		<link rel="preload" as="style" href={styles} />
+		<!-- <link rel="preload" as="style" href={styles} /> -->
 		<link rel="preload" as="image" href={resume.src} />
 		<link rel="preload" as="image" href="/me.png" />
 		<slot name="head" />
@@ -80,7 +74,9 @@ import resume from '../images/resume.png';
 		@include meta.load-css('@/styles');
 	}
 </style> -->
-<style lang="scss">
+<style lang="scss" is:global>
+	@use '@/styles/index.scss';
+
 	main {
 		display: grid;
 		font-size: 1rem;

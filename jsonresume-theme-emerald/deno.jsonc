@@ -1,0 +1,17 @@
+{
+    "imports": {
+        "vite": "npm:vite",
+        "svelte": "npm:svelte",
+        "@sveltejs/vite-plugin-svelte": "npm:@sveltejs/vite-plugin-svelte",
+        "@sveltejs/enhanced-img": "npm:@sveltejs/enhanced-img",
+        "@deno/vite-plugin": "npm:@deno/vite-plugin",
+        "@sveltejs/vite-plugin-svelte-inspector": "npm:@sveltejs/vite-plugin-svelte-inspector",
+        "vite-plugin-commonjs": "npm:vite-plugin-commonjs",
+        "debug": "npm:debug",
+        "kleur/colors": "npm:kleur/colors",
+        "magic-string": "npm:magic-string",
+        "vitefu": "npm:vitefu",
+        "deepmerge": "npm:deepmerge"
+    },
+    "nodeModulesDir":"auto"
+}

@@ -5,7 +5,7 @@ import BasicLayout from '@/layouts/basic.astro';
 ---
 
 <BasicLayout>
-	<PWA slot="head" client:load="svelte" />
+	<PWA slot="head" />
 	<slot name="head" slot="head" />
 	<Navbar slot="nav" />
 	<slot />

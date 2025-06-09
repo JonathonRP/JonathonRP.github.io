@@ -123,9 +123,6 @@
               "endDate": {
                 "type": "string"
               },
-              "useSummary": {
-                "type": "boolean"
-              },
               "summary": {
                 "type": "string"
               },
@@ -140,8 +137,6 @@
               "image",
               "name",
               "startDate",
-              "useSummary",
-              "summary",
               "highlights"
             ],
             "additionalProperties": false

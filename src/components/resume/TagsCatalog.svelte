@@ -5,6 +5,10 @@
 
 <p>
 	{#each labels as label}
-		<cite aria-label={label}>{label}</cite>
+		<cite aria-label={label}>{label}{'\u0020'}</cite>
 	{/each}
 </p>
+
+<style lang="scss">
+	@import '@/styles/blocks/resume/_tags-catalog.scss';
+</style>

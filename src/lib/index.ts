@@ -1,36 +1,33 @@
 export { hash, linq } from './linq/index.ts';
 
+export type TimelineType = {
+	work: Work;
+	education: Education;
+	certificates: Certificates;
+};
+
 export class Work {
 	heading = undefined;
-	icon = 'work';
-	work = true;
-	education = false;
-	certificates = false;
-	experience = 'professional';
+	icon = 'work' as const;
+	experienceKind = 'professional' as const;
 }
 
 export class Education {
 	heading = {
 		id: 'ed',
 		title: 'Education',
-	};
-	icon = 'education';
-	work = false;
-	education = true;
-	certificates = false;
-	experience = undefined;
+	} as const;
+	icon = 'education' as const;
+	experienceKind = undefined;
 }
 
 export class Certificates {
 	heading = {
 		id: 'cert',
 		title: 'Certificates',
-	};
-	icon = 'certificates';
-	work = false;
-	education = false;
-	certificates = true;
-	experience = undefined;
+	} as const;
+	icon = 'certificates' as const;
+	experienceKind = undefined;
 }
 
 export function catchError<T>(promise: Promise<T>): Promise<[undefined, T] | [Error]> {

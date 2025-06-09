@@ -45,7 +45,7 @@ const data = await Content.getLatestResumeData();
 ---
 
 <AppLayout>
-	<SEO {...seo} client:load />
+	<SEO {...seo} />
 	<div class="resume:hidden">
 		<Picture
 			src={resume}
@@ -54,7 +54,7 @@ const data = await Content.getLatestResumeData();
 			sizes={`(max-width: 360px) 720px, (max-width: 720px) 1080px, (max-width: 1080px) ${resume.width}px`}
 			alt="Resume"
 			loading="eager"
-			decoding="async"
+			decoding="auto"
 		/>
 	</div>
 	<!-- TODO: make this image at smaller than lg/xlg -->
