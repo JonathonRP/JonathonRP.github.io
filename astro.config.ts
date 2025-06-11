@@ -27,6 +27,7 @@ export default defineConfig({
 	image: {
 		// cacheDir: './.cache/image',
 		// defaultFormat: 'webp',
+		experimentalLayout: 'constrained',
 	},
 	vite: {
 		resolve: {
@@ -59,5 +60,6 @@ export default defineConfig({
 	experimental: {
 		contentIntellisense: true,
 		clientPrerender: true,
+		responsiveImages: true,
 	},
 });

@@ -1,4 +1,3 @@
-<svelte:options runes/>
 <script lang="ts">
 import { hash, linq } from '@/lib';
 import type { CollectionEntry } from 'astro:content';
@@ -33,6 +32,7 @@ const {
 		</colgroup>
 		<tbody>
 			<!-- Profile -->
+			{#if basics}
 			<tr class="profile">
 				<th colspan="8" class="[ flow ]">
 					<!-- Introduction -->
@@ -52,6 +52,7 @@ const {
 					<ContactDetails {basics} aria-label="Details" />
 				</th>
 			</tr>
+			{/if}
 			<tr>
 				<!-- Relevant Experience History -->
 				<td
@@ -59,26 +60,34 @@ const {
 					class="[ grid-column ]"
 					aria-label="Relevant Experience History"
 				>
+					{#if work && work.length > 0}
 					<section
 						class="experience"
 						aria-label="Relevant Professional Experience"
 					>
 						<Timeline events={work} type="work" />
 					</section>
+					{/if}
 
 					<!-- Certificates -->
+					{#if certificates && certificates.length > 0}
 					<section class="experience" aria-labelledby="cert-title">
 						<Timeline events={certificates} type="certificates" />
 					</section>
+					{/if}
 
 					<!-- Education -->
+					{#if education && education.length > 0}
 					<section class="experience" aria-labelledby="ed-title">
 						<Timeline events={education} type="education" />
 					</section>
+					{/if}
 				</td>
 
 				<td colspan="5" class="[ grid-column ]">
 					<!-- Skills -->
+					<!-- FIX: extend is an unused css selector? -->
+					{#if skills && skills.length > 0}
 					<section
 						class="skills [ tags-catalog extend ] [ bg-none ]"
 						aria-label="skills"
@@ -125,6 +134,7 @@ const {
 								</section>
 						{/each}
 					</section>
+					{/if}
 
 					<!-- Interests -->
 					<!-- {#if interests}
@@ -148,6 +158,7 @@ const {
 						{/if} -->
 
 					<!-- Projects -->
+					{#if projects && projects.length > 0}
 					<section
 						class="personal-projects"
 						aria-labelledby="personal-projects-title"
@@ -189,6 +200,7 @@ const {
 							{/each}
 						</div>
 					</section>
+					{/if}
 				</td>
 			</tr>
 		</tbody>
@@ -196,7 +208,105 @@ const {
 </section>
 
 <style lang="scss">
-	@import '@/styles/blocks/resume/_index.scss';
-	@import '@/styles/blocks/resume/_personal-projects.scss';
-	@import '@/styles/blocks/resume/_profile.scss';
+	@use '../../styles/abstracts/mixins' as *;
+
+	section#resume.resume {
+		@include headings() {
+			font-family: var(--secondary-ff);
+			font-optical-sizing: auto;
+			font-style: normal;
+			// padding-block: var(--mini-space);
+		}
+
+		& > table {
+			// display: grid;
+			// grid-template-columns: 2fr 1fr;
+			width: 100%;
+			text-align: left;
+			border: 0;
+			border-collapse: collapse;
+			border-spacing: 0;
+			table-layout: fixed;
+
+			& th {
+				--flow-space: var(--small-space);
+				vertical-align: top;
+				height: 100%;
+				// font-weight: 400;
+			}
+			& td {
+				vertical-align: top;
+			}
+
+			// & td {
+			// 	padding: 0;
+			// }
+
+			// & td:has(.profile) {
+			// 	grid-column: 1 / span 2;
+			// }
+		}
+
+		// .profile {
+		// 	display: grid;
+		// }
+
+		:global(.project.gallery) {
+			margin-block-start: var(--mini-space);
+			margin-inline: var(--tiny-space);
+		}
+	}
+
+	.profile {
+		// --flow-space: var(--medium-space);
+
+		> * {
+			margin-inline: var(--xsmall-space);
+		}
+
+		div {
+			// grid-row: 1;
+
+			@include respond-to(sm) {
+				grid-column: 1;
+			}
+		}
+
+		:global(p) {
+			// grid-row: 2;
+
+			// @include respond-to(sm) {
+			// 	grid-column: span 2;
+			// }
+		}
+
+		:global(section) {
+			display: grid;
+
+			// grid-column: 2;
+			// grid-row: 1/2;
+			justify-self: end;
+		}
+	}
+
+	.tags-catalog {
+		
+	}
+
+	.interests {
+		// --flow-space: var(--micro-size);
+		// margin-block-end: var(--flow-space);
+
+		// @include respond-to(lg) {
+		// 	border-bottom: 2px solid var(--primary-color);
+		// }
+	}
+
+	.personal-projects {
+		img {
+			display: none;
+			// position: relative;
+			// left: -9999%;
+		}
+	}
 </style>

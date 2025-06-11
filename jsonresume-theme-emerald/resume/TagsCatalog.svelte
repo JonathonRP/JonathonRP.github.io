@@ -1,5 +1,15 @@
-.tags-catalog {
-	& p {
+<script lang="ts">
+	const { labels }: { labels: string[] | string } = $props();
+</script>
+
+<p>
+	{#each labels as label}
+		<cite aria-label={label}>{label}{'\u0020'}</cite>
+	{/each}
+</p>
+
+<style lang="scss">
+	p {
 		color: var(--accent-color);
 		// filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
 		margin-inline-start: var(--tiny-space);
@@ -24,4 +34,4 @@
 		// 	filter: none;
 		// }
 	}
-}
+</style>

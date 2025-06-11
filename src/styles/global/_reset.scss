@@ -65,7 +65,12 @@ body {
 }
 
 p {
-	text-wrap: pretty;
+	text-wrap: balance;
+	overflow-wrap: break-word;
+	max-width: 65ch;
+	hyphens: auto;
+	white-space: normal;
+	word-break: break-word;
 }
 
 /* Make images easier to work with */

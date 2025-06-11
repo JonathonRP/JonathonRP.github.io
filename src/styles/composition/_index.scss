@@ -50,12 +50,15 @@ html {
 section#resume.resume {
 	--primary-color: #{get($light, 'primary')};
 	grid-column: 1/-1;
-	width: 297mm;
-	max-height: 420mm;
-	padding: var(--default-space);
-	background-color: var(--resume-bg);
+	width: 100%;
+	// width: 297mm;
+	// max-height: 420mm;
+	// padding: var(--default-space);
+	// background-color: var(--resume-bg);
 	color: var(--resume-text);
 	filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+
+	overflow: hidden;
 
 	// @include respond-to(resume) {
 	// 	display: grid;

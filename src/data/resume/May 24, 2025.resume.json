@@ -27,13 +27,13 @@
 			"methodology": "Agile/SCRUM",
 			"description": "",
 			"highlights": [
-				"experience with terraform and aws, ecs, ec2, alarms, dashboard, cloudwatch, cloudwatch insights, rds db",
-				"experience with azure pipelines and deploying",
-				"experience with azure variable groups",
-				"experience with aws, ecs, ec2, alarms, dashboard, cloudwatch, cloudwatch insights, rds db",
-				"linqpad and linq performance tuning"
+				"Ops Console, React applicaiton",
+				"Organization service, tree endpoint, designed and coded a solution to handle large organizations with many children and grandchildren. This solution uses a linq query.",
+				"Transcript service, linq performance tuning",
+				"Updated multiple services to use the latest version of the .Net framework, .Net 8.",
+				"Document service, designed a solutions to handle deleting documents with large numbers of activities. This solution uses a queue to process the delete requests in batches."
 			],
-			"techonologies": ["terraform", "azure pipelines", "azure variable groups", "linqpad"]
+			"techonologies": ["terraform", "aws services", "azure pipelines", "azure variable groups", "linqpad"]
 		},
 		{
 			"image": "",

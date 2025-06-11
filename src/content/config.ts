@@ -24,7 +24,7 @@ const resume = defineCollection({
 				username: z.string(),
 				url: z.string().url(),
 			})),
-		}),
+		}).optional(),
 		work: z.array(z.object({
 			image: z.string(),
 			name: z.string(),
@@ -36,7 +36,7 @@ const resume = defineCollection({
 			endDate: z.string().optional(),
 			summary: z.string().optional(),
 			highlights: z.array(z.string()),
-		})),
+		})).optional(),
 		volunteer: z.array(z.object({
 			organization: z.string(),
 			position: z.string(),
@@ -57,7 +57,7 @@ const resume = defineCollection({
 			summary: z.string().optional(),
 			score: z.string().optional(),
 			courses: z.array(z.string()).optional(),
-		})),
+		})).optional(),
 		awards: z.array(z.object({
 			title: z.string(),
 			date: z.string().date(),
@@ -70,7 +70,7 @@ const resume = defineCollection({
 			date: z.string().date(),
 			url: z.string().url().optional(),
 			issuer: z.string(),
-		})),
+		})).optional(),
 		publications: z.array(z.object({})).optional(),
 		skills: z.array(z.object({
 			category: z.string(),
@@ -79,7 +79,7 @@ const resume = defineCollection({
 			level: z.string().optional(),
 			tag: z.string(),
 			keywords: z.array(z.string()),
-		})),
+		})).optional(),
 		languages: z.array(z.object({})).optional(),
 		interests: z.array(z.object({})).optional(),
 		reference: z.array(z.object({})).optional(),
@@ -94,7 +94,7 @@ const resume = defineCollection({
 			endDate: z.string().date().optional(),
 			roles: z.array(z.string()).optional(),
 			entity: z.string().optional(),
-		})),
+		})).optional(),
 	}),
 });
 

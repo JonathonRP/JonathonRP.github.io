@@ -1,7 +1,6 @@
 ---
 import website from '@/website.config';
 
-import Resume from '@/components/resume';
 import SEO from '@/components/SEO/index.svelte';
 import resume from '@/images/resume.png';
 import AppLayout from '@/layouts/app.astro';
@@ -45,20 +44,46 @@ const data = await Content.getLatestResumeData();
 ---
 
 <AppLayout>
-	<SEO {...seo} />
+	<Fragment slot="head">
+		<script type="importmap">
+			{
+				"imports": {
+					"lit": "https://esm.run/lit",
+					"lit/": "https://esm.run/lit/",
+					"@lit/task": "https://esm.run/@lit/task"
+				}
+			}
+		</script>
+		<script type="module" src="node_modules/jsonresume-component/dist/json-resume.js"></script>
+		<script type="module">
+			import evenTheme from 'https://unpkg.com/jsonresume-theme-microdata@0.2.0/dist/style.css' with {
+			type: 'css',
+		};
+
+		const themeString = Array.from(evenTheme.cssRules)
+			.map((rule) => rule.cssText)
+			.join('\n');
+		const jsonResume = document.querySelector('json-resume');
+		jsonResume.stylesheet = themeString + `
+			li > p {
+				width: 75ch;
+			}`;
+		</script>
+	</Fragment>
+	<SEO {...seo} slot="head" />
 	<div class="resume:hidden">
 		<Picture
 			src={resume}
 			formats={['avif', 'webp']}
-			widths={[720, 1080, resume.width]}
-			sizes={`(max-width: 360px) 720px, (max-width: 720px) 1080px, (max-width: 1080px) ${resume.width}px`}
 			alt="Resume"
 			loading="eager"
 			decoding="auto"
 		/>
 	</div>
 	<!-- TODO: make this image at smaller than lg/xlg -->
-	<Resume {data} />
+	<section id="resume" class="resume">
+		<json-resume id="jsonresume" gist_id="db494895fb0ca2ecd2f86d7861db8dce"></json-resume>
+	</section>
 </AppLayout>
 
 <style is:global lang="scss">
@@ -79,7 +104,8 @@ const data = await Content.getLatestResumeData();
 		border-radius: 8px;
 
 		@include respond-to(resume) {
-			display: grid;
+			display: block;
+			// display: grid;
 			// thead, tbody {
 			//     width: 100%;
 			//     display: grid;

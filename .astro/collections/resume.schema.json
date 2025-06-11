@@ -427,14 +427,6 @@
           "type": "string"
         }
       },
-      "required": [
-        "basics",
-        "work",
-        "education",
-        "certificates",
-        "skills",
-        "projects"
-      ],
       "additionalProperties": false
     }
   },
