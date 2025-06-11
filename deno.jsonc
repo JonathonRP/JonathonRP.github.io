@@ -65,7 +65,8 @@
 		"semiColons": true,
 		"singleQuote": true,
 		"proseWrap": "preserve",
-		"include": ["src/", "./**/*.ts"]
+		"include": ["src/", "./**/*.ts"],
+		"exclude": ["node_modules/*", "dist/*", "public/*", "src/components/studio/*"]
 	},
 	"nodeModulesDir": "auto",
 	"unstable": ["byonm", "fmt-component"]

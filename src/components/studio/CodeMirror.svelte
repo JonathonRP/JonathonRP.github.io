@@ -177,7 +177,8 @@
 </script>
 
 {#if _mounted.current}
-  <div class={["codemirror-wrapper", ...((Array.isArray(props.class) ? props.class : [props.class]))]} {@attach (node) => {
+  <div class={["codemirror-wrapper", ...((Array.isArray(props.class) ? props.class : [props.class]))]}
+  {@attach (node) => {
     $effect(() => {
       if (_mounted.current && node !== undefined) {
         view = create_editor_view(node);
