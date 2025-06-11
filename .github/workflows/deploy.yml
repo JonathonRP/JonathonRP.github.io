@@ -5,6 +5,12 @@ on:
     workflows: ["CI"]
     branches: [main]
     types: [completed]
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch to deploy"
+        required: true
+        default: "main"
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -31,10 +37,10 @@ jobs:
         run: deno install
 
       - name: Run build
-        run: deno task build
+        run: deno run build
 
       - name: Upload pages artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: "./dist/"
   deploy:
@@ -49,4 +55,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3.0.1
+        uses: actions/deploy-pages@v4
