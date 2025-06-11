@@ -1,0 +1,11 @@
+{
+  "collections": [
+    {
+      "hasSchema": true,
+      "name": "resume"
+    }
+  ],
+  "entries": {
+    "file:///workspaces/jonathonrp.github.io/src/data/resume/may%2024,%202025.resume.json": "resume"
+  }
+}

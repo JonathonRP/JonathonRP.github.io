@@ -1,3 +1,6 @@
-.grid {
-    display: grid;
+@use '../abstracts/mixins' as *;
+
+.grid-column {
+	border-top: 2px solid var(--primary-color);
+	grid-row: span var(--grid-rows);
 }

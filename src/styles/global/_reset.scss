@@ -1,0 +1,120 @@
+@use 'sass:string' as *;
+@use '@/styles/abstracts/mixins' as *;
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+	margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute, which suggests default styling will be removed */
+ul[class], ul[role='list'], ol[class], ol[role='list'] {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+	scroll-behavior: smooth;
+}
+
+html {
+	-ms-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-webkit-text-size-adjust: none;
+	text-size-adjust: none;
+	-moz-tab-size: 4;
+	tab-size: 4;
+	font-feature-settings: normal;
+	font-variation-settings: normal;
+	-webkit-tap-highlight-color: transparent;
+}
+
+/* Set core body defaults */
+body {
+	min-height: 100vh;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeSpeed;
+	font-optical-sizing: auto;
+	line-height: 1.5;
+}
+
+@include headings() {
+	text-wrap: balance;
+	line-height: 1.2;
+
+	&, p {
+		overflow-wrap: break-word;
+	}
+}
+
+p {
+	text-wrap: balance;
+	overflow-wrap: break-word;
+	max-width: 65ch;
+	hyphens: auto;
+	white-space: normal;
+	word-break: break-word;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+	max-width: 100%;
+	height: auto;
+	vertical-align: middle;
+
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	object-fit: cover;
+	object-position: center;
+
+	shape-margin: 1rem;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+	font-family: inherit;
+	font-size: inherit;
+	font: inherit;
+}
+
+#root, #__next {
+	isolation: isolate;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+	html:focus-within {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}

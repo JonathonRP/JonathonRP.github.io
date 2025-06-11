@@ -1,0 +1,110 @@
+---
+import siteConfig from '@/website.config';
+import ThemeToggle from './ThemeToggle.astro';
+
+const { author } = siteConfig;
+---
+
+<nav class="navbar">
+	<div class="nav">
+		<a id="home" title="home" href="/" data-astro-preload>Home</a>
+		<a id="resume" title="resume" href="/resume" data-astro-preload>Resume</a>
+	</div>
+	<div class="actions">
+		<ThemeToggle />
+		<a
+			id="pdf"
+			class="download pdf"
+			href={`/resume/download/${author} Resume.pdf`}
+			download={`${author} Resume`}
+			title="download resume/cv pdf"
+			data-astro-prefetch="hover"
+			data-astro-preload
+		>
+		</a>
+		<a
+			id="word"
+			class="download word"
+			href={`/resume/download/${author} Resume.docx`}
+			download={`${author} Resume`}
+			title="download resume/cv word"
+			data-astro-prefetch="hover"
+			data-astro-preload
+		>
+		</a>
+	</div>
+</nav>
+
+<style lang="scss">
+	.navbar {
+		background-color: var(--bg-color);
+		box-shadow: 0px 3px 6px rgb(0 0 0 / 30%);
+		padding-inline: 16px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 56px;
+		// transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+		a {
+			font-family: var(--primary-ff);
+			color: var(--link-color);
+			font-size: 1rem;
+		}
+
+		.nav {
+			display: flex;
+			column-gap: var(--large-space);
+		}
+		.actions {
+			display: grid;
+			grid-auto-flow: column;
+			justify-content: center;
+			align-items: center;
+			column-gap: 5px;
+
+			.download {
+				--flow-space: var(--xsmall-space);
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-inline-end: var(--flow-space);
+				cursor: pointer;
+				&::before,
+				&::after {
+					margin-block: 0.425rem;
+					// transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+				}
+				&::before {
+					position: absolute;
+					// top: 0;
+					// left: calc(var(--small-space) + var(--small-space));
+					// transform: translate(50%, 50%);
+					color: var(--text-color);
+					font-size: 1.25rem;
+				}
+				&::after {
+					content: ' ';
+					display: inline-block;
+					height: var(--xlarge-space);
+					width: var(--xlarge-space);
+					border-radius: var(--small-space);
+					box-shadow: 0 0 8px rgb(255 255 255 / 0.3);
+					clear: both;
+				}
+			}
+
+			.word::after {
+				background-color: #5174a8;
+			}
+			.pdf::after {
+				background-color: #c05757;
+			}
+		}
+
+		@include respond-to(lg) {
+			padding-inline: 46px;
+		}
+	}
+</style>

@@ -1,0 +1,73 @@
+{
+	"tasks": {
+		"astro": "deno -A npm:astro",
+		"dev": "deno -A --inspect-brk npm:astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"lint": "deno lint",
+		"fmt": "deno fmt"
+	},
+	"imports": {
+		"@fontsource/inter": "npm:@fontsource/inter@^5.2.6",
+		"@fontsource/inter/": "npm:@fontsource/inter@^5.2.6/",
+		"@fontsource/lora": "npm:@fontsource/lora@^5.2.6",
+		"@fontsource/lora/": "npm:@fontsource/lora@^5.2.6/",
+		"@fontsource/playfair-display": "npm:@fontsource/playfair-display@^5.2.6",
+		"@fontsource/playfair-display/": "npm:@fontsource/playfair-display@^5.2.6/",
+		"@fontsource/poppins": "npm:@fontsource/poppins@^5.2.6",
+		"@fontsource/poppins/": "npm:@fontsource/poppins@^5.2.6/",
+		"astro": "npm:astro",
+		"astro/": "npm:astro/",
+		"sass": "npm:sass@^1.89.2",
+		"svelte": "npm:svelte@^5.33.18",
+		"svelte/": "npm:svelte@^5.33.18/",
+		"@astrojs/svelte": "npm:@astrojs/svelte",
+		"@astrojs/sitemap": "npm:@astrojs/sitemap",
+		"@deno/vite-plugin": "npm:@deno/vite-plugin",
+		"@sveltejs/enhanced-img": "npm:@sveltejs/enhanced-img",
+		"astro-robots-txt": "npm:astro-robots-txt",
+		"sharp": "npm:sharp@0.34.2",
+		"object-hash": "npm:object-hash",
+		"codemirror": "npm:codemirror",
+		"@codemirror/commands": "npm:@codemirror/commands",
+		"@codemirror/language": "npm:@codemirror/language",
+		"@codemirror/view": "npm:@codemirror/view",
+		"@codemirror/state": "npm:@codemirror/state",
+		"@webcomponents/webcomponentsjs": "npm:@webcomponents/webcomponentsjs",
+		"@webcomponents/webcomponentsjs/": "npm:@webcomponents/webcomponentsjs/",
+		"jsonresume-component": "npm:jsonresume-component",
+		"jsonresume-component/": "npm:jsonresume-component/",
+		"sv": "npm:sv",
+		"date-fns": "npm:date-fns",
+		"runed": "npm:runed",
+		"to-px": "npm:to-px",
+		"github-pages": "npm:github-pages",
+		"util": "node:util",
+		"tty": "node:tty",
+		"crypto": "node:crypto",
+		"child_process":"node:child_process",
+		"path": "node:path",
+		"os": "node:os",
+		"fs": "node:fs"
+	},
+	"lint": {
+		"include": ["src/", "./**/*.ts"],
+		"rules": {
+			"tags": ["recommended"],
+			"include": ["ban-untagged-todo"],
+			"exclude": ["no-unused-vars"]
+		}
+	},
+	"fmt": {
+		"useTabs": true,
+		"lineWidth": 120,
+		"indentWidth": 2,
+		"semiColons": true,
+		"singleQuote": true,
+		"proseWrap": "preserve",
+		"include": ["src/", "./**/*.ts"],
+		"exclude": ["node_modules/*", "dist/*", "public/*", "src/components/studio/*"]
+	},
+	"nodeModulesDir": "auto",
+	"unstable": ["byonm", "fmt-component"]
+}

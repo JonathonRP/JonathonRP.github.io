@@ -1,0 +1,89 @@
+@use 'sass:map' as *;
+@use 'sass:string' as *;
+@use '@/styles/abstracts' as *;
+
+@each $color, $value in $light {
+	@property --#{$color}-color {
+		syntax: '<color>';
+		inherits: true;
+		initial-value: $value;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	@each $color, $value in $dark {
+		@property --#{$color}-color {
+			syntax: '<color>';
+			inherits: true;
+			initial-value: $value;
+		}
+	}
+}
+
+:root {
+	// custom props
+	--resume-bg: #ffffff;
+	--resume-text: #000000;
+
+	// font family
+	--primary-ff: #{$primary-ff};
+	--secondary-ff: #{$secondary-ff};
+	--accent-ff: #{$accent-ff};
+
+	// spacings
+	@each $size, $value in $spacings {
+		--#{$size}-space: #{$value}rem;
+	}
+
+	// theme
+	@each $color, $value in $colors {
+		--#{$color}-color: #{$value};
+	}
+	--toggle-switch-icon: '#{get($icons, 'moon')}';
+
+	&:has(.theme-switch:checked) {
+		@each $color, $value in $dark {
+			--#{$color}-color: #{$value};
+		}
+		--toggle-switch-icon: '#{get($icons, 'sun')}';
+	}
+
+	// &[data-theme='dark'] {
+	// 	@each $color, $value in $dark {
+	// 		--#{$color}-color: #{$value};
+	// 	}
+	// 	--toggle-switch-icon: get($icons, 'sun');
+	// }
+
+	@media (prefers-color-scheme: dark) {
+		@each $color, $value in $dark {
+			--#{$color}-color: #{$value};
+		}
+		--toggle-switch-icon: '#{get($icons, 'sun')}';
+
+		&:has(.theme-switch:checked) {
+			@each $color, $value in $light {
+				--#{$color}-color: #{$value};
+			}
+			--toggle-switch-icon: '#{get($icons, 'moon')}';
+		}
+
+		// &[data-theme='light'] {
+		// 	@each $color, $value in $light {
+		// 		--#{$color}-color: #{$value};
+		// 	}
+		//  --toggle-switch-icon: get($icons, 'moon');
+		// }
+	}
+
+	@media print {
+		// point conversion
+		// @each $size, $value in $spacings {
+		// 	--#{$size}-space: #{((($value * 16) * 0.74999943307122) + 0pt)};
+		// }
+		// px conversion
+		@each $size, $value in $spacings {
+			--#{$size}-space: #{((($value * 16)) + 0px)};
+		}
+	}
+}

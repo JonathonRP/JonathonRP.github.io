@@ -1,0 +1,214 @@
+@use 'sass:selector' as *;
+@use 'sass:map' as *;
+@use 'sass:string' as *;
+@use '../abstracts/icons' as *;
+@use '../abstracts/mixins' as *;
+@use '../utilities/extend' as *;
+
+.download {
+	@include icon('download');
+}
+
+.pdf {
+	@include icon('pdf');
+}
+
+.word {
+	@include icon('word');
+}
+
+.theme-switch__label {
+	@include icon {
+		content: var(--toggle-switch-icon, '');
+	}
+}
+
+// .theme-switch__label {
+// 	@include icon('moon');
+
+// 	.theme-switch:checked + & {
+// 		@include icon('sun')
+// 	}
+// 	// @at-root [data-theme='dark'] & {
+// 	// 	@include icon('sun');
+// 	// }
+// 	@media (prefers-color-scheme: dark) {
+// 		@include icon('sun');
+
+// 		.theme-switch:checked + & {
+// 			@include icon('moon')
+// 		}
+// 		// @at-root [data-theme='light'] & {
+// 		// 	@include icon('moon');
+// 		// }
+// 	}
+// }
+
+p,
+ol:not([class]),
+ul:not([class]),
+li {
+	max-width: 65ch;
+}
+
+.location {
+	@include icon('location');
+}
+.phone {
+	@include icon('phone');
+}
+.email {
+	@include icon('email');
+}
+.linkedin {
+	@include icon('linkedin-in', true);
+}
+.github {
+	@include icon('github', true);
+}
+
+section#resume.resume {
+	font-family: var(--primary-ff);
+	color: var(--text-color);
+	font-size: 0.8rem;
+
+	h1 {
+		font-weight: 700;
+	}
+	h2 {
+		font-weight: 600;
+	}
+
+	%category {
+		position: relative;
+		margin-inline-end: var(--small-space);
+		// padding-block: 5%;
+		// padding-inline: 1%;
+		// background-color: $accent-color;
+		// border-radius: 3px;
+		// color: $primary-color;
+	}
+
+	& .heading__icon {
+		@extend %category;
+
+		@at-root #{unify(&, "[data-icon='tech-stack']")} {
+			@include icon('tech-stack');
+		}
+		@at-root #{unify(&, "[data-icon='technical-skills']")} {
+			@include icon('technical-skills');
+		}
+		@at-root #{unify(&, "[data-icon='soft-skills']")} {
+			@include icon('soft-skills');
+		}
+		@at-root #{unify(&, "[data-icon='personal-projects']")} {
+			@include icon('personal-projects');
+		}
+		@at-root #{unify(&, "[data-icon='interests']")} {
+			@include icon('interests');
+		}
+		@at-root #{unify(&, "[data-icon='contact-details']")} {
+			@include icon('contact-details');
+		}
+	}
+
+	%badge {
+		display: inline-block;
+		// margin-inline: var(--xsmall-space);
+		// padding-inline: var(--small-space);
+		// margin-block-start: var(--tiny-space);
+		// padding-block-start: var(--tiny-space);
+		line-height: 1.2;
+		font-size: 1.5em;
+		// transform: translateY(-8px);
+
+		@include respond-to(sm) {
+			// transform: translateY(-10px);
+		}
+	}
+
+	& .timeline__icon {
+		@extend %badge;
+
+		@at-root #{unify(&, "[data-icon='work']")} {
+			@include icon('work');
+		}
+		@at-root #{unify(&, "[data-icon='certificates']")} {
+			@include icon('certificates-alt');
+		}
+		@at-root #{unify(&, "[data-icon='education']")} {
+			@include icon('education-alt');
+		}
+	}
+
+	& a {
+		color: var(--accent-color);
+		text-decoration: none;
+
+		&:not([class]):after {
+			@extend %regular-icon;
+			//content: '\f360';
+			content: quote(get($icons, 'external-link'));
+			// font-size: 12px;
+			padding-inline-start: var(--tiny-space);
+			color: var(--primary-color);
+		}
+
+		&:not([class]):hover:after {
+			color: var(--accent-color);
+		}
+	}
+
+	& .heading,
+	& .subheading {
+		clear: both;
+	}
+
+	& .heading {
+		display: flex;
+		gap: var(--small-space);
+		padding-block-start: var(--default-space);
+		padding-block-end: var(--small-space);
+		font-weight: 600;
+	}
+
+	& .subheading {
+		text-box-trim: trim-end;
+		text-box-edge: cap alphabetic;
+		padding-inline-end: var(--mini-space);
+		float: left;
+		font-size: 0.95rem;
+		font-weight: 500;
+	}
+
+	& .text-accent {
+		color: var(--accent-color);
+		font-weight: 400;
+	}
+
+	& .profile p {
+		font-weight: 500;
+		max-width: 70ch;
+		font-size: 0.85rem;
+		margin-block-end: var(--xsmall-space);
+	}
+
+	& .personal-projects {
+		header {
+			font-family: var(--secondary-ff);
+			font-weight: 600;
+			font-size: 0.8rem;
+			text-wrap: balance;
+			color: var(--accent-color);
+		}
+
+		li {
+			padding-block: var(--mini-space);
+		}
+
+		p {
+			margin: var(--mini-space);
+			padding-block-end: var(--small-space);
+		}
+	}
+}

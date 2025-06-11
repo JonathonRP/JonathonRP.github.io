@@ -1,0 +1,56 @@
+---
+import Card from './card/index.astro';
+---
+
+<Card colSpan={1} rowSpan={6} title="About me">
+	<section class="about" aria-labelledby="title">
+		<div class="about__header">
+			<p>
+				I'm Reese, a full stack software developer.
+				<br />
+				My primary tools of choice includes:
+			</p>
+			<ul role="list">
+				<li>C#</li>
+				<li>ASP.Net</li>
+				<li>svelte</li>
+				<li>Astro</li>
+				<li>Deno</li>
+				<li>Bun</li>
+			</ul>
+		</div>
+		<p>
+			Beyond coding, I'm passionate about design, architecture, animation and my family. A hobby of mine is play and
+			collecting video games.
+		</p>
+		<p>
+			While I have some preferred tools, I always choose the best one for the job, even if it's not on my usual list. My
+			goal is to find the right solution for each project.
+		</p>
+	</section>
+</Card>
+
+<style lang="scss">
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+
+		&__header {
+			font-size: 0.875rem;
+			line-height: 1.25rem;
+			font-weight: 300;
+
+			& ul[role='list'] {
+				list-style-type: disc;
+				list-style-position: inside;
+			}
+		}
+
+		& p {
+			font-size: 0.875rem;
+			line-height: 1.25rem;
+			font-weight: 300;
+		}
+	}
+</style>

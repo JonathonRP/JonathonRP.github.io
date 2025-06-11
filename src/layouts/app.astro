@@ -1,0 +1,12 @@
+---
+import Navbar from '@/components/Navbar.astro';
+import PWA from '@/components/PWA.svelte';
+import BasicLayout from '@/layouts/basic.astro';
+---
+
+<BasicLayout>
+	<PWA slot="head" />
+	<slot name="head" slot="head" />
+	<Navbar slot="nav" />
+	<slot />
+</BasicLayout>

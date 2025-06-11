@@ -1,6 +1,10 @@
+$base-point: 43.75rem;
+$ratio: 1.618rem;
+
 $breakpoints: (
-    sm: 43.75rem,
-    md: 50rem,
-    lg: 60rem,
-    xl: 80rem
+	sm: $base-point,
+	md: $base-point + calc($ratio * 3),
+	lg: $base-point + calc($ratio * 6),
+	xl: $base-point + calc($ratio * 9),
+	resume: calc(297mm + calc(46px * 2) + 1rem),
 ) !default;

@@ -1,0 +1,18 @@
+---
+import Portfolio from '@/components/portfolio/index.astro';
+import ProjectsGallery from '@/components/portfolio/projects/index.astro';
+import AppLayout from '@/layouts/app.astro';
+---
+
+<AppLayout>
+	<Portfolio />
+	<ProjectsGallery />
+</AppLayout>
+
+<style is:global lang="scss">
+	@include headings() {
+		font-size: inherit;
+		font-weight: inherit;
+		// font-family: inherit;
+	}
+</style>

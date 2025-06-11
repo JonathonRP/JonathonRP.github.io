@@ -1,19 +1,15 @@
+@use 'sass:map' as *;
 @use 'breakpoints' as *;
-@use 'placeholders' as *;
 
-@mixin icon($class, $is-brand: false) {
-	// @debug $selector;
-
-	.#{$class}::before {
-
-		@if $is-brand {
-			@extend %brand-icon;
-		} @else {
-			@extend %regular-icon;
-		}
-
-		@content;
-	}
+@mixin basic-icon {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-size-adjust: 100%;
+	display: inline-block;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	line-height: 1;
 }
 
 @mixin headings {
@@ -28,9 +24,9 @@
 }
 
 @mixin respond-to($key) {
-	$size: map-get($breakpoints, $key);
+	$size: get($breakpoints, $key);
 
-	@media only screen and (min-width: $size) {
+	@media screen and (min-width: $size) {
 		@content;
 	}
 }

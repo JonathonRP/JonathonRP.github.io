@@ -5,13 +5,45 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "pwa-msedge",
+            "name": "full stack chrome",
             "request": "launch",
-            "name": "Launch Edge against localhost",
-            "url": "http://localhost:8000/",
-            "webRoot": "${workspaceFolder}/public",
-            "preLaunchTask": "gulp: start debugging",
-            "postDebugTask": "stop debugging"
-        }
+			"type": "node",
+			"runtimeArgs": ["task", "dev"],
+            "runtimeExecutable": "deno",
+			"console": "integratedTerminal",
+			"skipFiles": ["<node_internals>/**"],
+            "attachSimplePort": 9229,
+			"serverReadyAction": {
+                "pattern": "\\bLocal\\s+(https?://\\S+\\d)",
+				"uriFormat": "%s/resume",
+				"action": "debugWithChrome",
+                "killOnServerStop": true
+			}
+		},
+        {
+            "name": "full stack edge",
+            "request": "launch",
+			"type": "node",
+			"runtimeArgs": ["task", "dev"],
+            "runtimeExecutable": "deno",
+			"console": "integratedTerminal",
+			"skipFiles": ["<node_internals>/**"],
+            "attachSimplePort": 9229,
+			"serverReadyAction": {
+                "pattern": "\\bLocal\\s+(https?://\\S+\\d)",
+				"uriFormat": "%s/resume",
+				"action": "debugWithEdge",
+                "killOnServerStop": true
+			}
+		},
+        // {
+        //     "type": "pwa-msedge",
+        //     "request": "launch",
+        //     "name": "Launch Edge against localhost",
+        //     "url": "http://localhost:3000/",
+        //     "webRoot": "${workspaceFolder}",
+        //     "preLaunchTask": "deno: dev",
+        //     "postDebugTask": "kill"
+        // }
     ]
 }

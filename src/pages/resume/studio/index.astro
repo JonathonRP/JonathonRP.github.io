@@ -1,0 +1,66 @@
+---
+// import Resume from '@/components/resume/index.astro';
+// import CodeMirror from '@/components/studio/CodeMirror.svelte';
+import AppLayout from '@/layouts/app.astro';
+import { Content } from '@/lib/content';
+// import { json } from '@codemirror/lang-json';
+import { oneDark } from '@codemirror/theme-one-dark';
+
+const data = await Content.getLatestResumeData();
+
+const themes = {
+	'one-dark': oneDark,
+	'monokai': 'monokai',
+};
+const selected_theme_id = 'one-dark';
+
+const resume = { ...data };
+
+// execRecursively((obj) => console.log(obj), data);
+// // Execute a callback on everything stored inside an object
+// function execRecursively(fn, subject, _refs = new WeakSet()) {
+// 	// Avoid infinite recursion
+// 	if (_refs.has(subject)) {
+// 		console.log(`Circular: ${subject}`);
+// 		return;
+// 	}
+
+// 	fn(subject);
+// 	if (typeof subject === 'object' && subject) {
+// 		_refs.add(subject);
+// 		for (const key in subject) {
+// 			execRecursively(fn, subject[key], _refs);
+// 		}
+// 		_refs.delete(subject);
+// 	}
+// }
+---
+
+<AppLayout>
+	<select value={selected_theme_id}>
+		{
+			Object.entries(themes).map(([theme]) => (
+				<option value={theme} selected={theme === selected_theme_id}>{theme}</option>
+			))
+		}
+	</select>
+	<!-- <div>
+		<CodeMirror
+			client:only
+			value={resume}
+			lang={json()}
+			theme={themes[selected_theme_id]}
+		/>
+		<Resume data={resume} />
+	</div> -->
+</AppLayout>
+
+<style>
+	div {
+		display: flex;
+	}
+	.codemirror-wrapper {
+		border: 2px solid black;
+		border-radius: 8px;
+	}
+</style>

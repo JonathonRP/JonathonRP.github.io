@@ -1,0 +1,119 @@
+---
+import website from '@/website.config';
+
+import SEO from '@/components/SEO/index.svelte';
+import resume from '@/images/resume.png';
+import AppLayout from '@/layouts/app.astro';
+import { Content } from '@/lib/content';
+import { Picture } from 'astro:assets';
+
+const pageTitle = 'Resume',
+	metadescription =
+		'Hard working and detail oriented professional, seeking a software development position where I can use my skills and contribute to the growth of a company.',
+	slug = '/Resume',
+	{ author } = website;
+
+const breadcrumbs = [
+	{
+		name: 'Home',
+		slug: Astro.url.origin,
+	},
+	{
+		name: pageTitle,
+		slug,
+	},
+];
+
+const entityMeta = {
+	url: slug,
+	faviconWidth: 512,
+	faviconHeight: 512,
+	caption: author,
+};
+
+const seo = {
+	article: false,
+	title: pageTitle,
+	slug,
+	entityMeta,
+	breadcrumbs,
+	metadescription,
+};
+
+const data = await Content.getLatestResumeData();
+---
+
+<AppLayout>
+	<Fragment slot="head">
+		<script type="importmap">
+			{
+				"imports": {
+					"lit": "https://esm.run/lit",
+					"lit/": "https://esm.run/lit/",
+					"@lit/task": "https://esm.run/@lit/task"
+				}
+			}
+		</script>
+		<script type="module" src="node_modules/jsonresume-component/dist/json-resume.js"></script>
+		<script type="module">
+			import evenTheme from 'https://unpkg.com/jsonresume-theme-microdata@0.2.0/dist/style.css' with {
+			type: 'css',
+		};
+
+		const themeString = Array.from(evenTheme.cssRules)
+			.map((rule) => rule.cssText)
+			.join('\n');
+		const jsonResume = document.querySelector('json-resume');
+		jsonResume.stylesheet = themeString + `
+			li > p {
+				width: 75ch;
+			}`;
+		</script>
+	</Fragment>
+	<SEO {...seo} slot="head" />
+	<div class="resume:hidden">
+		<Picture
+			src={resume}
+			formats={['avif', 'webp']}
+			alt="Resume"
+			loading="eager"
+			decoding="auto"
+		/>
+	</div>
+	<!-- TODO: make this image at smaller than lg/xlg -->
+	<section id="resume" class="resume">
+		<json-resume id="jsonresume" gist_id="db494895fb0ca2ecd2f86d7861db8dce"></json-resume>
+	</section>
+</AppLayout>
+
+<style is:global lang="scss">
+	main {
+		place-content: center;
+		place-items: center;
+		margin-block: 14px;
+		margin-inline: 16px;
+
+		@include respond-to(lg) {
+			margin-block: 26px;
+			margin-inline: 46px;
+		}
+	}
+
+	section#resume.resume {
+		display: none;
+		border-radius: 8px;
+
+		@include respond-to(resume) {
+			display: block;
+			// display: grid;
+			// thead, tbody {
+			//     width: 100%;
+			//     display: grid;
+			//     grid-auto-flow: column;
+			//     // justify-content: space-between;
+			// }
+			// grid-template-columns: 2fr 1fr;
+			// grid-template-rows: repeat(var(--grid-rows, 7), auto);
+		}
+	}
+</style>

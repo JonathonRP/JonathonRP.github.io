@@ -1,0 +1,18 @@
+@use 'global';
+@use 'composition';
+@use 'utilities';
+// @use 'blocks';
+
+// @use 'sass:meta';
+
+// @layer base {
+//     @include meta.load-css('base');
+//     @include meta.load-css('composition');
+//     @include meta.load-css('utilities');
+//     @include meta.load-css('block');
+// }
+
+// @import '@/styles/base/_index.scss' layer(base);
+// @import '@/styles/composition/_index.scss' layer(base);
+// @import '@/styles/utilities/_index.scss' layer(base);
+// @import '@/styles/block/_index.scss' layer(base);

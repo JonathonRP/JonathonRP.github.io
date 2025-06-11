@@ -1,0 +1,50 @@
+@forward 'grid';
+// @forward 'generate';
+@forward 'flow';
+@forward 'extend';
+
+@use '../abstracts/mixins' as *;
+
+.bg-none {
+	background-color: transparent;
+}
+
+.bg-primary {
+	background-color: var(--primary-color);
+}
+
+.category {
+	--extend-space: 0;
+
+	> .sub-category {
+		--extend-space: var(--micro-space);
+		overflow: auto;
+		padding-inline: var(--small-space);
+	}
+}
+
+.tags-catalog {
+	overflow: hidden;
+}
+
+.bg-none {
+	background-color: transparent;
+}
+
+.resume\:hidden {
+	@include respond-to(resume) {
+		display: none;
+	}
+}
+
+[data-sr-only] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}

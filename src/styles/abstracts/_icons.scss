@@ -1,0 +1,122 @@
+@use 'sass:string' as *;
+@use 'sass:map' as *;
+@use 'font-families' as *;
+
+$icon-var-arrow-to-bottom: \f33d;
+$icon-var-file-pdf: \f1c1;
+$icon-var-file-word: \f1c2;
+$icon-var-moon: \f186;
+$icon-var-sun: \f185;
+$icon-var-location-dot: \f3c5;
+$icon-var-mobile: \f10b;
+$icon-var-at: \f1fa;
+$icon-var-layer-group: \f5fd;
+$icon-var-code: \f121;
+$icon-var-archive: \f187;
+$icon-var-construction: \f85d;
+$icon-var-folder-open: \f07c;
+$icon-var-info: \f129;
+$icon-var-briefcase: \f0b1;
+$icon-var-file-certificate: \f5f3;
+$icon-var-graduation-cap: \f19d;
+
+$icon-var-external-link: \f08e;
+
+// alternatives
+$icon-var-phone-alt: \f879;
+$icon-var-envelope: \f0e0;
+$icon-var-certificate: \f0a3;
+$icon-var-university: \f19c;
+
+$icon-var-external-link-square-alt: \f360;
+
+// brands
+$icon-var-linkedin-in: \f0e1;
+$icon-var-github: \f09b;
+
+// brands - alt
+$icon-var-linkedin: \f08c;
+$icon-var-github-square: \f092;
+
+$icons: (
+	'download': $icon-var-arrow-to-bottom,
+	'pdf': $icon-var-file-pdf,
+	'word': $icon-var-file-word,
+	'moon': $icon-var-moon,
+	'sun': $icon-var-sun,
+	'location': $icon-var-location-dot,
+	'phone': $icon-var-mobile,
+	'phone-alt': $icon-var-phone-alt,
+	'email': $icon-var-at,
+	'email-alt': $icon-var-envelope,
+	'tech-stack': $icon-var-layer-group,
+	'technical-skills': $icon-var-code,
+	'soft-skills': $icon-var-archive,
+	'personal-projects': $icon-var-construction,
+	'interests': $icon-var-folder-open,
+	'contact-details': $icon-var-info,
+	'work': $icon-var-briefcase,
+	'certificates': $icon-var-file-certificate,
+	'certificates-alt': $icon-var-certificate,
+	'education': $icon-var-graduation-cap,
+	'education-alt': $icon-var-university,
+	'external-link': $icon-var-external-link,
+	'external-link-alt': $icon-var-external-link-square-alt,
+);
+
+$brand-icons: (
+	'linkedin-in': $icon-var-linkedin,
+	'github': $icon-var-github,
+	'linkedin': $icon-var-linkedin,
+	'github-square': $icon-var-github-square,
+);
+
+@mixin icon-regular($icon-var: null) {
+	&::before {
+		@extend %icon;
+		@extend %regular-icon;
+
+		@if $icon-var {
+			$icon: get($icons, $icon-var);
+
+			content: unquote('\"#{$icon}\"');
+		} @else {
+			@content;
+		}
+	}
+}
+
+@mixin icon-brands($icon-var: null) {
+	&::before {
+		@extend %icon;
+		@extend %brands-icon;
+
+		@if $icon-var {
+			$icon: get($brand-icons, $icon-var);
+
+			content: unquote('\"#{$icon}\"');
+		} @else {
+			@content;
+		}
+	}
+}
+
+@mixin icon($icon-var: null, $is-brands: false) {
+	@if $icon-var {
+		@if $is-brands {
+			@include icon-brands($icon-var);
+		} @else {
+			@include icon-regular($icon-var);
+		}
+	} @else {
+		@if $is-brands {
+			@include icon-brands {
+				@content;
+			}
+		} @else {
+			@include icon-regular {
+				@content;
+			}
+		}
+	}
+}

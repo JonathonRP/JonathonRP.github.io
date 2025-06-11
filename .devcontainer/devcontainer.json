@@ -1,0 +1,77 @@
+{
+	"name": "JonathonRP.github.io",
+ 	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"features": {
+		"ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {
+			"fisher": false
+		},
+		"ghcr.io/devcontainers-community/features/deno:1": {},
+		"ghcr.io/rocker-org/devcontainer-features/pandoc:1": {}
+	},
+
+	"postCreateCommand": "deno types > src/lib.deno.d.ts && deno install",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": { 
+				"editor.fontLigatures": "'calt', 'ss01'",
+				"editor.formatOnSave": true,
+
+				// Enables the project as a Deno project
+				"deno.enable": true,
+
+				// Enables Deno linting for the project
+				"deno.lint": true,
+
+				"typescript.suggest.completeFunctionCalls": true,
+
+				"deno.codeLens.test": true,
+
+				// Sets Deno as the default formatter for the project
+				"editor.defaultFormatter": "denoland.vscode-deno",
+
+				"svelte.enable-ts-plugin": true,
+				"svelte.plugin.svelte.defaultScriptLanguage": "ts",
+				"svelte.plugin.svelte.note-new-transformation": true,
+				"svelte.plugin.css.diagnostics.enable": false,
+
+				"editor.codeActionsOnSave": {
+					"source.fixAll": "always",
+					"source.fixAll.ts": "always",
+					"source.organizeImports": "always"
+				},
+
+				// "[astro]": {
+				// 	"editor.defaultFormatter": "astro-build.astro-vscode"
+				// },
+				// "[svelte]": {
+				// 	"editor.defaultFormatter": "svelte.svelte-vscode"
+				// },
+				// "[javascript][typescript]": {
+				// 	"editor.defaultFormatter": "denoland.vscode-deno"
+				// },
+			},
+			
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"ms-azuretools.vscode-docker",
+				"denoland.vscode-deno",
+				"svelte.svelte-vscode",
+				"astro-build.astro-vscode",
+				"YoavBls.pretty-ts-errors",
+				"MylesMurphy.prettify-ts",
+				"Orta.vscode-twoslash-queries",
+				"csstools.postcss",
+				"eamodio.gitlens",
+				"mattpocock.ts-error-translator"
+			]
+		}
+	},
+
+	"remoteUser": "vscode"
+}

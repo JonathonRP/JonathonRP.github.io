@@ -1,2 +1,10 @@
 node_modules/**/**
-package-lock.json
+.pnpm-store/**/**
+/deno.lock
+.DS_Store
+node_modules
+.pnpm-store
+/package*
+.env
+.env.*
+!.env.example
