@@ -26,7 +26,7 @@
 	);
 
 	// collect images here await import, globbing?
-	const images = import.meta.glob('../../images/logos/*.{jpg,png}', {
+	const images = import.meta.glob('../../src/images/logos/*.{jpg,png}', {
 		eager: true,
 		query: {
 			enhanced: true,
@@ -67,7 +67,7 @@
 			{#if exp.image}
 				<div class="timeline__logo">
 					<enhanced:img
-						src={images[`../../images/logos/${exp.image}`].default}
+						src={images[`../../src/images/logos/${exp.image}`].default}
 						{alt}
 						width="42"
 						height="42"
@@ -118,7 +118,7 @@
 
 <style lang="scss">
 	@use 'sass:selector' as *;
-	@use '../../styles/global/typography' as *;
+	@use '../../src/styles/global/typography' as *;
 
 	.timeline {
 		--logo-size: 42px;

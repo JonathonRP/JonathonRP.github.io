@@ -47,7 +47,7 @@ export const GET: APIRoute = async ({ params: { file }, url }) => {
 	// style.appendChild(html.createTextNode(css));
 	// head.appendChild(style);
 	// const input = html.root().html();
-	const input = render(data);
+	const input = await render(data);
 
 	switch (file) {
 		case `${data.basics.name} Resume.pdf`: {
