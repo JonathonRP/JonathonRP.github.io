@@ -208,8 +208,6 @@ const {
 </section>
 
 <style lang="scss">
-	@use '../../styles/abstracts/mixins' as *;
-
 	section#resume.resume {
 		@include headings() {
 			font-family: var(--secondary-ff);

@@ -4,12 +4,12 @@
 import AppLayout from '@/layouts/app.astro';
 import { Content } from '@/lib/content';
 // import { json } from '@codemirror/lang-json';
-import { oneDark } from '@codemirror/theme-one-dark';
+// import { oneDark } from '@codemirror/theme-one-dark';
 
 const data = await Content.getLatestResumeData();
 
 const themes = {
-	'one-dark': oneDark,
+	// 'one-dark': oneDark,
 	'monokai': 'monokai',
 };
 const selected_theme_id = 'one-dark';
