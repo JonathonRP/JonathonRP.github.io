@@ -6,6 +6,7 @@ import resume from '@/images/resume.png';
 import AppLayout from '@/layouts/app.astro';
 import { Content } from '@/lib/content';
 import { Picture } from 'astro:assets';
+import { GIST_ID } from 'astro:env/server';
 
 const pageTitle = 'Resume',
 	metadescription =
@@ -82,7 +83,7 @@ const data = await Content.getLatestResumeData();
 	</div> -->
 	<!-- TODO: make this image at smaller than lg/xlg -->
 	<section id="resume" class="resume">
-		<json-resume id="jsonresume" gist_id="db494895fb0ca2ecd2f86d7861db8dce"></json-resume>
+		<json-resume id="jsonresume" gist_id={GIST_ID}></json-resume>
 	</section>
 </AppLayout>
 
