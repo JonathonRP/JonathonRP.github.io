@@ -1,4 +1,4 @@
-name: Deploy
+name: CD
 
 on:
   workflow_run:
@@ -21,12 +21,12 @@ permissions:
 
 jobs:
   build:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
     strategy:
       matrix:
         deno: [2.x.x]
     runs-on: ubuntu-latest
-    environment: 'github-pages'
+    environment: github-pages
 
     steps:
       - uses: actions/checkout@v4
@@ -42,7 +42,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run build
-
         run: deno run build
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
