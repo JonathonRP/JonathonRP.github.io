@@ -5,6 +5,9 @@ on:
     workflows: ["CI"]
     branches: [main, develope]
     types: [completed]
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
     inputs:
       branch:
