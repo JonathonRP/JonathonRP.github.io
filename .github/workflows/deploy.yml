@@ -26,7 +26,7 @@ jobs:
       matrix:
         deno: [2.x.x]
     runs-on: ubuntu-latest
-    environment: github-pages
+    # environment: github-pages
 
     steps:
       - uses: actions/checkout@v4
@@ -37,11 +37,11 @@ jobs:
 
       - name: Install dependencies
         run: deno install
+
+      - name: Run build
         env:
           GIST_ID: ${{ secrets.GIST_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Run build
         run: deno run build
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
