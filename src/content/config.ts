@@ -19,9 +19,7 @@ const resume = defineCollection({
 			const data = await response.json();
 			if (!response.ok || !data.files || !data.files['resume.json']) {
 				throw new Error(
-					`Failed to fetch resume data from GitHub Gist: ${response.status} ${response.statusText} ${
-						response.headers.get('Authorization')
-					} ${response.url}`,
+					`Failed to fetch resume data from GitHub Gist: ${response.status} ${response.statusText} ${GITHUB_TOKEN} ${GIST_ID}`,
 					{
 						cause: data,
 					},

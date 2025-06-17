@@ -26,7 +26,6 @@ jobs:
       matrix:
         deno: [2.x.x]
     runs-on: ubuntu-latest
-    permissions: {}
     # environment: github-pages
 
     steps:
@@ -41,8 +40,8 @@ jobs:
 
       - name: Run build
         env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
           GIST_ID: ${{ secrets.GIST_ID }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: deno run build
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
