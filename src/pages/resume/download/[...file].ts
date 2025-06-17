@@ -12,12 +12,16 @@ import type { APIRoute } from 'astro';
 // import { DOMParser } from 'https:deno.land/x/deno_dom/deno-dom-wasm.ts';
 // import * as cheerio from 'cheerio';
 // import { unescapeHtml } from 'https:deno.land/x/escape/mod.ts';
-import pandoc from 'node-pandoc';
 import fs from 'node:fs';
-import path from 'node:path';
-import { default as wkhtmltopdf } from 'wkhtmltopdf';
-import { render } from '../../../../jsonresume-theme-emerald/main.ts';
+// import { render } from '../../../../jsonresume-theme-emerald/main.ts';
 // import BasicLayout from '../../../layouts/basic.astro';
+import { format, parse } from 'date-fns';
+import DocxTemplater from 'docxtemplater';
+import expressionParser from 'docxtemplater/expressions.js';
+// import libre from 'libreoffice-convert';
+import path from 'node:path';
+import process from 'node:process';
+import PizZip from 'pizzip';
 import { Content } from '../../../lib/content/index.ts';
 const data = await Content.getLatestResumeData();
 
@@ -28,8 +32,35 @@ export function getStaticPaths() {
 	];
 }
 
+expressionParser.filters.half = (values: string[]) => {
+	if (values.length === 0) return undefined;
+	if (values.length === 1) return values;
+	return values.slice(0, Math.ceil(values.length / 2));
+};
+expressionParser.filters.rest = (values: string[]) => {
+	if (values.length === 0) return undefined;
+	if (values.length === 1) return undefined;
+	return values.slice(Math.ceil(values.length / 2));
+};
+
+expressionParser.filters.formatDate = (date: string, dateformat: string) => {
+	if (!date) return date;
+	const parsedDate = parse(date, 'yyyy-MM', new Date());
+	return format(parsedDate, dateformat);
+};
+
 export const GET: APIRoute = async ({ params: { file }, url }) => {
-	const temp = `./temp${path.extname(file)}`;
+	// const temp = `./temp${path.extname(file)}`;
+	const content = fs.readFileSync(
+		path.join(process.cwd(), 'public', 'Jonathon Reese Perry Resume Template.docx'),
+	);
+	const zip = new PizZip(content);
+	const doc = new DocxTemplater(zip, {
+		paragraphLoop: true,
+		linebreaks: true,
+		parser: expressionParser,
+	});
+	doc.render(data);
 	// const renderers = await loadRenderers([svelteContainerRenderer()]);
 	// const container = await experimental_AstroContainer.create({ renderers });
 	// const html = cheerio.load(
@@ -47,33 +78,39 @@ export const GET: APIRoute = async ({ params: { file }, url }) => {
 	// style.appendChild(html.createTextNode(css));
 	// head.appendChild(style);
 	// const input = html.root().html();
-	const input = await render(data);
+	// const input = await render(data);
 
 	switch (file) {
 		case `${data.basics.name} Resume.pdf`: {
-			const { resolve, promise } = Promise.withResolvers();
-			const output = fs.createWriteStream(temp);
+			// const { resolve, reject, promise } = Promise.withResolvers<Buffer>();
+			// const output = fs.createWriteStream(temp);
 
-			wkhtmltopdf(input, {
-				pageSize: 'A3',
-				pageWidth: '297mm',
-				pageHeight: '420mm',
-				zoom: 1,
-				dpi: 96,
-				disableSmartShrinking: true,
-				printMediaType: true,
-				background: true,
-				marginBottom: 0,
-				marginTop: 0,
-				marginLeft: 0,
-				marginRight: 0,
-			}, (err, stream) => {
-				if (err) console.log(err);
-			}).pipe(output);
-			output.on('finish', resolve);
+			// wkhtmltopdf(input, {
+			// 	pageSize: 'A3',
+			// 	pageWidth: '297mm',
+			// 	pageHeight: '420mm',
+			// 	zoom: 1,
+			// 	dpi: 96,
+			// 	disableSmartShrinking: true,
+			// 	printMediaType: true,
+			// 	background: true,
+			// 	marginBottom: 0,
+			// 	marginTop: 0,
+			// 	marginLeft: 0,
+			// 	marginRight: 0,
+			// }, (err, stream) => {
+			// 	if (err) console.log(err);
+			// }).pipe(output);
+			// output.on('finish', resolve);
 
-			await promise;
-			return new Response(fs.readFileSync(temp, 'binary'), {
+			// libre.convert(doc.toBuffer(), '.pdf', undefined, (err, done) => {
+			// 	if (err) {
+			// 		console.error('Error converting document:', err);
+			// 		reject(err);
+			// 	}
+			// 	resolve(done);
+			// });
+			return new Response(fs.readFileSync(path.join(process.cwd(), 'public', file)), {
 				status: 200,
 				statusText: 'OK',
 				headers: {
@@ -82,23 +119,23 @@ export const GET: APIRoute = async ({ params: { file }, url }) => {
 			});
 		}
 		case `${data.basics.name} Resume.docx`: {
-			const src = input,
-				args = [
-					'-s',
-					'-r',
-					'html',
-					'-o',
-					temp,
-					'--reference-doc',
-					'/workspaces/JonathonRP.github.io/public/ResumeTemplate.docx',
-				];
+			// const src = input,
+			// 	args = [
+			// 		'-s',
+			// 		'-r',
+			// 		'html',
+			// 		'-o',
+			// 		temp,
+			// 		'--reference-doc',
+			// 		'/workspaces/JonathonRP.github.io/public/ResumeTemplate.docx',
+			// 	];
 
-			await pandoc(src, args, (err, result) => {
-				if (err) console.log('Oh Nos: ', err);
-				return result;
-			});
+			// await pandoc(src, args, (err, result) => {
+			// 	if (err) console.log('Oh Nos: ', err);
+			// 	return result;
+			// });
 
-			return new Response(fs.readFileSync(temp), {
+			return new Response(doc.toBuffer(), {
 				status: 200,
 				statusText: 'OK',
 				headers: {

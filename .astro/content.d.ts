@@ -151,7 +151,99 @@ declare module 'astro:content' {
   id: string;
   body?: string;
   collection: "resume";
-  data: InferEntrySchema<"resume">;
+  data: {
+    basics?: {
+        name: string;
+        label: string;
+        image?: string | undefined;
+        email: string;
+        phone?: string | undefined;
+        url?: string | undefined;
+        summary: string;
+        location?: {
+            address: string;
+            postalCode: string;
+            city: string;
+            countryCode: string;
+            region: string;
+        } | undefined;
+        profiles: {
+            network: string;
+            username: string;
+            url: string;
+        }[];
+    } | undefined;
+    work?: {
+        image: string;
+        name: string;
+        location?: string | undefined;
+        description?: string | undefined;
+        position?: string | undefined;
+        url?: string | undefined;
+        startDate?: string | undefined;
+        endDate?: string | undefined;
+        summary?: string | undefined;
+        highlights: string[];
+    }[] | undefined;
+    volunteer?: {
+        organization: string;
+        position: string;
+        url: string;
+        startDate: string;
+        endDate: string;
+        summary: string;
+        hightlights: string[];
+    }[] | undefined;
+    education?: {
+        image: string;
+        institution: string;
+        url?: string | undefined;
+        area: string;
+        studyType: string;
+        startDate?: string | undefined;
+        endDate?: string | undefined;
+        summary?: string | undefined;
+        score?: string | undefined;
+        courses?: string[] | undefined;
+    }[] | undefined;
+    awards?: {
+        title: string;
+        date: string;
+        awarder: string;
+        summary: string;
+    }[] | undefined;
+    certificates?: {
+        image: string;
+        name: string;
+        date?: string | undefined;
+        url?: string | undefined;
+        issuer: string;
+    }[] | undefined;
+    publications?: {}[] | undefined;
+    skills?: {
+        category: string;
+        categoryTag: string;
+        name: string;
+        level?: string | undefined;
+        tag: string;
+        keywords: string[];
+    }[] | undefined;
+    languages?: {}[] | undefined;
+    interests?: {}[] | undefined;
+    reference?: {}[] | undefined;
+    projects?: {
+        type: string;
+        name: string;
+        description: string;
+        hightlights?: string[] | undefined;
+        keywords?: string[] | undefined;
+        url?: string | undefined;
+        startDate?: string | undefined;
+        endDate?: string | undefined;
+        roles?: string[] | undefined;
+        entity?: string | undefined;
+    }[] | undefined;
+};
   rendered?: RenderedContent;
   filePath?: string;
 }>;
