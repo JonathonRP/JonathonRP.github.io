@@ -1,5 +1,4 @@
 {
-	"$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.2.1/schema.json",
 	"basics": {
 		"name": "Jonathon Reese Perry",
 		"label": "FullStack Software Engineer",
@@ -27,34 +26,48 @@
 			"methodology": "Agile/SCRUM",
 			"description": "",
 			"highlights": [
-				"Ops Console, React applicaiton",
-				"Organization service, tree endpoint, designed and coded a solution to handle large organizations with many children and grandchildren. This solution uses a linq query.",
-				"Transcript service, linq performance tuning",
-				"Updated multiple services to use the latest version of the .Net framework, .Net 8.",
-				"Document service, designed a solutions to handle deleting documents with large numbers of activities. This solution uses a queue to process the delete requests in batches."
+				"Designed and coded an API solution to return results from large organizations with many children and grandchildren records. This solution uses a LINQ query.",
+				"Designed an API solution to handle deleting document records and their associated S3 objects. This solution uses an AWS SQS queue and lambda to process the delete requests in batches due to documents having a large volume of S3 objects.",
+				"Deployed solutions with Azure Pipelines calling terraform setting up AWS services, using variable groups.",
+				"Performed various LINQ query performance tuning of API endpoints.",
+				"Handled updating multiple stacks to use the latest .Net 8 version.",
+				"Developed new pages to enhance legacy system written in React."
 			],
-			"techonologies": ["terraform", "aws services", "azure pipelines", "azure variable groups", "linqpad"]
+			"techonologies": [
+				"terraform",
+				"aws services",
+				"azure pipelines",
+				"azure variable groups",
+				"linqpad"
+			]
 		},
 		{
 			"image": "",
 			"name": "Fast Pace Health",
-			"position": "Softwar Engineer",
+			"position": "Software Engineer",
 			"startDate": "2022-04",
+			"endDate": "2022-08",
 			"methodology": "Agile/SCRUM",
 			"description": "",
 			"highlights": [
 				"Developed a Chart Peer Review app that would be used by nurse practitioners to peer review medical charts for insurance coding accuracy.",
-				"Make key decisions in the design and architecure during development of Chart Peer Review.",
+				"Made key decisions in the design and architecture during development of Chart Peer Review.",
 				"Researched and learned RxJs, Reactive paradigm, and Angular.",
 				"Developed a Web scraper for use in Chart Peer Review to collect medical charts using Selenium and dotnet C#."
 			],
-			"techonologies": ["Angular", "TypeScript", "RXjs", "dotnet WebApi C#"]
+			"techonologies": [
+				"Angular",
+				"TypeScript",
+				"RXjs",
+				"dotnet WebApi C#"
+			]
 		},
 		{
 			"image": "MiraTech+Quovant.jpg",
 			"name": "Quovant",
 			"position": "Junior Software Developer",
 			"startDate": "2019-03",
+			"endDate": "2022-04",
 			"methodology": "Agile/SCRUM",
 			"description": "",
 			"highlights": [
@@ -65,13 +78,19 @@
 				"Coached and support other team members with my knowledge and experience.",
 				"Completed 70-461 Querying Microsoft SQL Server with Transact-SQL course."
 			],
-			"techonologies": ["dotnet C# ASP.Net WebApi", "SQL", "Angular", "TypeScript"]
+			"techonologies": [
+				"dotnet C# ASP.Net WebApi",
+				"SQL",
+				"Angular",
+				"TypeScript"
+			]
 		},
 		{
 			"image": "HCA.png",
 			"name": "HCA - TriStar",
 			"position": "Intern Software Developer",
 			"startDate": "2018-05",
+			"endDate": "2018-08",
 			"methodology": "Agile/SCRUM",
 			"description": "",
 			"highlights": [
@@ -86,6 +105,7 @@
 			"name": "HCA - HealthTrust",
 			"position": "Intern Software Developer",
 			"startDate": "2017-05",
+			"endDate": "2017-08",
 			"methodology": "Agile/SCRUM",
 			"description": "",
 			"highlights": [
@@ -118,6 +138,7 @@
 	"education": [
 		{
 			"image": "MTSU.png",
+			"startDate": "2016-06",
 			"endDate": "2018-12",
 			"institution": "MTSU",
 			"area": "Computer Information Technology",
@@ -167,6 +188,7 @@
 				".Net",
 				"Electron",
 				"NodeJs",
+				"terraform",
 				"Xamarin"
 			]
 		},
@@ -177,7 +199,8 @@
 			"tag": "databse",
 			"keywords": [
 				"SQL Sever",
-				"PostgresSQL"
+				"PostgresSQL",
+				"MySQL"
 			]
 		},
 		{
@@ -189,9 +212,12 @@
 				"Visual Studio",
 				"SQL Server",
 				"Azure Devops",
+				"Azure Pipelines",
 				"VS Code",
+				"Visual Studio",
 				"Azure",
 				"AWS",
+				"LINQPad",
 				"Jenkins"
 			]
 		},
@@ -215,13 +241,27 @@
 			"name": "motion-start",
 			"description": "An animation library inspired by framer-motion",
 			"url": "https://www.npmjs.com/package/motion-start",
-			"technologies": ["svelte", "typescript", "javascript", "Bun", "Github Actions", "Publishing to NPM"]
+			"technologies": [
+				"svelte",
+				"typescript",
+				"javascript",
+				"Bun",
+				"Github Actions",
+				"Publishing to NPM"
+			]
 		},
 		{
 			"type": "React application",
 			"name": "Date Night App",
 			"description": "Built a React app to randomly select and combine date-night ideas using Electron as a GUI",
-			"technologies": ["Electron", "React", "SASS", "JavaScript", "NodeJS", "JSON"]
+			"technologies": [
+				"Electron",
+				"React",
+				"SASS",
+				"JavaScript",
+				"NodeJS",
+				"JSON"
+			]
 		},
 		{
 			"type": "Winforms application",
@@ -250,21 +290,36 @@
 			"type": "Electron applicaiton",
 			"name": "Electron App",
 			"description": "Built an Electron app to demonstrate Python in the browser and Electron as a GUI for Python",
-			"technologies": ["Pug", "SASS", "JavaScript", "TypeScript", "NodeJS", "Electron Internal Protocols"],
+			"technologies": [
+				"Pug",
+				"SASS",
+				"JavaScript",
+				"TypeScript",
+				"NodeJS",
+				"Electron Internal Protocols"
+			],
 			"url": "https://github.com/JonathonRP/electron-project"
 		},
 		{
 			"type": "Android Kotlin application",
 			"name": "Dinner Decider App",
 			"description": "Built an Android app that allows you to create and save a list of places and items to eat. The app will randomly choose from the list to help you decide where or what to eat.",
-			"technologie": ["Kotlin", "Firebase UI Auth", "Firebase Cloud Firestore"],
+			"technologie": [
+				"Kotlin",
+				"Firebase UI Auth",
+				"Firebase Cloud Firestore"
+			],
 			"url": "https://github.com/JonathonRP/DinnerDecider"
 		},
 		{
 			"type": "AWS lambda",
 			"name": "Jira to Google Chat Event Notifications for WEX Auth Gateway",
 			"description": "Wrote Python script to receive JSON messages from Jira and post them to Google Chat",
-			"technologies": ["webhooks", "AWS API Gateway", "Lambda"]
+			"technologies": [
+				"webhooks",
+				"AWS API Gateway",
+				"Lambda"
+			]
 		},
 		{
 			"type": "Twilio & AWS lambda bot",
@@ -275,7 +330,7 @@
 	"meta": {
 		"canonical": "https://raw.githubusercontent.com/jsonresume/resume-schema/master/resume.json",
 		"version": "v1.2.1",
-		"lastModified": "2022-03-25",
-		"theme": "emerald"
+		"lastModified": "2025-06",
+		"theme": "kendall"
 	}
 }

@@ -71,7 +71,7 @@ const data = await Content.getLatestResumeData();
 		</script>
 	</Fragment>
 	<SEO {...seo} slot="head" />
-	<div class="resume:hidden">
+	<!-- <div class="resume:hidden">
 		<Picture
 			src={resume}
 			formats={['avif', 'webp']}
@@ -79,7 +79,7 @@ const data = await Content.getLatestResumeData();
 			loading="eager"
 			decoding="auto"
 		/>
-	</div>
+	</div> -->
 	<!-- TODO: make this image at smaller than lg/xlg -->
 	<section id="resume" class="resume">
 		<json-resume id="jsonresume" gist_id="db494895fb0ca2ecd2f86d7861db8dce"></json-resume>

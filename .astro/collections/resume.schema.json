@@ -136,7 +136,6 @@
             "required": [
               "image",
               "name",
-              "startDate",
               "highlights"
             ],
             "additionalProperties": false
@@ -209,8 +208,7 @@
                 "type": "string"
               },
               "startDate": {
-                "type": "string",
-                "format": "date"
+                "type": "string"
               },
               "endDate": {
                 "type": "string"
@@ -232,8 +230,7 @@
               "image",
               "institution",
               "area",
-              "studyType",
-              "endDate"
+              "studyType"
             ],
             "additionalProperties": false
           }
@@ -278,8 +275,7 @@
                 "type": "string"
               },
               "date": {
-                "type": "string",
-                "format": "date"
+                "type": "string"
               },
               "url": {
                 "type": "string",
@@ -292,7 +288,6 @@
             "required": [
               "image",
               "name",
-              "date",
               "issuer"
             ],
             "additionalProperties": false

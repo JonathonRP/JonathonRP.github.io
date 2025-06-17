@@ -3,7 +3,7 @@ import svelte from '@astrojs/svelte';
 import deno from '@deno/vite-plugin';
 import { enhancedImages } from '@sveltejs/enhanced-img';
 import robotsTxt from 'astro-robots-txt';
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import path from 'node:path';
 
 export default defineConfig({
@@ -20,6 +20,16 @@ export default defineConfig({
 		}),
 		svelte(),
 	],
+	env: {
+		schema: {
+			GITHUB_TOKEN: envField.string({
+				context: 'server',
+				access: 'secret',
+				description: 'GitHub API token for accessing private data.',
+			}),
+			GIST_ID: envField.string({ context: 'server', access: 'secret', description: 'GitHub Gist ID for resume data.' }),
+		},
+	},
 	prefetch: {
 		defaultStrategy: 'viewport',
 		prefetchAll: true,
