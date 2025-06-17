@@ -38,11 +38,10 @@ jobs:
       - name: Install dependencies
         run: deno install
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIST_ID: ${{ secrets.GIST_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run build
-
         run: deno run build
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
@@ -51,6 +50,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
+
+    permissions:
+      pages: write
+      id-token: write
 
     environment:
       name: github-pages
