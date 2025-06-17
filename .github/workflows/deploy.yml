@@ -26,6 +26,7 @@ jobs:
       matrix:
         deno: [2.x.x]
     runs-on: ubuntu-latest
+    environment: 'github-pages'
 
     steps:
       - uses: actions/checkout@v4
