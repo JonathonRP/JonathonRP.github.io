@@ -13,9 +13,11 @@ on:
       branch:
         description: "Branch to deploy"
         required: true
-        default: "main"
+        default: $default-branch
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+concurrency: 
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -25,17 +27,33 @@ permissions:
 jobs:
   build:
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' }}
-    strategy:
-      matrix:
-        deno: [2.x.x]
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: denoland/setup-deno@v2
-        with:
-          deno-version: ${{ matrix.deno }}
       - uses: pandoc/actions/setup@v1.1.0
+      - name: Setup Repo
+        if: ${{ github.ref == 'refs/heads/main' }}
+        # main branch
+        uses: actions/checkout@v4
+      - name: Setup Repo for PR
+        if: github.event_name == 'pull_request'
+        # pull request
+        id: checkout_pr
+        uses: actions/checkout@v4
+        with:
+          ref: ${{github.event.pull_request.head.sha }}
+      - name: Setup Repo for Dispatch
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.branch
+        # workflow_dispatch with branch input
+        id: checkout_dispatch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x.x
 
       - name: Install dependencies
         run: deno install
@@ -51,17 +69,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-
-    permissions:
-      pages: write
-      id-token: write
-
+    
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    if: github.ref == 'refs/heads/main'
+      name: ${{ github.ref == 'refs/heads/main' && 'github-pages' || 'github-pages-preview' }}
+      url: ${{ github.ref == 'refs/heads/main' && steps.deployment.outputs.page_url || format(steps.deployment.outputs.page_url, '/preview', github.event.pull_request.number) }}
+    
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - name: ${{ github.ref == 'refs/heads/main' && 'Deploy to GitHub Pages' || 'Deploy Preview to GitHub Pages' }}
         uses: actions/deploy-pages@v4
+        with:
+          preview: ${{ github.event_name == 'pull_request_target' || github.event_name == 'workflow_dispatch' }}
