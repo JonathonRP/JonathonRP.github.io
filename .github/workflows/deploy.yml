@@ -74,6 +74,9 @@ jobs:
       name: ${{ github.ref == 'refs/heads/main' && 'github-pages' || 'github-pages-preview' }}
       url: ${{ github.ref == 'refs/heads/main' && steps.deployment.outputs.page_url || format(steps.deployment.outputs.page_url, '/preview', github.event.pull_request.number) }}
     
+    outputs:
+      deployment_url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: ${{ github.ref == 'refs/heads/main' && 'Deploy to GitHub Pages' || 'Deploy Preview to GitHub Pages' }}
         uses: actions/deploy-pages@v4
