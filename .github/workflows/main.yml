@@ -31,17 +31,15 @@ jobs:
   #     - name: Run astro-check
   #       run: deno task check
 
-  Format-Lint:
+  test:
     runs-on: ubuntu-latest
-    name: Format & Lint
-    strategy:
-      matrix:
-        deno: [2.x.x]
     steps:
-      - uses: actions/checkout@v4
-      - uses: denoland/setup-deno@v2
+      - name: Setup Repo
+        uses: actions/checkout@v4
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
         with:
-          deno-version: ${{ matrix.deno }}
+          deno-version: v2.x.x
 
       - name: Install dependencies
         run: deno install
@@ -52,16 +50,5 @@ jobs:
       # - name: Run linter
       #   run: deno lint
 
-  # Test:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - uses: denoland/setup-deno@v2
-  #       with:
-  #         deno-version: ${{ matrix.deno }}
-
-  #     - name: Install dependencies
-  #       run: deno install
-
-  #     - name: Run tests
-  #       run: deno task test
+      # - name: Run tests
+      #   run: deno test -A
