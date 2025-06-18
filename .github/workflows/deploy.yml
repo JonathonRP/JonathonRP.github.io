@@ -82,3 +82,14 @@ jobs:
         uses: actions/deploy-pages@v4
         with:
           preview: ${{ github.event_name == 'pull_request_target' || github.event_name == 'workflow_dispatch' }}
+
+      - name: Comment Deployment URL
+        uses: thollander/actions-comment-pull-request@v2
+        if: github.event_name == 'pull_request'
+        with:
+          message: |
+            Deployed to [${{ steps.deployment.outputs.page_url }}](${{ steps.deployment.outputs.page_url }}) 🎉
+            This is a preview deployment for PR #${{ github.event.pull_request.number }}.
+            You can view the changes made in this PR by clicking the link above.
+          pr_number: ${{ github.event.pull_request.number }}
+          comment_tag: 'jonathonrp-portfolio-preview'
