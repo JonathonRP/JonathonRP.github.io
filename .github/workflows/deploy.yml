@@ -76,7 +76,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     
     outputs:
-      deployment_url: ${{ env.url }}
+      deployment_url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: ${{ github.ref == 'refs/heads/main' && 'Deploy to GitHub Pages' || 'Deploy Preview to GitHub Pages' }}
