@@ -80,6 +80,7 @@ jobs:
 
     steps:
       - name: ${{ github.ref == 'refs/heads/main' && 'Deploy to GitHub Pages' || 'Deploy Preview to GitHub Pages' }}
+        id: deploy
         uses: actions/deploy-pages@v4
         with:
           preview: ${{ github.event_name == 'pull_request_target' || github.event_name == 'workflow_dispatch' }}
